@@ -1,6 +1,6 @@
 import { Box, FormControlLabel, MenuItem, Switch, TextField } from "@mui/material"
 import { useState } from "react";
-
+import './app.css'
 import reactLogo from './assets/react.svg'
 
 export const DatosEmpresa = () => {
