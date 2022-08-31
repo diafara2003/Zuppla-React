@@ -1,9 +1,11 @@
 import { Box, FormControlLabel, MenuItem, Switch, TextField } from "@mui/material"
-import React from "react";
+import { useState } from "react";
+
 import reactLogo from './assets/react.svg'
 
 export const DatosEmpresa = () => {
-    const [valorSel, setvalorSel] = React.useState('');
+  console.log('empresa');
+    const [valorSel, setvalorSel] = useState('');
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setvalorSel(event.target.value as string);
