@@ -30,6 +30,7 @@ function App() {
         <Tab icon={<PhoneIcon />} label="RECENTS" />
         <Tab icon={<FavoriteIcon />} label="FAVORITES" />
         <Tab icon={<PersonPinIcon />} label="NEARBY" />
+        <Tab icon={<PersonPinIcon />} label="NEARBY" />
       </Tabs>
     </>
 
