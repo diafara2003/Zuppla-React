@@ -1,37 +1,53 @@
 import { useState } from 'react'
 
 import { styled } from '@mui/material/styles';
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Stack, Tab, Tabs } from '@mui/material'
+import { Box, Button, Container, CssBaseline, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Stack, Switch, Tab, Tabs, TextField } from '@mui/material'
 import PhoneIcon from '@mui/icons-material/Phone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
+import PermDeviceInformationIcon from '@mui/icons-material/PermDeviceInformation';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import FilePresentIcon from '@mui/icons-material/FilePresent';
+import DescriptionIcon from '@mui/icons-material/Description';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import React from 'react';
+import { display, margin, padding } from '@mui/system';
+import { Padding } from '@mui/icons-material';
+import { DatosEmpresa } from './DatosEmpresa';
+import { DatosContactos } from './DatosContacto';
 
 function App() {
- 
-  const [value, setValue] = useState(0); 
+  const [value, setValue] = useState(0);
+
   const Selected = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   }
-  
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
+  const [valorSel, setvalorSel] = React.useState('');
 
-    color: theme.palette.text.secondary,
-  }));
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setvalorSel(event.target.value as string);
+  };
 
   return (
-
     <>
-
-      <Tabs value={value} onChange={Selected} aria-label="icon label tabs example">
-        <Tab icon={<PhoneIcon />} label="RECENTS" />
-        <Tab icon={<FavoriteIcon />} label="FAVORITES" />
-        <Tab icon={<PersonPinIcon />} label="NEARBY" />
-        <Tab icon={<PersonPinIcon />} label="NEARBY" />
-      </Tabs>
+      <React.Fragment>
+        <CssBaseline />
+        <Container fixed>
+          {/* ==============Tab menu==================== */}
+          <Box display={"flex"} alignItems={"center"} justifyContent={"center"} marginBottom={2}>
+            <Tabs value={value} onChange={Selected} aria-label="icon label tabs example">
+              <Tab icon={<PermDeviceInformationIcon />} label="Información General" />
+              <Tab icon={<ContactsIcon />} label="Contactos" />
+              <Tab icon={<ContactMailIcon />} label="Datos Notificaciones" />
+              <Tab icon={<FilePresentIcon />} label="Documentos" />
+              <Tab icon={<DescriptionIcon />} label="Camara de comercio" />
+              <Tab icon={<NotificationsActiveIcon />} label="Novedades" />
+            </Tabs>
+          </Box>     
+          <DatosContactos/>    
+        </Container>
+      </React.Fragment>
     </>
 
 
