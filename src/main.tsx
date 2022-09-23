@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
+import { GestionProveedoresPage } from './Sitio/Web/Pages/GestionProveedores/GestionProveedoresPage'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-     <App />   
+     <GestionProveedoresPage />   
   </React.StrictMode>
 )

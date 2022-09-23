@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
-import './App.css'
-import reactLogo from './assets/react.svg'
+import '../../Styles/App.css'
+import reactLogo from './../../../../assets/react.svg'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { display } from '@mui/system';
+
 
 export const LogoEmpresa = () => {
 

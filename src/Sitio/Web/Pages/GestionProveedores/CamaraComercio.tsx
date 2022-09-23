@@ -17,7 +17,7 @@ export const CamaraComercio = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                        <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell align="center">Cedula de ciudadania</TableCell>
                             <TableCell align="center">1234567</TableCell>
                             <TableCell align="center">Pruebas 2022</TableCell>
@@ -39,7 +39,7 @@ export const CamaraComercio = () => {
                                 </IconButton>
                             </TableCell>
                         </TableRow>
-                       
+
                     </TableBody>
                 </Table>
             </TableContainer>

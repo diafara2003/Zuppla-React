@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react'
-
-import { styled } from '@mui/material/styles';
 import { Badge, Box, Button, Container, CssBaseline, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Stack, Switch, Tab, Tabs, TextField, Typography } from '@mui/material'
 
 import PermDeviceInformationIcon from '@mui/icons-material/PermDeviceInformation';
@@ -9,12 +6,14 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import FilePresentIcon from '@mui/icons-material/FilePresent';
 import DescriptionIcon from '@mui/icons-material/Description';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import React from 'react';
-import { DatosEmpresa } from './DatosEmpresa';
-import { DatosContactos } from './DatosContacto';
-import { LogoEmpresa } from './LogoEmpresa';
-import { CamaraComercio } from './CamaraComercio';
+
+import { DatosEmpresa } from './Sitio/Web/Components/GestionProveedores/DatosEmpresa';
+import { DatosContactos } from './Sitio/Web/Pages/GestionProveedores/DatosContactoPage';
+import { LogoEmpresa } from './Sitio/Web/Components/GestionProveedores/LogoEmpresa';
+import { CamaraComercio } from './Sitio/Web/Pages/GestionProveedores/CamaraComercio';
 import { DatosNotifiaciones } from './DatosNotificaciones';
+
+import React from 'react';
 
 interface TabPanelProps {
   children?: React.ReactNode;
