@@ -13,7 +13,6 @@ export default function LoginPages() {
     return (
 
         <Container component="main" maxWidth="xs">
-
             <Box
                 sx={{
                     marginTop: 8,
@@ -23,7 +22,6 @@ export default function LoginPages() {
 
                 }}
             >
-
                 <Avatar variant="circular" sx={{ m: 1, fontSize: "4rem", bgcolor: 'secondary.main' }}>
                     <AccountCircleRoundedIcon sx={{
                         fontSize: "2rem"
