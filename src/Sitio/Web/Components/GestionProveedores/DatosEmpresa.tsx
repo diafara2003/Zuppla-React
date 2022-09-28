@@ -25,7 +25,7 @@ export const DatosEmpresa = () => {
 
     return (
         <>
-            <Grid sx={{ mt: 3 }}>
+            <Grid sx={{  }}>
                 <form>
                     <Grid container width={'100%'} display={"flex"} alignItems={"center"} justifyContent={"center"}>
                         <Grid item xs={3} sx={{ m: 1 }}>
