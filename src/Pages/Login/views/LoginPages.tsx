@@ -1,14 +1,21 @@
 import { Avatar, Box, Container, Typography, Paper, Grid, TextField, FormControlLabel, Button, Link } from '@mui/material';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import { useForm } from '../hooks/useLogin';
 
 export default function LoginPages() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+
+    const { formState, onInputChange } = useForm({
+        email: '', password: ''
+    });
+
+    const emailRegexp = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
+    const handleSubmit = (e: React.SyntheticEvent) => {
+        e.preventDefault();
+
+        const hasError = !emailRegexp.test(formState.email);
+
+
+        console.log(formState,hasError);
     };
     return (
 
@@ -23,7 +30,7 @@ export default function LoginPages() {
                 }}
             >
 
-                <Avatar variant="circular" sx={{ m: 1, fontSize: "4rem", bgcolor: 'secondary.main',  width: 60, height: 60 }}>
+                <Avatar variant="circular" sx={{ m: 1, fontSize: "4rem", bgcolor: 'secondary.main', width: 60, height: 60 }}>
                     <AccountCircleRoundedIcon sx={{
                         fontSize: "4rem"
                     }} />
@@ -38,9 +45,11 @@ export default function LoginPages() {
                                 required
                                 fullWidth
                                 id="email"
+                                onChange={onInputChange}
+                                value={formState.email}
                                 label="Correo electronico"
                                 name="email"
-                                autoComplete="email"
+                            // autoComplete="email"
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -49,9 +58,11 @@ export default function LoginPages() {
                                 fullWidth
                                 name="password"
                                 label="Contraseña"
+                                onChange={onInputChange}
+                                value={formState.password}
                                 type="password"
                                 id="password"
-                                autoComplete="new-password"
+                            // autoComplete="new-password"
                             />
                         </Grid>
 

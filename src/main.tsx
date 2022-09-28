@@ -7,7 +7,7 @@ import LoginPages from './Pages/Login/views/LoginPages'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-     <GestionProveedoresPage />   
-     {/* <LoginPages /> */}
+     {/* <GestionProveedoresPage />    */}
+     <LoginPages />
   </React.StrictMode>
 )
