@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Paper, Typography } from "@mui/material"
-import { DatosEmpresa } from "../../Components/GestionProveedores/DatosEmpresa"
-import { LogoEmpresa } from "../../Components/GestionProveedores/LogoEmpresa"
+import { DatosEmpresa } from "./Components/GestionProveedores/DatosEmpresa"
+import { LogoEmpresa } from "./Components/GestionProveedores/LogoEmpresa"
 
 
 
