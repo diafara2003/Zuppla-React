@@ -2,6 +2,10 @@ import { useState } from "react";
 import { LoginDTO } from "../model/loginDTO"
 
 
+// type inputForm={
+//     name:string;
+//     validate: (): boolean=>{}
+// }
 
 type loginForm = {
     email: string;
