@@ -24,9 +24,9 @@ export default function LoginPages() {
                 }}
             >
 
-                <Avatar variant="circular" sx={{ m: 1, fontSize: "4rem", bgcolor: 'secondary.main' }}>
+                <Avatar variant="circular" sx={{ m: 1, fontSize: "4rem", bgcolor: 'secondary.main',  width: 60, height: 60 }}>
                     <AccountCircleRoundedIcon sx={{
-                        fontSize: "2rem"
+                        fontSize: "4rem"
                     }} />
                 </Avatar>
                 <Typography component="h1" variant="h5">
@@ -65,7 +65,7 @@ export default function LoginPages() {
                     >
                         Ingresar
                     </Button>
-                    <Grid container>
+                    <Grid container sx={{ display: "none" }}>
                         <Grid item xs>
                             <Link href="#" variant="body2">
                                 ¿Recordar contraseña?
