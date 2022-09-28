@@ -1,16 +1,16 @@
 import { MenuOutlined, LogoutOutlined } from '@mui/icons-material'
-import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Grid, IconButton, Toolbar, Typography } from '@mui/material'
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import React from 'react'
 
 export const HeaderPages = ({ drawerWidth = 240 }) => {
     return (
-        <AppBar
+        <Box
             position='fixed'
             sx={{
                 width: { sm: `calc(100% - ${drawerWidth}px)` },
                 ml: { sm: `${drawerWidth}px` },
-                backgroundColor: "#f9f9f9 !important"
+                backgroundColor: "white !important"
                 
             }}
         >
@@ -30,7 +30,7 @@ export const HeaderPages = ({ drawerWidth = 240 }) => {
                     </IconButton>
                 </Grid>
             </Toolbar>
-        </AppBar>
+        </Box>
     )
 }
 

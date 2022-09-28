@@ -1,7 +1,3 @@
-import { Badge, Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar } from "@mui/material"
-import { HeaderPages } from "../Components/HeaderPage/View/HeaderPages";
-import { SubMenu } from "../Components/NavigationMenu/View/SubMenu"
-
 import BusinessIcon from '@mui/icons-material/Business';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
@@ -9,13 +5,14 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import FolderOpenTwoToneIcon from '@mui/icons-material/FolderOpenTwoTone';
 
-const drawerWidth = 280;
+import { Badge, Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper } from "@mui/material"
+import React from 'react';
+import { LogoEmpresa } from '../../LogoProveedor/View/LogoEmpresa';
+import { BrowserRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom';
 
-import React from 'react'
-import { BrowserRouter, NavLink, Routes, Route, Navigate } from "react-router-dom";
-import { LogoEmpresa } from "../Components/LogoProveedor/View/LogoEmpresa";
 
-export const GestionProveedoresLayout = ({ children }: any) => {
+
+export const SubMenu = ({ drawerWidth = 240 }) => {
     const [selectedIndex, setSelectedIndex] = React.useState(0);
     const handleListItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -23,12 +20,9 @@ export const GestionProveedoresLayout = ({ children }: any) => {
     ) => {
         setSelectedIndex(index);
     };
-
-  return (
-    <Box sx={{ display: 'flex', backgroundColor:"white" }}>
-        <HeaderPages drawerWidth={drawerWidth} />
-        {/* <SubMenu drawerWidth={drawerWidth} /> */}
-        <Box
+    return (
+        <>
+            <Box
                 component='nav'
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
             >
@@ -157,16 +151,7 @@ export const GestionProveedoresLayout = ({ children }: any) => {
 
                 </Drawer>
             </Box>
+        </>
 
-
-
-        <Box
-            component='main'
-            sx={{ flexGrow: 1, p: 3 }}
-        >
-            <Toolbar />
-            {children}
-        </Box>
-    </Box>
-  )
+    )
 }
