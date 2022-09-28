@@ -22,12 +22,8 @@ export default function LoginPages() {
 
                 }}
             >
-<<<<<<< HEAD:src/Sitio/Web/Pages/GestionProveedores/Login/Pages/LoginPages.tsx
 
                 <Avatar variant="circular" sx={{ m: 1, fontSize: "4rem", bgcolor: 'secondary.main',  width: 60, height: 60 }}>
-=======
-                <Avatar variant="circular" sx={{ m: 1, fontSize: "4rem", bgcolor: 'secondary.main' }}>
->>>>>>> 8a3e91de7621d147d009d3019b1e2d84667db57b:src/Sitio/Web/Pages/Login/Pages/LoginPages.tsx
                     <AccountCircleRoundedIcon sx={{
                         fontSize: "4rem"
                     }} />
