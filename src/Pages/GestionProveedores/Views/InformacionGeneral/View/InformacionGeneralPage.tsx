@@ -1,12 +1,11 @@
-import { Autocomplete, Box, Button, Divider, FormControlLabel, Grid, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem, Stack, Switch, TextField } from "@mui/material"
-import React from "react";
-import '../../Styles/App.css'
-
+import { Box, Button, Card, CardContent, FormControlLabel, Grid, MenuItem, Paper, Stack, Switch, TextField, Typography } from "@mui/material"
 import SaveIcon from '@mui/icons-material/Save';
-import VerifiedIcon from '@mui/icons-material/Verified';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import React from "react";
 
-export const DatosEmpresa = () => {
+
+
+export const InformacionGeneralPage = () => {
+
     const [valorSel, setvalorSel] = React.useState('');
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,11 +20,9 @@ export const DatosEmpresa = () => {
         { label: "Prueba", year: 1993 },
         { label: 'Prueba', year: 1994 }
     ];
-
-
     return (
-        <>
-            <Grid sx={{  }}>
+        <Paper elevation={0} sx={{ minWidth: 275, p: 2 }}>
+            <Grid sx={{}}>
                 <form>
                     <Grid container width={'100%'} display={"flex"} alignItems={"center"} justifyContent={"center"}>
                         <Grid item xs={3} sx={{ m: 1 }}>
@@ -141,7 +138,7 @@ export const DatosEmpresa = () => {
                 </form>
             </Grid>
 
-            <Divider />
+            {/* <Divider />
             <Grid container width={'100%'} display={"flex"} alignItems={"center"} justifyContent={"center"}>
                 <Grid item xs={12} sx={{ mt: 3 }}>
                     <Autocomplete
@@ -221,10 +218,7 @@ export const DatosEmpresa = () => {
 
                     </div>
                 </Box>
-            </Grid>
-
-
-
-        </>
+            </Grid> */}
+        </Paper>
     )
 }

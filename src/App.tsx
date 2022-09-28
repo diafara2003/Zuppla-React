@@ -7,10 +7,10 @@ import FilePresentIcon from '@mui/icons-material/FilePresent';
 import DescriptionIcon from '@mui/icons-material/Description';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
-import { DatosEmpresa } from './Pages/GestionProveedores/Components/GestionProveedores/DatosEmpresa';
-import { DatosContactos } from './Pages/GestionProveedores/DatosContactoPage';
-import { LogoEmpresa } from './Pages/GestionProveedores/Components/GestionProveedores/LogoEmpresa';
-import { CamaraComercio } from './Pages/GestionProveedores/CamaraComercio';
+import { DatosEmpresa } from './Pages/GestionProveedores/Views/InformacionGeneral/Components/DatosEmpresaPage';
+import { DatosContactos } from './Pages/GestionProveedores/Views/DatosContactos/View/DatosContactoPage';
+import { LogoEmpresa } from './Pages/GestionProveedores/Components/LogoProveedor/View/LogoEmpresa';
+import { CamaraComercio } from './Pages/GestionProveedores/Views/CamaraComercio/View/CamaraComercio';
 import { DatosNotifiaciones } from './DatosNotificaciones';
 
 import React from 'react';
