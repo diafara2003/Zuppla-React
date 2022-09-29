@@ -3,11 +3,11 @@ import { RequestInfo } from "./model/FetchModel";
 
 const URLBase: string = "http://localhost/proveedores";
 
-export const useFetch = (request: RequestInfo) => {
+export const useFetch = () => {
 
     const [state, setState] = useState({
         data: null,
-        isLoading: true,
+        isLoading: false,
         hasError: "",
     })
 
@@ -52,10 +52,7 @@ export const useFetch = (request: RequestInfo) => {
     }
 
 
-    useEffect(() => {
-
-        doFetch(request);
-    }, [request])
+ 
 
 
 
@@ -63,5 +60,6 @@ export const useFetch = (request: RequestInfo) => {
         data: state.data,
         isLoading: state.isLoading,
         hasError: state.hasError,
+        doFetch
     };
 }

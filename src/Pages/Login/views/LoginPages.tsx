@@ -1,20 +1,22 @@
-import { Avatar, Box, Container, Typography, Paper, Grid, TextField, FormControlLabel, Button, Link } from '@mui/material';
+import { Avatar, Box, Container, Typography, Paper, Grid, TextField, FormControlLabel, Button, Link, Snackbar } from '@mui/material';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useForm } from '../hooks/useLogin';
-import { useState } from 'react';
-
+import LoadingButton from '@mui/lab/LoadingButton';
 
 
 
 export default function LoginPages() {
 
 
-    const { email, password, onInputChange, errorState, handleSubmit } = useForm({
+    const { email, password, onInputChange, errorState, handleSubmit, isLoading, hasError } = useForm({
         email: '', password: ''
     });
 
 
 
+    const handleClose = () => {
+
+    };
     return (
 
         <Container component="main" maxWidth="xs">
@@ -69,14 +71,32 @@ export default function LoginPages() {
                         </Grid>
 
                     </Grid>
-                    <Button
+
+
+                    <LoadingButton
+                        size="small"
                         type="submit"
                         fullWidth
-                        variant="contained"
                         sx={{ mt: 3, mb: 2 }}
+                        loadingPosition="start"
+                        variant="contained"
+                        loading={isLoading}
                     >
                         Ingresar
-                    </Button>
+                    </LoadingButton>
+
+                    {hasError == "" ? null :
+                        <Snackbar
+                            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                            open={true}
+                            onClose={handleClose}
+                            message={hasError}
+                            key={"bottom" + "right"}
+                        />
+                    }
+
+
+
                     <Grid container sx={{ display: "none" }}>
                         <Grid item xs>
                             <Link href="#" variant="body2">
@@ -94,4 +114,8 @@ export default function LoginPages() {
 
         </Container>
     );
+}
+
+function setState(arg0: any) {
+    throw new Error('Function not implemented.');
 }

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useFetch } from '../../../Provider/useFech';
 import { LoginDTO } from "../model/loginDTO"
+import { APiMethod, RequestInfo } from '../../../Provider/model/FetchModel';
 
 
 type loginForm = {
@@ -19,12 +21,26 @@ type validacionFormulario = {
 export const useForm = (initialForm: loginForm = { email: '', password: '' }) => {
 
     const [formState, setFormState] = useState(initialForm);
+    const { hasError, data, isLoading, doFetch } = useFetch();
     const [errorState, errorStateState] = useState(
         {
             email: { hasError: false, msn: '' },
             password: { hasError: false, msn: '' }
         }
     );
+
+    const validarUsuario = async () => {
+
+        doFetch({
+            metodo: 'Login',
+            AllowAnonymous: true,
+            type: APiMethod.POST,
+            data: { usuario: formState.email, clave: formState.password }
+
+        });
+
+    }
+
 
 
     const onInputChange = (e: React.SyntheticEvent) => {
@@ -47,13 +63,12 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
 
         if (_validacion.email.hasError || _validacion.password.hasError) {
             errorStateState(_validacion);
+            return;
         }
 
-        console.log(formState);
+        validarUsuario();
 
     };
-
-
 
     const validarCampos = (): validacionFormulario => {
         const emailRegexp = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
@@ -85,7 +100,6 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
     }
 
 
-
     useEffect(() => {
 
         console.log(import.meta.env.VITE_BACKEND_URL);
@@ -98,7 +112,10 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
         errorState,
         onInputChange,
         onResetForm,
-        handleSubmit
+        handleSubmit,
+        isLoading,
+        hasError
+
 
     }
 }
