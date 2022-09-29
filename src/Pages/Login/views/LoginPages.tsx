@@ -8,7 +8,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 export default function LoginPages() {
 
 
-    const { email, password, onInputChange, errorState, handleSubmit, isLoading, hasError } = useForm({
+    const { email, password, onInputChange, errorState, handleSubmit, isLoading, errorMessage } = useForm({
         email: '', password: ''
     });
 
@@ -85,12 +85,12 @@ export default function LoginPages() {
                         Ingresar
                     </LoadingButton>
 
-                    {hasError == "" ? null :
+                    {errorMessage == "" ? null :
                         <Snackbar
                             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                             open={true}
                             onClose={handleClose}
-                            message={hasError}
+                            message={errorMessage}
                             key={"bottom" + "right"}
                         />
                     }
