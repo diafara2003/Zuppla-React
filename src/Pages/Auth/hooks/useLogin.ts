@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useFetch } from '../../../Provider/useFech';
-import { LoginDTO } from "../model/loginDTO"
-import { APiMethod, RequestInfo } from '../../../Provider/model/FetchModel';
+import { APiMethod } from '../../../Provider/model/FetchModel';
+import { useNavigate } from 'react-router-dom';
 
 
 type loginForm = {
@@ -20,6 +20,7 @@ type validacionFormulario = {
 
 export const useForm = (initialForm: loginForm = { email: '', password: '' }) => {
 
+    
     const [formState, setFormState] = useState(initialForm);
     const [errorMessage, setError] = useState("");
     const { hasError, data, isLoading, doFetch } = useFetch();
@@ -124,4 +125,8 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
 
 
     }
+}
+
+function useContext(AuthContext: any): { login: any; } {
+    throw new Error('Function not implemented.');
 }
