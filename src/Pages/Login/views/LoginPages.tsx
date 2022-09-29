@@ -1,22 +1,20 @@
 import { Avatar, Box, Container, Typography, Paper, Grid, TextField, FormControlLabel, Button, Link } from '@mui/material';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useForm } from '../hooks/useLogin';
+import { useState } from 'react';
+
+
+
 
 export default function LoginPages() {
 
-    const { formState, onInputChange } = useForm({
+
+    const { email, password, onInputChange, errorState, handleSubmit } = useForm({
         email: '', password: ''
     });
 
-    const emailRegexp = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
-    const handleSubmit = (e: React.SyntheticEvent) => {
-        e.preventDefault();
-
-        const hasError = !emailRegexp.test(formState.email);
 
 
-        console.log(formState,hasError);
-    };
     return (
 
         <Container component="main" maxWidth="xs">
@@ -42,27 +40,31 @@ export default function LoginPages() {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
+                                error={errorState.email.hasError}
+                                helperText={errorState.email.msn}
                                 required
                                 fullWidth
                                 id="email"
                                 onChange={onInputChange}
-                                value={formState.email}
+                                value={email}
                                 label="Correo electronico"
                                 name="email"
-                            // autoComplete="email"
+                                autoComplete="email"
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                error={errorState.password.hasError}
+                                helperText={errorState.password.msn}
                                 required
                                 fullWidth
                                 name="password"
                                 label="Contraseña"
                                 onChange={onInputChange}
-                                value={formState.password}
+                                value={password}
                                 type="password"
                                 id="password"
-                            // autoComplete="new-password"
+                                autoComplete="new-password"
                             />
                         </Grid>
 
