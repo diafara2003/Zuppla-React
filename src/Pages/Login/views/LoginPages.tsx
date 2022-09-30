@@ -89,6 +89,7 @@ export default function LoginPages() {
                         <Snackbar
                             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                             open={true}
+                            autoHideDuration={4000}
                             onClose={handleClose}
                             message={errorMessage}
                             key={"bottom" + "right"}
