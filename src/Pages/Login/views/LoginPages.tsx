@@ -40,6 +40,7 @@ export default function LoginPages() {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
+
                                 error={errorState.email.hasError}
                                 helperText={errorState.email.msn}
                                 required
@@ -72,7 +73,7 @@ export default function LoginPages() {
 
 
                     <LoadingButton
-                        size="small"
+                        size="large"
                         type="submit"
                         fullWidth
                         sx={{ mt: 3, mb: 2 }}
