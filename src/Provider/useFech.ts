@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { RequestInfo } from "./model/FetchModel";
 
-const URLBase: string = "http://localhost/proveedores";
+const URLBase: string = import.meta.env.VITE_BACKEND_URL;
 
 export const useFetch = () => {
+
+    console.log(URLBase);
 
     const [state, setState] = useState({
         data: null,
@@ -24,6 +26,16 @@ export const useFetch = () => {
 
         };
 
+
+        Init.headers = {
+            "Accept": `application/json`,
+            "Content-Type": 'application/json'
+        }
+
+        //if (!request.AllowAnonymous)
+        // Init.headers = { ...Init.headers, 'Authorization': `Bearer ${getToken()}` };
+
+
         if (request.data != null)
             Init.body = JSON.stringify(request.data);
 
@@ -40,6 +52,13 @@ export const useFetch = () => {
                     hasError: "",
                 });
             }
+            else if (response.status == 404) {
+                setState({
+                    data: null,
+                    isLoading: false,
+                    hasError: "not found",
+                });
+            }
         } catch (error) {
             setState({
                 data: null,
@@ -50,11 +69,6 @@ export const useFetch = () => {
 
 
     }
-
-
- 
-
-
 
     return {
         data: state.data,

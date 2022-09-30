@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useFetch } from '../../../Provider/useFech';
-import { LoginDTO } from "../model/loginDTO"
-import { APiMethod, RequestInfo } from '../../../Provider/model/FetchModel';
+import { APiMethod } from '../../../Provider/model/FetchModel';
+import { useNavigate } from 'react-router-dom';
 
 
 type loginForm = {
@@ -20,7 +20,9 @@ type validacionFormulario = {
 
 export const useForm = (initialForm: loginForm = { email: '', password: '' }) => {
     
+    
     const [formState, setFormState] = useState(initialForm);
+    const [errorMessage, setError] = useState("");
     const { hasError, data, isLoading, doFetch } = useFetch();
     const [errorState, errorStateState] = useState(
         {
@@ -28,6 +30,14 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
             password: { hasError: false, msn: '' }
         }
     );
+
+
+
+    useEffect(() => {
+
+        if (hasError == "not found") setError(() => "EL usuario no existe o la contraseña esta incorrecta");
+    }, [hasError])
+
 
     const validarUsuario = async () => {
 
@@ -40,8 +50,6 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
         });
 
     }
-
-
 
     const onInputChange = (e: React.SyntheticEvent) => {
         const { name, value } = (e.target as HTMLInputElement);
@@ -103,7 +111,6 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
 
     useEffect(() => {
 
-        console.log(import.meta.env.VITE_BACKEND_URL);
     }, [])
 
 
@@ -115,8 +122,12 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
         onResetForm,
         handleSubmit,
         isLoading,
-        hasError
+        errorMessage
 
 
     }
+}
+
+function useContext(AuthContext: any): { login: any; } {
+    throw new Error('Function not implemented.');
 }
