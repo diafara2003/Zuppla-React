@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { RequestInfo } from "./model/FetchModel";
 
-const URLBase: string = import.meta.env.VITE_BACKEND_URL;
+const URLBase: string = "http://localhost/proveedores";
 
 export const useFetch = () => {
-
-    console.log(URLBase);
 
     const [state, setState] = useState({
         data: null,
@@ -13,9 +11,7 @@ export const useFetch = () => {
         hasError: "",
     })
 
-
     const doFetch = async (request: RequestInfo) => {
-
         setState({
             ...state,
             isLoading: true,
@@ -23,18 +19,7 @@ export const useFetch = () => {
 
         let Init: RequestInit = {
             method: request.type,
-
         };
-
-
-        Init.headers = {
-            "Accept": `application/json`,
-            "Content-Type": 'application/json'
-        }
-
-        //if (!request.AllowAnonymous)
-        // Init.headers = { ...Init.headers, 'Authorization': `Bearer ${getToken()}` };
-
 
         if (request.data != null)
             Init.body = JSON.stringify(request.data);
@@ -42,21 +27,12 @@ export const useFetch = () => {
         try {
             const response: Response = await fetch(`${URLBase}/${request.metodo}`, Init);
 
-
             if (response.ok) {
                 const data = await response.json();
-
                 setState({
                     data,
                     isLoading: false,
                     hasError: "",
-                });
-            }
-            else if (response.status == 404) {
-                setState({
-                    data: null,
-                    isLoading: false,
-                    hasError: "not found",
                 });
             }
         } catch (error) {
@@ -66,8 +42,6 @@ export const useFetch = () => {
                 hasError: "Error al traer datos del API",
             });
         }
-
-
     }
 
     return {
