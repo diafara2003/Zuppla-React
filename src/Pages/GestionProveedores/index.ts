@@ -9,5 +9,7 @@ export * from './Components/HeaderPage/View/HeaderPages';
 export * from './Components/LogoProveedor/View/LogoEmpresa';
 export * from './Components/NavigationMenu/View/SubMenu';
 
+export * from './Routes/RoutesGestionProveedores';
+
 
 export * from './GestionProveedoresPage';

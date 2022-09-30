@@ -7,11 +7,11 @@ import FilePresentIcon from '@mui/icons-material/FilePresent';
 import DescriptionIcon from '@mui/icons-material/Description';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
-import { DatosEmpresa } from './Pages/GestionProveedores/Views/InformacionGeneral/Components/DatosEmpresaPage';
+
 import { DatosContactos } from './Pages/GestionProveedores/Views/DatosContactos/View/DatosContactoPage';
 import { LogoEmpresa } from './Pages/GestionProveedores/Components/LogoProveedor/View/LogoEmpresa';
-import { CamaraComercio } from './Pages/GestionProveedores/Views/CamaraComercio/View/CamaraComercio';
-import { DatosNotifiaciones } from './DatosNotificaciones';
+import { CamaraComercio } from './Pages/GestionProveedores/Views/CamaraComercio/View/CamaraComercioPage';
+import { DatosNotifiaciones } from './Pages/GestionProveedores/Views/DatosNotificaciones/View/DatosNotificacionesPage';
 
 import React from 'react';
 
@@ -75,7 +75,7 @@ function App() {
 
         <TabPanel value={value} index={0}>
           <LogoEmpresa />
-          <DatosEmpresa />
+       
         </TabPanel>
         <TabPanel value={value} index={1}>
           <DatosContactos />
