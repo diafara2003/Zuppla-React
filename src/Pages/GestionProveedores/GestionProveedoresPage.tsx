@@ -17,6 +17,7 @@ import React from 'react'
 import { DatosContactos } from './Views/DatosContactos/View/DatosContactoPage'
 import { DatosNotifiaciones } from './Views/DatosNotificaciones/View/DatosNotificacionesPage'
 import { CamaraComercio } from './Views/CamaraComercio/View/CamaraComercioPage'
+import { SubMenu } from './Components/NavigationMenu/View/SubMenu'
 
 
 const drawerWidth = 280;
@@ -31,11 +32,11 @@ export const GestionProveedoresPage = () => {
 
     return (
         <>
-            <BrowserRouter>
+           
                 <Box sx={{ display: 'flex', backgroundColor: "white" }}>
                     <HeaderPages drawerWidth={drawerWidth} />
-                    {/* <SubMenu drawerWidth={drawerWidth} /> */}
-                    <Box
+                     <SubMenu drawerWidth={drawerWidth} /> 
+                    {/* <Box
                         component='nav'
                         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                     >
@@ -150,7 +151,7 @@ export const GestionProveedoresPage = () => {
                                 </NavLink>
                             </List>
                         </Drawer>
-                    </Box>
+                    </Box> */}
                     <Box
                         component='main'
                         sx={{ flexGrow: 5, p:1 }}
@@ -168,7 +169,7 @@ export const GestionProveedoresPage = () => {
                         {/* {children} */}
                     </Box>
                 </Box>
-            </BrowserRouter>
+           
         </>
         // <GestionProveedoresLayout>
         //     {/* <InformacionGeneralPage /> */}

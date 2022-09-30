@@ -19,7 +19,7 @@ type validacionFormulario = {
 }
 
 export const useForm = (initialForm: loginForm = { email: '', password: '' }) => {
-
+    
     const [formState, setFormState] = useState(initialForm);
     const { hasError, data, isLoading, doFetch } = useFetch();
     const [errorState, errorStateState] = useState(
@@ -45,6 +45,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
 
     const onInputChange = (e: React.SyntheticEvent) => {
         const { name, value } = (e.target as HTMLInputElement);
+        console.log("EntraoNChange: "+ name+ " "+ value);
         setFormState({
             ...formState,
             [name]: value
