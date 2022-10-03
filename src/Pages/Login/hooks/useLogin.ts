@@ -27,7 +27,8 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
     const navigate = useNavigate();
     const [formState, setFormState] = useState(initialForm);
     const [errorMessage, setError] = useState("");
-    const { hasError, data, isLoading, doFetch } = useFetch();
+
+    const { hasError, data, isLoading, doFetch } = useFetch<RegistrationResponse | null>();
     const [errorState, errorStateState] = useState(
         {
             email: { hasError: false, msn: '' },
@@ -36,10 +37,17 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
     );
 
     useEffect(() => {
-        debugger;
-        const response = <RegistrationResponse>data!;
+
+      
         if (hasError == '' && data != null && data.hasOwnProperty("token")) {
-            login(response.token ?? '', response.usuario);
+
+            if (data.token == '' || data.token == null) {
+
+                setError(data.message);
+                return;
+            }
+
+            login(data.token ?? '', data.usuario);
             navigate('/home', { replace: true })
         }
 
@@ -56,7 +64,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
     }, [hasError])
 
 
-    const validarUsuario = async () => {
+    const signIn = async () => {
 
         doFetch({
             metodo: 'Login',
@@ -92,7 +100,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
             return;
         }
 
-        validarUsuario();
+        signIn();
 
     };
 

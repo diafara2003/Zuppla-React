@@ -3,9 +3,9 @@ import { RequestModel } from "./model/FetchModel";
 import { requestAPI } from "./Requestfetch";
 
 
-export const useFetch = () => {
+export const useFetch = <T>() => {
 
-    const [data, setData] = useState({});
+    const [data, setData] = useState<T>();
 
     const [state, setState] = useState({
         isLoading: false,
@@ -19,9 +19,10 @@ export const useFetch = () => {
         });
 
         try {
-            const response = await requestAPI(request);
-           
+            const response = await requestAPI<T>(request);
+
             if (response != null) {
+
 
                 setData(response);
                 setState({
@@ -48,8 +49,7 @@ export const useFetch = () => {
 
     return {
         data,
-        isLoading: state.isLoading,
-        hasError: state.hasError,
+        ...state,
         doFetch
     };
 }

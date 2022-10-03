@@ -1,21 +1,41 @@
 import { createTheme } from '@mui/material/styles';
+import { IconButton } from '@mui/material';
 
 export const theme = createTheme({
+  
+    components: {
+        MuiSvgIcon: {
+
+            styleOverrides: {
+                colorPrimary: "red",
+                root: {
+                    // Some CSS
+                    color: '#1E62A1',
+                },
+            }
+        },
+
+        MuiButton: {
+            styleOverrides: {
+                startIcon: {
+                    color: 'red',
+                },
+                endIcon: {
+                    root: {
+                        color: 'red',
+                    },
+                    // Some CSS
+
+                },
+            }
+        }
+    },
     status: {
         danger: '#e53e3e',
-    },
-    palette: {
-
-        primary: {
-            main: '#0971f1',
-            darker: '#053e85',
-        },
-        neutral: {
-            main: '#64748B',
-            contrastText: '#fff',
-        },
 
     },
+
+
 });
 
 

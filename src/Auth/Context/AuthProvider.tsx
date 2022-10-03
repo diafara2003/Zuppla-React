@@ -18,6 +18,10 @@ export const AuthProvider = ({ children }: Props) => {
     const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
 
     const login = (token: string, usuario: UserSessionModel) => {
+
+        if (usuario.nombreUsuario == null || usuario.nombreUsuario == "")
+            usuario.nombreUsuario = usuario.nombreEmpresa;
+
         const action = {
 
             type: TypeLogin.AddSession,
