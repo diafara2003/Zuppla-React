@@ -28,7 +28,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
     const [formState, setFormState] = useState(initialForm);
     const [errorMessage, setError] = useState("");
 
-    const { hasError, data, isLoading, doFetch } = useFetch();
+    const { hasError, data, isLoading, doFetch } = useFetch<RegistrationResponse | null>();
     const [errorState, errorStateState] = useState(
         {
             email: { hasError: false, msn: '' },
@@ -38,16 +38,16 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
 
     useEffect(() => {
 
-        const response = <RegistrationResponse>data!;
+      
         if (hasError == '' && data != null && data.hasOwnProperty("token")) {
-            
-            if (response.token == '' || response.token == null) {
 
-                setError(response.message);
+            if (data.token == '' || data.token == null) {
+
+                setError(data.message);
                 return;
             }
 
-            login(response.token ?? '', response.usuario);
+            login(data.token ?? '', data.usuario);
             navigate('/home', { replace: true })
         }
 
