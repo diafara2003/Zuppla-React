@@ -1,5 +1,6 @@
 
 import { AppBar, Toolbar, Box } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 import logo from '../../../img/logoApp/logo.png';
 import { MenuOption } from '../Components/MenuOption/view/MenuOption';
 import { UserMenu } from '../Components/User/View/UserMenu';
@@ -18,9 +19,9 @@ export const MenuPages = () => {
         </Toolbar>
       </AppBar>
 
-
-
-
+      <Box component='main' sx={{ flexGrow: 5, p: 1,  height: 'calc(100vh - 88px)', overflow: 'auto' }}>
+        <Outlet />
+      </Box>
     </Box>
   )
 }

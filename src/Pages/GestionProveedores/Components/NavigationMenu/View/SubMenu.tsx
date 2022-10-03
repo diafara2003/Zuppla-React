@@ -30,7 +30,17 @@ export const SubMenu = ({ drawerWidth = 240 }) => {
                     variant='permanent'
                     open
                     sx={{
-                        display: { xs: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: "white !important" },
+
+
+                        display: { xs: 'block' },
+                        '& .MuiDrawer-paper': {
+                            boxSizing: 'border-box',
+                            width: drawerWidth,
+                            backgroundColor: "white !important",
+                            position: 'relative',
+                            overflow:'auto',
+                            height:'calc(100vh - 82px)'
+                        },
                     }}
                 >
                     <Box sx={{ m: 1 }}>

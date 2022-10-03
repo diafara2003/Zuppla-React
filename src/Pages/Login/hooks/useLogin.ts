@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useFetch } from '../../../Provider/useFech';
 import { APiMethod } from '../../../Provider/model/FetchModel';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Auth';
+import { RegistrationResponse } from '../model/loginDTO';
+
 
 
 type loginForm = {
@@ -19,8 +22,9 @@ type validacionFormulario = {
 }
 
 export const useForm = (initialForm: loginForm = { email: '', password: '' }) => {
-    
-    
+
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [formState, setFormState] = useState(initialForm);
     const [errorMessage, setError] = useState("");
     const { hasError, data, isLoading, doFetch } = useFetch();
@@ -31,11 +35,24 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
         }
     );
 
+    useEffect(() => {
+        debugger;
+        const response = <RegistrationResponse>data!;
+        if (hasError == '' && data != null && data.hasOwnProperty("token")) {
+            login(response.token ?? '', response.usuario);
+            navigate('/home', { replace: true })
+        }
+
+    }, [data])
 
 
     useEffect(() => {
 
-        if (hasError == "not found") setError(() => "EL usuario no existe o la contraseña esta incorrecta");
+        if (hasError == "not found") {
+            setError(() => "EL usuario no existe o la contraseña esta incorrecta");
+            return;
+        }
+
     }, [hasError])
 
 
@@ -53,7 +70,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
 
     const onInputChange = (e: React.SyntheticEvent) => {
         const { name, value } = (e.target as HTMLInputElement);
-        console.log("EntraoNChange: "+ name+ " "+ value);
+        console.log("EntraoNChange: " + name + " " + value);
         setFormState({
             ...formState,
             [name]: value
@@ -109,9 +126,6 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
     }
 
 
-    useEffect(() => {
-
-    }, [])
 
 
 
@@ -126,8 +140,4 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
 
 
     }
-}
-
-function useContext(AuthContext: any): { login: any; } {
-    throw new Error('Function not implemented.');
 }

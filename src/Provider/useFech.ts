@@ -1,43 +1,47 @@
 import { useEffect, useState } from "react";
-import { RequestInfo } from "./model/FetchModel";
+import { RequestModel } from "./model/FetchModel";
+import { requestAPI } from "./Requestfetch";
 
-const URLBase: string = "http://localhost/proveedores";
 
 export const useFetch = () => {
 
+    const [data, setData] = useState({});
+
     const [state, setState] = useState({
-        data: null,
+
         isLoading: false,
         hasError: "",
     })
 
-    const doFetch = async (request: RequestInfo) => {
+    const doFetch = async (request: RequestModel) => {
         setState({
             ...state,
             isLoading: true,
         });
 
-        let Init: RequestInit = {
-            method: request.type,
-        };
-
-        if (request.data != null)
-            Init.body = JSON.stringify(request.data);
 
         try {
-            const response: Response = await fetch(`${URLBase}/${request.metodo}`, Init);
+            const response = await requestAPI(request);
+           
+            if (response != null) {
 
-            if (response.ok) {
-                const data = await response.json();
+                setData(response);
                 setState({
-                    data,
+                    ...state,
                     isLoading: false,
-                    hasError: "",
+                    hasError: ''
+                });
+            } else {
+
+                setState({
+                    ...state,
+                    isLoading: false,
+                    hasError: "error al traer datos del API",
                 });
             }
         } catch (error) {
             setState({
-                data: null,
+                ...state,
                 isLoading: false,
                 hasError: "Error al traer datos del API",
             });
@@ -45,7 +49,7 @@ export const useFetch = () => {
     }
 
     return {
-        data: state.data,
+        data,
         isLoading: state.isLoading,
         hasError: state.hasError,
         doFetch

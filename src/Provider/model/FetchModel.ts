@@ -5,7 +5,7 @@ export enum APiMethod {
     PUT = "PUT",
 }
 
-export interface RequestInfo {
+export interface RequestModel {
     type: APiMethod;
     data?: Object;
     metodo: string;

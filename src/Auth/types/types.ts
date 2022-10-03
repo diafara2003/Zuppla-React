@@ -1,4 +1,7 @@
-export enum Login {
-    login,
-    logout
+export enum TypeLogin {
+    AddSession,
+    GetSession,
+    ChangeConstructora,
+    Logout
+
 }

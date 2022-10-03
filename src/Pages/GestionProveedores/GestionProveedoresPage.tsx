@@ -5,6 +5,7 @@ import { HeaderPages } from './Components/HeaderPage/View/HeaderPages'
 import React from 'react'
 import { SubMenu } from './Components/NavigationMenu/View/SubMenu'
 import RoutesGestionProveedores from './Routes/RoutesGestionProveedores'
+import { InformacionGeneralPage } from './Views/InformacionGeneral/View/InformacionGeneralPage'
 
 
 const drawerWidth = 280;
@@ -22,13 +23,13 @@ export const GestionProveedoresPage = () => {
             <Box sx={{ display: 'flex', backgroundColor: "white" }}>
                 <HeaderPages drawerWidth={drawerWidth} />
                 <SubMenu drawerWidth={drawerWidth} />
-                
+
                 <Box
-                    component='main'
-                    sx={{ flexGrow: 5, p: 1 }}
+                   
                 >
                     <Toolbar />
                     <RoutesGestionProveedores/>
+                    
                 </Box>
             </Box>
 

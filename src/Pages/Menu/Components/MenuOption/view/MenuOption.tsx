@@ -2,13 +2,16 @@ import { Button, Menu, MenuItem, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import { ExpandMore } from '@mui/icons-material';
 import { Box } from '@mui/system';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const MenuOption = () => {
 
+
+  const navigate = useNavigate();
   const pages = [
     { "tieneHijos": 1, "idMenu": 1, "mencodigo": "1", "descripcion": "Usuarios", "ubicacion": "", "actMenu": true, "pagAyuda": "Usuarios", "svg": "<i class=\"bx bx-user\"></i>", "menRequiereProyecto": false },
     { "tieneHijos": 0, "idMenu": 2, "mencodigo": "10", "descripcion": "Información Empresa", "ubicacion": "../GestionInfProveedores/SubMenuGIT.html", "actMenu": true, "pagAyuda": "Información Empresa", "svg": "<i class=\"bx bx-building\"></i>", "menRequiereProyecto": false },
-    { "tieneHijos": 0, "idMenu": 3, "mencodigo": "20", "descripcion": "Licitaciones", "ubicacion": "../dashboard/Abastecimiento/dashboard.html", "actMenu": true, "pagAyuda": "Licitaciones", "svg": "<i class='bx bx-detail'></i>", "menRequiereProyecto": true }, { "tieneHijos": 1, "idMenu": 4, "mencodigo": "30", "descripcion": "Informes", "ubicacion": "", "actMenu": true, "pagAyuda": "Informes", "svg": "<i class='bx bxs-coin-stack'></i>", "menRequiereProyecto": false }, { "tieneHijos": 1, "idMenu": 15, "mencodigo": "80", "descripcion": "Proveedores", "ubicacion": "", "actMenu": true, "pagAyuda": "Proveedores", "svg": "<i class='bx bxs-user-detail'></i>", "menRequiereProyecto": false }]
+    { "tieneHijos": 0, "idMenu": 3, "mencodigo": "20", "descripcion": "Licitaciones", "ubicacion": "gestionproveedor/InfGeneralPage", "actMenu": true, "pagAyuda": "Licitaciones", "svg": "<i class='bx bx-detail'></i>", "menRequiereProyecto": true }, { "tieneHijos": 1, "idMenu": 4, "mencodigo": "30", "descripcion": "Informes", "ubicacion": "", "actMenu": true, "pagAyuda": "Informes", "svg": "<i class='bx bxs-coin-stack'></i>", "menRequiereProyecto": false }, { "tieneHijos": 1, "idMenu": 15, "mencodigo": "80", "descripcion": "Proveedores", "ubicacion": "", "actMenu": true, "pagAyuda": "Proveedores", "svg": "<i class='bx bxs-user-detail'></i>", "menRequiereProyecto": false }]
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -18,7 +21,13 @@ export const MenuOption = () => {
     setAnchorEl(null);
   };
 
+
+  const handleNavigate = () => {
+    navigate('/gestionproveedor/InfGeneralPage', { replace: true })
+  };
+
   return (
+
     <>
       {pages.map(({ descripcion, ubicacion, tieneHijos, mencodigo }) => (
 
@@ -29,11 +38,11 @@ export const MenuOption = () => {
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            endIcon={<ExpandMore />}
-            onClick={handleClick}
+            endIcon={tieneHijos > 0 ? <ExpandMore /> : null}
+            // onClick={tieneHijos > 0 ? handleClick : handleNavigate}
             sx={{ color: '#003972' }}
           >
-            {descripcion}
+            <Link to="/gestionproveedor/InfGeneralPage">Empresa</Link>
           </Button>
           {tieneHijos == 0 ? null :
             <Menu
