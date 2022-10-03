@@ -10,29 +10,17 @@ import { InformacionGeneralPage } from './Views/InformacionGeneral/View/Informac
 
 const drawerWidth = 280;
 export const GestionProveedoresPage = () => {
-    const [selectedIndex, setSelectedIndex] = React.useState(0);
-    const handleListItemClick = (
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-        index: number,
-    ) => {
-        setSelectedIndex(index);
-    };
-
     return (
         <>
             <Box sx={{ display: 'flex', backgroundColor: "white" }}>
                 <HeaderPages drawerWidth={drawerWidth} />
                 <SubMenu drawerWidth={drawerWidth} />
-
-                <Box
-                   
+                <Box                   
                 >
                     <Toolbar />
-                    <RoutesGestionProveedores/>
-                    
+                    <RoutesGestionProveedores/>                    
                 </Box>
             </Box>
-
         </>
     )
 }

@@ -10,6 +10,8 @@ import React from 'react';
 import { LogoEmpresa } from '../../LogoProveedor/View/LogoEmpresa';
 import { BrowserRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom';
 
+import '../Styles/Navigation.css'
+
 
 
 export const SubMenu = ({ drawerWidth = 240 }) => {
@@ -24,15 +26,13 @@ export const SubMenu = ({ drawerWidth = 240 }) => {
         <>
             <Box
                 component='nav'
-                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+                sx={{ width: { sm: drawerWidth }, flexShrink: { sm:0 } }}
             >
                 <Drawer
                     variant='permanent'
                     open
                     sx={{
-
-
-                        display: { xs: 'block' },
+                        display: { xs: 'block' },                        
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,
@@ -43,6 +43,7 @@ export const SubMenu = ({ drawerWidth = 240 }) => {
                         },
                     }}
                 >
+                    
                     <Box sx={{ m: 1 }}>
                         <LogoEmpresa />
                     </Box>
