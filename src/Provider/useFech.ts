@@ -22,8 +22,9 @@ export const useFetch = () => {
 
         try {
             const response = await requestAPI(request);
-           
+            
             if (response != null) {
+
 
                 setData(response);
                 setState({
@@ -50,8 +51,7 @@ export const useFetch = () => {
 
     return {
         data,
-        isLoading: state.isLoading,
-        hasError: state.hasError,
+        ...state,
         doFetch
     };
 }
