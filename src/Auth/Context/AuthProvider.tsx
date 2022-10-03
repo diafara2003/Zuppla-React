@@ -17,38 +17,7 @@ export const AuthProvider = ({ children }: Props) => {
 
     const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
 
-    const login = (token: string, usuario: UserSessionModel) => {
 
-        if (usuario.nombreUsuario == null || usuario.nombreUsuario == "")
-            usuario.nombreUsuario = usuario.nombreEmpresa;
-
-        const action = {
-
-            type: TypeLogin.AddSession,
-            payload: {
-                token: token, user: usuario, constructora: {
-                    baseURL: '',
-                    id: 0,
-                    NIT: "",
-                    nombre: '',
-                    urlLogo: ''
-
-                },
-            }
-        }
-
-        dispatch(action);
-    }
-
-    const signOut = () => {
-        const action = {
-
-            type: TypeLogin.Logout,
-            payload: INITIAL_STATE
-        }
-
-        dispatch(action);
-    }
     const getSession = (): AuthContextProps => {
         return {
             token: localStorage.getItem(NameStoragetoken) ?? '',
@@ -72,7 +41,7 @@ export const AuthProvider = ({ children }: Props) => {
         <AuthContext.Provider value={{
             state,
             // Methods
-            login, getSession, changeConstructora, signOut
+            getSession
         }}>
             {children}
         </AuthContext.Provider>

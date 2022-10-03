@@ -7,7 +7,7 @@ import { useMenuUser } from '../hook/useMenuUser';
 
 
 export const UserMenu = () => {
-    const { user } = useMenuUser();
+    const { user, signOut } = useMenuUser();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -84,7 +84,9 @@ export const UserMenu = () => {
 
                     <Divider />
 
-                    <MenuItem>
+                    <MenuItem
+                        onClick={signOut}
+                    >
                         <ListItemIcon>
                             <Logout fontSize="small" />
                         </ListItemIcon>
