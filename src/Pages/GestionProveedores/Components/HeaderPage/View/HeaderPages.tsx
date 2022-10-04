@@ -10,7 +10,7 @@ export const HeaderPages = ({ drawerWidth = 240 }) => {
             sx={{
                 width: { sm: `calc(100% - ${drawerWidth}px)` },
                 ml: { sm: `${drawerWidth}px` },
-                backgroundColor: "white !important",
+                backgroundColor: "red !important",
                 index: "999999"
             }}
         >

@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../../../../Auth';
 import { APiMethod, RequestModel } from '../../../../../Provider/model/FetchModel';
+import { requestAPI } from '../../../../../Provider/Requestfetch';
 import { useFetch } from '../../../../../Provider/useFech';
 import { TerInformacionGeneralDTO } from '../Model/InformacionGeneral-model';
 
@@ -28,11 +29,13 @@ type validacionFormulario = {
 
 export const controllerInformacionGeneral = () => {
     const { state } = useContext(AuthContext);
-    const { hasError, data, isLoading, doFetch } = useFetch();
-    
-   // const [formState, setFormState] = useState();
-    // const [dataInitial, setDataInitial] = useState({});
-    const [errorMessage, setError] = useState("");   
+    // const { hasError, data, isLoading, doFetch } = useFetch();
+
+
+    // const [formState, setFormState] = useState();
+    const [dataInitialState, setDataInitialState] = useState({});
+    const [isLoadingCarga, setIsLoadingCarga] = useState(true);
+    const [errorMessage, setError] = useState("");
     const [errorState, errorStateState] = useState(
         {
             email: { hasError: false, msn: '' },
@@ -40,21 +43,33 @@ export const controllerInformacionGeneral = () => {
         }
     );
 
-    const cargaInfGeneral = async () => {        
-        const request : RequestModel = {
+    const cargaInfGeneral = async () => {
+        const request: RequestModel = {
             metodo: `TercerosGI/InformacionGeneral?id=${state.user.idEmpresa}`,
             AllowAnonymous: true,
             type: APiMethod.GET
-        }  
-        doFetch(request);                
-        // setDataInitial(data);        
+        }
+        const response = await requestAPI<TerInformacionGeneralDTO>(request)!;
+        console.log(response)
+        //setDataInitialState(response!= null ?? response);
+        setDataInitialState(response!)
+        setIsLoadingCarga(false)       
+        //console.log(dataInitialState);
     }
-    
+
     useEffect(() => {
-          cargaInfGeneral();
-        return
+        cargaInfGeneral();               
     }, [])
 
+    // useEffect(() => {
+    //     //cargaInfGeneral();
+        
+    //     console.log("Entra cambio data")
+    //     console.log(dataInitialState)
+    
+    // }, [dataInitialState])
+
+   
 
     // const validarUsuario = async () => {
 
@@ -129,12 +144,12 @@ export const controllerInformacionGeneral = () => {
 
 
     return {
-        ...data,
+        dataInitialState: (dataInitialState as TerInformacionGeneralDTO),
+        isLoadingCarga,
         errorState,
         // onInputChange,
         // onResetForm,
-        // handleSubmit,
-        isLoading,
+        // handleSubmit,       
         errorMessage
 
 
