@@ -10,7 +10,7 @@ type props = {
     marginLeft?: number;
 }
 
-export const HeaderComponent = ({ title ="", marginLeft=0}: props) => {
+export const HeaderComponent = ({ title = "", marginLeft = 0 }: props) => {
 
     return (
         <Box
@@ -19,11 +19,13 @@ export const HeaderComponent = ({ title ="", marginLeft=0}: props) => {
                 // width: { sm: `calc(100% - ${marginLeft}px)` },
                 // ml: { sm: `${marginLeft}px` },
                 // backgroundColor: "red !important",
-                
-                top: 0,
-                borderBottom:"1px solid #ebebeb",
+
+                top: -4,
+                zIndex: 9,
+                borderBottom: "1px solid #ebebeb",
                 backgroundColor: '#fff', color: '#1E1E1E',
-                
+                borderLeft: "1px solid #ebebeb",
+
 
 
             }}
