@@ -1,12 +1,8 @@
-import { Badge, Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar } from '@mui/material'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { HeaderPages } from './Components/HeaderPage/View/HeaderPages'
+import { Box, Toolbar } from '@mui/material'
 
-import React from 'react'
 import { SubMenu } from './Components/NavigationMenu/View/SubMenu'
 import RoutesGestionProveedores from './Routes/RoutesGestionProveedores'
-import { InformacionGeneralPage } from './Views/InformacionGeneral/View/InformacionGeneralPage'
-import Hidden from '@mui/material/Hidden/Hidden'
+import { HeaderComponent } from '../../SharedComponents/Header'
 
 
 const drawerWidth = 280;
@@ -14,12 +10,12 @@ export const GestionProveedoresPage = () => {
     return (
         <>
             <Box sx={{ display: 'flex', backgroundColor: "white" }}>
-                <HeaderPages drawerWidth={drawerWidth} />
+                <HeaderComponent title={"sadasdas"} marginLeft={drawerWidth} />
                 <SubMenu drawerWidth={drawerWidth} />
                 <Box
                 >
                     <Toolbar />
-                    <Box sx={{mt:0}}>
+                    <Box sx={{ mt: 0 }}>
                         <RoutesGestionProveedores />
                     </Box>
 
