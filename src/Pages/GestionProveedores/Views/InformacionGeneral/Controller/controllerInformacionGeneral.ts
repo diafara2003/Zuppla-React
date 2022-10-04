@@ -50,7 +50,7 @@ export const controllerInformacionGeneral = () => {
             type: APiMethod.GET
         }
         const response = await requestAPI<TerInformacionGeneralDTO>(request)!;
-        console.log(response)
+        //console.log(response)
         //setDataInitialState(response!= null ?? response);
         setDataInitialState(response!)
         setIsLoadingCarga(false)       

@@ -1,8 +1,7 @@
-import { Backdrop, Box, Button, Card, CardContent, CircularProgress, FormControlLabel, Grid, MenuItem, Paper, Stack, Switch, TextField, Typography } from "@mui/material"
+import { Autocomplete, Backdrop, Box, Button, Card, CardContent, CircularProgress, FormControlLabel, Grid, MenuItem, Paper, Stack, Switch, TextField, Typography } from "@mui/material"
 import SaveIcon from '@mui/icons-material/Save';
 import React, { useContext } from "react";
-import { AuthContext } from "../../../../../Auth";
-import { json } from "react-router-dom";
+
 import { controllerInformacionGeneral } from "../Controller/controllerInformacionGeneral";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 
@@ -12,8 +11,15 @@ export const InformacionGeneralPage = () => {
 
     const { isLoadingCarga, dataInitialState } = controllerInformacionGeneral();
     const [valorSel, setvalorSel] = React.useState('');
-    const [open, setOpen] = React.useState(true);
-    
+
+    const topCiudad = [
+        { label: 'Bogota', year: 1994 },
+        { label: 'Cali', year: 1972 },
+        { label: 'Medellin', year: 1974 },
+        { label: 'Barranquilla', year: 2008 },
+        { label: 'Cartagena', year: 1957 },
+        { label: "Villavicencio", year: 1993 }
+    ];
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setvalorSel(event.target.value as string);
@@ -41,7 +47,6 @@ export const InformacionGeneralPage = () => {
                             <CircularProgress color="inherit" />
                         </Backdrop>
                         :
-
                         <Grid sx={{}}>
                             <form>
                                 <Grid container width={'100%'} display={"flex"} alignItems={"center"} justifyContent={"center"}>
@@ -136,13 +141,13 @@ export const InformacionGeneralPage = () => {
                                         />
                                     </Grid>
                                     <Grid item xs={3.5} sx={{ m: 1 }}>
-                                        <TextField id="" select label="Actividad economica" value={valorSel}
-                                            onChange={handleChange}
-                                            fullWidth
-                                        >
-                                            <MenuItem value={10}>prueba</MenuItem>
-                                            <MenuItem value={20}>2</MenuItem>
-                                        </TextField>
+                                        <Autocomplete
+                                            disablePortal
+                                            id=""
+                                            options={topCiudad}
+                                            sx={{ width: 300 }}
+                                            renderInput={(params) => <TextField {...params} label="Ciudad" />}
+                                        />
                                     </Grid>
                                     <Grid item xs={3.5} sx={{ m: 1 }}>
                                         <FormControlLabel sx={{ margin: 2, fontSize: '12px !important' }} control={<Switch defaultChecked />} label="Se encuentra certificado en normas ISO" />

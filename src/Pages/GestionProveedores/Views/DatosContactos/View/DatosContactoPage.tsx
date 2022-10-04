@@ -1,191 +1,94 @@
-import { Autocomplete, Box, Button, FormControlLabel, Grid, List, ListItem, ListItemText, Menu, MenuItem, Paper, Stack, Switch, TextField } from "@mui/material";
+import { Autocomplete, Box, Button, FormControlLabel, Grid, List, ListItem, ListItemText, Menu, MenuItem, Paper, Stack, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
 import React from "react";
 import SaveIcon from '@mui/icons-material/Save';
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+}
+
+function TabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+function a11yProps(index: number) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
 export const DatosContactos = () => {
-    const [valorSel, setvalorSel] = React.useState('');
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setvalorSel(event.target.value as string);
-    };
     const options = [
-        'Representante legal',
-        'Responsable de pedidos',
-        'Responsable de contratos',
-        'Responsable de actas para facturacion',
-        'Comercial',
-        'Cartera',
+        { nombre: 'Representante legal', id: 1 },
+        { nombre: 'Responsable de atenteder despachos', id: 2 },
+        { nombre: 'Responsable de contratos', id: 3 },
+        { nombre: 'Responsable de actas', id: 4 },
+        { nombre: 'Asesor comercial', id: 5 },
+        { nombre: 'Responsable de cartera', id: 6 }
     ];
-    const topCiudad = [
-        { label: 'Bogota', year: 1994 },
-        { label: 'Cali', year: 1972 },
-        { label: 'Medellin', year: 1974 },
-        { label: 'Barranquilla', year: 2008 },
-        { label: 'Cartagena', year: 1957 },
-        { label: "Villavicencio", year: 1993 }
-    ];
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
-    const open = Boolean(anchorEl);
-    const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const [value, setValue] = React.useState(0);
 
-    const handleMenuItemClick = (
-        event: React.MouseEvent<HTMLElement>,
-        index: number,
-    ) => {
-        setSelectedIndex(index);
-        setAnchorEl(null);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
     };
 
 
     return (
         <>
-        <HeaderComponent title={"Datos contactos"} />
-            {/* <Paper elevation={0} sx={{ minWidth: 275, p: 0 }}>
-            
-                <Box style={{ margin: '0px', padding: '0px' }}>
-                    <List
-                        component="nav"
-                        aria-label=""
-                        sx={{ bgcolor: 'background.paper' }}
-                    >
-                        <ListItem
-                            button
-                            id="lock-button"
-                            aria-haspopup="listbox"
-                            aria-controls="lock-menu"
-                            aria-label="Datos contacto:"
-                            aria-expanded={open ? 'true' : undefined}
-                            onClick={handleClickListItem}
-                        >
-                            <ListItemText
-                                primary="Datos contacto:"
-                                secondary={options[selectedIndex]}
-                            />
-                        </ListItem>
-                    </List>
-                    <Menu
-                        id="lock-menu"
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                        MenuListProps={{
-                            'aria-labelledby': 'lock-button',
-                            role: 'listbox',
-                        }}
-                    >
-                        {options.map((option, index) => (
-                            <MenuItem
-                                key={option}
-                                disabled={index === -1}
-                                selected={index === selectedIndex}
-                                onClick={(event) => handleMenuItemClick(event, index)}
-                            >
-                                {option}
-                            </MenuItem>
-                        ))}
-                    </Menu>
-                </Box>
-                <Grid sx={{}}>
-                    <HeaderComponent title={"Datos contactos"} />
-                    <form>
-                        <Grid container width={'100%'} display={"flex"} alignItems={"center"} justifyContent={"center"}>
-                            <Grid item xs={3} sx={{ m: 1 }}>
-                                <TextField
-                                    required
-                                    id=""
-                                    label="Nombre"
-                                    defaultValue=""
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
-                                <TextField
-                                    required
-                                    id=""
-                                    label="Correo"
-                                    defaultValue=""
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
-                                <TextField
-                                    required
-                                    id=""
-                                    label="Telefono"
-                                    defaultValue=""
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
-                                <TextField
-                                    required
-                                    id=""
-                                    label="Número de indentificación"
-                                    defaultValue=""
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
-                                <TextField
-                                    required
-                                    id=""
-                                    label="Direccion"
-                                    defaultValue=""
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
-                                <TextField
-                                    required
-                                    id=""
-                                    label="Número de celular"
-                                    defaultValue=""
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
-                                <TextField
-                                    required
-                                    id=""
-                                    label="Cargo"
-                                    defaultValue=""
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
-                                <Autocomplete
-                                    disablePortal
-                                    id=""
-                                    options={topCiudad}
-                                    sx={{ width: 300 }}
-                                    renderInput={(params) => <TextField {...params} label="Ciudad" />}
-                                />
-                            </Grid>
+            <HeaderComponent title={"Datos contactos"} />
+            <Box sx={{ width: '100%' }}>
+                <Grid container>
+                    <Grid item>
 
-                            <Grid item xs={3} sx={{ m: 1 }}>
-
-                            </Grid>
-
-                        </Grid>
-                        <Grid style={{ display: "flex", justifyContent: 'center', marginBottom: '25px' }}>
-                            <Stack direction="row">
-                                <Button variant="contained" endIcon={<SaveIcon />}>Guardar</Button>
-                            </Stack>
-                        </Grid>
-                    </form>
+                    </Grid>
                 </Grid>
+                <Box sx={{justifyContent:'center', display:'flex' }}>
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                        {options.map((option, index) => (
+                            <Tab key={option.id} label={option.nombre} />
+                        ))}                       
+                    </Tabs>
+                </Box>
+                <TabPanel value={value} index={0}>
+                    Item One
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    Item Two
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                    Item Three
+                </TabPanel>
+            </Box>
 
 
-
-            </Paper> */}
+            {/* {<Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs aria-label="basic tabs example">
+                        {options.map((option, index) => (
+                            <Tab key={option} label={option}   />
+                        ))}
+                    </Tabs>
+                </Box>
+            </Box>} */}
         </>
     );
 }

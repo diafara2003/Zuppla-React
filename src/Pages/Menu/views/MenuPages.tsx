@@ -16,7 +16,6 @@ export const MenuPages = () => {
             onClick={() => navigate('/', { replace: true })
             }
           />
-
           <div style={{ display: 'flex', flexGrow: 1, marginLeft: '10px' }}>
             <MenuOption />
           </div>

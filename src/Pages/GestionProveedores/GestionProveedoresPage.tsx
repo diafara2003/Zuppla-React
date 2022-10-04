@@ -44,9 +44,8 @@ const rutas: NavigationModel[] = [
         path: "/gestionproveedor/NovedadesPage",
         texto: "Novedades",
         Icono: () => <Badge color="primary" badgeContent={2}>
-            < NotificationsActiveIcon />
-        </Badge>
-        //
+                        < NotificationsActiveIcon />
+                    </Badge>        
     },
     {
         path: "/gestionproveedor/EspecialidadesPage",
