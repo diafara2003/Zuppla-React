@@ -23,7 +23,7 @@ export const routes: Route[] = [
         Component: lazy(() => import(/* webpackChunkName: "HomePages" */"../Pages/Home/views/HomePages"))
     },
     {
-        path: "/gestionproveedor",
-        Component: GestionProveedoresPage
+        path: "/gestionproveedor/*",
+        Component: lazy(() => import(/* webpackChunkName: "HomePages" */"../Pages/GestionProveedores/GestionProveedoresPage"))
     }
 ]

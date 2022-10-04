@@ -7,6 +7,7 @@ import { AuthPages } from '../Auth';
 import { GestionProveedoresPage } from '../Pages/GestionProveedores/';
 import { ProtectedRoutes } from './ProtectedRoutes';
 import { HomePages } from '../Pages/Home/views/HomePages';
+import { routes } from './routes';
 
 
 export const AppRouter = () => {
@@ -16,11 +17,9 @@ export const AppRouter = () => {
 
                 <Route path="/login" element={<LoginPages />}></Route>
 
-
-
                 <Route element={<ProtectedRoutes />}>
 
-                {/* {
+                {
                         routes.map(({ path, Component: Component }) => {
                             return (
                                 <Route
@@ -29,13 +28,13 @@ export const AppRouter = () => {
                                     element={<Component />} />
                             );
                         })
-                    } */}
-                    <Route path="/" element={<HomePages />}></Route>
-                    <Route path="/home" element={<HomePages />}></Route>
+                    }
+                    {/* <Route path="/" element={<HomePages />}></Route>
+                    <Route path="/home" element={<HomePages />}></Route> */}
 
 
 
-                    <Route path="/gestionproveedor/*" element={<GestionProveedoresPage />} />
+                    {/* <Route path="/gestionproveedor/*" element={<GestionProveedoresPage />} /> */}
                 </Route>
 
             </Routes>
