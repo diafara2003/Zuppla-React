@@ -2,6 +2,7 @@ import { Avatar, Box, Container, Typography, Paper, Grid, TextField, FormControl
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useForm } from '../hooks/useLogin';
 import LoadingButton from '@mui/lab/LoadingButton';
+import LoginIcon from '@mui/icons-material/Login';
 
 export default function LoginPages() {
 
@@ -17,7 +18,7 @@ export default function LoginPages() {
     };
     return (
 
-        <Container component="main" maxWidth="xs">
+        <Container  maxWidth="xs">
             <Box
                 sx={{
                     marginTop: 8,
@@ -79,6 +80,7 @@ export default function LoginPages() {
                         sx={{ mt: 3, mb: 2 }}
                         loadingPosition="start"
                         variant="contained"
+                        startIcon={<LoginIcon />}
                         loading={isLoading}
                     >
                         Ingresar

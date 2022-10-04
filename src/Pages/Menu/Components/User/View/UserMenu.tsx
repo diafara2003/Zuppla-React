@@ -7,7 +7,7 @@ import { useMenuUser } from '../hook/useMenuUser';
 
 
 export const UserMenu = () => {
-    const { user } = useMenuUser();
+    const { user, signOut } = useMenuUser();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -72,9 +72,11 @@ export const UserMenu = () => {
                     <MenuItem>
                         <Box>
 
-                            <Typography sx={{ width: '305px' }} variant="body2" noWrap={true}>{user.nombreUsuario}</Typography>
                             <Typography sx={{ width: '305px' }}
-                                fontSize="0.65rem"
+                                fontSize="0.75rem"
+                                variant="body2" noWrap={true}>{user.nombreUsuario}</Typography>
+                            <Typography sx={{ width: '305px' }}
+                                fontSize="0.60rem"
                                 variant="caption" noWrap={true}>
                                 {user.nombreEmpresa}
                             </Typography>
@@ -84,7 +86,9 @@ export const UserMenu = () => {
 
                     <Divider />
 
-                    <MenuItem>
+                    <MenuItem
+                        onClick={signOut}
+                    >
                         <ListItemIcon>
                             <Logout fontSize="small" />
                         </ListItemIcon>

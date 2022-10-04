@@ -24,3 +24,6 @@ export const GestionProveedoresPage = () => {
         </>
     )
 }
+
+
+export default GestionProveedoresPage;

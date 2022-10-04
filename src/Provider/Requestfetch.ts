@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../Auth";
+import { AuthContext, NameStoragetoken } from "../Auth";
 import { RequestModel } from "./model/FetchModel";
 
 
@@ -21,8 +21,7 @@ export async function requestAPI<TResponse>(request: RequestModel): Promise<TRes
 
     if (!request.AllowAnonymous) {
 
-        const { getSession } = useContext(AuthContext);
-        Init.headers = { ...Init.headers, 'Authorization': `Bearer ${getSession().token}` };
+        Init.headers = { ...Init.headers, 'Authorization': `Bearer ${localStorage.getItem(NameStoragetoken)}` };
 
     }
 

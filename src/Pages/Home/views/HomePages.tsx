@@ -5,3 +5,6 @@ export const HomePages = () => {
         <div>HOME</div>
     )
 }
+
+
+export default HomePages;

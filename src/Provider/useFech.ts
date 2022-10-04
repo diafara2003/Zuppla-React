@@ -3,7 +3,7 @@ import { RequestModel } from "./model/FetchModel";
 import { requestAPI } from "./Requestfetch";
 
 
-export const useFetch = <T>() => {
+export const useFetch = <T,>() => {
 
     const [data, setData] = useState<T>();
 

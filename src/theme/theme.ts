@@ -2,23 +2,19 @@ import { createTheme } from '@mui/material/styles';
 import { IconButton } from '@mui/material';
 
 export const theme = createTheme({
-  
+
     components: {
         MuiSvgIcon: {
 
-            styleOverrides: {
-                colorPrimary: "red",
-                root: {
-                    // Some CSS
-                    color: '#1E62A1',
-                },
-            }
+
         },
 
         MuiButton: {
             styleOverrides: {
+
                 startIcon: {
-                    color: 'red',
+
+                    color: '#fff',
                 },
                 endIcon: {
                     root: {

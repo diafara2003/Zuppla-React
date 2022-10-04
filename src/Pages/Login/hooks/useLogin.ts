@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useFetch } from '../../../Provider/useFech';
 import { APiMethod } from '../../../Provider/model/FetchModel';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../Auth';
+import { AuthContext, NameStoragetoken, NameStorageUsuario } from '../../../Auth';
 import { RegistrationResponse } from '../model/loginDTO';
 
 
@@ -23,22 +23,25 @@ type validacionFormulario = {
 
 export const useForm = (initialForm: loginForm = { email: '', password: '' }) => {
 
-    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
     const [formState, setFormState] = useState(initialForm);
     const [errorMessage, setError] = useState("");
 
     const { hasError, data, isLoading, doFetch } = useFetch<RegistrationResponse | null>();
+
+
+
+
     const [errorState, errorStateState] = useState(
         {
             email: { hasError: false, msn: '' },
             password: { hasError: false, msn: '' }
         }
+
     );
 
     useEffect(() => {
 
-      
         if (hasError == '' && data != null && data.hasOwnProperty("token")) {
 
             if (data.token == '' || data.token == null) {
@@ -47,8 +50,13 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
                 return;
             }
 
-            login(data.token ?? '', data.usuario);
-            navigate('/home', { replace: true })
+            if (data.usuario.nombreUsuario == null || data.usuario.nombreUsuario == "")
+                data.usuario.nombreUsuario = data.usuario.nombreEmpresa;
+
+            localStorage.setItem(NameStoragetoken, data.token);
+            localStorage.setItem(NameStorageUsuario, JSON.stringify(data.usuario));
+
+            navigate('/', { replace: true })
         }
 
     }, [data])

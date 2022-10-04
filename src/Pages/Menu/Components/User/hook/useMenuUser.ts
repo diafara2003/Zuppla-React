@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext, UserSessionModel } from "../../../../../Auth";
+import { useNavigate } from 'react-router-dom';
+import { AuthContext, NameStorageConstructora, NameStoragetoken, NameStorageUsuario, UserSessionModel } from "../../../../../Auth";
 
 export const useMenuUser = () => {
     const { getSession } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [user, setUser] = useState({
 
         id: 0,
@@ -16,17 +18,23 @@ export const useMenuUser = () => {
 
 
     useEffect(() => {
-        
+
         const { user } = getSession();
 
         setUser(user);
 
     }, []);
 
+    const signOut = () => {
+        localStorage.removeItem(NameStoragetoken);
+        localStorage.removeItem(NameStorageUsuario);
+        localStorage.removeItem(NameStorageConstructora);
 
+        navigate('/login', { replace: true })
+    }
 
     return {
-        user
+        user, signOut
 
     };
 }
