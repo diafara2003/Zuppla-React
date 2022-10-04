@@ -1,4 +1,5 @@
 import { lazy, LazyExoticComponent } from "react";
+import GestionProveedoresPage from '../Pages/GestionProveedores/GestionProveedoresPage';
 
 type JSXComnent = () => JSX.Element
 
@@ -11,8 +12,8 @@ interface Route {
 
 
 export const routes: Route[] = [
-  
- 
+
+
     {
         path: "/",
         Component: lazy(() => import(/* webpackChunkName: "HomePages" */"../Pages/Home/views/HomePages"))
@@ -23,6 +24,6 @@ export const routes: Route[] = [
     },
     {
         path: "/gestionproveedor",
-        Component: lazy(() => import(/* webpackChunkName: "GestionProveedoresPage" */"../Pages/GestionProveedores/GestionProveedoresPage"))
+        Component: GestionProveedoresPage
     }
-];
+]

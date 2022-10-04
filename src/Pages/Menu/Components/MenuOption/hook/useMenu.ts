@@ -19,14 +19,14 @@ export const useMenu = () => {
       metodo: `menu?cod=`,
       type: APiMethod.GET,
       AllowAnonymous: false
-    })!;
+    });
 
 
     setisLoading(false);
 
 
     if (response != null)
-      setPages(response!);
+      setPages(response.filter(c => c.descripcion.toLowerCase().includes("react")));
 
   }
 

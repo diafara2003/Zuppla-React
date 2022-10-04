@@ -12,7 +12,7 @@ export const MenuPages = () => {
       <AppBar position="static" sx={{ background: '#fff', color: '#1E1E1E' }}>
         <Toolbar>
           {/* <img src={logo} alt="Sammy Image" width={50} height={50} /> */}
-          <ElectricBolt
+          <ElectricBolt color="primary"
             onClick={() => navigate('/', { replace: true })
 
 

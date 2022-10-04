@@ -33,7 +33,7 @@ export const MenuOption = () => {
             aria-controls={`id${mencodigo}`}
             aria-haspopup="true"
             aria-expanded={false}
-            endIcon={tieneHijos > 0 ? <ExpandMore /> : null}
+            endIcon={tieneHijos > 0 ? <ExpandMore color="primary"/> : null}
             onClick={tieneHijos > 0 ? () => {  } : () => {handleNavigate(ubicacion) }}
             sx={{ color: '#003972' }}
           >

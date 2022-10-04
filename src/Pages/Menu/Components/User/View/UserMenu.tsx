@@ -1,9 +1,10 @@
 import { IconButton, Avatar, Box, Menu, MenuItem, Divider, ListItemIcon, Typography, ListItem } from '@mui/material';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { useState } from 'react';
-import { PersonAdd, Settings, Logout } from '@mui/icons-material';
+import { PersonAdd, Settings, Logout, ExpandMore } from '@mui/icons-material';
 import { ThemeProvider } from "@mui/material/styles";
 import { useMenuUser } from '../hook/useMenuUser';
+import { theme } from '../../../../../theme/theme';
 
 
 export const UserMenu = () => {
@@ -16,7 +17,7 @@ export const UserMenu = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const color = "#003972";
+    const color = theme.palette.primary.main;
     const stringAvatar = (name: string) => {
 
         if (name == "") return {}
@@ -30,8 +31,11 @@ export const UserMenu = () => {
 
     return (
         <Box display={'flex'} alignItems={"center"} >
-            <NotificationsActiveIcon sx={{ marginRight: '10px' }} />
-            <Avatar onClick={handleClick} id="basic-button" {...stringAvatar(user.nombreUsuario)} />
+            <NotificationsActiveIcon sx={{ marginRight: '10px' }} color="primary" />
+
+            <Avatar onClick={handleClick} id="basic-button"  {...stringAvatar(user.nombreUsuario)} />
+            <ExpandMore color="primary" />
+
             <Box>
                 <Menu
                     anchorEl={anchorEl}
