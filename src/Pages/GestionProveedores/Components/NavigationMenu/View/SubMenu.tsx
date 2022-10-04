@@ -26,24 +26,23 @@ export const SubMenu = ({ drawerWidth = 240 }) => {
         <>
             <Box
                 component='nav'
-                sx={{ width: { sm: drawerWidth }, flexShrink: { sm:0 } }}
+                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
             >
                 <Drawer
                     variant='permanent'
                     open
                     sx={{
-                        display: { xs: 'block' },                        
+                        display: { xs: 'block' },
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,
                             backgroundColor: "white !important",
                             position: 'relative',
-                            overflow:'auto',
-                            height:'calc(100vh - 82px)'
+                            overflow: 'auto',
+                            height: 'calc(100vh - 82px)'
                         },
                     }}
                 >
-                    
                     <Box sx={{ m: 1 }}>
                         <LogoEmpresa />
                     </Box>
@@ -57,7 +56,6 @@ export const SubMenu = ({ drawerWidth = 240 }) => {
                                     selected={selectedIndex === 0}
                                     onClick={(event) => handleListItemClick(event, 0)}
                                 >
-
                                     <ListItemIcon>
                                         <BusinessIcon />
                                     </ListItemIcon>

@@ -19,7 +19,7 @@ export const GestionProveedoresPage = () => {
                 <Box
                 >
                     <Toolbar />
-                    <Box sx={{mt:8}}>
+                    <Box sx={{mt:0}}>
                         <RoutesGestionProveedores />
                     </Box>
 
@@ -28,3 +28,5 @@ export const GestionProveedoresPage = () => {
         </>
     )
 }
+
+export default GestionProveedoresPage;

@@ -27,13 +27,13 @@ export const InformacionGeneralPage = () => {
         { label: 'Prueba', year: 1994 }
     ];
     return (
-        <Paper elevation={0} sx={{ minWidth: 275, p: 2 }}>
+        <Paper elevation={0} sx={{ minWidth: 275, p: 2, mt:7 }}>
             {
                 isLoadingCarga == true ? <div> Cargando...</div> : 
                 <Grid sx={{}}>
                     <form>
                         <Grid container width={'100%'} display={"flex"} alignItems={"center"} justifyContent={"center"}>
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item xs={3.5} sx={{ m: 1 }}>
                                 <TextField
                                     id=""                                    
                                     label="Tipo persona"
@@ -50,7 +50,7 @@ export const InformacionGeneralPage = () => {
                                 {/* </TextField> */}
                             </Grid>
 
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item xs={3.5} sx={{ m:1 }}>
                                 <TextField
                                     required
                                     id=""
@@ -60,7 +60,7 @@ export const InformacionGeneralPage = () => {
                                     fullWidth
                                 />
                             </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item  xs={3.5} sx={{ m: 1 }}>
                                 <TextField
                                     required
                                     id=""
@@ -69,7 +69,7 @@ export const InformacionGeneralPage = () => {
                                     fullWidth
                                 />
                             </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item xs={3.5} sx={{ m: 1}}>
                                 <TextField
                                     required
                                     id=""
@@ -78,7 +78,7 @@ export const InformacionGeneralPage = () => {
                                     fullWidth
                                 />
                             </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item xs={3.5} sx={{ m: 1 }}>
                                 <TextField
                                     required
                                     id=""
@@ -87,7 +87,7 @@ export const InformacionGeneralPage = () => {
                                     fullWidth
                                 />
                             </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item xs={3.5} sx={{ m: 1 }}>
                                 <TextField
                                     required
                                     id=""
@@ -96,7 +96,7 @@ export const InformacionGeneralPage = () => {
                                     fullWidth
                                 />
                             </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item xs={3.5} sx={{ m: 1 }}>
                                 <TextField
                                     required
                                     id=""
@@ -105,7 +105,7 @@ export const InformacionGeneralPage = () => {
                                     fullWidth
                                 />
                             </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item xs={3.5} sx={{ m: 1 }}>
                                 <TextField
                                     required
                                     id=""
@@ -114,7 +114,7 @@ export const InformacionGeneralPage = () => {
                                     fullWidth
                                 />
                             </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item xs={3.5} sx={{ m: 1 }}>
                                 <TextField
                                     required
                                     id=""
@@ -123,7 +123,7 @@ export const InformacionGeneralPage = () => {
                                     fullWidth
                                 />
                             </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item xs={3.5} sx={{ m: 1 }}>
                                 <TextField id="" select label="Actividad economica" value={valorSel}
                                     onChange={handleChange}
                                     fullWidth
@@ -132,15 +132,15 @@ export const InformacionGeneralPage = () => {
                                     <MenuItem value={20}>2</MenuItem>
                                 </TextField>
                             </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item xs={3.5} sx={{ m: 1 }}>
                                 <FormControlLabel sx={{ margin: 2, fontSize: '12px !important' }} control={<Switch defaultChecked />} label="Se encuentra certificado en normas ISO" />
                             </Grid>
-                            <Grid item xs={3} sx={{ m: 1 }}>
+                            <Grid item xs={3.5} sx={{ m: 1 }}>
 
                             </Grid>
 
                         </Grid>
-                        <Grid style={{ display: "flex", justifyContent: 'center', marginBottom: '25px' }}>
+                        <Grid style={{ display: "flex", justifyContent: 'end', marginBottom: '25px', marginRight:'150px' }}>
                             <Stack direction="row">
                                 <Button variant="contained" endIcon={<SaveIcon />}>Guardar</Button>
                             </Stack>
