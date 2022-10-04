@@ -24,7 +24,7 @@ export const useMenu = () => {
 
     setisLoading(false);
 
-    
+
     if (response != null)
       setPages(response!);
 
