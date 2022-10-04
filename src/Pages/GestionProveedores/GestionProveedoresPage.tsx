@@ -6,36 +6,27 @@ import React from 'react'
 import { SubMenu } from './Components/NavigationMenu/View/SubMenu'
 import RoutesGestionProveedores from './Routes/RoutesGestionProveedores'
 import { InformacionGeneralPage } from './Views/InformacionGeneral/View/InformacionGeneralPage'
+import Hidden from '@mui/material/Hidden/Hidden'
 
 
 const drawerWidth = 280;
 export const GestionProveedoresPage = () => {
-    const [selectedIndex, setSelectedIndex] = React.useState(0);
-    const handleListItemClick = (
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-        index: number,
-    ) => {
-        setSelectedIndex(index);
-    };
-
     return (
         <>
             <Box sx={{ display: 'flex', backgroundColor: "white" }}>
                 <HeaderPages drawerWidth={drawerWidth} />
                 <SubMenu drawerWidth={drawerWidth} />
-
                 <Box
-                   
                 >
                     <Toolbar />
-                    <RoutesGestionProveedores/>
-                    
+                    <Box sx={{mt:0}}>
+                        <RoutesGestionProveedores />
+                    </Box>
+
                 </Box>
             </Box>
-
         </>
     )
 }
-
 
 export default GestionProveedoresPage;

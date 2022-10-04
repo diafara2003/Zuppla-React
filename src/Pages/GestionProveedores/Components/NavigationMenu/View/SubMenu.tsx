@@ -10,6 +10,8 @@ import React from 'react';
 import { LogoEmpresa } from '../../LogoProveedor/View/LogoEmpresa';
 import { BrowserRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom';
 
+import '../Styles/Navigation.css'
+
 
 
 export const SubMenu = ({ drawerWidth = 240 }) => {
@@ -30,16 +32,14 @@ export const SubMenu = ({ drawerWidth = 240 }) => {
                     variant='permanent'
                     open
                     sx={{
-
-
                         display: { xs: 'block' },
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,
                             backgroundColor: "white !important",
                             position: 'relative',
-                            overflow:'auto',
-                            height:'calc(100vh - 82px)'
+                            overflow: 'auto',
+                            height: 'calc(100vh - 82px)'
                         },
                     }}
                 >
@@ -56,7 +56,6 @@ export const SubMenu = ({ drawerWidth = 240 }) => {
                                     selected={selectedIndex === 0}
                                     onClick={(event) => handleListItemClick(event, 0)}
                                 >
-
                                     <ListItemIcon>
                                         <BusinessIcon />
                                     </ListItemIcon>

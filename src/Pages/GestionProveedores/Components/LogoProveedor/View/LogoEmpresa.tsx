@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import '../../../../../Styles/App.css'
+
 import reactLogo from '../../../../../assets/react.svg'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 

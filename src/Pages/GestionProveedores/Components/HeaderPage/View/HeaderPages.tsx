@@ -3,7 +3,7 @@ import { AppBar, Box, Grid, IconButton, Toolbar, Typography } from '@mui/materia
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import React from 'react'
 
-export const HeaderPages = ({ drawerWidth = 240 }) => {
+export const HeaderPages = ({ drawerWidth = 280 }) => {
     return (
         <Box
             position='fixed'
@@ -11,7 +11,7 @@ export const HeaderPages = ({ drawerWidth = 240 }) => {
                 width: { sm: `calc(100% - ${drawerWidth}px)` },
                 ml: { sm: `${drawerWidth}px` },
                 backgroundColor: "white !important",
-                index: "999999"
+                mt:0                
             }}
         >
             <Toolbar>
@@ -24,7 +24,7 @@ export const HeaderPages = ({ drawerWidth = 240 }) => {
                 </IconButton>
 
                 <Grid container direction='row' justifyContent='space-between' alignItems='center'>
-                    <Typography sx={{ color: "gray" }} variant='h6' noWrap component='div'> Informacion general </Typography>
+                    <Typography sx={{ color: "gray" }} variant='h6' noWrap component='div'> Información general </Typography>
                     <IconButton >
                         <AutoStoriesIcon />
                     </IconButton>

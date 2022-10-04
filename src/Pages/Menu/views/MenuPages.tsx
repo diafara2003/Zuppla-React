@@ -26,7 +26,7 @@ export const MenuPages = () => {
         </Toolbar>
       </AppBar>
 
-      <Box component='main' sx={{ flexGrow: 5, p: 1, height: 'calc(100vh - 88px)', overflow: 'auto' }}>
+      <Box component='main' sx={{ flexGrow: 5, p: 0.5, height: 'calc(100vh - 82px)', overflow: 'auto' }}>
         <Outlet />
       </Box>
     </Box>

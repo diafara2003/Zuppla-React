@@ -8,7 +8,6 @@ export const useFetch = <T,>() => {
     const [data, setData] = useState<T>();
 
     const [state, setState] = useState({
-
         isLoading: false,
         hasError: "",
     })
@@ -18,7 +17,6 @@ export const useFetch = <T,>() => {
             ...state,
             isLoading: true,
         });
-
 
         try {
             const response = await requestAPI<T>(request);

@@ -14,7 +14,7 @@ export const useMenu = () => {
 
 
   const getMenus = async () => {
-
+    
     const response = await requestAPI<MenuDTO[]>({
       metodo: `menu?cod=`,
       type: APiMethod.GET,
