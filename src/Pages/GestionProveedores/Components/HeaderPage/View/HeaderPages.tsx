@@ -15,6 +15,7 @@ export const HeaderPages = ({ drawerWidth = 280 }) => {
             }}
         >
             <Toolbar>
+                
                 <IconButton
                     color='inherit'
                     edge="start"
