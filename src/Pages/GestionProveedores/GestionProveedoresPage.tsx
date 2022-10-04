@@ -67,7 +67,7 @@ export const GestionProveedoresPage = () => {
                     <Divider />
                     <NavigationComponent options={rutas} />
                 </Grid>
-                <Grid item xs={9.7} >                   
+                <Grid item xs={9.7} sx={{paddingLeft:'0px !important'}}   > 
                     <RoutesGestionProveedores />
                 </Grid>
             </Grid>

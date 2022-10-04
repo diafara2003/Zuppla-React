@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, FormControlLabel, Grid, MenuItem, Paper, Stack, Switch, TextField, Typography } from "@mui/material"
+import { Backdrop, Box, Button, Card, CardContent, CircularProgress, FormControlLabel, Grid, MenuItem, Paper, Stack, Switch, TextField, Typography } from "@mui/material"
 import SaveIcon from '@mui/icons-material/Save';
 import React, { useContext } from "react";
 import { AuthContext } from "../../../../../Auth";
@@ -12,8 +12,8 @@ export const InformacionGeneralPage = () => {
 
     const { isLoadingCarga, dataInitialState } = controllerInformacionGeneral();
     const [valorSel, setvalorSel] = React.useState('');
-
-
+    const [open, setOpen] = React.useState(true);
+    
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setvalorSel(event.target.value as string);
@@ -30,9 +30,18 @@ export const InformacionGeneralPage = () => {
     return (
         <>
             <HeaderComponent title={"Información general"} />
-            <Box  sx={{ minWidth: 275, p: 2, mt: 7 }}>
+            <Box sx={{ minWidth: 275, p: 2, mt: 7 }}>
                 {
-                    isLoadingCarga == true ? <div> Cargando...</div> :
+                    isLoadingCarga == true
+                        ?
+                        <Backdrop
+                            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                            open={open}
+                        >
+                            <CircularProgress color="inherit" />
+                        </Backdrop>
+                        :
+
                         <Grid sx={{}}>
                             <form>
                                 <Grid container width={'100%'} display={"flex"} alignItems={"center"} justifyContent={"center"}>

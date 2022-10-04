@@ -1,5 +1,5 @@
 import { MenuOutlined } from '@mui/icons-material';
-import { Grid, Typography, IconButton, Box, Toolbar } from '@mui/material'
+import { Grid, Typography, IconButton, Box, Toolbar, AppBar, Card } from '@mui/material'
 import React from 'react'
 import { useState } from 'react';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
@@ -12,16 +12,19 @@ type props = {
 
 export const HeaderComponent = ({ title ="", marginLeft=0}: props) => {
 
-
     return (
         <Box
-             position='sticky'
+            position='sticky'
             sx={{
                 // width: { sm: `calc(100% - ${marginLeft}px)` },
                 // ml: { sm: `${marginLeft}px` },
                 // backgroundColor: "red !important",
-                mt: 0,
-                borderBottom:"1px solid #ebebeb"
+                
+                top: 0,
+                borderBottom:"1px solid #ebebeb",
+                backgroundColor: '#fff', color: '#1E1E1E',
+                
+
 
             }}
         >
