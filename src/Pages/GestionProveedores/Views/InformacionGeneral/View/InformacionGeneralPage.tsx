@@ -36,7 +36,7 @@ export const InformacionGeneralPage = () => {
                         ?
                         <Backdrop
                             sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                            open={open}
+                            open={true}
                         >
                             <CircularProgress color="inherit" />
                         </Backdrop>

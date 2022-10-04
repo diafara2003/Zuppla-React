@@ -1,11 +1,9 @@
 import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, ListItem } from '@mui/material';
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-interface NavigationModel {
-    path: string;
-    texto: string;
-    Icono: () => JSX.Element
-}
+import { Height } from '@mui/icons-material';
+import { NavigationModel } from '../model/modelNavigation';
+// import { NavigationModel } from '../model/modelNAvigation';
 
 
 type props = {
@@ -27,7 +25,7 @@ export const NavigationComponent = ({ options }: props) => {
         <Box sx={{
             width: '100%',
             borderRight: "1px solid #ebebeb",
-            // height: 'calc(100vh - 85px)',
+            height: 'calc(100vh - 85px)',
             overflow: "auto"
 
 
@@ -48,8 +46,9 @@ export const NavigationComponent = ({ options }: props) => {
                                         onClick={(event) => handleListItemClick(event, index)}
                                     >
                                         <ListItemIcon key={"ListItemIcon" + path}>
-                                            <Icono />
-
+                                            <Badge color="primary" badgeContent={texto === "Novedades" ? 2 : 0}>
+                                                <Icono />
+                                            </Badge>
                                         </ListItemIcon>
                                         <ListItemText primary={texto} />
 
