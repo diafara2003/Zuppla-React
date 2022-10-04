@@ -6,7 +6,7 @@ import { Grid } from '@mui/material';
 
 import BusinessIcon from '@mui/icons-material/Business';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { NavigationModel } from '../../../SharedComponents/Navigation/model/modelNAvigation';
+import { NavigationModel } from '../../../SharedComponents/Navigation/model/modelNavigation';
 
 
 

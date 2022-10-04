@@ -1,11 +1,7 @@
-import { Box, Divider, Grid, Toolbar } from '@mui/material'
+import { Badge, Box, Divider, Grid, Toolbar } from '@mui/material'
 
-import { SubMenu } from './Components/NavigationMenu/View/SubMenu'
 import RoutesGestionProveedores from './Routes/RoutesGestionProveedores'
-import { HeaderComponent } from '../../SharedComponents/Header'
-import { NavigationComponent } from '../../SharedComponents/Navigation';
-import { NavigationModel } from '../../SharedComponents/Navigation/model/modelNavigation';
-
+import { NavigationComponent, NavigationModel } from '../../SharedComponents/Navigation';
 
 import BusinessIcon from '@mui/icons-material/Business';
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -15,7 +11,6 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import FolderOpenTwoToneIcon from '@mui/icons-material/FolderOpenTwoTone';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { LogoEmpresa } from './Components/LogoProveedor/View/LogoEmpresa';
-import { Outlet } from 'react-router-dom';
 
 
 const drawerWidth = 280;
@@ -48,7 +43,10 @@ const rutas: NavigationModel[] = [
     {
         path: "/gestionproveedor/NovedadesPage",
         texto: "Novedades",
-        Icono: () => < NotificationsActiveIcon />
+        Icono: () => <Badge color="primary" badgeContent={2}>
+            < NotificationsActiveIcon />
+        </Badge>
+        //
     },
     {
         path: "/gestionproveedor/EspecialidadesPage",
@@ -67,7 +65,7 @@ export const GestionProveedoresPage = () => {
                     <Divider />
                     <NavigationComponent options={rutas} />
                 </Grid>
-                <Grid item xs={9.7} sx={{paddingLeft:'0px !important'}}   > 
+                <Grid item xs={9.7} sx={{ paddingLeft: '0px !important' }}   >
                     <RoutesGestionProveedores />
                 </Grid>
             </Grid>
