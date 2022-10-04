@@ -1,4 +1,5 @@
 import { Autocomplete, Box, TextField } from "@mui/material"
+import { HeaderComponent } from "../../../../../SharedComponents/Header";
 // import './App.css'
 const top100Films = [
     { label: 'The Shawshank Redemption', year: 1994 },
@@ -10,10 +11,11 @@ const top100Films = [
     { label: 'Pulp Fiction', year: 1994 }
 ];
 
-export const Especialidad = () =>{
+export const EspecialidadesPage = () =>{
     return(
         <>
-        <div className="row">
+        <HeaderComponent title={"Especialidades"} />
+        {/* <div className="row">
                 <Box component="form" sx={{ '& .MuiTextField-root ': { m: 1, width: '39ch' }, }}
                     noValidate
                     autoComplete="off"
@@ -30,7 +32,7 @@ export const Especialidad = () =>{
 
 
                 </Box>
-            </div>
+            </div> */}
         </>
     )
 }

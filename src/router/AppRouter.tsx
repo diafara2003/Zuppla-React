@@ -1,5 +1,5 @@
 
-import { Route, Routes,  } from 'react-router-dom';
+import { Route, Routes, } from 'react-router-dom';
 
 import LoginPages from '../Pages/Login/views/LoginPages';
 import { MenuPages } from '../Pages/Menu/views/MenuPages';
@@ -19,7 +19,7 @@ export const AppRouter = () => {
 
                 <Route element={<ProtectedRoutes />}>
 
-                {
+                    {
                         routes.map(({ path, Component: Component }) => {
                             return (
                                 <Route

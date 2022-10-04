@@ -2,7 +2,8 @@ import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, 
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { Height } from '@mui/icons-material';
-import { NavigationModel } from '../model/modelNAvigation';
+import { NavigationModel } from '../model/modelNavigation';
+// import { NavigationModel } from '../model/modelNAvigation';
 
 
 type props = {
@@ -12,7 +13,7 @@ type props = {
 
 export const NavigationComponent = ({ options }: props) => {
 
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
 
     const handleListItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -30,11 +31,8 @@ export const NavigationComponent = ({ options }: props) => {
 
         }}>
             <List component="nav" aria-label="main mailbox folders">
-
-
                 {
-
-                    options.map(({ path, Icono, texto }) => {
+                    options.map(({ path, Icono, texto }, index) => {
                         return (
                             <NavLink
                                 key={path}
@@ -44,11 +42,14 @@ export const NavigationComponent = ({ options }: props) => {
                                     <ListItemButton
                                         key={"ListItemButton" + path}
                                         className='ListJk'
-                                        selected={selectedIndex === 0}
-                                        onClick={(event) => handleListItemClick(event, 0)}
+                                        selected={selectedIndex === index}
+                                        onClick={(event) => handleListItemClick(event, index)}
                                     >
                                         <ListItemIcon key={"ListItemIcon" + path}>
+                                        <Badge color="primary" badgeContent={texto === "Novedades" ? 2:0}>
                                             <Icono />
+                                        </Badge>
+                                           
                                         </ListItemIcon>
                                         <ListItemText primary={texto} />
 

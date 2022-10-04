@@ -2,9 +2,11 @@ import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHe
 import PermDeviceInformationIcon from '@mui/icons-material/PermDeviceInformation';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-export const CamaraComercio = () => {
+import { HeaderComponent } from "../../../../../SharedComponents/Header";
+export const CamaraComercioPage = () => {
     return (
         <>
+         <HeaderComponent title={"Camara y comercio"} />
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>

@@ -1,6 +1,7 @@
 import { Autocomplete, Box, Button, FormControlLabel, Grid, List, ListItem, ListItemText, Menu, MenuItem, Paper, Stack, Switch, TextField } from "@mui/material";
 import React from "react";
 import SaveIcon from '@mui/icons-material/Save';
+import { HeaderComponent } from "../../../../../SharedComponents/Header";
 
 export const DatosContactos = () => {
     const [valorSel, setvalorSel] = React.useState('');
@@ -46,7 +47,9 @@ export const DatosContactos = () => {
 
     return (
         <>
-            <Paper elevation={0} sx={{ minWidth: 275, p: 0 }}>
+        <HeaderComponent title={"Datos contactos"} />
+            {/* <Paper elevation={0} sx={{ minWidth: 275, p: 0 }}>
+            
                 <Box style={{ margin: '0px', padding: '0px' }}>
                     <List
                         component="nav"
@@ -91,6 +94,7 @@ export const DatosContactos = () => {
                     </Menu>
                 </Box>
                 <Grid sx={{}}>
+                    <HeaderComponent title={"Datos contactos"} />
                     <form>
                         <Grid container width={'100%'} display={"flex"} alignItems={"center"} justifyContent={"center"}>
                             <Grid item xs={3} sx={{ m: 1 }}>
@@ -181,7 +185,7 @@ export const DatosContactos = () => {
 
 
 
-            </Paper>
+            </Paper> */}
         </>
     );
 }

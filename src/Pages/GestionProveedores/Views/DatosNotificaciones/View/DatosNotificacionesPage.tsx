@@ -1,5 +1,6 @@
 import { List, ListItem, ListItemText, Menu, MenuItem } from "@mui/material";
 import React from "react";
+import { HeaderComponent } from "../../../../../SharedComponents/Header";
 
 export const DatosNotifiaciones = () =>{
     const options = [
@@ -34,7 +35,8 @@ export const DatosNotifiaciones = () =>{
     };
     return(
         <>
-        <div style={{ margin: '0px', padding: '0px' }}>
+         <HeaderComponent title={"Datos notificaciones"} />
+        {/* <div style={{ margin: '0px', padding: '0px' }}>
                 <List
                     component="nav"
                     aria-label=""
@@ -76,7 +78,7 @@ export const DatosNotifiaciones = () =>{
                         </MenuItem>
                     ))}
                 </Menu>
-            </div>
+            </div> */}
         </>
     );
 }

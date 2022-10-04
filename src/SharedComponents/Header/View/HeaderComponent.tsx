@@ -15,12 +15,14 @@ export const HeaderComponent = ({ title ="", marginLeft=0}: props) => {
 
     return (
         <Box
-            position='fixed'
+             position='sticky'
             sx={{
                 // width: { sm: `calc(100% - ${marginLeft}px)` },
                 // ml: { sm: `${marginLeft}px` },
                 // backgroundColor: "red !important",
-                mt: 0
+                mt: 0,
+                borderBottom:"1px solid #ebebeb"
+
             }}
         >
             <Toolbar>
