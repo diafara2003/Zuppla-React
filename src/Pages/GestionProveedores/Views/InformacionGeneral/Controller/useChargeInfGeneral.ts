@@ -1,11 +1,11 @@
-import React from 'react'
+// import React from 'react'
 
-export const useChargeInfGeneral = (initialForm: infGeneralForm) => {
+// export const useChargeInfGeneral = (initialForm: infGeneralForm) => {
 
-    return{
+//     return{
 
-    }
-}
+//     }
+// }
 
 
 
