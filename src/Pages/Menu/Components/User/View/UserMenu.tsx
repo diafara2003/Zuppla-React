@@ -8,25 +8,17 @@ import { theme } from '../../../../../theme/theme';
 
 
 export const UserMenu = () => {
-    const { user, signOut } = useMenuUser();
+    const { user, signOut, stringAvatar } = useMenuUser();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
+   
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const color = theme.palette.primary.main;
-    const stringAvatar = (name: string) => {
 
-        if (name == "") return {}
-
-        return {
-            sx: { color, background: '#ebebeb' },
-            children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-        };
-    }
 
 
     return (
