@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext, NameStorageConstructora, NameStoragetoken, NameStorageUsuario, UserSessionModel } from "../../../../../Auth";
+import { theme } from '../../../../../theme/theme';
 
 export const useMenuUser = () => {
     const { getSession } = useContext(AuthContext);
@@ -25,6 +26,17 @@ export const useMenuUser = () => {
 
     }, []);
 
+    const color = theme.palette.primary.main;
+    const stringAvatar = (name: string) => {
+
+        if (name == "") return {}
+
+        return {
+            sx: { color, background: '#ebebeb' },
+            children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+        };
+    }
+
     const signOut = () => {
         localStorage.removeItem(NameStoragetoken);
         localStorage.removeItem(NameStorageUsuario);
@@ -34,7 +46,7 @@ export const useMenuUser = () => {
     }
 
     return {
-        user, signOut
+        user, signOut,stringAvatar
 
     };
 }

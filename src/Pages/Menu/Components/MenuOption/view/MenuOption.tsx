@@ -24,7 +24,10 @@ export const MenuOption = () => {
   return (
 
     <>
+
+
       {!isLoading && pages != null && pages.map(({ descripcion, ubicacion, tieneHijos, mencodigo }) => (
+
 
         <Box key={`box${mencodigo}`}>
           <Button
@@ -33,11 +36,13 @@ export const MenuOption = () => {
             aria-controls={`id${mencodigo}`}
             aria-haspopup="true"
             aria-expanded={false}
-            endIcon={tieneHijos > 0 ? <ExpandMore color="primary"/> : null}
-            onClick={tieneHijos > 0 ? () => {  } : () => {handleNavigate(ubicacion) }}
+            endIcon={tieneHijos > 0 ? <ExpandMore color="primary" /> : null}
+            onClick={tieneHijos > 0 ? () => { } : () => { handleNavigate(ubicacion) }}
             sx={{ color: '#003972' }}
           >
-            {descripcion}
+            <Typography
+              // fontSize="0.75rem"
+              variant="body2" noWrap={true}>{descripcion}</Typography>
             {/* <Link to={ubicacion}>{descripcion}</Link> */}
           </Button>
           {tieneHijos == 0 ? null :

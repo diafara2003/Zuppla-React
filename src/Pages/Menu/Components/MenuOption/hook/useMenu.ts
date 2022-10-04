@@ -28,6 +28,8 @@ export const useMenu = () => {
     if (response != null)
       setPages(response.filter(c => c.descripcion.toLowerCase().includes("react")));
 
+
+
   }
 
 
@@ -46,7 +48,7 @@ export const useMenu = () => {
   };
 
   return {
-    pages: (pages as MenuDTO[]),
+    pages,
     isLoading,
     handleNavigate
   };
