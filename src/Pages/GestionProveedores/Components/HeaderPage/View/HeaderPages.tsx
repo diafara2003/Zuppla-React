@@ -3,15 +3,15 @@ import { AppBar, Box, Grid, IconButton, Toolbar, Typography } from '@mui/materia
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import React from 'react'
 
-export const HeaderPages = ({ drawerWidth = 240 }) => {
+export const HeaderPages = ({ drawerWidth=280 }) => {
     return (
         <Box
             position='fixed'
             sx={{
-                width: { sm: `calc(100% - ${drawerWidth}px)` },
+                width: { sm: `calc(98% - ${drawerWidth}px)` },
                 ml: { sm: `${drawerWidth}px` },
                 backgroundColor: "red !important",
-                index: "999999"
+                mt:0                
             }}
         >
             <Toolbar>
