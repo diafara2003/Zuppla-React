@@ -56,7 +56,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
             localStorage.setItem(NameStoragetoken, data.token);
             localStorage.setItem(NameStorageUsuario, JSON.stringify(data.usuario));
 
-            navigate('/home', { replace: true })
+            navigate('/', { replace: true })
         }
 
     }, [data])

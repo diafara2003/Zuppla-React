@@ -3,37 +3,38 @@ import { Route, Routes, } from 'react-router-dom';
 
 import LoginPages from '../Pages/Login/views/LoginPages';
 import { ProtectedRoutes } from './ProtectedRoutes';
+import { HomePages } from '../Pages/Home/views/HomePages';
 import { routes } from './routes';
-import { Suspense } from 'react';
-import HomePages from '../Pages/Home/views/HomePages';
 
 
 export const AppRouter = () => {
     return (
+        <>
 
-        <Routes>
 
-            <Route path="/login" element={<LoginPages />}></Route>
+            <Routes>
 
-            <Route element={<ProtectedRoutes />}>
+                <Route path="/login" element={<LoginPages />}></Route>
 
-                {
-                    routes.map(({ path, component }) => {
-                        return (
-                            <Route
-                                key={path}
-                                path={path}
-                                element={<Suspense fallback={<>...</>}>
-                                    <component />
-                                </Suspense>} />
-                        );
-                    })
-                }
+                <Route element={<ProtectedRoutes />}>
 
-            </Route>
+                   
 
-        </Routes>
+                    {
+                        routes.map(({ path, Component: Component }) => {
+                            return (
+                                <Route
+                                    key={path}
+                                    path={path}
+                                    element={<Component />} />
+                            );
+                        })
+                    }
 
+                </Route>
+
+            </Routes>
+        </>
 
     )
 }

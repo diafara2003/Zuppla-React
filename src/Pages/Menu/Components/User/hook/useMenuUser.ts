@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext, NameStorageConstructora, NameStoragetoken, NameStorageUsuario, UserSessionModel } from "../../../../../Auth";
 
 export const useMenuUser = () => {
-    const { state } = useContext(AuthContext);
+    const { getSession } = useContext(AuthContext);
     const navigate = useNavigate();
     const [user, setUser] = useState({
 
@@ -19,7 +19,7 @@ export const useMenuUser = () => {
 
     useEffect(() => {
 
-        const { user } = state;
+        const { user } = getSession();
 
         setUser(user);
 
