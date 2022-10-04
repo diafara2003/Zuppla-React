@@ -1,4 +1,4 @@
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, ListItem } from '@mui/material';
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, ListItem, Typography } from '@mui/material';
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { Height } from '@mui/icons-material';
@@ -45,12 +45,13 @@ export const NavigationComponent = ({ options }: props) => {
                                         selected={selectedIndex === index}
                                         onClick={(event) => handleListItemClick(event, index)}
                                     >
-                                        <ListItemIcon key={"ListItemIcon" + path}>
-                                            <Badge color="primary" badgeContent={texto === "Novedades" ? 2 : 0}>
-                                                <Icono />
-                                            </Badge>
+                                        <ListItemIcon sx={{ color: "#1E62A1" }} key={"ListItemIcon" + path}>
+                                            <Icono />
+
                                         </ListItemIcon>
-                                        <ListItemText primary={texto} />
+                                        <ListItemText color='#1E62A1'>
+                                            <Typography sx={{ color: "#1E62A1" }} > {texto} </Typography>
+                                        </ListItemText>
 
                                     </ListItemButton>
                                 </ListItem>
