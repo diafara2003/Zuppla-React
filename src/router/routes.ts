@@ -28,8 +28,8 @@ export const routes: Route[] = [
     },
 
     {
-        path: "/usuarios",
-        Component: lazy(() => import(/* webpackChunkName: "UsuariosPages" */"../Pages/Usuarios/Views/UsuariosPages"))
+        path: "/usuarios/*",
+        Component: lazy(() => import(/* webpackChunkName: "UsuariosPages" */"../Pages/Usuarios/Layout/LayaoutUsuarioPages"))
     }
 
 

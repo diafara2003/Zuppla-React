@@ -1,3 +1,3 @@
 export * from './View/NavigationComponent';
 
-export * from './model/modelNAvigation';
+export * from './model/modelNavigation';
