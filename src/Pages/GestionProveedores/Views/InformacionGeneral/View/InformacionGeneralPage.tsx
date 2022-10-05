@@ -1,10 +1,10 @@
-import { Autocomplete, Backdrop, Box, Button, Card, CardContent, CircularProgress, FormControlLabel, Grid, MenuItem, Paper, Stack, Switch, TextField, Typography } from "@mui/material"
+import { Autocomplete, Backdrop, Box, Button, Card, CardContent, CircularProgress, FormControlLabel, Grid, MenuItem, Paper, Skeleton, Stack, Switch, TextField, Typography } from "@mui/material"
 import SaveIcon from '@mui/icons-material/Save';
 import React, { useContext } from "react";
-
+import { SkeletonInfGeneral } from '../Components/SkeletonInfGeneral'
 import { controllerInformacionGeneral } from "../Controller/controllerInformacionGeneral";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
-import { Add } from "@mui/icons-material";
+
 import HistoryIcon from '@mui/icons-material/History';
 
 
@@ -37,25 +37,34 @@ export const InformacionGeneralPage = () => {
     return (
         <>
             <HeaderComponent title={"Información general"} />
-            <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
-                    <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                    
-                </Box>
-            <Box sx={{ minWidth: 275, p: 2, mt: 7 }}>
+            {/* <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+                <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+            </Box> */}
+            <Box>
                 {
                     isLoadingCarga == true
                         ?
-                        <Backdrop
-                            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                            open={true}
-                        >
-                            <CircularProgress color="inherit" />
-                        </Backdrop>
+                        // <Backdrop
+                        //     sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                        //     open={true}
+                        // >
+                        //     <CircularProgress color="inherit" />
+                        // </Backdrop>
+                        <SkeletonInfGeneral />
                         :
-                        <Grid sx={{}}>
+
+                        <Grid sx={{ minWidth: 275, p: 2 }}>
+                            <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+                                <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                            </Box>
                             <form>
-                                <Grid container width={'100%'} display={"flex"} alignItems={"center"} justifyContent={"center"}>
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
+                                <Grid container width={'100%'}
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                    justifyContent={"center"}
+                                    spacing={2}
+                                    sx={{ mt: 7 }}>
+                                    <Grid item xs={3.5} >
                                         <TextField
                                             id=""
                                             label="Tipo persona"
@@ -72,7 +81,7 @@ export const InformacionGeneralPage = () => {
                                         {/* </TextField> */}
                                     </Grid>
 
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
+                                    <Grid item xs={3.5} >
                                         <TextField
                                             required
                                             id=""
@@ -82,7 +91,7 @@ export const InformacionGeneralPage = () => {
                                             fullWidth
                                         />
                                     </Grid>
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
+                                    <Grid item xs={3.5} >
                                         <TextField
                                             required
                                             id=""
@@ -91,7 +100,7 @@ export const InformacionGeneralPage = () => {
                                             fullWidth
                                         />
                                     </Grid>
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
+                                    <Grid item xs={3.5} >
                                         <TextField
                                             required
                                             id=""
@@ -100,16 +109,24 @@ export const InformacionGeneralPage = () => {
                                             fullWidth
                                         />
                                     </Grid>
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
-                                        <TextField
+                                    <Grid item xs={3.5} >
+
+                                        <Autocomplete
+                                            disablePortal
+                                            id=""
+                                            //value={dataInitialState.ciudad?.nombre}
+                                            options={topCiudad}
+                                            renderInput={(params) => <TextField {...params} label="Ciudad" value={dataInitialState.ciudad?.nombre} defaultValue={dataInitialState.ciudad?.nombre} />}
+                                        />
+                                        {/* <TextField
                                             required
                                             id=""
                                             label="Ciudad"
                                             defaultValue={dataInitialState.ciudad?.nombre}
                                             fullWidth
-                                        />
+                                        /> */}
                                     </Grid>
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
+                                    <Grid item xs={3.5} >
                                         <TextField
                                             required
                                             id=""
@@ -118,7 +135,7 @@ export const InformacionGeneralPage = () => {
                                             fullWidth
                                         />
                                     </Grid>
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
+                                    <Grid item xs={3.5} >
                                         <TextField
                                             required
                                             id=""
@@ -127,7 +144,7 @@ export const InformacionGeneralPage = () => {
                                             fullWidth
                                         />
                                     </Grid>
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
+                                    <Grid item xs={3.5} >
                                         <TextField
                                             required
                                             id=""
@@ -136,7 +153,7 @@ export const InformacionGeneralPage = () => {
                                             fullWidth
                                         />
                                     </Grid>
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
+                                    <Grid item xs={3.5} >
                                         <TextField
                                             required
                                             id=""
@@ -145,7 +162,7 @@ export const InformacionGeneralPage = () => {
                                             fullWidth
                                         />
                                     </Grid>
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
+                                    <Grid item xs={3.5} >
                                         <Autocomplete
                                             disablePortal
                                             id=""
@@ -154,10 +171,10 @@ export const InformacionGeneralPage = () => {
                                             renderInput={(params) => <TextField {...params} label="Ciudad" />}
                                         />
                                     </Grid>
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
+                                    <Grid item xs={3.5} >
                                         <FormControlLabel sx={{ margin: 2, fontSize: '12px !important' }} control={<Switch defaultChecked />} label="Se encuentra certificado en normas ISO" />
                                     </Grid>
-                                    <Grid item xs={3.5} sx={{ m: 1 }}>
+                                    <Grid item xs={3.5} >
 
                                     </Grid>
 

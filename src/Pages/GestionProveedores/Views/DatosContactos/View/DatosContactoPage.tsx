@@ -62,8 +62,8 @@ export const DatosContactos = () => {
                     <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                     <Button sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
                 </Box>
-                <Box sx={{ justifyContent: 'center', display: 'flex' }}>
-                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                <Box sx={{}}>
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth" centered>
                         {options.map((option, index) => (
                             <Tab key={option.id} label={option.nombre} />
                         ))}
