@@ -4,7 +4,8 @@ import React, { useContext } from "react";
 
 import { controllerInformacionGeneral } from "../Controller/controllerInformacionGeneral";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
-
+import { Add } from "@mui/icons-material";
+import HistoryIcon from '@mui/icons-material/History';
 
 
 export const InformacionGeneralPage = () => {
@@ -36,6 +37,10 @@ export const InformacionGeneralPage = () => {
     return (
         <>
             <HeaderComponent title={"Información general"} />
+            <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+                    <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                    
+                </Box>
             <Box sx={{ minWidth: 275, p: 2, mt: 7 }}>
                 {
                     isLoadingCarga == true

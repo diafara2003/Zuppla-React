@@ -2,6 +2,8 @@ import { Autocomplete, Box, Button, FormControlLabel, Grid, List, ListItem, List
 import React from "react";
 import SaveIcon from '@mui/icons-material/Save';
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
+import { Add } from "@mui/icons-material";
+import HistoryIcon from '@mui/icons-material/History';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -56,19 +58,18 @@ export const DatosContactos = () => {
         <>
             <HeaderComponent title={"Datos contactos"} />
             <Box sx={{ width: '100%' }}>
-                <Grid container>
-                    <Grid item>
-
-                    </Grid>
-                </Grid>
-                <Box sx={{justifyContent:'center', display:'flex' }}>
+                <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+                    <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                    <Button sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
+                </Box>
+                <Box sx={{ justifyContent: 'center', display: 'flex' }}>
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                         {options.map((option, index) => (
                             <Tab key={option.id} label={option.nombre} />
-                        ))}                       
+                        ))}
                     </Tabs>
                 </Box>
-                <TabPanel value={value} index={0}>
+                {/* <TabPanel value={value} index={0}>
                     Item One
                 </TabPanel>
                 <TabPanel value={value} index={1}>
@@ -76,7 +77,7 @@ export const DatosContactos = () => {
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     Item Three
-                </TabPanel>
+                </TabPanel> */}
             </Box>
 
 
