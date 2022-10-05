@@ -8,10 +8,7 @@ export const theme = createTheme({
         }
     },
     components: {
-        MuiSvgIcon: {
-
-
-        },
+  
        
         MuiButton: {
             styleOverrides: {
