@@ -45,15 +45,15 @@ export const SkeletonInfGeneral = () => {
                     <Skeleton variant="rectangular" height={40} animation="wave" />
                 </Grid>
                 <Grid item xs={3.5} >
-
-
                 </Grid>
 
             </Grid>
             <Grid style={{ display: "flex", justifyContent: 'end', marginBottom: '25px', marginRight: '150px' }}>
-                <Stack direction="row">
+                <Grid item xs={2} pt="25px" >
+                    <Skeleton variant="rectangular" height={40} animation="wave" />
+                </Grid>
 
-                </Stack>
+
             </Grid>
         </>
     )

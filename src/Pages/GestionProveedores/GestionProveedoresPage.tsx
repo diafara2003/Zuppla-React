@@ -1,6 +1,6 @@
 import { Badge, Box, Divider, Grid, Toolbar } from '@mui/material'
 
-import RoutesGestionProveedores from './Routes/RoutesGestionProveedores'
+import RoutesGestionProveedores, { rutas } from './Routes/RoutesGestionProveedores'
 import { NavigationComponent, NavigationModel } from '../../SharedComponents/Navigation';
 
 import BusinessIcon from '@mui/icons-material/Business';
@@ -14,45 +14,7 @@ import { LogoEmpresa } from './Components/LogoProveedor/View/LogoEmpresa';
 
 
 const drawerWidth = 280;
-const rutas: NavigationModel[] = [
-    {
-        path: "/gestionproveedor/InfGeneralPage",
-        texto: "Información general",
-        Icono: () => < BusinessIcon />
-    },
-    {
-        path: "/gestionproveedor/DatosContactosPage",
-        texto: "Datos contacto",
-        Icono: () => < ContactsIcon />
-    },
-    {
-        path: "/gestionproveedor/DatosNotificaciones",
-        texto: "Datos notificaciones",
-        Icono: () => < ContactMailIcon />
-    },
-    {
-        path: "/gestionproveedor/DocumentosAdjuntosPage",
-        texto: "Documentos",
-        Icono: () => < FolderOpenTwoToneIcon />
-    },
-    {
-        path: "/gestionproveedor/CamaraComercioPage",
-        texto: "Cámara de comercio",
-        Icono: () => < DescriptionIcon />
-    },
-    {
-        path: "/gestionproveedor/NovedadesPage",
-        texto: "Novedades",
-        Icono: () => <Badge color="primary" badgeContent={2}>
-                        < NotificationsActiveIcon />
-                    </Badge>        
-    },
-    {
-        path: "/gestionproveedor/EspecialidadesPage",
-        texto: "Especialidades",
-        Icono: () => < StarRateIcon />
-    },
-]
+
 export const GestionProveedoresPage = () => {
     return (
         <>

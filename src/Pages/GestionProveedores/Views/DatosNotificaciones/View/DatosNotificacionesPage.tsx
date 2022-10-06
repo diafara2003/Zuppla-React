@@ -1,9 +1,12 @@
 
 import { Add } from "@mui/icons-material";
-import { Box, Button, List, ListItem, ListItemText, Menu, MenuItem, Tab, Tabs, Typography } from "@mui/material";
+import { Backdrop, Box, Button, CircularProgress, List, ListItem, ListItemText, Menu, MenuItem, Skeleton, Tab, Tabs, Typography } from "@mui/material";
 import React from "react";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 import HistoryIcon from '@mui/icons-material/History';
+import { ControllerDatosNotificaciones } from "../Controller/ControllerDatosNotificaciones";
+import { TableDatosNotificaciones } from "../Components/tableDatosNotificaciones";
+import { TableDatosNotLicitaciones } from "../Components/TableDatosNotLicitaciones";
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -44,27 +47,56 @@ export const DatosNotifiaciones = () => {
         setValue(newValue);
     };
 
+    const { dataInitialLicitaState,dataInitialProveState,isLoadingLicCarga,isLoadingProCarga  } = ControllerDatosNotificaciones();
+
     return (
         <>
             <HeaderComponent title={"Información general"} />
-            <Box sx={{ width: '100%' }}>
-                <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
-                    <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                    <Button sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
+            {/* {isLoadingCarga
+                 ?
+                <Backdrop
+                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                    open={true}
+                >
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+                : */}
+                <Box sx={{ width: '100%' }}>
+                    <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+                        <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                        <Button sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
+                    </Box>
+                    <Box sx={{}}>
+                        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth" centered>
+                            <Tab label="Proveedores" {...a11yProps(0)} />
+                            <Tab label="Licitaciones" {...a11yProps(1)} />
+                        </Tabs>
+                    </Box>
+                    <TabPanel value={value} index={0}>
+                        <Box m={"10px"} mt={"25px"}>
+                        {isLoadingProCarga ?
+                                <><Skeleton /><Skeleton /></>
+                                
+                                :
+                                dataInitialProveState == null ? <CircularProgress color="inherit" /> : <TableDatosNotificaciones datatable={dataInitialProveState!} />
+                        }
+                            {}
+                        </Box>
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                    <Box m={"10px"} mt={"25px"}>
+                        {isLoadingLicCarga ?
+                                <><Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} />
+                                <Skeleton  animation='wave' height={"40px"}/> <Skeleton animation='wave' height={"40px"}/><Skeleton animation='wave' height={"40px"}/></>
+                                
+                                :
+                                dataInitialProveState == null ? <CircularProgress color="inherit" /> : <TableDatosNotLicitaciones datatable={dataInitialLicitaState!} />
+                        }                            
+                        </Box>
+                    </TabPanel>
                 </Box>
-                <Box sx={{ }}>
-                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth" centered>
-                        <Tab label="Proveedores" {...a11yProps(0)} />
-                        <Tab label="Licitaciones" {...a11yProps(1)} />                        
-                    </Tabs>
-                </Box>
-                <TabPanel value={value} index={0}>
-                    Item One
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                    Item Two
-                </TabPanel>                
-            </Box>
+            
+
         </>
 
     );

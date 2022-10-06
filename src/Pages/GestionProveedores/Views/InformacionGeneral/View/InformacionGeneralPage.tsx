@@ -22,6 +22,15 @@ export const InformacionGeneralPage = () => {
         { label: "Villavicencio", year: 1993 }
     ];
 
+    const topActividad = [
+        { label: '1'},
+        { label: '2'} ,
+        { label: '3'},
+        { label: '4'},
+        { label: '5'},
+        { label: '6',}
+    ];
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setvalorSel(event.target.value as string);
     };
@@ -166,9 +175,9 @@ export const InformacionGeneralPage = () => {
                                         <Autocomplete
                                             disablePortal
                                             id=""
-                                            options={topCiudad}
-                                            sx={{ width: 300 }}
-                                            renderInput={(params) => <TextField {...params} label="Ciudad" />}
+                                            fullWidth
+                                            options={topActividad}                                            
+                                            renderInput={(params) => <TextField {...params} label="Actividad economica" />}
                                         />
                                     </Grid>
                                     <Grid item xs={3.5} >
