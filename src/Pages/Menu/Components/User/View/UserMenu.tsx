@@ -68,13 +68,15 @@ export const UserMenu = () => {
                     <MenuItem>
                         <Box>
 
-                            <Typography sx={{ width: '305px' }}
-                                fontSize="0.75rem"
-                                variant="body2" noWrap={true}>{user.nombreUsuario}</Typography>
-                            <Typography sx={{ width: '305px' }}
-                                fontSize="0.60rem"
-                                variant="caption" noWrap={true}>
+                            <Typography sx={{ width: '305px', fontSize: 13 }}
+                                color="text.primary"
+                                variant="body1" noWrap={true}>{user.nombreUsuario}</Typography>
+                            <Typography sx={{ width: '305px',fontSize: 9 }}
+                                
+                                variant="caption" noWrap={true}
+                                color="text.secondary">
                                 {user.nombreEmpresa}
+                                
                             </Typography>
                         </Box>
 

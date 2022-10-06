@@ -1,6 +1,7 @@
 import { MoreVert } from '@mui/icons-material';
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
+import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
 import { DatosNotificacionesDTO } from '../Model/model-DatosContacto'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 type props = {
     datatable: DatosNotificacionesDTO[]
@@ -40,8 +41,8 @@ export const TableDatosNotLicitaciones = ({ datatable }: props) => {
                                 style={{ fontWeight: 'bold' }}
                             >
                                 {"Constructora"}
-                            </TableCell>                          
-                            
+                            </TableCell>
+
                             <TableCell
                                 key={"thAcciones"}
                                 align={"center"}
@@ -54,26 +55,29 @@ export const TableDatosNotLicitaciones = ({ datatable }: props) => {
                     </TableHead>
                     <TableBody>
                         {datatable.map((row) => {
-                                return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                        <TableCell key={row.id * 2}>
-                                            {row.usuario.nombres}
-                                        </TableCell>
-                                        <TableCell key={row.id * 2}>
-                                            {row.usuario.cargo}
-                                        </TableCell>
-                                        <TableCell key={row.id * 2}>
-                                            {row.usuario.correo}
-                                        </TableCell>
-                                        <TableCell key={row.id * 2}>
-                                            {row.usuario.celular}
-                                        </TableCell>                                      
-                                        <TableCell key={row.id * 2} align="center">
-                                            <MoreVert sx={{ color: "#1E62A1" }}/>
-                                        </TableCell>
-                                    </TableRow>
-                                );
-                            })}
+                            return (
+                                <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                                    <TableCell key={row.id * 2}>
+                                        {row.usuario.nombres}
+                                    </TableCell>
+                                    <TableCell key={row.id * 2}>
+                                        {row.categoria?.nombre}
+                                    </TableCell>
+                                    <TableCell key={row.id * 2}>
+                                        {row.zona}
+                                    </TableCell>
+                                    <TableCell key={row.id * 2}>
+                                        {row.constructora?.nombre}
+                                    </TableCell>
+                                    <TableCell key={row.id * 2} align="center">
+                                        <IconButton edge="end" aria-label="delete">
+                                            <DeleteForeverIcon sx={{ color: "red" }} />
+                                        </IconButton>
+
+                                    </TableCell>
+                                </TableRow>
+                            );
+                        })}
                     </TableBody>
                 </Table>
             </TableContainer>

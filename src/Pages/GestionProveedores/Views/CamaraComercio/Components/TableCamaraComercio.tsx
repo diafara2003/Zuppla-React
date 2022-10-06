@@ -1,14 +1,13 @@
-import { MoreVert } from '@mui/icons-material';
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
-import { DatosNotificacionesDTO } from '../Model/model-DatosContacto'
+import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material'
+import React from 'react'
+import { TerCamaraComercioDTO } from '../Model/CamaraComercio'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-
 type props = {
-    datatable: DatosNotificacionesDTO[]
+    datatable: TerCamaraComercioDTO[]
 }
 
-export const TableDatosNotificaciones = ({ datatable }: props) => {
+export const TableCamaraComercio = ({ datatable }: props) => {
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
             <TableContainer sx={{ maxHeight: 440 }}>
@@ -16,32 +15,32 @@ export const TableDatosNotificaciones = ({ datatable }: props) => {
                     <TableHead>
                         <TableRow>
                             <TableCell
+                                key={"thTipoDoc"}
+                                align={"left"}
+                                style={{ fontWeight: 'bold' }}
+                            >
+                                {"Tipo documento"} </TableCell>
+                            <TableCell
+                                key={"thNumDoc"}
+                                align={"left"}
+                                style={{ fontWeight: 'bold' }}
+                            >
+                                {"Numero documento"}
+                            </TableCell>
+                            <TableCell
                                 key={"thNombre"}
                                 align={"left"}
                                 style={{ fontWeight: 'bold' }}
                             >
-                                {"Nombres"} </TableCell>
+                                {"Nombre"}
+                            </TableCell>
+
                             <TableCell
                                 key={"thCargo"}
                                 align={"left"}
                                 style={{ fontWeight: 'bold' }}
                             >
                                 {"Cargo"}
-                            </TableCell>
-                            <TableCell
-                                key={"thCorreo"}
-                                align={"left"}
-                                style={{ fontWeight: 'bold' }}
-                            >
-                                {"Correo"}
-                            </TableCell>
-
-                            <TableCell
-                                key={"thCelular"}
-                                align={"left"}
-                                style={{ fontWeight: 'bold' }}
-                            >
-                                {"Celular"}
                             </TableCell>
 
                             <TableCell
@@ -59,16 +58,16 @@ export const TableDatosNotificaciones = ({ datatable }: props) => {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                                     <TableCell key={row.id * 2}>
-                                        {row.usuario.nombres}
+                                        {row.tipoDocumento}
                                     </TableCell>
                                     <TableCell key={row.id * 2}>
-                                        {row.usuario.cargo}
+                                        {row.documento}
                                     </TableCell>
                                     <TableCell key={row.id * 2}>
-                                        {row.usuario.correo}
+                                        {row.nombre}
                                     </TableCell>
                                     <TableCell key={row.id * 2}>
-                                        {row.usuario.celular}
+                                        {row.cargo}
                                     </TableCell>
                                     <TableCell key={row.id * 2} align="center">
                                         <IconButton edge="end" aria-label="delete">
@@ -93,3 +92,4 @@ export const TableDatosNotificaciones = ({ datatable }: props) => {
         </Paper>
     )
 }
+

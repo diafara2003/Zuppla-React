@@ -22,7 +22,7 @@ export const ControllerDatosNotificaciones = () => {
       type: APiMethod.GET
     }
     const response = await requestAPI<DatosNotificacionesDTO[]>(request)!;
-    debugger
+    
     setDataInitialProState(response!)
     setIsLoadingProCarga(false)
   }
@@ -33,9 +33,9 @@ export const ControllerDatosNotificaciones = () => {
       type: APiMethod.GET
     }
     const response = await requestAPI<DatosNotificacionesDTO[]>(request)!;
-    debugger
+    
     setDataInitialLiciState(response!)
-    setIsLoadingLicCarga(true)
+    setIsLoadingLicCarga(false)
   }
 
   useEffect(() => {

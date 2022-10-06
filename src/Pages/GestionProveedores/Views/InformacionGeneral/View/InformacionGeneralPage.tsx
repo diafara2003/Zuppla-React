@@ -23,12 +23,12 @@ export const InformacionGeneralPage = () => {
     ];
 
     const topActividad = [
-        { label: '1'},
-        { label: '2'} ,
-        { label: '3'},
-        { label: '4'},
-        { label: '5'},
-        { label: '6',}
+        { label: '1' },
+        { label: '2' },
+        { label: '3' },
+        { label: '4' },
+        { label: '5' },
+        { label: '6', }
     ];
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -176,7 +176,7 @@ export const InformacionGeneralPage = () => {
                                             disablePortal
                                             id=""
                                             fullWidth
-                                            options={topActividad}                                            
+                                            options={topActividad}
                                             renderInput={(params) => <TextField {...params} label="Actividad economica" />}
                                         />
                                     </Grid>
@@ -203,3 +203,4 @@ export const InformacionGeneralPage = () => {
 
     )
 }
+export default InformacionGeneralPage;
