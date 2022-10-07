@@ -5,8 +5,6 @@ export const theme = createTheme({
     typography: {
         button: {
             textTransform: 'none'
-<<<<<<< HEAD
-=======
         },
         fontFamily: 'Nunito, Arial',
     },
@@ -22,7 +20,6 @@ export const theme = createTheme({
         },
         error: {
             main: '#D14343'
->>>>>>> c0cabefefead943e6bddd066d535ad1021f15df0
         }
     },
     
