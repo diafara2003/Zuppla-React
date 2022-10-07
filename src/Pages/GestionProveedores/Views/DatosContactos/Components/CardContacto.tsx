@@ -1,12 +1,24 @@
-import { Grid, Card, CardHeader, IconButton, CardContent, Box, Typography, Divider } from '@mui/material'
-import React from 'react'
+import { Grid, Card, CardHeader, IconButton, CardContent, Box, Typography, Divider, CardActions, ListItemIcon, Menu, MenuItem } from '@mui/material'
+import React, { useState } from 'react'
 import { TerDatosContactoDTO } from '../Model/DatosContactoDTO'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { EditOutlined, MailOutline, LockOutlined, DeleteOutline } from '@mui/icons-material';
 type props = {
     datosContactos: TerDatosContactoDTO[]
 }
 
 export const CardContacto = ({ datosContactos }: props) => {
+
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <Grid container spacing={2}>
             {
@@ -14,17 +26,47 @@ export const CardContacto = ({ datosContactos }: props) => {
                     return (
                         <Grid item xs={4}>
                             <Card variant="outlined" sx={{ backgroundColor: '#FBFBFB' }}>
-                                <CardHeader
+                                <CardHeader                                   
+                                    sx={{pb:0}}
                                     action={
-                                        <IconButton aria-label="settings" color="primary">
+                                        <><IconButton aria-label="settings" color="primary" onClick={handleClick}>
                                             <MoreVertIcon />
-                                        </IconButton>
+                                        </IconButton><Menu
+                                            anchorEl={anchorEl}
+                                            id={`tdmenu${contacto.id}`}
+                                            open={open}
+                                            onClose={handleClose}
+                                            onClick={handleClose}
+                                            PaperProps={{
+                                                elevation: 0,
+                                                sx: {
+                                                    width: '214px',
+                                                    overflow: 'visible',
+                                                    filter: 'drop-shadow(0px 2px 2px rgba(0,0,0,0.22))',
+                                                },
+                                            }}
+                                            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                                            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                                        >
+                                                <MenuItem>
+                                                    <ListItemIcon>
+                                                        <EditOutlined color="primary" />
+                                                    </ListItemIcon>
+                                                    <Typography>Editar contacto</Typography>
+                                                </MenuItem>
+                                                <MenuItem>
+                                                    <ListItemIcon>
+                                                        <DeleteOutline color="error" />
+                                                    </ListItemIcon>
+                                                    <Typography color="error">Eliminar contacto</Typography>
+                                                </MenuItem>
+                                            </Menu></>                                        
                                     }
                                     title={contacto.nombre}
                                     titleTypographyProps={{ variant: 'h6' }}
                                     subheader={contacto.cargo}
                                 ></CardHeader>
-                                <CardContent>
+                                <CardContent sx={{pt:1}} style={{paddingBottom:'0px !important'}} >
                                     <Box mb={1} p={0}>
                                         <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                             Numero de documento
@@ -74,7 +116,7 @@ export const CardContacto = ({ datosContactos }: props) => {
                                             {contacto.direccion}
                                         </Typography>
                                     </Box>
-                                    <Box mb={1} p={0}>
+                                    <Box mb={0} p={0}>
                                         <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                             Ciudad
                                         </Typography>
@@ -82,7 +124,7 @@ export const CardContacto = ({ datosContactos }: props) => {
                                             {contacto.ciudad.nombre}
                                         </Typography>
                                     </Box>
-                                </CardContent>
+                                </CardContent>                               
                             </Card>
                         </Grid>
                     )

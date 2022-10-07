@@ -119,9 +119,7 @@ export const TableUsuario = ({ datatable }: props) => {
                                                     width: '214px',
                                                     overflow: 'visible',
                                                     filter: 'drop-shadow(0px 2px 2px rgba(0,0,0,0.22))',
-
-
-                                                },
+                                               },
                                             }}
                                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}

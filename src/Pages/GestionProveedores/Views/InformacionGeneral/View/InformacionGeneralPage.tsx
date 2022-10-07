@@ -45,25 +45,15 @@ export const InformacionGeneralPage = () => {
     ];
     return (
         <>
-            <HeaderComponent title={"Información general"} />
-            {/* <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
-                <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-            </Box> */}
+            <HeaderComponent title={"Información general"} />          
             <Box>
                 {
                     isLoadingCarga == true
-                        ?
-                        // <Backdrop
-                        //     sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                        //     open={true}
-                        // >
-                        //     <CircularProgress color="inherit" />
-                        // </Backdrop>
+                        ?                       
                         <SkeletonInfGeneral />
                         :
-
                         <Grid sx={{ minWidth: 275, p: 2 }}>
-                            <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+                            <Box display={"flex"} justifyContent={"end"}>
                                 <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                             </Box>
                             <form>
@@ -72,7 +62,7 @@ export const InformacionGeneralPage = () => {
                                     alignItems={"center"}
                                     justifyContent={"center"}
                                     spacing={2}
-                                    mt={7}>
+                                    mt={0}>
                                     <Grid item xs={3.5} >
                                         <TextField
                                             id=""

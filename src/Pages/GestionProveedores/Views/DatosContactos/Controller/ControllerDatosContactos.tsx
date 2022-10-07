@@ -5,7 +5,6 @@ import { APiMethod, RequestModel } from '../../../../../Provider/model/FetchMode
 import { AuthContext } from '../../../../../Auth';
 import { requestAPI } from '../../../../../Provider/Requestfetch';
 
-var TipoContacto= 1;
 export const ControllerDatosContactos = () => {
     const [value, setValue] = useState(0);
     const [valueContacto, setValueContacto] = useState(1);

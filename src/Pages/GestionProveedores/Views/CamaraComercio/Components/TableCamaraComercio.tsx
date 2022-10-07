@@ -2,14 +2,14 @@ import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody
 import React from 'react'
 import { TerCamaraComercioDTO } from '../Model/CamaraComercio'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 type props = {
     datatable: TerCamaraComercioDTO[]
 }
 
 export const TableCamaraComercio = ({ datatable }: props) => {
     return (
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <>
             <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table" size="small">
                     <TableHead>
@@ -71,7 +71,7 @@ export const TableCamaraComercio = ({ datatable }: props) => {
                                     </TableCell>
                                     <TableCell key={row.id * 2} align="center">
                                         <IconButton edge="end" aria-label="delete">
-                                            <DeleteForeverIcon sx={{ color: "red" }} />
+                                            <DeleteOutlineOutlinedIcon color="primary" />
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
@@ -89,7 +89,7 @@ export const TableCamaraComercio = ({ datatable }: props) => {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
         /> */}
-        </Paper>
+        </>
     )
 }
 

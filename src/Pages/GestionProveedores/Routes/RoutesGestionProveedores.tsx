@@ -2,29 +2,36 @@ import { lazy } from 'react'
 import { BrowserRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom'
 import { NavigationModel } from '../../../SharedComponents/Navigation';
 import { GestionProveedoresPage, DatosContactos, DatosNotifiaciones, CamaraComercioPage, DocumentosAdjuntosPage, EspecialidadesPage, NovedadesPage } from '../../GestionProveedores';
-import BusinessIcon from '@mui/icons-material/Business';
-import ContactsIcon from '@mui/icons-material/Contacts';
-import ContactMailIcon from '@mui/icons-material/ContactMail';
-import DescriptionIcon from '@mui/icons-material/Description';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import FolderOpenTwoToneIcon from '@mui/icons-material/FolderOpenTwoTone';
-import StarRateIcon from '@mui/icons-material/StarRate';
+
+
 import { Badge } from '@mui/material';
+import BusinessOutlinedIcon from '@mui/icons-material/BusinessOutlined';
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
+import FolderOpenTwoToneIcon from '@mui/icons-material/FolderOpenTwoTone';
+import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 export const rutas: NavigationModel[] = [
     {
         path: "/gestionproveedor/InfGeneralPage",
         texto: "Información general",
-        Icono: () => <BusinessIcon />
+        Icono: () => <BusinessOutlinedIcon />
+    },
+    {
+        path: "/gestionproveedor/EspecialidadesPage",
+        texto: "Especialidades",
+        Icono: () => < StarBorderOutlinedIcon />
     },
     {
         path: "/gestionproveedor/DatosContactosPage",
         texto: "Datos contacto",
-        Icono: () => < ContactsIcon />
+        Icono: () => < ContactsOutlinedIcon />
     },
     {
         path: "/gestionproveedor/DatosNotificaciones",
         texto: "Datos notificaciones",
-        Icono: () => < ContactMailIcon />
+        Icono: () => < ContactMailOutlinedIcon />
     },
     {
         path: "/gestionproveedor/DocumentosAdjuntosPage",
@@ -34,20 +41,15 @@ export const rutas: NavigationModel[] = [
     {
         path: "/gestionproveedor/CamaraComercioPage",
         texto: "Cámara de comercio",
-        Icono: () => < DescriptionIcon />
+        Icono: () => < DescriptionOutlinedIcon />
     },
     {
         path: "/gestionproveedor/NovedadesPage",
         texto: "Novedades",
         Icono: () => <Badge color="primary" badgeContent={2}>
-            < NotificationsActiveIcon />
+            < NotificationsNoneOutlinedIcon />
         </Badge>
-    },
-    {
-        path: "/gestionproveedor/EspecialidadesPage",
-        texto: "Especialidades",
-        Icono: () => < StarRateIcon />
-    },
+    }
 ]
 
 

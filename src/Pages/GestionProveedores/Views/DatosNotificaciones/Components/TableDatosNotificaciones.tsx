@@ -2,7 +2,7 @@ import { MoreVert } from '@mui/icons-material';
 import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
 import { DatosNotificacionesDTO } from '../Model/model-DatosContacto'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 type props = {
     datatable: DatosNotificacionesDTO[]
@@ -72,7 +72,7 @@ export const TableDatosNotificaciones = ({ datatable }: props) => {
                                     </TableCell>
                                     <TableCell key={row.id * 2} align="center">
                                         <IconButton edge="end" aria-label="delete">
-                                            <DeleteForeverIcon sx={{ color: "red" }} />
+                                            <DeleteOutlineOutlinedIcon sx={{ }} />
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
