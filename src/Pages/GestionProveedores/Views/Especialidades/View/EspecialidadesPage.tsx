@@ -1,38 +1,52 @@
-import { Autocomplete, Box, TextField } from "@mui/material"
+import { Add } from "@mui/icons-material";
+import SearchIcon from '@mui/icons-material/Search';
+import { Box, Button, CircularProgress, InputAdornment, TextField } from "@mui/material"
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 // import './App.css'
-const top100Films = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-    { label: 'The Dark Knight', year: 2008 },
-    { label: '12 Angry Men', year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: 'Pulp Fiction', year: 1994 }
-];
+import HistoryIcon from '@mui/icons-material/History';
+import { useTableEspecialidad } from "../hook/useTableEspecialidad";
+import { TableEspecialidad } from "../components/TableEspecialidad/view/TableEspecialidad";
 
-export const EspecialidadesPage = () =>{
-    return(
+
+export const EspecialidadesPage = () => {
+
+    const { data, isLoading } = useTableEspecialidad();
+
+    return (
         <>
-        <HeaderComponent title={"Especialidades"} />
-        {/* <div className="row">
-                <Box component="form" sx={{ '& .MuiTextField-root ': { m: 1, width: '39ch' }, }}
-                    noValidate
-                    autoComplete="off"
-                >
-                    <div >
-                        <Autocomplete
-                            disablePortal
-                            id=""
-                            options={top100Films}
-                            sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Especialidad" />}
-                        />
-                    </div>
+            <HeaderComponent title={"Especialidades"} />
 
+
+            <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)' }}>
+
+                <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={"10px"}>
+
+                    <TextField
+                        id="outlined-basic"
+                        size='small'
+                        placeholder='Buscar...'
+                        sx={{ width: "400px" }}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <SearchIcon />
+                                </InputAdornment>
+                            ),
+                        }}
+                        label="Buscar..." variant="outlined" />
+                    <Button sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar especialidad</Button>
+                    <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                </Box>
+
+
+                <Box m={"10px"} mt={"25px"}>
+                    {data == null ? <CircularProgress color="inherit" /> : <TableEspecialidad datatable={data!} />}
 
                 </Box>
-            </div> */}
+
+            </Box>
         </>
     )
 }
+
+export default EspecialidadesPage;
