@@ -19,11 +19,7 @@ export const GestionProveedoresPage = () => {
     return (
         <>
             <Grid container spacing={2} >
-                <Grid item xs={2.3} >
-                    {/* <Box sx={{ m: 0, p: 1, borderRight: "1px solid #ebebeb" }}>
-                        <LogoEmpresa />
-                    </Box>
-                    <Divider /> */}
+                <Grid item xs={2.3} >                   
                     <NavigationComponent options={rutas} />
                 </Grid>
                 <Grid item xs={9.7}  sx={{ paddingLeft: '0px !important', backgroundColor:'white' }}   >
@@ -31,18 +27,7 @@ export const GestionProveedoresPage = () => {
                 </Grid>
             </Grid>
 
-            {/* <Box sx={{ display: 'flex', backgroundColor: "white" }}>
-                <HeaderComponent title={"sadasdas"} marginLeft={drawerWidth} />
-                <SubMenu drawerWidth={drawerWidth} />
-                <Box
-                >
-                    <Toolbar />
-                    <Box sx={{ mt: 0 }}>
-                        <RoutesGestionProveedores />
-                    </Box>
-
-                </Box>
-            </Box> */}
+           
         </>
     )
 }

@@ -46,7 +46,7 @@ export const InformacionGeneralPage = () => {
     return (
         <>
             <HeaderComponent title={"Información general"} />          
-            <Box>
+            <Box sx={{m: '1px', background: 'white', height: 'calc(100vh - 150px)'}}>
                 {
                     isLoadingCarga == true
                         ?                       
@@ -180,7 +180,7 @@ export const InformacionGeneralPage = () => {
                                         />
                                     </Grid>
                                     <Grid item xs={7} >
-                                        <FormControlLabel sx={{ margin: 2, fontSize: '12px !important' }} control={<Switch defaultChecked />} label="Se encuentra certificado en normas ISO" />
+                                        <FormControlLabel  sx={{fontSize: '12px !important', ml:1}} control={ <Switch defaultChecked size="small"  /> } label="Se encuentra certificado en normas ISO" />
                                     </Grid>
                                     
 

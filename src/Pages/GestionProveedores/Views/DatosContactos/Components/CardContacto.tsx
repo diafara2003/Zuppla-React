@@ -71,7 +71,6 @@ export const CardContacto = ({ datosContactos }: props) => {
                                         <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                             Numero de documento
                                         </Typography>
-
                                         <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
                                             {contacto.numeroDocumento}
                                         </Typography>

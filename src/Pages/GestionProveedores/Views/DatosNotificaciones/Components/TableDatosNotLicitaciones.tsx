@@ -2,7 +2,7 @@ import { MoreVert } from '@mui/icons-material';
 import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
 import { DatosNotificacionesDTO } from '../Model/model-DatosContacto'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 type props = {
     datatable: DatosNotificacionesDTO[]
 }
@@ -11,7 +11,7 @@ export const TableDatosNotLicitaciones = ({ datatable }: props) => {
     return (
         // <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <>
-               <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table" size="small">
                     <TableHead>
                         <TableRow>
@@ -72,7 +72,7 @@ export const TableDatosNotLicitaciones = ({ datatable }: props) => {
                                     </TableCell>
                                     <TableCell key={row.id * 2} align="center">
                                         <IconButton edge="end" aria-label="delete">
-                                            <DeleteForeverIcon sx={{ color: "red" }} />
+                                            <DeleteOutlineOutlinedIcon color='primary' />
                                         </IconButton>
 
                                     </TableCell>
@@ -83,8 +83,8 @@ export const TableDatosNotLicitaciones = ({ datatable }: props) => {
                 </Table>
             </TableContainer>
         </>
-         
-           
+
+
         // </Paper>
     )
 }

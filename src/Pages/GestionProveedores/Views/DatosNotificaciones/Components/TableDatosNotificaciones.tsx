@@ -10,7 +10,8 @@ type props = {
 
 export const TableDatosNotificaciones = ({ datatable }: props) => {
     return (
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <>
+
             <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table" size="small">
                     <TableHead>
@@ -72,7 +73,7 @@ export const TableDatosNotificaciones = ({ datatable }: props) => {
                                     </TableCell>
                                     <TableCell key={row.id * 2} align="center">
                                         <IconButton edge="end" aria-label="delete">
-                                            <DeleteOutlineOutlinedIcon sx={{ }} />
+                                            <DeleteOutlineOutlinedIcon color='primary' />
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
@@ -90,6 +91,6 @@ export const TableDatosNotificaciones = ({ datatable }: props) => {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
         /> */}
-        </Paper>
+        </>
     )
 }

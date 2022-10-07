@@ -64,9 +64,9 @@ export const DatosNotifiaciones = () => {
                 <Box sx={{ width: '100%'}}>
                     <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
                         <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                        <Button sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
+                        <Button ml={3} variant="text" > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
                     </Box>
-                    <Box sx={{ pt:"10px" }}>
+                    <Box pt={1}>
                         <Tabs value={value} onChange={handleChange} 
                               aria-label="basic tabs example"
                               variant="fullWidth"
@@ -77,7 +77,7 @@ export const DatosNotifiaciones = () => {
                         </Tabs>
                     </Box>
                     <TabPanel value={value} index={0}>
-                        <Box m={"10px"} mt={"10px"}>
+                        <Box m={1} mt={1}>
                         {isLoadingProCarga ?
                                     <><Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} />
                                     <Skeleton  animation='wave' height={"40px"}/> <Skeleton animation='wave' height={"40px"}/><Skeleton animation='wave' height={"40px"}/></>                        
@@ -88,7 +88,7 @@ export const DatosNotifiaciones = () => {
                         </Box>
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                    <Box m={"10px"} mt={"25px"}>
+                    <Box m={1} mt={1}>
                         {isLoadingLicCarga ?
                                 <><Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} />
                                 <Skeleton  animation='wave' height={"40px"}/> <Skeleton animation='wave' height={"40px"}/><Skeleton animation='wave' height={"40px"}/></>                                
