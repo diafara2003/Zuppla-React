@@ -42,7 +42,7 @@ export const MenuOption = () => {
           >
             <Typography
               // fontSize="0.75rem"
-              variant="body2" noWrap={true}>{descripcion}</Typography>
+              variant="body1" noWrap={true}>{descripcion}</Typography>
             {/* <Link to={ubicacion}>{descripcion}</Link> */}
           </Button>
           {tieneHijos == 0 ? null :

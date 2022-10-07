@@ -54,7 +54,7 @@ export const NavigationComponent = ({ options }: props) => {
 
                                         </ListItemIcon>
                                         <ListItemText >
-                                            <Typography > {texto} </Typography>
+                                            <Typography variant='body2'> {texto} </Typography>
                                         </ListItemText>
 
                                     </ListItemButton>
