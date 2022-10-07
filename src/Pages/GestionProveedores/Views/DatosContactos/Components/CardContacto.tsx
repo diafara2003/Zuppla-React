@@ -26,8 +26,8 @@ export const CardContacto = ({ datosContactos }: props) => {
                     return (
                         <Grid item xs={4}>
                             <Card variant="outlined" sx={{ backgroundColor: '#FBFBFB' }}>
-                                <CardHeader                                   
-                                    sx={{pb:0}}
+                                <CardHeader
+                                    sx={{ pb: 0, }}
                                     action={
                                         <><IconButton aria-label="settings" color="primary" onClick={handleClick}>
                                             <MoreVertIcon />
@@ -60,18 +60,21 @@ export const CardContacto = ({ datosContactos }: props) => {
                                                     </ListItemIcon>
                                                     <Typography color="error">Eliminar contacto</Typography>
                                                 </MenuItem>
-                                            </Menu></>                                        
+                                            </Menu></>
                                     }
                                     title={contacto.nombre}
-                                    titleTypographyProps={{ variant: 'h6' }}
+
+                                    titleTypographyProps={{ variant: 'body1' }}
+                                    subheaderTypographyProps={ { variant: 'body2' }}
                                     subheader={contacto.cargo}
                                 ></CardHeader>
-                                <CardContent sx={{pt:1}} style={{paddingBottom:'0px !important'}} >
+                                <CardContent sx={{ pt: 1 }} style={{ paddingBottom: '0px !important' }} >
                                     <Box mb={1} p={0}>
                                         <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                             Numero de documento
                                         </Typography>
-                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+
+                                        <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
                                             {contacto.numeroDocumento}
                                         </Typography>
                                     </Box>
@@ -80,7 +83,7 @@ export const CardContacto = ({ datosContactos }: props) => {
                                         <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                             Email
                                         </Typography>
-                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+                                        <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
                                             {contacto.numeroDocumento}
                                         </Typography>
                                     </Box>
@@ -90,7 +93,7 @@ export const CardContacto = ({ datosContactos }: props) => {
                                             <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                                 Celular
                                             </Typography>
-                                            <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+                                            <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
                                                 {contacto.celular}
                                             </Typography>
                                             <Divider orientation="vertical" flexItem />
@@ -100,7 +103,7 @@ export const CardContacto = ({ datosContactos }: props) => {
                                             <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                                 Telefono
                                             </Typography>
-                                            <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+                                            <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
                                                 {contacto.telefono}
                                             </Typography>
                                         </Grid>
@@ -111,7 +114,7 @@ export const CardContacto = ({ datosContactos }: props) => {
                                         <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                             Dirección
                                         </Typography>
-                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+                                        <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
                                             {contacto.direccion}
                                         </Typography>
                                     </Box>
@@ -119,11 +122,11 @@ export const CardContacto = ({ datosContactos }: props) => {
                                         <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                             Ciudad
                                         </Typography>
-                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+                                        <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
                                             {contacto.ciudad.nombre}
                                         </Typography>
                                     </Box>
-                                </CardContent>                               
+                                </CardContent>
                             </Card>
                         </Grid>
                     )

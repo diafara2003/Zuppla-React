@@ -2,128 +2,63 @@ import { createTheme } from '@mui/material/styles';
 
 import { IconButton, SvgIconTypeMap, CssBaseline, ListItemIcon, colors } from '@mui/material';
 
- 
+
 
 export const theme = createTheme({
 
     typography: {
-
         button: {
-
             textTransform: 'none'
-
         },
-
         fontFamily: 'Nunito, Arial',
-
+        fontSize: 13
     },
-
     palette: {
-
         primary: {
-
             main: '#1E62A1'
-
         },
-
         neutral: {
-
             main: 'black'
-
         },
-
         secondary: {
-
             main: 'rgba(8, 21, 36, 0.6);'
-
         },
-
         error: {
-
             main: '#D14343'
-
         }
-
     },
-
- 
 
     components: {
-
         MuiCssBaseline: {
-
             styleOverrides: `
-
               @font-face {
-
                 font-family: 'Nunito';
-
-              }
-
-             
-
-              `,
-
- 
-
+              }`,
         },
-
         MuiTableHead: {
-
             defaultProps: {
-
- 
-
                 color: 'red'
-
             }
-
         },
-
         MuiTabs: {
-
             styleOverrides: {
-
                 root: {
-
- 
-
                     "&.MuiTabs-indicator": {
-
                         color: '#2d9fc5 !important'
-
                     },
-
- 
-
                 }
-
             }
-
         },
-
         MuiTab: {
-
             styleOverrides: {
-
                 root: {
-
- 
-
                     "&.Mui-selected": {
-
                         backgroundColor: `white`,
-
                         color: '#2d9fc5 !important'
-
                     },
-
                     "&.MuiTabs-indicator": {
-
                         color: '#2d9fc5 !important'
-
                     },
-
                 }
             }
         },
@@ -131,16 +66,15 @@ export const theme = createTheme({
             styleOverrides: {
                 root: {
                     "&:last-child": {
-                        paddingBottom: 0
+                        paddingBottom: "0.5rem"
                     }
                 }
-
             }
 
         },
+
         MuiTableBody: {
             styleOverrides: {
-
                 root: {
                     "& .MuiTableCell-sizeSmall": {
                         padding: "2px 8px" // <-- arbitrary value
@@ -149,88 +83,41 @@ export const theme = createTheme({
             }
         },
         MuiListItemButton: {
-
             styleOverrides: {
-
- 
-
                 root: {
-
                     "&.Mui-selected svg": {
-
                         color: '#1e62a1 !important'
-
                     },
-
                     "&.Mui-selected": {
-
                         backgroundColor: `#e9eff4`,
-
                         color: '#1e62a1 !important'
-
                     },
-
                     "&:hover": {
-
-                        backgroundColor: "#a9d2f5",
-
+                        backgroundColor: "#d4e4f1",
                     }
-
                 }
-
             }
-
         },
-
- 
-
         MuiButton: {
-
             styleOverrides: {
-
- 
-
                 startIcon: {
-
- 
-
                     color: '#fff',
-
                 },
-
                 endIcon: {
-
                     root: {
-
                         color: 'red',
-
                     },
-
-                    // Some CSS
-
- 
-
                 },
-
             }
-
         }
-
     },
-
     status: {
-
         danger: '#e53e3e',
-
- 
-
     },
-
- 
 
 });
 
- 
+
 
 declare module '@mui/material/styles' {
 
@@ -244,7 +131,7 @@ declare module '@mui/material/styles' {
 
     }
 
- 
+
 
     interface Palette {
 
@@ -252,7 +139,7 @@ declare module '@mui/material/styles' {
 
     }
 
- 
+
 
     interface Palette {
 
@@ -266,7 +153,7 @@ declare module '@mui/material/styles' {
 
     }
 
- 
+
 
     interface PaletteColor {
 

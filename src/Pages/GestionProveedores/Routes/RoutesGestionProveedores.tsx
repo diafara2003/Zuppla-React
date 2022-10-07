@@ -1,17 +1,17 @@
 import { lazy } from 'react'
-import { BrowserRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom'
+import { Navigate,  Route, Routes } from 'react-router-dom'
 import { NavigationModel } from '../../../SharedComponents/Navigation';
-import { GestionProveedoresPage, DatosContactos, DatosNotifiaciones, CamaraComercioPage, DocumentosAdjuntosPage, EspecialidadesPage, NovedadesPage } from '../../GestionProveedores';
+import { DatosContactos, DatosNotifiaciones, CamaraComercioPage, DocumentosAdjuntosPage, EspecialidadesPage, NovedadesPage } from '../../GestionProveedores';
 
 
 import { Badge } from '@mui/material';
 import BusinessOutlinedIcon from '@mui/icons-material/BusinessOutlined';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
-import FolderOpenTwoToneIcon from '@mui/icons-material/FolderOpenTwoTone';
 import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import { Folder, FolderOutlined } from '@mui/icons-material';
 export const rutas: NavigationModel[] = [
     {
         path: "/gestionproveedor/InfGeneralPage",
@@ -36,7 +36,7 @@ export const rutas: NavigationModel[] = [
     {
         path: "/gestionproveedor/DocumentosAdjuntosPage",
         texto: "Documentos",
-        Icono: () => < FolderOpenTwoToneIcon />
+        Icono: () => < FolderOutlined />
     },
     {
         path: "/gestionproveedor/CamaraComercioPage",

@@ -63,7 +63,7 @@ export const TableEspecialidad = ({ datatable }: props) => {
                                     </TableCell>
                                     <TableCell key={`tdEliminar${row.id}`}  align={"right"}>
                                         <IconButton size="small">
-                                        <DeleteOutline color="error" />
+                                        <DeleteOutline color="primary" />
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
