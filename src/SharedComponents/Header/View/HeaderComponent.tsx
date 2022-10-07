@@ -18,7 +18,7 @@ export const HeaderComponent = ({ title = "", marginLeft = 0 }: props) => {
                 top: -4,
                 zIndex: 9,
                 borderBottom: "1px solid #ebebeb",
-                backgroundColor: '#fff', color: '#1E1E1E',
+                backgroundColor: '#FBFBFB', color: '#1E1E1E',
                 borderLeft: "1px solid #ebebeb",
 
 

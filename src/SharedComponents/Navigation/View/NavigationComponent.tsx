@@ -26,7 +26,8 @@ export const NavigationComponent = ({ options }: props) => {
             width: '100%',
             borderRight: "1px solid #ebebeb",
             height: 'calc(100vh - 234px)',
-            overflow: "auto"
+            overflow: "auto",
+            background:"#FBFBFB"
 
 
         }}>

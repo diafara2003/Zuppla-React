@@ -9,8 +9,9 @@ type props = {
 
 export const TableDatosNotLicitaciones = ({ datatable }: props) => {
     return (
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
+        // <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <>
+               <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table" size="small">
                     <TableHead>
                         <TableRow>
@@ -81,15 +82,9 @@ export const TableDatosNotLicitaciones = ({ datatable }: props) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            {/* <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-        /> */}
-        </Paper>
+        </>
+         
+           
+        // </Paper>
     )
 }
