@@ -75,6 +75,16 @@ export const theme = createTheme({
                 }
             }
         },
+        MuiTableBody: {
+            styleOverrides: {
+
+                root: {
+                    "& .MuiTableCell-sizeSmall": {
+                        padding: "2px 8px" // <-- arbitrary value
+                    }
+                }
+            }
+        },
         MuiListItemButton: {
             styleOverrides: {
 

@@ -1,5 +1,5 @@
 import { DeleteOutline } from "@mui/icons-material";
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
 import { useState } from "react";
 import { EspecialidadDTO } from "../model/EspecialidadDTO";
 
@@ -62,7 +62,9 @@ export const TableEspecialidad = ({ datatable }: props) => {
                                         {row.nombre}
                                     </TableCell>
                                     <TableCell key={`tdEliminar${row.id}`}  align={"right"}>
+                                        <IconButton size="small">
                                         <DeleteOutline color="error" />
+                                        </IconButton>
                                     </TableCell>
                                 </TableRow>
                             );
