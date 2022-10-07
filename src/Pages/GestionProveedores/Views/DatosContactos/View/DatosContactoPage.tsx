@@ -8,6 +8,7 @@ import { ControllerDatosContactos } from "../Controller/ControllerDatosContactos
 import { Skeleton } from "@mui/lab";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { InputLabel } from '@mui/material';
+import { theme } from '../../../../../theme/theme';
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -89,8 +90,8 @@ export const DatosContactos = () => {
                                             <Card variant="outlined" sx={{ backgroundColor: '#FBFBFB' }}>
                                                 <CardHeader
                                                     action={
-                                                        <IconButton aria-label="settings">
-                                                            <MoreVertIcon />
+                                                        <IconButton aria-label="settings" color="primary">
+                                                            <MoreVertIcon  />
                                                         </IconButton>
                                                     }
                                                     title={contacto.nombre}

@@ -17,7 +17,7 @@ export const ControllerDatosContactos = () => {
             type: APiMethod.GET
           }
           const response = await requestAPI<TerDatosContactoDTO[]>(request)!;
-          debugger
+          
           console.log(response)
           setDataState(response!)
           setIsLoading(false)

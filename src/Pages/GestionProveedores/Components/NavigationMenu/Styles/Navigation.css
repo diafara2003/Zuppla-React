@@ -53,11 +53,11 @@
     margin-left: calc(var(--bs-gutter-x) * -.5);
   }
   
-  .MuiListItemButton-root:hover{
+  /* .MuiListItemButton-root:hover{
     background-color: #058c9733 !important;
   }
   .Mui-selected{
     background-color: #058c9733 !important;
     color: blue !important;
   }
-  
+   */

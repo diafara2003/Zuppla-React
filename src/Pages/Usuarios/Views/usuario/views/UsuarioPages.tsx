@@ -14,7 +14,7 @@ export const UsuarioPages = () => {
         <>
             <HeaderComponent title={"Usuarios"} />
 
-            <Box>
+            <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)' }}>
 
                 <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
 
@@ -37,8 +37,8 @@ export const UsuarioPages = () => {
 
 
                 <Box m={"10px"} mt={"25px"}>
-                    {data==null ? <CircularProgress color="inherit" /> : <LstUsuarios datatable={data!}/>}
-                  
+                    {data == null ? <CircularProgress color="inherit" /> : <LstUsuarios datatable={data!} />}
+
                 </Box>
 
             </Box>

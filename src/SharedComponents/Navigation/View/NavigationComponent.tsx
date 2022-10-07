@@ -1,15 +1,18 @@
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, ListItem, Typography } from '@mui/material';
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, ListItem, Typography, makeStyles } from '@mui/material';
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { Height } from '@mui/icons-material';
 import { NavigationModel } from '../model/modelNavigation';
+import { theme } from '../../../theme/theme';
 // import { NavigationModel } from '../model/modelNAvigation';
 
 
 type props = {
 
     options: NavigationModel[]
+
 }
+
+
 
 export const NavigationComponent = ({ options }: props) => {
 
@@ -25,9 +28,9 @@ export const NavigationComponent = ({ options }: props) => {
         <Box sx={{
             width: '100%',
             borderRight: "1px solid #ebebeb",
-            height: 'calc(100vh - 234px)',
+            height: 'calc(100vh - 82px)',
             overflow: "auto",
-            background:"#FBFBFB"
+            background: "#FBFBFB"
 
 
         }}>
@@ -38,7 +41,7 @@ export const NavigationComponent = ({ options }: props) => {
                             <NavLink
                                 key={path}
                                 className={"nav-link"}
-                                style={{ textDecoration: "none", color: "black" }} to={path}>
+                                style={{ textDecoration: "none", color: theme.palette.secondary.light }} to={path}>
                                 <ListItem disablePadding>
                                     <ListItemButton
                                         key={"ListItemButton" + path}
@@ -46,12 +49,12 @@ export const NavigationComponent = ({ options }: props) => {
                                         selected={selectedIndex === index}
                                         onClick={(event) => handleListItemClick(event, index)}
                                     >
-                                        <ListItemIcon sx={{ color: "#1E62A1" }} key={"ListItemIcon" + path}>
+                                        <ListItemIcon key={"ListItemIcon" + path} color= {theme.palette.secondary.main}>
                                             <Icono />
 
                                         </ListItemIcon>
-                                        <ListItemText color='#1E62A1'>
-                                            <Typography sx={{ color: "#1E62A1" }} > {texto} </Typography>
+                                        <ListItemText >
+                                            <Typography > {texto} </Typography>
                                         </ListItemText>
 
                                     </ListItemButton>
