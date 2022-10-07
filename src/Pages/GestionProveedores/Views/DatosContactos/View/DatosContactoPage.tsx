@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Button, Card, CardActions, CardContent, CardHeader, Divider, FormControlLabel, Grid, IconButton, List, ListItem, ListItemText, Menu, MenuItem, Paper, Stack, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
+import { Autocomplete, Box, Button, Card, CardActions, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, FormControlLabel, Grid, IconButton, List, ListItem, ListItemText, Menu, MenuItem, Paper, Stack, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
 import React from "react";
 import SaveIcon from '@mui/icons-material/Save';
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
@@ -10,6 +10,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { InputLabel } from '@mui/material';
 import { theme } from '../../../../../theme/theme';
 import { CardContacto } from "../Components/CardContacto";
+import { FrmDatoContacto } from "../Components/FrmDatoContacto";
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -55,15 +56,25 @@ export const DatosContactos = () => {
 
     const { dataContactos, isLoading, value, handleChange } = ControllerDatosContactos();
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickDialogOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <>
             <HeaderComponent title={"Datos contactos"} />
             <Box sx={{ width: '100%' }}>
                 <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
                     <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                    <Button sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
+                    <Button sx={{ ml: "20px" }} variant="text" onClick={handleClickDialogOpen}> <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
                 </Box>
-                <Box sx={{}}>
+                <Box>
                     <Tabs
                         value={value}
                         onChange={handleChange}
@@ -71,7 +82,7 @@ export const DatosContactos = () => {
                         variant="fullWidth" centered
                         sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         {options.map((option, index) => (
-                            <Tab  key={option.id} label={option.nombre} />
+                            <Tab key={option.id} label={option.nombre} />
                         ))}
                     </Tabs>
                 </Box>
@@ -81,27 +92,31 @@ export const DatosContactos = () => {
                         <CardContacto datosContactos={dataContactos!} />
                     }
                 </Box>
-                {/* <TabPanel value={value} index={0}>
-                   
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                    Item Two
-                </TabPanel>
-                <TabPanel value={value} index={2}>
-                    Item Three
-                </TabPanel> */}
             </Box>
 
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                maxWidth={"md"}
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {options[value].nombre}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        <FrmDatoContacto />
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button  variant="outlined" onClick={handleClose} >Cancelar</Button>
+                    <Button variant="contained" color="primary" onClick={handleClose} autoFocus >
+                        Guardar
+                    </Button>
+                </DialogActions>
+            </Dialog>
 
-            {/* {<Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <Tabs aria-label="basic tabs example">
-                        {options.map((option, index) => (
-                            <Tab key={option} label={option}   />
-                        ))}
-                    </Tabs>
-                </Box>
-            </Box>} */}
         </>
     );
 }

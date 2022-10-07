@@ -6,6 +6,7 @@ import { controllerInformacionGeneral } from "../Controller/controllerInformacio
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 
 import HistoryIcon from '@mui/icons-material/History';
+import { LogoEmpresa } from "../../../Components/LogoProveedor/View/LogoEmpresa";
 
 
 export const InformacionGeneralPage = () => {
@@ -45,16 +46,21 @@ export const InformacionGeneralPage = () => {
     ];
     return (
         <>
-            <HeaderComponent title={"Información general"} />          
-            <Box sx={{m: '1px', background: 'white', height: 'calc(100vh - 150px)'}}>
+            <HeaderComponent title={"Información general"} />
+            <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)' }}>
                 {
                     isLoadingCarga == true
-                        ?                       
+                        ?
                         <SkeletonInfGeneral />
                         :
                         <Grid sx={{ minWidth: 275, p: 2 }}>
                             <Box display={"flex"} justifyContent={"end"}>
                                 <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                            </Box>
+                            <Box justifyContent={'start'} display={'flex'} pl={11} pb={3}>
+                                <Box width={300}>
+                                    <LogoEmpresa />
+                                </Box>
                             </Box>
                             <form>
                                 <Grid container width={'100%'}
@@ -180,9 +186,9 @@ export const InformacionGeneralPage = () => {
                                         />
                                     </Grid>
                                     <Grid item xs={7} >
-                                        <FormControlLabel  sx={{fontSize: '12px !important', ml:1}} control={ <Switch defaultChecked size="small"  /> } label="Se encuentra certificado en normas ISO" />
+                                        <FormControlLabel sx={{ fontSize: '12px !important', ml: 1 }} control={<Switch defaultChecked size="small" />} label="Se encuentra certificado en normas ISO" />
                                     </Grid>
-                                    
+
 
                                 </Grid>
                                 <Grid style={{ display: "flex", justifyContent: 'end', marginBottom: '25px', marginRight: '150px' }}>

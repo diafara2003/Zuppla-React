@@ -85,8 +85,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
     }
 
     const onInputChange = (e: React.SyntheticEvent) => {
-        const { name, value } = (e.target as HTMLInputElement);
-        console.log("EntraoNChange: " + name + " " + value);
+        const { name, value } = (e.target as HTMLInputElement);       
         setFormState({
             ...formState,
             [name]: value
