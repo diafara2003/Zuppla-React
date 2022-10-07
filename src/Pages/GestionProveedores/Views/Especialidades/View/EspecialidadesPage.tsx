@@ -65,7 +65,7 @@ export const EspecialidadesPage = () => {
                     <NuevaEspecialidad />
                 </DialogContent>
                 <DialogActions>
-                    <Button size="medium" onClick={() => setOpenDialog(false)}>Cancelar</Button>
+                    <Button size="medium" variant="outlined" onClick={() => setOpenDialog(false)}>Cancelar</Button>
                     <Button onClick={() => setOpenDialog(false)} variant="contained" autoFocus size="medium" color="primary">Guardar</Button>
                 </DialogActions>
             </Dialog>
