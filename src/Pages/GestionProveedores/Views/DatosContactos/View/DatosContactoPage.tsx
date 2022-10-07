@@ -71,10 +71,11 @@ export const DatosContactos = () => {
             <HeaderComponent title={"Datos contactos"} />
             <Box sx={{ width: '100%' }}>
                 <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+                  
+                    <Button  variant="text" onClick={handleClickDialogOpen}> <Add />Agregar nuevo contacto</Button>
                     <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                    <Button sx={{ ml: "20px" }} variant="text" onClick={handleClickDialogOpen}> <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
                 </Box>
-                <Box>
+                <Box>   
                     <Tabs
                         value={value}
                         onChange={handleChange}
