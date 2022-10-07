@@ -6,3 +6,4 @@ export const DocumentosAdjuntosPage = () => {
     <HeaderComponent title={"Documentos adjuntos"} />
   )
 }
+  

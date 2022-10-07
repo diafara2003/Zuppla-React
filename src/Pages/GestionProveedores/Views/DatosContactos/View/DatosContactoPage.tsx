@@ -9,6 +9,7 @@ import { Skeleton } from "@mui/lab";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { InputLabel } from '@mui/material';
 import { theme } from '../../../../../theme/theme';
+import { CardContacto } from "../Components/CardContacto";
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -51,13 +52,8 @@ export const DatosContactos = () => {
         { nombre: 'Asesor comercial', id: 5 },
         { nombre: 'Responsable de cartera', id: 6 }
     ];
-    const [value, setValue] = React.useState(0);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
-
-    const { dataContactos, isLoading } = ControllerDatosContactos();
+    const { dataContactos, isLoading, value, handleChange } = ControllerDatosContactos();
 
     return (
         <>
@@ -75,107 +71,25 @@ export const DatosContactos = () => {
                         variant="fullWidth" centered
                         sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         {options.map((option, index) => (
-                            <Tab key={option.id} label={option.nombre} />
+                            <Tab  key={option.id} label={option.nombre} />
                         ))}
                     </Tabs>
                 </Box>
-                <TabPanel value={value} index={0}>
+                <Box m={2}>
                     {isLoading ? <Skeleton></Skeleton>
                         :
-                        <Grid container spacing={2}>
-                            {
-                                dataContactos?.map((contacto) => {
-                                    return (
-                                        <Grid item xs={4}>
-                                            <Card variant="outlined" sx={{ backgroundColor: '#FBFBFB' }}>
-                                                <CardHeader
-                                                    action={
-                                                        <IconButton aria-label="settings" color="primary">
-                                                            <MoreVertIcon  />
-                                                        </IconButton>
-                                                    }
-                                                    title={contacto.nombre}
-                                                    titleTypographyProps={{ variant: 'h6' }}
-                                                    subheader={contacto.cargo}
-                                                ></CardHeader>
-                                                <CardContent>
-                                                    <Box mb={1} p={0}>
-                                                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                                                            Numero de documento
-                                                        </Typography>
-
-                                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
-                                                            {contacto.numeroDocumento}
-                                                        </Typography>
-                                                    </Box>
-
-                                                    <Box mb={1} p={0}>
-                                                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                                                            Email
-                                                        </Typography>
-                                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
-                                                            {contacto.numeroDocumento}
-                                                        </Typography>
-                                                    </Box>
-
-                                                    <Grid container mb={1} p={0}>
-                                                        <Grid item xs={5} mb={1} p={0}>
-                                                            <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                                                                Celular
-                                                            </Typography>
-                                                            <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
-                                                                {contacto.celular}
-                                                            </Typography>
-                                                            <Divider orientation="vertical" flexItem />
-                                                        </Grid>
-                                                        <Divider orientation="vertical" flexItem />
-                                                        <Grid item xs={5} mb={1} ml={2} p={0}>
-                                                            <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                                                                Telefono
-                                                            </Typography>
-                                                            <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
-                                                                {contacto.telefono}
-                                                            </Typography>
-                                                        </Grid>
-
-                                                    </Grid>
-
-                                                    <Box mb={1} p={0}>
-                                                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                                                            Dirección
-                                                        </Typography>
-                                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
-                                                            {contacto.direccion}
-                                                        </Typography>
-                                                    </Box>
-                                                    <Box mb={1} p={0}>
-                                                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                                                            Ciudad
-                                                        </Typography>
-                                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
-                                                            {contacto.ciudad.nombre}
-                                                        </Typography>
-                                                    </Box>
-                                                </CardContent>
-                                            </Card>
-
-
-                                        </Grid>
-                                    );
-                                })
-                            }
-
-                        </Grid>
-
-
+                        <CardContacto datosContactos={dataContactos!} />
                     }
+                </Box>
+                {/* <TabPanel value={value} index={0}>
+                   
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     Item Two
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     Item Three
-                </TabPanel>
+                </TabPanel> */}
             </Box>
 
 

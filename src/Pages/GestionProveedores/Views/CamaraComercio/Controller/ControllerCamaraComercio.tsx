@@ -17,7 +17,7 @@ export const ControllerCamaraComercio = () => {
           type: APiMethod.GET
         }
         const response = await requestAPI<TerCamaraComercioDTO[]>(request)!;
-        debugger
+        
         setDataCamaraComercio(response!)
         setIsLoading(false)
       }
