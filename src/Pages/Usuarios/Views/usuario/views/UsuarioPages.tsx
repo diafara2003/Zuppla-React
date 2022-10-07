@@ -14,9 +14,9 @@ export const UsuarioPages = () => {
         <>
             <HeaderComponent title={"Usuarios"} />
 
-            <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)' }}>
+            <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)',mr:"10px", ml:'10px' }}>
 
-                <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={"10px"}>
+                <Box display={"flex"} justifyContent={"end"} pt={"10px"} >
 
                     <TextField
                         id="outlined-basic"

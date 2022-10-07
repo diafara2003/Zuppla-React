@@ -27,7 +27,7 @@ export const NavigationComponent = ({ options }: props) => {
     return (
         <Box sx={{
             width: '100%',
-            borderRight: "1px solid #ebebeb",
+            // borderRight: "1px solid #ebebeb",
             height: 'calc(100vh - 82px)',
             overflow: "auto",
             background: "#FBFBFB"
