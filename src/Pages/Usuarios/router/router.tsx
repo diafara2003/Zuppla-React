@@ -1,5 +1,5 @@
 import { NavigationModel } from "../../../SharedComponents/Navigation";
-import { Person } from '@mui/icons-material';
+import { Person, PersonOutline } from '@mui/icons-material';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import { Routes, Navigate, Route } from "react-router-dom";
 import { PerfilPages,UsuarioPages } from '../Views';
@@ -10,7 +10,7 @@ export const rutas: NavigationModel[] = [
         path: "/usuarios/usuario",
         texto: "Admin. de usuarios",
 
-        Icono: () => < Person />
+        Icono: () => < PersonOutline />
     },
     {
         path: "/usuarios/perfil",

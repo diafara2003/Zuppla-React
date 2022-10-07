@@ -5,6 +5,24 @@ export const theme = createTheme({
     typography: {
         button: {
             textTransform: 'none'
+<<<<<<< HEAD
+=======
+        },
+        fontFamily: 'Nunito, Arial',
+    },
+    palette: {
+        primary: {
+            main: '#1E62A1'
+        },
+        neutral: {
+            main: 'black'
+        },
+        secondary: {
+            main: 'rgba(8, 21, 36, 0.6);'
+        },
+        error: {
+            main: '#D14343'
+>>>>>>> c0cabefefead943e6bddd066d535ad1021f15df0
         }
     },
     
