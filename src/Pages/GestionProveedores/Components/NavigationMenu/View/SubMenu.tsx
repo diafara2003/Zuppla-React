@@ -10,7 +10,7 @@ import React from 'react';
 import { LogoEmpresa } from '../../LogoProveedor/View/LogoEmpresa';
 import { BrowserRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom';
 
-import '../Styles/Navigation.css'
+
 
 
 
