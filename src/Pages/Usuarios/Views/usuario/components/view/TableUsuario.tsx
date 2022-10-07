@@ -1,7 +1,7 @@
 import { DeleteOutline, EditOutlined, LockOutlined, MailOutline, MoreVert } from '@mui/icons-material';
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton, Switch, Menu, MenuItem, ListItemIcon, Typography } from '@mui/material';
 import React, { useState } from 'react'
-import { UsuariosDTO } from '../Views/usuario/model/usuarioDTO';
+import { UsuariosDTO } from '../../model/usuarioDTO';
 
 type props = {
     datatable: UsuariosDTO[]
