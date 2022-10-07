@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Add } from '@mui/icons-material';
 import HistoryIcon from '@mui/icons-material/History';
 import { useUsuario } from '../hook/useUsuario';
-import TableUsuario from '../../../Components/TableUsuario';
+import TableUsuario from '../components/view/TableUsuario';
 
 export const UsuarioPages = () => {
 
