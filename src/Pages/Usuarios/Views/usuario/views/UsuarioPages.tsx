@@ -1,11 +1,11 @@
-import { Box, Button, CircularProgress, InputAdornment, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField } from '@mui/material'
-import React from 'react'
+import { Box, Button, CircularProgress, InputAdornment, TextField } from '@mui/material'
 import { HeaderComponent } from '../../../../../SharedComponents/Header'
 import SearchIcon from '@mui/icons-material/Search';
-import { Add, MasksRounded, MoreVert } from '@mui/icons-material';
+import { Add } from '@mui/icons-material';
 import HistoryIcon from '@mui/icons-material/History';
 import { useUsuario } from '../hook/useUsuario';
-import LstUsuarios from './ListadoUsuarios/view/LstUsuarios';
+import TableUsuario from '../../../Components/TableUsuario';
+
 export const UsuarioPages = () => {
 
     const { data, isLoading } = useUsuario();
@@ -16,7 +16,7 @@ export const UsuarioPages = () => {
 
             <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)' }}>
 
-                <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+                <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={"10px"}>
 
                     <TextField
                         id="outlined-basic"
@@ -37,7 +37,7 @@ export const UsuarioPages = () => {
 
 
                 <Box m={"10px"} mt={"25px"}>
-                    {data == null ? <CircularProgress color="inherit" /> : <LstUsuarios datatable={data!} />}
+                    {data == null ? <CircularProgress color="inherit" /> : <TableUsuario datatable={data!} />}
 
                 </Box>
 
