@@ -20,13 +20,13 @@ export const GestionProveedoresPage = () => {
         <>
             <Grid container spacing={2} >
                 <Grid item xs={2.3} >
-                    <Box sx={{ m: 0, p: 1, borderRight: "1px solid #ebebeb" }}>
+                    {/* <Box sx={{ m: 0, p: 1, borderRight: "1px solid #ebebeb" }}>
                         <LogoEmpresa />
                     </Box>
-                    <Divider />
+                    <Divider /> */}
                     <NavigationComponent options={rutas} />
                 </Grid>
-                <Grid item xs={9.7} sx={{ paddingLeft: '0px !important' }}   >
+                <Grid item xs={9.7}  sx={{ paddingLeft: '0px !important', backgroundColor:'white' }}   >
                     <RoutesGestionProveedores />
                 </Grid>
             </Grid>

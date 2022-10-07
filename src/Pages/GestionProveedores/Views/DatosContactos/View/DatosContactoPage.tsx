@@ -7,7 +7,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import { ControllerDatosContactos } from "../Controller/ControllerDatosContactos";
 import { Skeleton } from "@mui/lab";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import { InputLabel } from '@mui/material';
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -86,58 +86,76 @@ export const DatosContactos = () => {
                                 dataContactos?.map((contacto) => {
                                     return (
                                         <Grid item xs={4}>
-                                            <Card variant="outlined">
-                                                {/* <CardHeader
+                                            <Card variant="outlined" sx={{ backgroundColor: '#FBFBFB' }}>
+                                                <CardHeader
                                                     action={
                                                         <IconButton aria-label="settings">
                                                             <MoreVertIcon />
                                                         </IconButton>
                                                     }
                                                     title={contacto.nombre}
+                                                    titleTypographyProps={{ variant: 'h6' }}
                                                     subheader={contacto.cargo}
-                                                ><> */}
-
+                                                ></CardHeader>
                                                 <CardContent>
-                                                    <Typography color="text.primary" variant="h6" gutterBottom>
-                                                        {contacto.nombre}
-                                                    </Typography>
-                                                    <Typography sx={{ fontSize: 13 }} color="text.secondary" variant="caption" >
-                                                        {contacto.cargo}
-                                                    </Typography>
+                                                    <Box mb={1} p={0}>
+                                                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
+                                                            Numero de documento
+                                                        </Typography>
 
-                                                    <Divider />
+                                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+                                                            {contacto.numeroDocumento}
+                                                        </Typography>
+                                                    </Box>
 
-                                                    <Typography sx={{ fontSize: 11 }} color="text.secondary" variant="subtitle2" gutterBottom>
-                                                        Numero de documento
-                                                    </Typography>
-                                                    <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
-                                                        {contacto.numeroDocumento}
-                                                    </Typography>
+                                                    <Box mb={1} p={0}>
+                                                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
+                                                            Email
+                                                        </Typography>
+                                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+                                                            {contacto.numeroDocumento}
+                                                        </Typography>
+                                                    </Box>
 
-                                                    <Typography sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                                                        Email
-                                                    </Typography>
-                                                    <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
-                                                        {contacto.numeroDocumento}
-                                                    </Typography>
+                                                    <Grid container mb={1} p={0}>
+                                                        <Grid item xs={5} mb={1} p={0}>
+                                                            <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
+                                                                Celular
+                                                            </Typography>
+                                                            <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+                                                                {contacto.celular}
+                                                            </Typography>
+                                                            <Divider orientation="vertical" flexItem />
+                                                        </Grid>
+                                                        <Divider orientation="vertical" flexItem />
+                                                        <Grid item xs={5} mb={1} ml={2} p={0}>
+                                                            <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
+                                                                Telefono
+                                                            </Typography>
+                                                            <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+                                                                {contacto.telefono}
+                                                            </Typography>
+                                                        </Grid>
 
-                                                    <Typography sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                                                        Dirección
-                                                    </Typography>
-                                                    <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
-                                                        {contacto.direccion}
-                                                    </Typography>
+                                                    </Grid>
 
-                                                    <Typography sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                                                        Ciudad
-                                                    </Typography>
-                                                    <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
-                                                        {contacto.ciudad.nombre}
-                                                    </Typography>
+                                                    <Box mb={1} p={0}>
+                                                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
+                                                            Dirección
+                                                        </Typography>
+                                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+                                                            {contacto.direccion}
+                                                        </Typography>
+                                                    </Box>
+                                                    <Box mb={1} p={0}>
+                                                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
+                                                            Ciudad
+                                                        </Typography>
+                                                        <Typography sx={{ fontSize: 17, mb: 0 }} color="text.primary" >
+                                                            {contacto.ciudad.nombre}
+                                                        </Typography>
+                                                    </Box>
                                                 </CardContent>
-                                                <CardActions>
-                                                    <Button size="small">Learn More</Button>
-                                                </CardActions>
                                             </Card>
 
 

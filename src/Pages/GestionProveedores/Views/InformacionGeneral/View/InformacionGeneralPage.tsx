@@ -72,7 +72,7 @@ export const InformacionGeneralPage = () => {
                                     alignItems={"center"}
                                     justifyContent={"center"}
                                     spacing={2}
-                                    sx={{ mt: 7 }}>
+                                    mt={7}>
                                     <Grid item xs={3.5} >
                                         <TextField
                                             id=""
@@ -83,6 +83,8 @@ export const InformacionGeneralPage = () => {
                                             fullWidth
                                             // onChange={handleChange}
                                             disabled
+                                            size="small"
+
                                         />
                                         {/* <MenuItem value={10}>Natural</MenuItem>
                         <MenuItem value={20}>Juridica</MenuItem> */}
@@ -98,6 +100,7 @@ export const InformacionGeneralPage = () => {
                                             defaultValue={dataInitialState.nombre}
                                             value={dataInitialState.nombre}
                                             fullWidth
+                                            size="small"
                                         />
                                     </Grid>
                                     <Grid item xs={3.5} >
@@ -107,6 +110,7 @@ export const InformacionGeneralPage = () => {
                                             label="Apellidos"
                                             defaultValue={dataInitialState.apellido}
                                             fullWidth
+                                            size="small"
                                         />
                                     </Grid>
                                     <Grid item xs={3.5} >
@@ -116,6 +120,7 @@ export const InformacionGeneralPage = () => {
                                             label="Identificación"
                                             defaultValue={dataInitialState.numeroIdentificacion}
                                             fullWidth
+                                            size="small"
                                         />
                                     </Grid>
                                     <Grid item xs={3.5} >
@@ -125,7 +130,7 @@ export const InformacionGeneralPage = () => {
                                             id=""
                                             //value={dataInitialState.ciudad?.nombre}
                                             options={topCiudad}
-                                            renderInput={(params) => <TextField {...params} label="Ciudad" value={dataInitialState.ciudad?.nombre} defaultValue={dataInitialState.ciudad?.nombre} />}
+                                            renderInput={(params) => <TextField {...params} size="small" label="Ciudad" value={dataInitialState.ciudad?.nombre} defaultValue={dataInitialState.ciudad?.nombre} />}
                                         />
                                         {/* <TextField
                                             required
@@ -142,6 +147,7 @@ export const InformacionGeneralPage = () => {
                                             label="Direccion"
                                             defaultValue={dataInitialState.direccion}
                                             fullWidth
+                                            size="small"
                                         />
                                     </Grid>
                                     <Grid item xs={3.5} >
@@ -151,6 +157,7 @@ export const InformacionGeneralPage = () => {
                                             label="Correo"
                                             defaultValue={dataInitialState.correo}
                                             fullWidth
+                                            size="small"
                                         />
                                     </Grid>
                                     <Grid item xs={3.5} >
@@ -160,6 +167,7 @@ export const InformacionGeneralPage = () => {
                                             label="Telefono"
                                             defaultValue={dataInitialState.telefono}
                                             fullWidth
+                                            size="small"
                                         />
                                     </Grid>
                                     <Grid item xs={3.5} >
@@ -169,6 +177,7 @@ export const InformacionGeneralPage = () => {
                                             label="Pagina WEB"
                                             defaultValue={dataInitialState.paginaWeb}
                                             fullWidth
+                                            size="small"
                                         />
                                     </Grid>
                                     <Grid item xs={3.5} >
@@ -177,15 +186,13 @@ export const InformacionGeneralPage = () => {
                                             id=""
                                             fullWidth
                                             options={topActividad}
-                                            renderInput={(params) => <TextField {...params} label="Actividad economica" />}
+                                            renderInput={(params) => <TextField {...params} label="Actividad economica" size="small" />}
                                         />
                                     </Grid>
-                                    <Grid item xs={3.5} >
+                                    <Grid item xs={7} >
                                         <FormControlLabel sx={{ margin: 2, fontSize: '12px !important' }} control={<Switch defaultChecked />} label="Se encuentra certificado en normas ISO" />
                                     </Grid>
-                                    <Grid item xs={3.5} >
-
-                                    </Grid>
+                                    
 
                                 </Grid>
                                 <Grid style={{ display: "flex", justifyContent: 'end', marginBottom: '25px', marginRight: '150px' }}>
