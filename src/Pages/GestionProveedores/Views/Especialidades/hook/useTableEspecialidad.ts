@@ -4,6 +4,7 @@ import { APiMethod, useFetch } from "../../../../../Provider";
 
 
 import { useState } from 'react';
+import { EspecialidadDTO } from "../components/TableEspecialidad";
 
 export const useTableEspecialidad = () => {
 
