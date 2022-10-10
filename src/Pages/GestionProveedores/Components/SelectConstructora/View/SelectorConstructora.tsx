@@ -3,9 +3,15 @@ import React from 'react'
 import { useConstructoras } from '../Hook/useConstructoras';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
+import { ConstructoraDTO } from '../Model/ModelConstructoras';
 const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
 
-export const SelectorConstructora = () => {
+
+type props = {
+    selected: (value: ConstructoraDTO) => void
+}
+
+export const SelectorConstructora = ({ selected }: props) => {
     const { dataConst, isLoading } = useConstructoras();
 
     const [open, setOpen] = React.useState(false);
@@ -22,6 +28,7 @@ export const SelectorConstructora = () => {
     ) => {
         setSelectedIndex(index);
         setOpen(false);
+        selected(dataConst[index]);
     };
 
     const handleToggle = () => {
@@ -45,14 +52,14 @@ export const SelectorConstructora = () => {
                 isLoading ? <Skeleton></Skeleton> :
                     <>
                         <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-                            <Button startIcon={<MapsHomeWorkOutlinedIcon/>} onClick={handleClick}>{dataConst![selectedIndex].nombre}</Button>
+                            <Button startIcon={<MapsHomeWorkOutlinedIcon />} onClick={handleClick}>{dataConst![selectedIndex].nombre}</Button>
                             <Button
                                 size="small"
                                 aria-controls={open ? 'split-button-menu' : undefined}
                                 aria-expanded={open ? 'true' : undefined}
                                 aria-label=""
                                 aria-haspopup="menu"
-                                onClick={handleToggle}                               
+                                onClick={handleToggle}
                             >
                                 <ArrowDropDownIcon />
                             </Button>

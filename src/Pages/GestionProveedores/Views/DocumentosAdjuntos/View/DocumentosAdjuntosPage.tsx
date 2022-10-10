@@ -108,7 +108,9 @@ export const DocumentosAdjuntosPage = () => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Box display={'flex'} justifyContent={'end'} m={1} mt={1}>
-            <SelectorConstructora />
+            <SelectorConstructora selected={(value) => {
+              console.log(value);
+            }} />
           </Box>
           {/* <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
             <Grid container spacing={2} >

@@ -12,10 +12,18 @@ interface Props {
     children: JSX.Element | JSX.Element[]
 }
 
+const countInitializer = () => {
+    return {
+        token: localStorage.getItem(NameStoragetoken) ?? '',
+        user: (JSON.parse(localStorage.getItem(NameStorageUsuario)!) as UserSessionModel),
+        constructora: (JSON.parse(localStorage.getItem(NameStorageConstructora) ?? JSON.stringify(INITIAL_STATE_CONSTRUCTORA)
+        ))
+    }
+  };
 
 export const AuthProvider = ({ children }: Props) => {
 
-    const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
+    const [state, dispatch] = useReducer(authReducer, INITIAL_STATE,countInitializer);
 
 
     const getSession = (): AuthContextProps => {

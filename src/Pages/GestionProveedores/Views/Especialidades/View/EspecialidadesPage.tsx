@@ -48,15 +48,16 @@ export const EspecialidadesPage = () => {
 
 
             <Dialog
+                keepMounted={true}
                 open={openDialog}
                 sx={{
                     "& .MuiDialog-container": {
-                      "& .MuiPaper-root": {
-                        width: "600px"
-                        // maxWidth: "500px",  // Set your width here
-                      },
+                        "& .MuiPaper-root": {
+                            width: "600px"
+                            // maxWidth: "500px",  // Set your width here
+                        },
                     },
-                  }}
+                }}
             >
                 <DialogTitle id="alert-dialog-title">
                     <Typography color="#283340" variant="subtitle1">Agregar especialización</Typography>
