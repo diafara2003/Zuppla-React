@@ -11,11 +11,14 @@ export const theme = createTheme({
             textTransform: 'none'
         },
         fontFamily: 'Nunito, Arial',
-        fontSize: 13
+        fontSize: 13,
+    
+        
     },
     palette: {
         primary: {
-            main: '#1E62A1'
+            main: '#1E62A1',
+        
         },
         neutral: {
             main: 'black'

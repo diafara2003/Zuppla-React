@@ -2,12 +2,14 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../../../Auth";
 import { APiMethod, useFetch } from "../../../../../Provider";
 
-import { EspecialidadDTO } from "../components/TableEspecialidad/model/EspecialidadDTO";
+
+import { useState } from 'react';
 
 export const useTableEspecialidad = () => {
 
     const { data, isLoading, doFetch } = useFetch<EspecialidadDTO[] | null>();
     const { state } = useContext(AuthContext);
+    const [openDialog, setOpenDialog] = useState(false);
 
     useEffect(() => {
 
@@ -21,6 +23,13 @@ export const useTableEspecialidad = () => {
     }, []);
 
 
-    return { isLoading, data }
+    const handleEspecialidad = () => {
+        setOpenDialog(true);
+    }
+
+
+    return { isLoading, data, handleEspecialidad, openDialog ,setOpenDialog}
 
 }
+
+export default useTableEspecialidad;
