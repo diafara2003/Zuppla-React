@@ -20,7 +20,7 @@ export const CardContacto = ({ datosContactos }: props) => {
     };
 
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2}>            
             {
                 datosContactos?.map((contacto) => {
                     return (

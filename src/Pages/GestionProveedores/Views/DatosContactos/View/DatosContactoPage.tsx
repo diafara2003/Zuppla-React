@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Button, Card, CardActions, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, FormControlLabel, Grid, IconButton, List, ListItem, ListItemText, Menu, MenuItem, Paper, Stack, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
+import { Autocomplete, Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, FormControlLabel, Grid, IconButton, List, ListItem, ListItemText, Menu, MenuItem, Paper, Stack, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
 import React from "react";
 import SaveIcon from '@mui/icons-material/Save';
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
@@ -11,6 +11,8 @@ import { InputLabel } from '@mui/material';
 import { theme } from '../../../../../theme/theme';
 import { CardContacto } from "../Components/CardContacto";
 import { FrmDatoContacto } from "../Components/FrmDatoContacto";
+import { SinInformacion } from "../../../Components/ImgComponents/View/SinInformacion";
+// import  from "../../../../../img/Estados/SinInformacion.png"
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -71,11 +73,11 @@ export const DatosContactos = () => {
             <HeaderComponent title={"Datos contactos"} />
             <Box sx={{ width: '100%' }}>
                 <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
-                  
-                    <Button  variant="text" onClick={handleClickDialogOpen}> <Add />Agregar nuevo contacto</Button>
+
+                    <Button variant="text" onClick={handleClickDialogOpen}> <Add />Agregar nuevo contacto</Button>
                     <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                 </Box>
-                <Box>   
+                <Box>
                     <Tabs
                         value={value}
                         onChange={handleChange}
@@ -89,8 +91,17 @@ export const DatosContactos = () => {
                 </Box>
                 <Box m={2}>
                     {isLoading ? <Skeleton></Skeleton>
-                        :
-                        <CardContacto datosContactos={dataContactos!} />
+                        : (
+                            dataContactos?.length == 0
+                                ?
+                                <Box justifyContent={'center'} display={'flex'}>
+                                    <SinInformacion/>
+                                </Box>
+
+                                :
+                                <CardContacto datosContactos={dataContactos!} />
+                        )
+
                     }
                 </Box>
             </Box>
@@ -111,7 +122,7 @@ export const DatosContactos = () => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button  variant="outlined" onClick={handleClose} >Cancelar</Button>
+                    <Button variant="outlined" onClick={handleClose} >Cancelar</Button>
                     <Button variant="contained" color="primary" onClick={handleClose} autoFocus >
                         Guardar
                     </Button>

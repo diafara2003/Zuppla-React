@@ -57,11 +57,11 @@ export const InformacionGeneralPage = () => {
                             <Box display={"flex"} justifyContent={"end"}>
                                 <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                             </Box>
-                            <Box justifyContent={'start'} display={'flex'} pl={11} pb={3}>
+                            {/* <Box justifyContent={'start'} display={'flex'} pl={11} pb={3}>
                                 <Box width={300}>
                                     <LogoEmpresa />
                                 </Box>
-                            </Box>
+                            </Box> */}
                             <form>
                                 <Grid container width={'100%'}
                                     display={"flex"}
