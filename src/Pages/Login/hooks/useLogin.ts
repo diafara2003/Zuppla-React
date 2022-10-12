@@ -4,6 +4,7 @@ import { APiMethod } from '../../../Provider/model/FetchModel';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext, NameStoragetoken, NameStorageUsuario } from '../../../Auth';
 import { RegistrationResponse } from '../model/loginDTO';
+import { INITIAL_STATE_CONSTRUCTORA } from '../../../Auth/model/AuthModel';
 
 
 
@@ -29,6 +30,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
 
     const { hasError, data, isLoading, doFetch } = useFetch<RegistrationResponse | null>();
 
+    const { updateSession } = useContext(AuthContext);
 
 
 
@@ -53,8 +55,11 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
             if (data.usuario.nombreUsuario == null || data.usuario.nombreUsuario == "")
                 data.usuario.nombreUsuario = data.usuario.nombreEmpresa;
 
-            localStorage.setItem(NameStoragetoken, data.token);
-            localStorage.setItem(NameStorageUsuario, JSON.stringify(data.usuario));
+            updateSession({
+                token: data.token,
+                user: data.usuario,
+                constructora: INITIAL_STATE_CONSTRUCTORA
+            });
 
             navigate('/', { replace: true })
         }
@@ -85,7 +90,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
     }
 
     const onInputChange = (e: React.SyntheticEvent) => {
-        const { name, value } = (e.target as HTMLInputElement);       
+        const { name, value } = (e.target as HTMLInputElement);
         setFormState({
             ...formState,
             [name]: value

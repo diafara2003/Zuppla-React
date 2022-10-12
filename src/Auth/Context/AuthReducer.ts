@@ -1,17 +1,19 @@
 
-import { AuthContextProps, INITIAL_STATE_CONSTRUCTORA, NameStorageConstructora, NameStoragetoken, NameStorageUsuario, UserSessionModel } from "..";
-import { TypeLogin } from "../types/types";
+import { AuthContextProps, ConstructoraDTO, INITIAL_STATE, INITIAL_STATE_CONSTRUCTORA, NameStorageConstructora, NameStoragetoken, NameStorageUsuario, UserSessionModel } from "..";
 
+type AuthActions =
 
-type AuthActions = {
-    type: TypeLogin, payload: AuthContextProps;
-}
+    | { type: 'addSession', payload: AuthContextProps }
+    | { type: 'removeSession' }
+    | { type: 'getSession', payload: AuthContextProps }
+    | { type: 'changeConstructora', payload: ConstructoraDTO }
+
 
 
 export const authReducer = (state: AuthContextProps, action: AuthActions): AuthContextProps => {
 
     switch (action.type) {
-        case TypeLogin.GetSession:
+        case 'getSession':
 
             return {
                 token: localStorage.getItem(NameStoragetoken) ?? '',
@@ -20,23 +22,27 @@ export const authReducer = (state: AuthContextProps, action: AuthActions): AuthC
                 ))
             }
 
-        case TypeLogin.AddSession:
+        case 'addSession':
             localStorage.setItem(NameStoragetoken, action.payload.token);
             localStorage.setItem(NameStorageUsuario, JSON.stringify(action.payload.user));
 
-            return { ...state, constructora: (JSON.parse(localStorage.getItem(NameStorageConstructora) ?? JSON.stringify(INITIAL_STATE_CONSTRUCTORA))) };
+            return {
+                token: action.payload.token,
+                user: action.payload.user,
+                constructora: INITIAL_STATE_CONSTRUCTORA
+            };
 
-        case TypeLogin.ChangeConstructora:
+        case 'changeConstructora':
 
-            localStorage.setItem(NameStorageConstructora, JSON.stringify(action.payload.constructora));
+            localStorage.setItem(NameStorageConstructora, JSON.stringify(action.payload));
 
-            return { ...state, constructora: action.payload.constructora };
+            return { ...state, constructora: action.payload };
 
-        case TypeLogin.Logout:
+        case 'removeSession':
             localStorage.removeItem(NameStoragetoken);
             localStorage.removeItem(NameStorageUsuario);
             localStorage.removeItem(NameStorageConstructora);
-            return { ...state, constructora: state.constructora ?? INITIAL_STATE_CONSTRUCTORA };
+            return INITIAL_STATE;
 
         default:
             return state;
