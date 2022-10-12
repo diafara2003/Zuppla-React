@@ -18,8 +18,8 @@ export const SelectorConstructora = ({ selected }: props) => {
     const anchorRef = React.useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-    const handleClick = () => {
-        console.info(`You clicked ${dataConst![selectedIndex].nombre}`);
+    const handleClick = () => {        
+        selected(dataConst[selectedIndex]);
     };
 
     const handleMenuItemClick = (

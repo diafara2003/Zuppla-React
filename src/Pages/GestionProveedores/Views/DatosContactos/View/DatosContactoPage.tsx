@@ -12,6 +12,7 @@ import { theme } from '../../../../../theme/theme';
 import { CardContacto } from "../Components/CardContacto";
 import { FrmDatoContacto } from "../Components/FrmDatoContacto";
 import { SinInformacion } from "../../../Components/ImgComponents/View/SinInformacion";
+import { SkeletonDinamic } from "../../../Components/SkeletonComp/View/SkeletonDinamic";
 // import  from "../../../../../img/Estados/SinInformacion.png"
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -90,14 +91,14 @@ export const DatosContactos = () => {
                     </Tabs>
                 </Box>
                 <Box m={2}>
-                    {isLoading ? <Skeleton></Skeleton>
+                    {isLoading ? 
+                        <SkeletonDinamic NoColumnas={3} NoFilas={2} Tipo={'CARD'} />
                         : (
                             dataContactos?.length == 0
                                 ?
                                 <Box justifyContent={'center'} display={'flex'}>
                                     <SinInformacion/>
                                 </Box>
-
                                 :
                                 <CardContacto datosContactos={dataContactos!} />
                         )

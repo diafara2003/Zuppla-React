@@ -8,6 +8,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import { ControllerDocumentosAdjuntos } from '../Controller/ControllerDocumentosAdjuntos';
 import { DocumentoAdjunto } from '../Components/DocumentoAdjunto';
 import { SelectorConstructora } from '../../../Components/SelectConstructora/View/SelectorConstructora';
+import { SkeletonDinamic } from '../../../Components/SkeletonComp/View/SkeletonDinamic';
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -53,7 +54,6 @@ export const DocumentosAdjuntosPage = () => {
   };
 
 
-
   const [open, setOpen] = React.useState(false);
 
   const handleClickDialogOpen = () => {
@@ -64,17 +64,17 @@ export const DocumentosAdjuntosPage = () => {
     setOpen(false);
   };
 
-  const { dataDoc, isLoading } = ControllerDocumentosAdjuntos()
+  const { dataDoc,dataDocPorConst,  isLoading, setDataConst } = ControllerDocumentosAdjuntos()
 
   return (
     <>
       <HeaderComponent title={"Documentos adjuntos"} />
       <Box sx={{ width: '100%' }}>
-        <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+        {/* <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
           <Button variant="text" onClick={handleClickDialogOpen} > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
           <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
 
-        </Box>
+        </Box> */}
         <Box pt={1}>
           <Tabs value={value} onChange={handleChange}
             aria-label="basic tabs example"
@@ -91,7 +91,7 @@ export const DocumentosAdjuntosPage = () => {
           <Box m={1} mt={1}>
             {
               isLoading ?
-                <Skeleton></Skeleton>
+              <SkeletonDinamic NoColumnas={2} NoFilas={1} Tipo={'CARD'} />
                 :
                 <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
                   <Grid container spacing={2} >
@@ -109,22 +109,29 @@ export const DocumentosAdjuntosPage = () => {
         <TabPanel value={value} index={1}>
           <Box display={'flex'} justifyContent={'end'} m={1} mt={1}>
             <SelectorConstructora selected={(value) => {
-              console.log(value);
+              setDataConst(value)             
             }} />
           </Box>
-          {/* <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
-            <Grid container spacing={2} >
-              {dataDoc?.map((DocAdjunto) => {
-                return (
-                  <DocumentoAdjunto dataAdjunto={DocAdjunto} />
-                )
-              })}
-            </Grid>
-          </Container> */}
+          <Box m={1} mt={1}>
+            {
+              isLoading ?
+              <SkeletonDinamic NoColumnas={2} NoFilas={1} Tipo={'CARD'} />
+                :
+                <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
+                <Grid container spacing={2} >                 
+                    
+                  
+                  {dataDocPorConst != undefined?? dataDocPorConst?.map((DocAdjunto) => {
+                    return (
+                      <DocumentoAdjunto dataAdjunto={DocAdjunto} />
+                    )
+                  })} 
+                </Grid>
+              </Container> 
+            }
+            </Box>
         </TabPanel>
       </Box>
     </>
-
-
   )
 }
