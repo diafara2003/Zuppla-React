@@ -4,7 +4,7 @@ import { AuthContext, NameStorageConstructora, NameStoragetoken, NameStorageUsua
 import { theme } from '../../../../../theme/theme';
 
 export const useMenuUser = () => {
-    const { getSession } = useContext(AuthContext);
+    const { state } = useContext(AuthContext);
     const navigate = useNavigate();
     const [user, setUser] = useState({
 
@@ -20,7 +20,7 @@ export const useMenuUser = () => {
 
     useEffect(() => {
 
-        const { user } = getSession();
+        const { user } = state;
 
         setUser(user);
 
