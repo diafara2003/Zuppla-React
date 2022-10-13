@@ -23,10 +23,10 @@ export const UserMenu = () => {
 
     return (
         <Box display={'flex'} alignItems={"center"} >
-            <NotificationsActiveIcon sx={{ marginRight: '10px' }} color="primary" />
+            <NotificationsActiveIcon sx={{ marginRight: '10px' }} color="inherit" />
 
             <Avatar onClick={handleClick} id="basic-button"  {...stringAvatar(user.nombreUsuario)} />
-            <ExpandMore color="primary" />
+            <ExpandMore color="inherit" />
 
             <Box>
                 <Menu

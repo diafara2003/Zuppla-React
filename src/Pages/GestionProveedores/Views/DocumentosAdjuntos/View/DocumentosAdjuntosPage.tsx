@@ -9,6 +9,7 @@ import { ControllerDocumentosAdjuntos } from '../Controller/ControllerDocumentos
 import { DocumentoAdjunto } from '../Components/DocumentoAdjunto';
 import { SelectorConstructora } from '../../../Components/SelectConstructora/View/SelectorConstructora';
 import { SkeletonDinamic } from '../../../Components/SkeletonComp/View/SkeletonDinamic';
+import { SinInformacion } from '../../../Components/ImgComponents/View/SinInformacion';
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -117,29 +118,36 @@ export const DocumentosAdjuntosPage = () => {
               isLoading ?
                 <SkeletonDinamic NoColumnas={1} NoFilas={1} Tipo={'CARD'} />
                 :
-                <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
-                  {dataAdjPorConst?.map((DocAdjunto) => {
-                    return (
-                      <Card elevation={1} sx={{ mt: 2 }}>
-                        <CardHeader
-                          title={DocAdjunto.nombreEspecialidad}
-                          titleTypographyProps={{ variant: 'body1', fontWeight: '600' }}
-                        />
-                        <CardContent sx={{ mb: 3 }}>
-                          <Grid container spacing={3} className={'JK'}>
-                            {DocAdjunto.tiposAdjuntos.map((adjDoc) => {
-                              return (
-                                <Grid item xs={6}>
-                                  <DocumentoAdjunto dataAdjunto={adjDoc} />
-                                </Grid>
-                              )
-                            })}
-                          </Grid>
-                        </CardContent>
-                      </Card>
-                    )
-                  })}
-                </Container>
+
+                dataAdjPorConst.length == 0
+                  ?
+                  <Box justifyContent={'center'} display={'flex'}>
+                    <SinInformacion />
+                  </Box>
+                  :
+                  <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
+                    {dataAdjPorConst?.map((DocAdjunto) => {
+                      return (
+                        <Card elevation={1} sx={{ mt: 2 }}>
+                          <CardHeader
+                            title={DocAdjunto.nombreEspecialidad}
+                            titleTypographyProps={{ variant: 'body1', fontWeight: '600' }}
+                          />
+                          <CardContent sx={{ mb: 3 }}>
+                            <Grid container spacing={3} className={'JK'}>
+                              {DocAdjunto.tiposAdjuntos.map((adjDoc) => {
+                                return (
+                                  <Grid item xs={6}>
+                                    <DocumentoAdjunto dataAdjunto={adjDoc} />
+                                  </Grid>
+                                )
+                              })}
+                            </Grid>
+                          </CardContent>
+                        </Card>
+                      )
+                    })}
+                  </Container>
             }
           </Box>
         </TabPanel>

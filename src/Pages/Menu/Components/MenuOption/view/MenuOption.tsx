@@ -38,7 +38,7 @@ export const MenuOption = () => {
             aria-expanded={false}
             endIcon={tieneHijos > 0 ? <ExpandMore color="primary" /> : null}
             onClick={tieneHijos > 0 ? () => { } : () => { handleNavigate(ubicacion) }}
-            sx={{ color: '#003972' }}
+            sx={{ color: 'white' }}
           >
             <Typography
               // fontSize="0.75rem"
