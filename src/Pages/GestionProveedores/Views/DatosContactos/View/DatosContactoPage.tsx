@@ -13,6 +13,7 @@ import { CardContacto } from "../Components/CardContacto";
 import { FrmDatoContacto } from "../Components/FrmDatoContacto";
 import { SinInformacion } from "../../../Components/ImgComponents/View/SinInformacion";
 import { SkeletonDinamic } from "../../../Components/SkeletonComp/View/SkeletonDinamic";
+import { Eliminar } from "../../../Components/ImgComponents/View/Eliminar";
 // import  from "../../../../../img/Estados/SinInformacion.png"
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -20,32 +21,6 @@ interface TabPanelProps {
     value: number;
 }
 
-function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-function a11yProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
 export const DatosContactos = () => {
 
     const options = [
@@ -57,7 +32,8 @@ export const DatosContactos = () => {
         { nombre: 'Responsable de cartera', id: 6 }
     ];
 
-    const { dataContactos, isLoading, value, handleChange } = ControllerDatosContactos();
+    const { dataContactos, isLoading, value, openDelete,
+        handleChange, handleCloseDelete, handleDeleteContacto, setDataDeleteId, actionCardContacto } = ControllerDatosContactos();
 
     const [open, setOpen] = React.useState(false);
 
@@ -91,22 +67,33 @@ export const DatosContactos = () => {
                     </Tabs>
                 </Box>
                 <Box m={2}>
-                    {isLoading ? 
+                    {isLoading
+                        ?
                         <SkeletonDinamic NoColumnas={3} NoFilas={2} Tipo={'CARD'} />
                         : (
                             dataContactos?.length == 0
                                 ?
                                 <Box justifyContent={'center'} display={'flex'}>
-                                    <SinInformacion/>
+                                    <SinInformacion />
                                 </Box>
                                 :
-                                <CardContacto datosContactos={dataContactos!} />
-                        )
+                                <Grid container spacing={2}>
+                                    {
+                                        dataContactos.map((contacto) => {
+                                            return (<CardContacto
+                                                contacto={contacto}
+                                                valorDelete={(valorId) => { setDataDeleteId(valorId) }}
+                                                action={(actionSel) => { actionCardContacto(actionSel) }}
+                                            />)
 
+                                        })
+                                    }
+                                </Grid>
+                        )
                     }
                 </Box>
             </Box>
-
+            {/* Dialog insercion */}
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -126,6 +113,33 @@ export const DatosContactos = () => {
                     <Button variant="outlined" onClick={handleClose} >Cancelar</Button>
                     <Button variant="contained" color="primary" onClick={handleClose} autoFocus >
                         Guardar
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* Dialog de eliminacion */}
+            <Dialog
+                open={openDelete}
+                onClose={handleCloseDelete}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                maxWidth={"md"}
+            >
+                <DialogTitle id="alert-dialog-title" justifyContent={'center'} display={"flex"}>
+                    <Typography>  {options[value].nombre} </Typography>
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        <Box justifyContent={'center'} display={"flex"}>
+                            <Eliminar />
+                        </Box>
+                        <Typography>¿Esta seguro que desea eliminar este contacto?</Typography>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button variant="text" onClick={handleCloseDelete} >Cancelar</Button>
+                    <Button variant="contained" color="error" onClick={handleDeleteContacto} autoFocus >
+                        Eliminar
                     </Button>
                 </DialogActions>
             </Dialog>

@@ -10,6 +10,8 @@ import { TableDatosNotLicitaciones } from "../Components/TableDatosNotLicitacion
 import { FrmDatoContacto } from "../../DatosContactos/Components/FrmDatoContacto";
 import { FrmUser } from "../Components/FrmUser";
 import { FrmUserLicitacion } from "../Components/FrmUserLicitacion";
+import { Eliminar } from "../../../Components/ImgComponents/View/Eliminar";
+import { SinInformacion } from "../../../Components/ImgComponents/View/SinInformacion";
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -18,7 +20,6 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
-
     return (
         <div
             role="tabpanel"
@@ -45,9 +46,8 @@ function a11yProps(index: number) {
 
 export const DatosNotifiaciones = () => {
     const options = [
-        { nombre: 'Proveedores', id: 1 , addTitle:"Nuevo contacto documentación"},
-        { nombre: 'Licitaciones', id: 2, addTitle:"Nuevo contacto licitación" },
-       
+        { nombre: 'Proveedores', id: 1, addTitle: "Nuevo contacto documentación", titleDelete: "Eliminar contacto notificación proveedor" },
+        { nombre: 'Licitaciones', id: 2, addTitle: "Nuevo contacto licitación", titleDelete: "Eliminar contacto notificación licitación" },
     ];
     const [value, setValue] = React.useState(0);
 
@@ -55,9 +55,13 @@ export const DatosNotifiaciones = () => {
         setValue(newValue);
     };
 
-    const { dataInitialLicitaState, dataInitialProveState, isLoadingLicCarga, isLoadingProCarga } = ControllerDatosNotificaciones();
+    const { dataInitialLicitaState, dataInitialProveState,
+        isLoadingLicCarga, isLoadingProCarga, openDelete, handleCloseDelete,
+        handleDeleteClickProve, handleDeleteClickLici, handleClickDialogDeleteOpen,
+        handleLiciDeleteOpen } = ControllerDatosNotificaciones();
 
     const [open, setOpen] = React.useState(false);
+
 
     const handleClickDialogOpen = () => {
         setOpen(true);
@@ -66,14 +70,14 @@ export const DatosNotifiaciones = () => {
     const handleClose = () => {
         setOpen(false);
     };
+
     return (
         <>
-            <HeaderComponent title={"Información general"} />           
+            <HeaderComponent title={"Datos contacto notificaciones"} />
             <Box sx={{ width: '100%' }}>
                 <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
-                <Button variant="text" onClick={handleClickDialogOpen} > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
+                    <Button variant="text" onClick={handleClickDialogOpen} > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
                     <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                    
                 </Box>
                 <Box pt={1}>
                     <Tabs value={value} onChange={handleChange}
@@ -81,10 +85,9 @@ export const DatosNotifiaciones = () => {
                         variant="fullWidth"
                         sx={{ borderBottom: 1, borderColor: 'divider' }}
                         centered>
-                            {options.map((opcion,index)=>{
-                                return(<Tab label={opcion.nombre} {...a11yProps(index)} />)                                
-                            })}                        
-                       
+                        {options.map((opcion, index) => {
+                            return (<Tab label={opcion.nombre} {...a11yProps(index)} />)
+                        })}
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
@@ -93,7 +96,11 @@ export const DatosNotifiaciones = () => {
                             <><Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} />
                                 <Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /></>
                             :
-                            dataInitialProveState == null ? <CircularProgress color="inherit" /> : <TableDatosNotificaciones datatable={dataInitialProveState!} />
+                            dataInitialProveState.length == 0
+                                ? <Box justifyContent={'center'} display={'flex'}>
+                                    <SinInformacion />
+                                </Box>
+                                : <TableDatosNotificaciones datatable={dataInitialProveState!} valorDelete={(value) => { handleClickDialogDeleteOpen(value) }} />
                         }
 
                     </Box>
@@ -104,11 +111,17 @@ export const DatosNotifiaciones = () => {
                             <><Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} />
                                 <Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /></>
                             :
-                            dataInitialProveState == null ? <CircularProgress color="inherit" /> : <TableDatosNotLicitaciones datatable={dataInitialLicitaState!} />
-                        }
+                            dataInitialLicitaState.length == 0
+                                ?
+                                <Box justifyContent={'center'} display={'flex'}>
+                                    <SinInformacion />
+                                </Box>
+                                :
+                                <TableDatosNotLicitaciones datatable={dataInitialLicitaState!} valorDelete={(value) => { handleLiciDeleteOpen(value) }} />}
                     </Box>
                 </TabPanel>
             </Box>
+            {/* Dialogo de insercion */}
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -117,14 +130,14 @@ export const DatosNotifiaciones = () => {
                 maxWidth={"md"}
             >
                 <DialogTitle id="alert-dialog-title">
-                        {options[value].addTitle}
+                    {options[value].addTitle}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        {value==0
-                        ? <FrmUser />
-                        :<FrmUserLicitacion/>
-                        }                        
+                        {value == 0
+                            ? <FrmUser />
+                            : <FrmUserLicitacion />
+                        }
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -134,8 +147,38 @@ export const DatosNotifiaciones = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-
+            {/* Dialogo de eliminacion */}
+            <Dialog
+                open={openDelete}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                maxWidth={"md"}
+            >
+                <DialogTitle id="alert-dialog-title">
+                    <Typography>  {options[value].titleDelete} </Typography>
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        <Box justifyContent={'center'} display={"flex"}>
+                            <Eliminar />
+                        </Box>
+                        <Typography>¿Esta seguro que desea eliminar este contacto?</Typography>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button variant="text" onClick={handleCloseDelete} >Cancelar</Button>
+                    {
+                        options[value].id == 1 ?
+                            <Button variant="contained" color="error" onClick={handleDeleteClickProve} autoFocus >
+                                Eliminar
+                            </Button>
+                            :
+                            <Button variant="contained" color="error" onClick={handleDeleteClickLici} autoFocus >
+                                Eliminar
+                            </Button>}
+                </DialogActions>
+            </Dialog>
         </>
-
     );
 }

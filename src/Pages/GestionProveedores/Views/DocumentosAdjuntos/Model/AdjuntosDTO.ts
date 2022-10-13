@@ -1,8 +1,6 @@
 export interface AdjuntoTerceroDTO {
-
     tipoAdjunto: TipoAdjuntoTerceroDTO;
     adjunto: AdjuntosDTO;
-
 }
 
 export interface AdjuntosDTO{
@@ -15,4 +13,16 @@ export interface AdjuntosDTO{
 export interface TipoAdjuntoTerceroDTO {
     id: number;
     nombre: string;
+}
+
+export interface adjuntoCompleteERP {
+    tiposAdjuntos: AdjuntoTerceroDTO[];
+    especialidad: number;
+    nombreEspecialidad: string;
+}
+
+export interface DocumentosRequeridosERPDTO{
+    especialidad: number;
+    tipoAdjunto: number;
+    nombreEspecialidad: string;
 }

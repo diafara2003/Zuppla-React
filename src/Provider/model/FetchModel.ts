@@ -11,3 +11,8 @@ export interface RequestModel {
     metodo: string;
     AllowAnonymous?:boolean;
 }
+export interface ResponseDTO {
+    codigo:number,
+    mensaje:string,
+    success:boolean
+}

@@ -3,15 +3,19 @@ import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody
 import { DatosNotificacionesDTO } from '../Model/model-DatosContacto'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import { ConstructoraDTO } from '../../../Components/SelectConstructora/Model/ModelConstructoras';
 
 type props = {
-    datatable: DatosNotificacionesDTO[]
+    datatable: DatosNotificacionesDTO[],
+    valorDelete: (value:number) => void
 }
 
-export const TableDatosNotificaciones = ({ datatable }: props) => {
+export const TableDatosNotificaciones = ({ datatable, valorDelete }: props) => {
+    const clickDelete = (val:number) => {
+        valorDelete(val);
+    };
     return (
         <>
-
             <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table" size="small">
                     <TableHead>
@@ -58,22 +62,22 @@ export const TableDatosNotificaciones = ({ datatable }: props) => {
                     <TableBody>
                         {datatable.map((row) => {
                             return (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                    <TableCell key={row.id * 2}>
+                                <TableRow hover role="checkbox" tabIndex={-1} >
+                                    <TableCell >
                                         {row.usuario.nombres}
                                     </TableCell>
-                                    <TableCell key={row.id * 2}>
+                                    <TableCell >
                                         {row.usuario.cargo}
                                     </TableCell>
-                                    <TableCell key={row.id * 2}>
+                                    <TableCell >
                                         {row.usuario.correo}
                                     </TableCell>
-                                    <TableCell key={row.id * 2}>
+                                    <TableCell >
                                         {row.usuario.celular}
                                     </TableCell>
-                                    <TableCell key={row.id * 2} align="center">
-                                        <IconButton edge="end" aria-label="delete">
-                                            <DeleteOutlineOutlinedIcon color='primary' />
+                                    <TableCell  align="center">
+                                        <IconButton onClick={() => clickDelete(row.id)} edge="end" aria-label="delete">
+                                            <DeleteOutlineOutlinedIcon  color='primary' />
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>

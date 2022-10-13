@@ -4,10 +4,14 @@ import { DatosNotificacionesDTO } from '../Model/model-DatosContacto'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 type props = {
-    datatable: DatosNotificacionesDTO[]
+    datatable: DatosNotificacionesDTO[],
+    valorDelete: (value:number) => void
 }
 
-export const TableDatosNotLicitaciones = ({ datatable }: props) => {
+export const TableDatosNotLicitaciones = ({ datatable, valorDelete }: props) => {
+    const clickDelete = (val:number) => {
+        valorDelete(val);
+    };
     return (
         // <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <>
@@ -58,23 +62,22 @@ export const TableDatosNotLicitaciones = ({ datatable }: props) => {
                         {datatable.map((row) => {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                    <TableCell key={row.id * 2}>
+                                    <TableCell>
                                         {row.usuario.nombres}
                                     </TableCell>
-                                    <TableCell key={row.id * 2}>
+                                    <TableCell >
                                         {row.categoria?.nombre}
                                     </TableCell>
-                                    <TableCell key={row.id * 2}>
+                                    <TableCell >
                                         {row.zona}
                                     </TableCell>
-                                    <TableCell key={row.id * 2}>
+                                    <TableCell >
                                         {row.constructora?.nombre}
                                     </TableCell>
-                                    <TableCell key={row.id * 2} align="center">
-                                        <IconButton edge="end" aria-label="delete">
-                                            <DeleteOutlineOutlinedIcon color='primary' />
+                                    <TableCell  align="center">
+                                        <IconButton onClick={() => clickDelete(row.id)} edge="end" aria-label="delete">
+                                            <DeleteOutlineOutlinedIcon  color='primary' />
                                         </IconButton>
-
                                     </TableCell>
                                 </TableRow>
                             );
