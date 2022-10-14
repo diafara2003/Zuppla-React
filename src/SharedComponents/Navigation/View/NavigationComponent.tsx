@@ -1,4 +1,4 @@
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, ListItem, Typography, makeStyles } from '@mui/material';
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, ListItem, Typography, makeStyles, Grid } from '@mui/material';
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { NavigationModel } from '../model/modelNavigation';
@@ -25,47 +25,50 @@ export const NavigationComponent = ({ options }: props) => {
         setSelectedIndex(index);
     };
     return (
-        <Box sx={{
-            width: '100%',
-            // borderRight: "1px solid #ebebeb",
-            height: 'calc(100vh - 82px)',
-            overflow: "auto",
-            background: "#FBFBFB"
+        <Grid item xs={2.3}>
+            <Box sx={{
+                width: '100%',
+                // borderRight: "1px solid #ebebeb",
+                height: 'calc(100vh - 82px)',
+                overflow: "auto",
+                background: "#FBFBFB"
 
 
-        }}>
-            <List component="nav" aria-label="main mailbox folders">
-                {
-                    options.map(({ path, Icono, texto }, index) => {
-                        return (
-                            <NavLink
-                                key={path}
-                                className={"nav-link"}
-                                style={{ textDecoration: "none", color: theme.palette.secondary.light }} to={path}>
-                                <ListItem disablePadding>
-                                    <ListItemButton
-                                        key={"ListItemButton" + path}
-                                        className='ListJk'
-                                        selected={selectedIndex === index}
-                                        onClick={(event) => handleListItemClick(event, index)}
-                                    >
-                                        <ListItemIcon key={"ListItemIcon" + path} color= {theme.palette.secondary.main}>
-                                            <Icono />
+            }}>
+                <List component="nav" aria-label="main mailbox folders">
+                    {
+                        options.map(({ path, Icono, texto }, index) => {
+                            return (
+                                <NavLink
+                                    key={path}
+                                    className={"nav-link"}
+                                    style={{ textDecoration: "none", color: theme.palette.secondary.light }} to={path}>
+                                    <ListItem disablePadding>
+                                        <ListItemButton
+                                            key={"ListItemButton" + path}
+                                            className='ListJk'
+                                            selected={selectedIndex === index}
+                                            onClick={(event) => handleListItemClick(event, index)}
+                                        >
+                                            <ListItemIcon key={"ListItemIcon" + path} color={theme.palette.secondary.main}>
+                                                <Icono />
 
-                                        </ListItemIcon>
-                                        <ListItemText >
-                                            <Typography variant='body2'> {texto} </Typography>
-                                        </ListItemText>
+                                            </ListItemIcon>
+                                            <ListItemText >
+                                                <Typography variant='body2'> {texto} </Typography>
+                                            </ListItemText>
 
-                                    </ListItemButton>
-                                </ListItem>
-                            </NavLink>
-                        );
-                    })
-                }
+                                        </ListItemButton>
+                                    </ListItem>
+                                </NavLink>
+                            );
+                        })
+                    }
 
-            </List>
+                </List>
 
-        </Box>
+            </Box>
+        </Grid>
+
     )
 }
