@@ -3,7 +3,7 @@ import { AuthContextProps, ConstructoraDTO, INITIAL_STATE, UserSessionModel } fr
 
 export interface IAuthContext {
     updateSession: (data: AuthContextProps) => void,
-
+    removeSession: () => void,
     state: AuthContextProps
 
 }
@@ -11,9 +11,10 @@ export interface IAuthContext {
 
 const INITIAL_CONTEXT: IAuthContext = {
 
-    updateSession: (data: AuthContextProps) => {},
-   
-    state: INITIAL_STATE
+    updateSession: (data: AuthContextProps) => { },
+
+    state: INITIAL_STATE,
+    removeSession: () => { }
 }
 
 

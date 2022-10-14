@@ -21,6 +21,10 @@ export const AuthProvider = ({ children }: Props) => {
     }
 
 
+    const removeSession = () => {
+        
+        dispatch({ type: 'removeSession' });
+    }
 
 
 
@@ -28,7 +32,8 @@ export const AuthProvider = ({ children }: Props) => {
         <AuthContext.Provider value={{
             state,
             // Methods
-            updateSession
+            updateSession,
+            removeSession
         }}>
             {children}
         </AuthContext.Provider>
