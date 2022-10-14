@@ -5,35 +5,44 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { EditOutlined, MailOutline, LockOutlined, DeleteOutline } from '@mui/icons-material';
 type props = {
     contacto: TerDatosContactoDTO,
-    valorDelete: (valorId: number) => void,
-    action: (actionContacto: string) => void
+    // valorDelete: (valorId: number) => void,
+    // action: (actionContacto: string) => void
+    onjau: (data: jau) => void
 }
 
-export const CardContacto = ({ contacto, valorDelete, action }: props) => {
+
+type jau = {
+    action: string;
+    id: number;
+}
+
+
+export const CardContacto = ({ contacto, onjau }: props) => {
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>, contactoSelect: TerDatosContactoDTO) => {
-        valorDelete(contactoSelect.id)
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
 
-    const clickAction = (actionSelect: string) => {
-        action(actionSelect);
+    const clickAction = (actionSelect: string, contactoSelect: TerDatosContactoDTO) => {
+        onjau({
+            action: actionSelect,
+            id: contactoSelect.id
+        });        
     };
 
     return (
-
         <Grid item xs={4}>
             <Card variant="outlined" sx={{ backgroundColor: '#FBFBFB' }}>
                 <CardHeader
                     sx={{ pb: 0, }}
                     action={
-                        <><IconButton aria-label="settings" color="primary" onClick={(event) => handleClick(event, contacto)}>
+                        <><IconButton aria-label="settings" color="primary" onClick={(event) => handleClick(event)}>
                             <MoreVertIcon />
                         </IconButton>
                             <Menu
@@ -53,13 +62,13 @@ export const CardContacto = ({ contacto, valorDelete, action }: props) => {
                                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                             >
-                                <MenuItem onClick={() => clickAction('I')}>
+                                <MenuItem onClick={() => clickAction('I', contacto)}>
                                     <ListItemIcon>
                                         <EditOutlined color="primary" />
                                     </ListItemIcon>
                                     <Typography>Editar contacto</Typography>
                                 </MenuItem>
-                                <MenuItem onClick={() => clickAction('I')}>
+                                <MenuItem onClick={() => clickAction('D', contacto)}>
                                     <ListItemIcon>
                                         <DeleteOutline color="error" />
                                     </ListItemIcon>

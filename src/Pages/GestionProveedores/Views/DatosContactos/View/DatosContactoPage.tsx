@@ -82,8 +82,11 @@ export const DatosContactos = () => {
                                         dataContactos.map((contacto) => {
                                             return (<CardContacto
                                                 contacto={contacto}
-                                                valorDelete={(valorId) => { setDataDeleteId(valorId) }}
-                                                action={(actionSel) => { actionCardContacto(actionSel) }}
+                                                onjau={(valor) => { 
+                                                    actionCardContacto(valor.action);
+                                                    setDataDeleteId(valor.id);
+                                                 }}
+                                                
                                             />)
 
                                         })
