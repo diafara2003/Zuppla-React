@@ -5,6 +5,7 @@ import { theme } from './theme/theme'
 import { AppProveedor } from './AppProveedor'
 
 
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>

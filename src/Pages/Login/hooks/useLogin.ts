@@ -124,7 +124,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
 
         if (formState.email == "")
             return {
-                email: { hasError: true, msn: 'Clave oligatoria' },
+                email: { hasError: true, msn: 'Correo obligatorio' },
                 password: { hasError: false, msn: '' }
             }
 
