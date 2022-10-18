@@ -1,8 +1,9 @@
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, ListItem, Typography, makeStyles, Grid } from '@mui/material';
-import React from 'react'
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, ListItem, Typography, makeStyles, Grid, Fab, Slide } from '@mui/material';
+import React, { useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom';
 import { NavigationModel } from '../model/modelNavigation';
 import { theme } from '../../../theme/theme';
+import { MenuOpen } from '@mui/icons-material';
 // import { NavigationModel } from '../model/modelNAvigation';
 
 
@@ -13,10 +14,18 @@ type props = {
 }
 
 
+type typeDisplay = "end" | "start" | "none" | "block";
+
+type typeDirection = "right" | "left";
 
 export const NavigationComponent = ({ options }: props) => {
 
-    const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [sizeGrid, setSizeGrid] = useState(2.2);
+    const [displayMenu, setMenuDisplay] = useState<typeDisplay>("end");
+    const [displayText, setMenuText] = useState<typeDisplay>("end");
+    const containerRef = useRef(null);
 
     const handleListItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -24,8 +33,24 @@ export const NavigationComponent = ({ options }: props) => {
     ) => {
         setSelectedIndex(index);
     };
+
+    const hanbleClickMenu = () => {
+        setMenuDisplay((prev) => {
+
+            if (prev == "end") {
+                setSizeGrid(0.6);
+                setMenuText("none");
+                return "start";
+            }
+            else {
+                setSizeGrid(2.2);
+                setMenuText("block");
+                return "end";
+            }
+        });
+    }
     return (
-        <Grid item xs={2.3}>
+        <Grid item xs={sizeGrid}>
             <Box sx={{
                 width: '100%',
                 // borderRight: "1px solid #ebebeb",
@@ -35,6 +60,16 @@ export const NavigationComponent = ({ options }: props) => {
 
 
             }}>
+
+                <Box display={"flex"} justifyContent={displayMenu} sx={{ paddingRight: 1, pt:1.5 } }
+                    ref={containerRef}
+                >
+                    <Fab onClick={hanbleClickMenu} size='small' sx={{ background: '#4DADCE', boxShadow: '0px 8px 8px -1px rgba(0, 0, 0, 0.08), 0px 10px 28px rgba(0, 0, 0, 0.02), 0px 2px 20px rgba(0, 0, 0, 0.04);' }}>
+                        <MenuOpen />
+
+                    </Fab>
+
+                </Box>
                 <List component="nav" aria-label="main mailbox folders">
                     {
                         options.map(({ path, Icono, texto }, index) => {
@@ -54,7 +89,7 @@ export const NavigationComponent = ({ options }: props) => {
                                                 <Icono />
 
                                             </ListItemIcon>
-                                            <ListItemText >
+                                            <ListItemText sx={{display:displayText}}>
                                                 <Typography variant='body2'> {texto} </Typography>
                                             </ListItemText>
 
