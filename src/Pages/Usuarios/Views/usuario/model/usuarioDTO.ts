@@ -12,3 +12,22 @@ export interface UsuariosDTO {
     celular:string;
 
 }
+
+export enum ActionUser {
+    Delete = "D",
+    Edit = "E",
+    Send = "S",
+    Pass = "P",
+    EstadoTrue = "Estado en true",
+    EstadoFalse = "Estado en false",
+    Default = "F"
+}
+
+export interface UsuarioIdDTO {
+    idUsuario : number;
+}
+
+export interface CambiarEstadoUsuarioDTO {
+    usuario: number;
+    activo: boolean;
+}

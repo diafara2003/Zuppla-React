@@ -7,17 +7,23 @@ type props = {
     contacto: TerDatosContactoDTO,
     // valorDelete: (valorId: number) => void,
     // action: (actionContacto: string) => void
-    onjau: (data: jau) => void
+    onChangeAction: (data: typeAction) => void
 }
 
 
-type jau = {
-    action: string;
+type typeAction = {
+    action: Action;
     id: number;
 }
+enum Action {
+    Delete = "D",
+    Edit = "E",
+    Send = "S",
+    Pass = "P",
+  }
 
 
-export const CardContacto = ({ contacto, onjau }: props) => {
+export const CardContacto = ({ contacto, onChangeAction }: props) => {
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -30,10 +36,10 @@ export const CardContacto = ({ contacto, onjau }: props) => {
     };
 
     const clickAction = (actionSelect: string, contactoSelect: TerDatosContactoDTO) => {
-        onjau({
+        onChangeAction({
             action: actionSelect,
             id: contactoSelect.id
-        });        
+        });
     };
 
     return (

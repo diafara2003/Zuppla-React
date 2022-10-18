@@ -50,6 +50,6 @@ export const useFetch = <T,>() => {
     return {
         data,
         ...state,
-        doFetch
+        doFetch, setState
     };
 }

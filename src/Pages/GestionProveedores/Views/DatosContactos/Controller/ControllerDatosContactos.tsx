@@ -35,11 +35,9 @@ export const ControllerDatosContactos = () => {
     setDataState(response!)
     setIsLoading(false)
   }
-  const actionCardContacto = (action: string) => {
-    console.log("entra action")
+  const actionCardContacto = (action: string) => {    
     switch (action) {
-      case 'D':
-        console.log("entra")
+      case 'D':        
         setOpenDelete(true);
         break;
       case 'I':

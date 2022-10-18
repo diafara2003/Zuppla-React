@@ -10,11 +10,11 @@ export const LayaoutUsuarioPages = () => {
 
     return (
         <Grid container spacing={2} >
-            <Grid item xs={2.3} >
+            {/* <Grid item xs={2.3} > */}
 
 
                 <NavigationComponent options={rutas} />
-            </Grid>
+            {/* </Grid> */}
             <Grid item xs={9.7} sx={{ paddingLeft: '0px !important' }}   >
                 <RoutesGestionUsuario />
             </Grid>
