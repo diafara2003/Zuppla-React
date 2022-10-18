@@ -4,10 +4,14 @@ import { TerCamaraComercioDTO } from '../Model/CamaraComercio'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 type props = {
-    datatable: TerCamaraComercioDTO[]
+    datatable: TerCamaraComercioDTO[],
+    onDelete:(valorId:number)=> void
 }
 
-export const TableCamaraComercio = ({ datatable }: props) => {
+export const TableCamaraComercio = ({ datatable, onDelete }: props) => {
+    const clickAction = ( camaraSelect:TerCamaraComercioDTO ) => {
+        onDelete(camaraSelect.id);
+    };
     return (
         <>
             <TableContainer sx={{ maxHeight: 440 }}>
@@ -70,7 +74,7 @@ export const TableCamaraComercio = ({ datatable }: props) => {
                                         {row.cargo}
                                     </TableCell>
                                     <TableCell key={row.id * 2} align="center">
-                                        <IconButton edge="end" aria-label="delete">
+                                        <IconButton edge="end" onClick={()=>clickAction(row)} aria-label="delete">
                                             <DeleteOutlineOutlinedIcon color="primary" />
                                         </IconButton>
                                     </TableCell>

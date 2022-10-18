@@ -1,24 +1,41 @@
 import { DeleteOutline, EditOutlined, LockOutlined, MailOutline, MoreVert } from '@mui/icons-material';
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton, Switch, Menu, MenuItem, ListItemIcon, Typography } from '@mui/material';
+import { Action } from '@remix-run/router';
 import React, { useState } from 'react'
-import { UsuariosDTO } from '../../model/usuarioDTO';
+import { ActionUser, UsuariosDTO } from '../../model/usuarioDTO';
 
 type props = {
     datatable: UsuariosDTO[]
+    onDelete: (data: typeAction) => void
+}
+type typeAction = {
+    action: ActionUser;
+    userData: UsuariosDTO;
 }
 
-export const TableUsuario = ({ datatable }: props) => {
+export const TableUsuario = ({ datatable, onDelete }: props) => {
     const label = { inputProps: { 'aria-label': 'Switch demo' } };
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [userDataSelect, setUser] = useState<UsuariosDTO>()
+    const [userDataEntrante, setDataEntrante] = useState<UsuariosDTO[]>([...datatable])
     const open = Boolean(anchorEl);
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    const handleClick = (event: React.MouseEvent<HTMLElement>, user: UsuariosDTO) => {
         setAnchorEl(event.currentTarget);
+        setUser(user);
+        onDelete({ action: ActionUser.Default, userData: user })
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
-
+    const clickAction = (action: ActionUser) => {
+        onDelete({ action: action, userData: userDataSelect! });
+    }
+    const clickEstado = (event: React.ChangeEvent<HTMLInputElement>, _user: UsuariosDTO, _index: number) => {
+        event.target.checked == true ? onDelete({ action: ActionUser.EstadoTrue, userData: _user! }) : onDelete({ action: ActionUser.EstadoFalse, userData: _user! });
+        datatable[_index].estado = event.target.checked
+        setDataEntrante([...datatable]);        
+    }
 
     return (
 
@@ -80,9 +97,9 @@ export const TableUsuario = ({ datatable }: props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {datatable
+                    {userDataEntrante
                         //.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((row) => {
+                        .map((row, index) => {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={`tr${row.id}`}>
                                     <TableCell key={`tdNom${row.id}`}>
@@ -101,10 +118,13 @@ export const TableUsuario = ({ datatable }: props) => {
                                         {row.celular}
                                     </TableCell>
                                     <TableCell key={`tdSwi${row.id}`}>
-                                        <Switch {...label} checked={row.estado} size="small" />
+                                        <Switch {...label}
+                                            checked={row.estado}
+                                            onChange={(event) => clickEstado(event, row, index)}
+                                            size="small" />
                                     </TableCell>
                                     <TableCell key={`tdOpc${row.id}`} align="center">
-                                        <IconButton size='small' onClick={handleClick}>
+                                        <IconButton size='small' onClick={(event) => handleClick(event, row)}>
                                             <MoreVert sx={{ color: "#1E62A1" }} />
                                         </IconButton>
                                         <Menu
@@ -119,40 +139,38 @@ export const TableUsuario = ({ datatable }: props) => {
                                                     width: '214px',
                                                     overflow: 'visible',
                                                     filter: 'drop-shadow(0px 2px 2px rgba(0,0,0,0.22))',
-                                               },
+                                                },
                                             }}
                                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                         >
-                                            <MenuItem>
+                                            <MenuItem onClick={() => clickAction(ActionUser.Edit)}>
                                                 <ListItemIcon >
                                                     <EditOutlined color="primary" />
                                                 </ListItemIcon>
                                                 <Typography>Editar usuario</Typography>
                                             </MenuItem>
 
-                                            <MenuItem>
+                                            <MenuItem onClick={() => clickAction(ActionUser.Send)}>
                                                 <ListItemIcon >
                                                     <MailOutline color="primary" />
                                                 </ListItemIcon>
                                                 <Typography>Enviar correo</Typography>
                                             </MenuItem>
 
-                                            <MenuItem>
+                                            <MenuItem onClick={() => clickAction(ActionUser.Pass)}>
                                                 <ListItemIcon >
                                                     <LockOutlined color="primary" />
                                                 </ListItemIcon>
                                                 <Typography>Cambiar contrasena</Typography>
                                             </MenuItem>
 
-                                            <MenuItem >
+                                            <MenuItem onClick={() => clickAction(ActionUser.Delete)} >
                                                 <ListItemIcon >
                                                     <DeleteOutline color="error" />
                                                 </ListItemIcon>
                                                 <Typography color="error">Eliminar usuario</Typography>
                                             </MenuItem>
-
-
                                         </Menu>
                                     </TableCell>
                                 </TableRow>

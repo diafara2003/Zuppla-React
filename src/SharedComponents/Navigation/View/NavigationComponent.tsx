@@ -61,7 +61,7 @@ export const NavigationComponent = ({ options }: props) => {
 
             }}>
 
-                <Box display={"flex"} justifyContent={displayMenu} sx={{ paddingRight: 1, pt:1.5 } }
+                <Box display={"flex"} justifyContent={displayMenu} sx={{ paddingRight: 1, pt: 1.5 }}
                     ref={containerRef}
                 >
                     <Fab onClick={hanbleClickMenu} size='small' sx={{ background: '#4DADCE', boxShadow: '0px 8px 8px -1px rgba(0, 0, 0, 0.08), 0px 10px 28px rgba(0, 0, 0, 0.02), 0px 2px 20px rgba(0, 0, 0, 0.04);' }}>
@@ -81,7 +81,6 @@ export const NavigationComponent = ({ options }: props) => {
                                     <ListItem disablePadding>
                                         <ListItemButton
                                             key={"ListItemButton" + path}
-                                            className='ListJk'
                                             selected={selectedIndex === index}
                                             onClick={(event) => handleListItemClick(event, index)}
                                         >
@@ -89,7 +88,7 @@ export const NavigationComponent = ({ options }: props) => {
                                                 <Icono />
 
                                             </ListItemIcon>
-                                            <ListItemText sx={{display:displayText}}>
+                                            <ListItemText sx={{ display: displayText }}>
                                                 <Typography variant='body2'> {texto} </Typography>
                                             </ListItemText>
 

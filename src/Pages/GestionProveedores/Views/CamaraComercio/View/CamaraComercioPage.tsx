@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@mui/material"
+import { Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from "@mui/material"
 import PermDeviceInformationIcon from '@mui/icons-material/PermDeviceInformation';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -10,9 +10,10 @@ import HistoryIcon from '@mui/icons-material/History';
 import { FrmDatoContacto } from "../../DatosContactos/Components/FrmDatoContacto";
 import { FrmUsuarioCC } from "../Components/FrmUsuarioCC";
 import React from "react";
+import { Eliminar } from "../../../Components/ImgComponents/View/Eliminar";
 export const CamaraComercioPage = () => {
 
-    const { dataCamara, isLoading } = ControllerCamaraComercio();
+    const { dataCamara, isLoading,openDelete, handleCloseDelete,handleDeleteCamara, setDataIdDelete,setOpenDelete } = ControllerCamaraComercio();
     const [open, setOpen] = React.useState(false);
 
     const handleClickDialogOpen = () => {
@@ -38,7 +39,12 @@ export const CamaraComercioPage = () => {
                             <Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /></>
                         :
                         dataCamara == null ? <CircularProgress color="inherit" />
-                            : <TableCamaraComercio datatable={dataCamara!} />
+                            : <TableCamaraComercio
+                                 datatable={dataCamara!}
+                                 onDelete={(valor)=>{
+                                    setDataIdDelete(valor)
+                                    setOpenDelete(true)
+                                 }} />
                     }
                 </Box>
             </Box>
@@ -62,6 +68,33 @@ export const CamaraComercioPage = () => {
                     <Button variant="outlined" onClick={handleClose} >Cancelar</Button>
                     <Button variant="contained" color="primary" onClick={handleClose} autoFocus >
                         Guardar
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* Dialog de eliminacion */}
+            <Dialog
+                open={openDelete}
+                onClose={handleCloseDelete}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                maxWidth={"md"}
+            >
+                <DialogTitle id="alert-dialog-title" justifyContent={'center'} display={"flex"}>
+                     <Typography>  Eliminar camara y comercio </Typography> 
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        <Box justifyContent={'center'} display={"flex"}>
+                            <Eliminar />
+                        </Box>
+                        <Typography>¿Esta seguro que desea eliminar este contacto?</Typography>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button variant="text" onClick={handleCloseDelete} >Cancelar</Button>
+                    <Button variant="contained" color="error" onClick={handleDeleteCamara} autoFocus >
+                        Eliminar
                     </Button>
                 </DialogActions>
             </Dialog>
