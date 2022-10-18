@@ -171,8 +171,6 @@ export const TableUsuario = ({ datatable, onDelete }: props) => {
                                                 </ListItemIcon>
                                                 <Typography color="error">Eliminar usuario</Typography>
                                             </MenuItem>
-
-
                                         </Menu>
                                     </TableCell>
                                 </TableRow>

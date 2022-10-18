@@ -1,43 +1,43 @@
-import { Alert, AlertTitle, Stack } from '@mui/material'
-import React from 'react'
+import { Alert, AlertTitle, Box, Collapse, LinearProgress, Stack } from '@mui/material'
+import React, { useEffect, useRef } from 'react'
+import { ModelAlerta } from './Model/alertaModel'
 type props = {
-  tipo: tipoAlerta  
-  duracion: number
+  data: ModelAlerta
 }
 
-interface alertProps {
-  tipo:tipoAlerta,
-}
+const duracion = 5000
+export const  AlertPortal = ({data }: props) => {
+  const [open, setOpen] = React.useState(data.estado);
+  const [linealBar, setLinealBar] = React.useState(0);
+  //const linealBar = useRef(0)
+  useEffect(() => {
 
-export enum tipoAlerta {
-  warning = "warning",
-  error = "error",
-  info = "info",
-  success = "success",  
-}
-export const AlertPortal = ({duracion,tipo}:props) => {
+    setInterval(function () {      
+      setLinealBar((currentNumber) => currentNumber + 1 )
+    }, 90);
+
+    setTimeout(() => {
+
+       setOpen(false)
+    }, duracion);
+
+    return () => {
+
+    }
+  }, [])
+
   return (
-    <Stack sx={{ width: '100%' }} spacing={2}>
-      {
+
+    <Box justifyContent={"center"} display={'flex'}>
+      <Collapse sx={{ width: '50%' }} in={open}>
+        <Alert severity={data.tipo}>
+          <AlertTitle>{data.msgTitle}</AlertTitle>
+          {data.msgBody}
+        </Alert>
+        <LinearProgress color={data.tipo} variant='determinate' value={linealBar} />
+      </Collapse>
+    </Box>
 
 
-      }
-      <Alert severity="error">
-        <AlertTitle>Error</AlertTitle>
-        This is an error alert — <strong>check it out!</strong>
-      </Alert>
-      <Alert severity="warning">
-        <AlertTitle>Warning</AlertTitle>
-        This is a warning alert — <strong>check it out!</strong>
-      </Alert>
-      <Alert severity="info">
-        <AlertTitle>Info</AlertTitle>
-        This is an info alert — <strong>check it out!</strong>
-      </Alert>
-      <Alert severity="success">
-        <AlertTitle>Success</AlertTitle>
-        This is a success alert — <strong>check it out!</strong>
-      </Alert>
-    </Stack>
   )
 }

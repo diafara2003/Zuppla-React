@@ -2,12 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import { requestAPI } from "../../../../../Provider";
 import { APiMethod, RequestModel, ResponseDTO } from "../../../../../Provider/model/FetchModel";
 import { useFetch } from "../../../../../Provider/useFech";
+
+import { ModelAlerta } from "../../../../../SharedComponents/Alert/View/Model/alertaModel";
 import { ActionUser, CambiarEstadoUsuarioDTO, UsuarioIdDTO, UsuariosDTO } from "../model/usuarioDTO";
 
 export const useUsuario = () => {
 
     const { hasError, data, isLoading, doFetch, setState } = useFetch<UsuariosDTO[] | null>();
     const [openDelete, setOpenDelete] = useState(false);
+    const [alertData, setAlertData] = useState<ModelAlerta>({ msgBody: "", msgTitle: "", tipo: "info", estado: false })
     //const [dataUserSelect, setDataUserSelect] = useState<UsuariosDTO>();
     const dataUserSelect = useRef<UsuariosDTO>()
     const handleCloseDelete = () => {
@@ -75,10 +78,20 @@ export const useUsuario = () => {
         };
         const response = await requestAPI<ResponseDTO>(request)!;
         console.log(response)
+        if(response?.success){
+            let newAlert: ModelAlerta={
+                estado : true,
+                msgBody :response.mensaje,
+                msgTitle:"Exitoso",
+                tipo: "success"
+            };
+            setAlertData(newAlert);
+        }
         setState({ isLoading: false, hasError: '' })
     }
 
     const cambiarEstado = async (_estado: boolean) => {
+        setState({ isLoading: true, hasError: '' })
         let estadoUser: CambiarEstadoUsuarioDTO = {
             usuario: dataUserSelect?.current?.id!,
             activo: _estado
@@ -89,7 +102,17 @@ export const useUsuario = () => {
             data: estadoUser
         };
         const response = await requestAPI<ResponseDTO>(request)!;
+        if(response?.success){
+            let newAlert: ModelAlerta={
+                estado : true,
+                msgBody :"Estado actualizado existosamente",
+                msgTitle:"",
+                tipo: "success"
+            };
+            setAlertData(newAlert);
+        }
         console.log(response)
+        setState({ isLoading: false, hasError: '' })
 
     }
 
@@ -105,6 +128,7 @@ export const useUsuario = () => {
         };
         const response = await requestAPI<ResponseDTO>(request)!;
         console.log(response)
+       
         setState({ isLoading: false, hasError: '' })
     }
     useEffect(() => {
@@ -116,6 +140,6 @@ export const useUsuario = () => {
     }, []);
 
 
-    return { isLoading, data, openDelete, dataUserSelect, handleCloseDelete, handleDeleteUser, actionUser }
+    return { isLoading, data, openDelete, dataUserSelect,alertData, handleCloseDelete, handleDeleteUser, actionUser }
 
 }

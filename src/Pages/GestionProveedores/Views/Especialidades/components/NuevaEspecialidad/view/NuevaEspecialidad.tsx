@@ -18,7 +18,7 @@ export const NuevaEspecialidad = () => {
     return (
         <>
             <Box
-                sx={{ p: 2}}
+                sx={{ p: 2 }}
             >
                 <TextField
                     id="txtbuscarEspecialidad"
@@ -35,7 +35,7 @@ export const NuevaEspecialidad = () => {
                     label="Buscar especialidad" variant="outlined" />
             </Box>
             <Grid container spacing={2}>
-                <Grid item xs={12} sx={{  overflow:'auto',height:'calc(100vh - 254px)'}}>
+                <Grid item xs={12} sx={{ overflow: 'auto', height: 'calc(100vh - 254px)' }}>
                     {especialidades.length == 0 ? null :
 
                         especialidades.map(({ grupo, categoria, especialidad, texto }) => {

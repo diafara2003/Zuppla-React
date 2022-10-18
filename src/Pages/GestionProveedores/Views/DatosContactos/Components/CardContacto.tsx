@@ -12,15 +12,9 @@ type props = {
 
 
 type typeAction = {
-    action: Action;
+    action: string;
     id: number;
 }
-enum Action {
-    Delete = "D",
-    Edit = "E",
-    Send = "S",
-    Pass = "P",
-  }
 
 
 export const CardContacto = ({ contacto, onChangeAction }: props) => {

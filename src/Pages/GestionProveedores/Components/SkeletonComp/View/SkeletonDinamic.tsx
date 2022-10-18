@@ -6,6 +6,7 @@ type props = {
     NoFilas: number,
     Tipo: string // 'FRM' , 'CARD', 'TABLE'
 }
+
 export const SkeletonDinamic = ({ NoColumnas, NoFilas, Tipo }: props) => {
     const switchSkeleton = () => {
         switch (Tipo) {
