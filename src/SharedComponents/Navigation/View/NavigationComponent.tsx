@@ -9,7 +9,8 @@ import { MenuOpen } from '@mui/icons-material';
 
 type props = {
 
-    options: NavigationModel[]
+    options: NavigationModel[],
+    sizeLayout: (sizeL:number) =>void
 
 }
 
@@ -18,7 +19,7 @@ type typeDisplay = "end" | "start" | "none" | "block";
 
 type typeDirection = "right" | "left";
 
-export const NavigationComponent = ({ options }: props) => {
+export const NavigationComponent = ({ options, sizeLayout }: props) => {
 
 
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -38,12 +39,14 @@ export const NavigationComponent = ({ options }: props) => {
         setMenuDisplay((prev) => {
 
             if (prev == "end") {
-                setSizeGrid(0.6);
+                setSizeGrid(0.5);
+                sizeLayout(11.4)
                 setMenuText("none");
                 return "start";
             }
             else {
-                setSizeGrid(2.2);
+                setSizeGrid(2.1);
+                sizeLayout(9.8)
                 setMenuText("block");
                 return "end";
             }
@@ -64,7 +67,7 @@ export const NavigationComponent = ({ options }: props) => {
                 <Box display={"flex"} justifyContent={displayMenu} sx={{ paddingRight: 1, pt: 1.5 }}
                     ref={containerRef}
                 >
-                    <Fab onClick={hanbleClickMenu} size='small' sx={{ background: '#4DADCE', boxShadow: '0px 8px 8px -1px rgba(0, 0, 0, 0.08), 0px 10px 28px rgba(0, 0, 0, 0.02), 0px 2px 20px rgba(0, 0, 0, 0.04);' }}>
+                    <Fab onClick={hanbleClickMenu} size='small' sx={{ background: '#0CBBE2', boxShadow: '0px 8px 8px -1px rgba(0, 0, 0, 0.08), 0px 10px 28px rgba(0, 0, 0, 0.02), 0px 2px 20px rgba(0, 0, 0, 0.04);' }}>
                         <MenuOpen />
 
                     </Fab>

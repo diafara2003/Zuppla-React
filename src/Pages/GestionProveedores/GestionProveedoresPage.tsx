@@ -11,27 +11,33 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import FolderOpenTwoToneIcon from '@mui/icons-material/FolderOpenTwoTone';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { LogoEmpresa } from './Components/LogoProveedor/View/LogoEmpresa';
+import { useState } from 'react';
 
 
 const drawerWidth = 280;
 
 export const GestionProveedoresPage = () => {
+    const [sizeLayout, setSizeLayout] = useState(9.7)
     return (
         <>
             <Grid container spacing={2} >
                 {/* <Grid item xs={2.3} > */}
-                    {/* <Box sx={{ m: 0, p: 1, borderRight: "1px solid #ebebeb" }}>
+                {/* <Box sx={{ m: 0, p: 1, borderRight: "1px solid #ebebeb" }}>
                         <LogoEmpresa />
                     </Box>
                     <Divider /> */}
-                    <NavigationComponent options={rutas} />
+                <NavigationComponent
+                    options={rutas}
+                    sizeLayout={(size) => {
+                        setSizeLayout(size)
+                    }} />
                 {/* </Grid> */}
-                <Grid item xs={9.5}  sx={{ paddingLeft: '0px !important', backgroundColor:'white',mr:"10px", ml:'10px' }}   >
+                <Grid item xs={sizeLayout} sx={{ paddingLeft: '0px !important', backgroundColor: 'white' }}   >
                     <RoutesGestionProveedores />
                 </Grid>
             </Grid>
 
-           
+
         </>
     )
 }
