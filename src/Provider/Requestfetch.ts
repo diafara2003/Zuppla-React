@@ -29,6 +29,8 @@ export async function requestAPI<TResponse>(request: RequestModel): Promise<TRes
     if (request.data != null)
         Init.body = JSON.stringify(request.data);
 
+
+ ///       Init.mode="no-cors";
     try {
         const response: Response = await fetch(`${URLBase}/${request.metodo}`, Init);
 

@@ -17,11 +17,11 @@ import { useState } from 'react';
 const drawerWidth = 280;
 
 export const GestionProveedoresPage = () => {
-    const [sizeLayout, setSizeLayout] = useState(9.7)
+    const [sizeLayout, setSizeLayout] = useState({sm: 7, lg: 10, md: 10, xs: 7})
     return (
         <>
             <Grid container spacing={2} >
-                {/* <Grid item xs={2.3} > */}
+              
                 {/* <Box sx={{ m: 0, p: 1, borderRight: "1px solid #ebebeb" }}>
                         <LogoEmpresa />
                     </Box>
@@ -30,9 +30,8 @@ export const GestionProveedoresPage = () => {
                     options={rutas}
                     sizeLayout={(size) => {
                         setSizeLayout(size)
-                    }} />
-                {/* </Grid> */}
-                <Grid item xs={sizeLayout} sx={{ paddingLeft: '0px !important', backgroundColor: 'white' }}   >
+                    }} />               
+                <Grid item {...sizeLayout} sx={{ paddingLeft: '0px !important', backgroundColor: 'white' }}   >
                     <RoutesGestionProveedores />
                 </Grid>
             </Grid>

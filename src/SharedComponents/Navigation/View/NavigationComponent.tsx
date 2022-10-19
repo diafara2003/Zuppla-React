@@ -10,12 +10,17 @@ import { MenuOpen } from '@mui/icons-material';
 type props = {
 
     options: NavigationModel[],
-    sizeLayout: (sizeL:number) =>void
+    sizeLayout: (sizeL: tamLay) => void
 
 }
+interface tamLay {
+    sm: number,
+    lg: number,
+    md: number
+    xs: number
+}
 
-
-type typeDisplay = "end" | "start" | "none" | "block";
+type typeDisplay = "end" | "start" | "none" | "block" | "center";
 
 type typeDirection = "right" | "left";
 
@@ -23,7 +28,9 @@ export const NavigationComponent = ({ options, sizeLayout }: props) => {
 
 
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const [sizeGrid, setSizeGrid] = useState(2.2);
+    const [sizeGrid, setSizeGrid] = useState({
+        sm: 3.2, lg: 2.0, md: 3.2, xs: 3.0
+    });
     const [displayMenu, setMenuDisplay] = useState<typeDisplay>("end");
     const [displayText, setMenuText] = useState<typeDisplay>("end");
     const containerRef = useRef(null);
@@ -39,26 +46,26 @@ export const NavigationComponent = ({ options, sizeLayout }: props) => {
         setMenuDisplay((prev) => {
 
             if (prev == "end") {
-                setSizeGrid(0.5);
-                sizeLayout(11.4)
+                setSizeGrid({ sm: 3, lg: 0.6, md: 0.6, xs: 3 });
+                sizeLayout({ sm: 8.9, lg: 11.3, md: 11.3, xs: 8.9 })
                 setMenuText("none");
-                return "start";
+                return "center";
             }
             else {
-                setSizeGrid(2.1);
-                sizeLayout(9.8)
+                setSizeGrid({ sm: 3.2, lg: 2.0, md: 3.2, xs: 3.0 });
+                sizeLayout({ sm: 7, lg: 10, md: 10, xs: 7 })
                 setMenuText("block");
                 return "end";
             }
         });
     }
     return (
-        <Grid item xs={sizeGrid}>
+        <Grid item spacing={0} {...sizeGrid} >
             <Box sx={{
                 width: '100%',
                 // borderRight: "1px solid #ebebeb",
                 height: 'calc(100vh - 82px)',
-                overflow: "auto",
+                overflow: "hidden",
                 background: "#FBFBFB"
 
 
@@ -84,6 +91,7 @@ export const NavigationComponent = ({ options, sizeLayout }: props) => {
                                     <ListItem disablePadding>
                                         <ListItemButton
                                             key={"ListItemButton" + path}
+                                            className='ListJk'
                                             selected={selectedIndex === index}
                                             onClick={(event) => handleListItemClick(event, index)}
                                         >

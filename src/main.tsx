@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { theme } from './theme/theme'
 import { AppProveedor } from './AppProveedor'
+import './styles/scroll.css'
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

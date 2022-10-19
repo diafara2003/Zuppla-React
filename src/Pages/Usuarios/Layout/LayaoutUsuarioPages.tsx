@@ -7,19 +7,15 @@ import RoutesGestionUsuario, { rutas } from '../router/router';
 
 
 export const LayaoutUsuarioPages = () => {
-    const [sizeLayout, setSizeLayout] = useState(9.7)
+    const [sizeLayout, setSizeLayout] = useState({sm: 7, lg: 10, md: 10, xs: 7})
     return (
         <Grid container spacing={2} >
-
-
-            <NavigationComponent 
+            <NavigationComponent
                 options={rutas}
-                sizeLayout={(size)=>{
-                    console.log(size)
+                sizeLayout={(size) => {                    
                     setSizeLayout(size)
-                }}  />
-
-            <Grid item xs={sizeLayout} sx={{ paddingLeft: '0px !important' }}   >
+                }} />
+            <Grid item {...sizeLayout} sx={{ paddingLeft: '0px !important' }}   >
                 <RoutesGestionUsuario />
             </Grid>
         </Grid>
