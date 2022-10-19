@@ -22,7 +22,9 @@ export const NavigationComponent = ({ options }: props) => {
 
 
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const [sizeGrid, setSizeGrid] = useState(2.2);
+    const [sizeGrid, setSizeGrid] = useState({
+        sm: 3.2, lg: 2.0, md: 3.2, xs: 3.0
+    });
     const [displayMenu, setMenuDisplay] = useState<typeDisplay>("end");
     const [displayText, setMenuText] = useState<typeDisplay>("end");
     const containerRef = useRef(null);
@@ -38,30 +40,30 @@ export const NavigationComponent = ({ options }: props) => {
         setMenuDisplay((prev) => {
 
             if (prev == "end") {
-                setSizeGrid(0.55);
+                setSizeGrid( {sm: 3, lg: 0.6, md: 0.6, xs: 3});
                 setMenuText("none");
                 return "center";
             }
             else {
-                setSizeGrid(2.2);
+                setSizeGrid({  sm: 3.2, lg: 2.0, md: 3.2, xs: 3.0});
                 setMenuText("block");
                 return "end";
             }
         });
     }
     return (
-        <Grid item xs={sizeGrid}>
+        <Grid item spacing={0} {...sizeGrid} >
             <Box sx={{
                 width: '100%',
                 // borderRight: "1px solid #ebebeb",
                 height: 'calc(100vh - 82px)',
-                overflow: "auto",
+                overflow: "hidden",
                 background: "#FBFBFB"
 
 
             }}>
 
-                <Box display={"flex"} justifyContent={displayMenu} sx={{ paddingRight: 1, pt:1.5 } }
+                <Box display={"flex"} justifyContent={displayMenu} sx={{ paddingRight: 1, pt: 1.5 }}
                     ref={containerRef}
                 >
                     <Fab onClick={hanbleClickMenu} size='small' sx={{ background: '#4DADCE', boxShadow: '0px 8px 8px -1px rgba(0, 0, 0, 0.08), 0px 10px 28px rgba(0, 0, 0, 0.02), 0px 2px 20px rgba(0, 0, 0, 0.04);' }}>
@@ -89,7 +91,7 @@ export const NavigationComponent = ({ options }: props) => {
                                                 <Icono />
 
                                             </ListItemIcon>
-                                            <ListItemText sx={{display:displayText}}>
+                                            <ListItemText sx={{ display: displayText }}>
                                                 <Typography variant='body2'> {texto} </Typography>
                                             </ListItemText>
 
