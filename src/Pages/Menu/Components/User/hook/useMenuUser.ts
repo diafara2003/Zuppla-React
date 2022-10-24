@@ -37,7 +37,7 @@ export const useMenuUser = () => {
         
 
         return {
-            sx: { color, background: '#ebebeb' },
+            sx: { color:'#FBFBFB', background: '#003972' },
             children: `${split[0][0]}${split[1][0]}`,
         };
     }
