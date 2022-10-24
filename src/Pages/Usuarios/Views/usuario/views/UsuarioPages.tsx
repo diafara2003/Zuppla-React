@@ -15,7 +15,7 @@ import { FrmNewUser } from '../components/view/FrmNewUser';
 export const UsuarioPages = () => {
 
     const { data, isLoading, dataUserSelect, alertData, handleCloseDelete, openDelete, handleDeleteUser, actionUser } = useUsuario();
-    const [open, setOpen] = useState(false);
+    const [openD, setOpen] = useState(false);
     const handleClickDialogOpen = () => {
         setOpen(true);
     };
@@ -28,7 +28,9 @@ export const UsuarioPages = () => {
             <HeaderComponent title={"Usuarios"} />
             {
                 isLoading ?
-                    <SkeletonDinamic NoColumnas={1} NoFilas={4} Tipo={'TABLE'} />
+                    <Box mt={6}>
+                        <SkeletonDinamic NoColumnas={1} NoFilas={4} Tipo={'TABLE'} />
+                    </Box>
                     :
                     <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)', mr: "10px", ml: '10px' }}>
                         <AlertPortal data={alertData} />
@@ -68,7 +70,7 @@ export const UsuarioPages = () => {
 
             }
             {/* Dialog insercion */}
-            <Dialog
+            {/* <Dialog
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
@@ -80,7 +82,7 @@ export const UsuarioPages = () => {
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        <FrmNewUser />
+                        
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -89,7 +91,14 @@ export const UsuarioPages = () => {
                         Guardar
                     </Button>
                 </DialogActions>
-            </Dialog>
+            </Dialog> */}
+            <FrmNewUser open={openD}
+                newUser={(dataUser) => {
+                    console.log(dataUser)
+                }}
+                close={(close) => {
+                    setOpen(close);
+                }} />
 
 
             {/* Dialog de eliminacion */}

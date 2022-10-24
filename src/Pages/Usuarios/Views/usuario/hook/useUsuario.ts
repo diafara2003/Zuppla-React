@@ -131,6 +131,9 @@ export const useUsuario = () => {
        
         setState({ isLoading: false, hasError: '' })
     }
+    const crearUsuarioNuevo =()=>{
+        
+    }
     useEffect(() => {
         doFetch({
             metodo: "Usuario?tipo=p",
