@@ -6,7 +6,7 @@ import { useMenu } from '../hook/useMenu';
 
 export const MenuOption = () => {
 
-  const { pages, isLoading, handleNavigate } = useMenu();
+  const { pages, isLoading, menuActived, handleNavigate } = useMenu();
 
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -36,9 +36,10 @@ export const MenuOption = () => {
             aria-controls={`id${mencodigo}`}
             aria-haspopup="true"
             aria-expanded={false}
+
             endIcon={tieneHijos > 0 ? <ExpandMore color="primary" /> : null}
-            onClick={tieneHijos > 0 ? () => { } : () => { handleNavigate(ubicacion) }}
-            sx={{ color: 'white' }}
+            onClick={tieneHijos > 0 ? () => { } : () => { handleNavigate(ubicacion, mencodigo) }}
+            sx={{ color: menuActived == mencodigo ? '#9ACAF5' : 'white' }}
           >
             <Typography
               // fontSize="0.75rem"

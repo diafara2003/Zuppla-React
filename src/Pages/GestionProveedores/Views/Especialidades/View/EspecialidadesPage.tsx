@@ -7,6 +7,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import { useTableEspecialidad } from "../hook/useTableEspecialidad";
 import { TableEspecialidad } from "../components/TableEspecialidad/view/TableEspecialidad";
 import { NuevaEspecialidad } from "../components/NuevaEspecialidad";
+import { SinInformacion } from '../../../Components/ImgComponents/View/SinInformacion';
 
 export const EspecialidadesPage = () => {
 
@@ -40,7 +41,11 @@ export const EspecialidadesPage = () => {
 
 
                 <Box m={"10px"} mt={"25px"}>
-                    {data == null ? <CircularProgress color="inherit" /> : <TableEspecialidad datatable={data!} />}
+                    {data == null ? <CircularProgress color="inherit" /> :
+                        data.length == 0 ? <Box justifyContent={'center'} display={'flex'}>
+                            <SinInformacion />
+                        </Box>
+                            : <TableEspecialidad datatable={data!} />}
 
                 </Box>
 

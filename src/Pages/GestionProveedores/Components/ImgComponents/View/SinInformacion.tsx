@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const SinInformacion = () => {
+export const  SinInformacion = () => {
     return (
         <img
             src='../src/img/Estados/SinInformacion.png'

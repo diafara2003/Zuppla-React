@@ -12,7 +12,7 @@ export const useMenu = () => {
   const [pages, setPages] = useState<MenuDTO[]>([]);
   const navigate = useNavigate();
   const { removeSession } = useContext(AuthContext);
-
+  const [menuActived, setMenuActived] = useState("-1");
 
 
   const getMenus = async () => {
@@ -45,13 +45,16 @@ export const useMenu = () => {
   }, [])
 
 
-  const handleNavigate = (ubicacion: string) => {
+  const handleNavigate = (ubicacion: string, mencodigo: string) => {
+    setMenuActived(() => mencodigo);
+    console.log(`menmodigo ${mencodigo}`);
     navigate(ubicacion, { replace: true })
   };
 
   return {
     pages,
     isLoading,
+    menuActived,
     handleNavigate
   };
 

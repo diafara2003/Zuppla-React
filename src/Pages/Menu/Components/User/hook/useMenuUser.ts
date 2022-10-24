@@ -30,10 +30,15 @@ export const useMenuUser = () => {
     const stringAvatar = (name: string) => {
 
         if (name == "") return {}
+        let split = name.split(' ');
+
+        if (split.length == 1) 
+            split.push(' ');
+        
 
         return {
             sx: { color, background: '#ebebeb' },
-            children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+            children: `${split[0][0]}${split[1][0]}`,
         };
     }
 
@@ -46,7 +51,7 @@ export const useMenuUser = () => {
     }
 
     return {
-        user, signOut,stringAvatar
+        user, signOut, stringAvatar
 
     };
 }
