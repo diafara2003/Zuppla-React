@@ -10,7 +10,6 @@ export interface UserSessionModel {
     logo: string;
     nombreEmpresa: string;
     nombreUsuario: string;
-    tipo: string;
     userCorreo: string;
 }
 

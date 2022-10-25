@@ -12,13 +12,15 @@ export const theme = createTheme({
         },
         fontFamily: 'Nunito, Arial',
         fontSize: 13,
-    
-        
+        h6: {
+            color: '#1B344C'
+        }
+
     },
     palette: {
         primary: {
             main: '#1E62A1',
-        
+
         },
         neutral: {
             main: 'black'
@@ -29,14 +31,14 @@ export const theme = createTheme({
         error: {
             main: '#D14343'
         },
-        success:{
-            main:'#0CBBE2'
+        success: {
+            main: '#0CBBE2'
         }
     },
 
     components: {
 
-        
+
         MuiCssBaseline: {
             styleOverrides: `
               @font-face {

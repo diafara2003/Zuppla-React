@@ -10,7 +10,7 @@ export const useTableEspecialidad = () => {
 
     const { data, isLoading, doFetch } = useFetch<EspecialidadDTO[] | null>();
     const { state } = useContext(AuthContext);
-    const [openDialog, setOpenDialog] = useState(false);
+    const [openDialog, setOpenDialog] = useState(true);
 
     useEffect(() => {
 

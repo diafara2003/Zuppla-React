@@ -11,9 +11,10 @@ export const UserMenu = () => {
     const { user, signOut, stringAvatar } = useMenuUser();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
-   
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
+
+    const handleClick = (event: React.MouseEvent<HTMLElement> ) => {
+        if (event == undefined) return;
+        setAnchorEl((event as React.MouseEvent<HTMLElement>).currentTarget);
     };
     const handleClose = () => {
         setAnchorEl(null);
@@ -71,12 +72,12 @@ export const UserMenu = () => {
                             <Typography sx={{ width: '305px', fontSize: 13 }}
                                 color="text.primary"
                                 variant="body1" noWrap={true}>{user.nombreUsuario}</Typography>
-                            <Typography sx={{ width: '305px',fontSize: 9 }}
-                                
+                            <Typography sx={{ width: '305px', fontSize: 9 }}
+
                                 variant="caption" noWrap={true}
                                 color="text.secondary">
                                 {user.nombreEmpresa}
-                                
+
                             </Typography>
                         </Box>
 
