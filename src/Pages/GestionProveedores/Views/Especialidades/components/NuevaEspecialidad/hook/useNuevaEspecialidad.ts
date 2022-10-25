@@ -16,10 +16,16 @@ export const useNuevaEspecialidad = () => {
 
     }, []);
 
+    const handleCLick = (data: especialidadGrupoDTO, isSelected: boolean) => {
+        
+
+    }
+
 
     return {
 
         especialidades: data ?? [],
-        isLoading
+        isLoading,
+        handleCLick
     }
 }
