@@ -1,8 +1,11 @@
 import { RemoveCircleOutlineOutlined } from '@mui/icons-material'
 import { Box, Typography, List, ListItem, ListItemButton, ListItemText, Divider } from '@mui/material'
-import React from 'react'
+import { useAgregarEspecialidad } from '../hook/useAgregarEspecialidad';
 
 export const AgregarEspecialidad = () => {
+
+    const { handleDelete, state } = useAgregarEspecialidad();
+    
     return (
         <>
             <Box>
@@ -13,17 +16,28 @@ export const AgregarEspecialidad = () => {
                 {/* <SinInformacion /> */}
                 <List sx={{
                     width: '100%',
-                    maxHeight: 300,
+                   
                     overflow: 'auto',
                 }}>
-                    <ListItem sx={{ p: 0 }}>
-                        <ListItemButton sx={{ p: 0.5 }}>
-                            <ListItemText primary="Dibujante" />
-                            <RemoveCircleOutlineOutlined color="primary" />
-                            <Divider />
-                        </ListItemButton>
-                    </ListItem>
-                    <Divider />
+
+                    {
+
+                        state.length == 0 ? null :
+                            state.map(c => {
+                                const texto = `${c.grupoTexto} / ${c.categoriaTexto} / ${c.nombre}`;
+
+                                return (<>
+                                    <ListItem sx={{ p: 0 }}>
+                                        <ListItemButton sx={{ p: 0.5 }}>
+                                            <ListItemText primary={texto} />
+                                            <RemoveCircleOutlineOutlined sx={{pl:0.5}} color="primary" onClick={() => handleDelete(c.id)} />
+                                            <Divider />
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <Divider />
+                                </>)
+                            })
+                    }
                 </List>
             </Box>
         </>

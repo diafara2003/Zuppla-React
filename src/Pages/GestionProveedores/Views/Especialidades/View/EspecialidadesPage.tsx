@@ -1,17 +1,18 @@
-import { Add } from "@mui/icons-material";
+import { Add, KeyboardBackspaceOutlined } from "@mui/icons-material";
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, InputAdornment, TextField, Typography } from '@mui/material';
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 // import './App.css'
 import HistoryIcon from '@mui/icons-material/History';
-import { useTableEspecialidad } from "../hook/useTableEspecialidad";
+import { useEspecialidadPages } from "../hook/useEspecialidadPages";
 import { TableEspecialidad } from "../components/TableEspecialidad/view/TableEspecialidad";
 import { NuevaEspecialidad } from "../components/NuevaEspecialidad";
 import { SinInformacion } from '../../../Components/ImgComponents/View/SinInformacion';
+import { EspecialidadProvider } from "../components/Context";
 
 export const EspecialidadesPage = () => {
 
-    const { data, openDialog, handleEspecialidad, setOpenDialog } = useTableEspecialidad();
+    const { data, openNew, handleDialog } = useEspecialidadPages();
 
     return (
         <>
@@ -20,45 +21,49 @@ export const EspecialidadesPage = () => {
 
             <Box sx={{ m: '1px', background: 'white', }}>
 
+                <Box sx={{ height: 'calc(100vh - 150px)' }}>
+                    <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={"10px"}>
+                        {openNew
+                            ? <Button onClick={handleDialog} sx={{ ml: "20px" }} variant="text" > <KeyboardBackspaceOutlined sx={{ mr: "8px" }} />Regresar</Button>
+                            : <>
+                                <TextField
+                                    id="outlined-basic"
+                                    size='small'
+                                    placeholder='Buscar...'
+                                    sx={{ width: "400px" }}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <SearchIcon />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                    label="Buscar" variant="outlined" />
+                                <Button onClick={handleDialog} sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar especialidad</Button>
+                                <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                            </>
+                        }
 
-                {openDialog ?
-                    <Box m={"10px"} mt={"25px"}>
-                        <NuevaEspecialidad />
+
                     </Box>
-                    :
-                    <Box sx={{ height: 'calc(100vh - 150px)' }}>
-                        <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={"10px"}>
 
-                            <TextField
-                                id="outlined-basic"
-                                size='small'
-                                placeholder='Buscar...'
-                                sx={{ width: "400px" }}
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <SearchIcon />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                label="Buscar" variant="outlined" />
-                            <Button onClick={handleEspecialidad} sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar especialidad</Button>
-                            <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                        </Box>
+                    <EspecialidadProvider>
+                        {openNew
+                            ? <Box m={"10px"} mt={"25px"}>
+                                <NuevaEspecialidad />
+                            </Box>
+                            : <Box m={"10px"} mt={"25px"}>
+                                {data == null ? <CircularProgress color="inherit" /> :
+                                    data.length == 0 ? <Box justifyContent={'center'} display={'flex'}>
+                                        <SinInformacion />
+                                    </Box>
+                                        : <TableEspecialidad datatable={data!} />}
 
+                            </Box>
 
-
-
-                        <Box m={"10px"} mt={"25px"}>
-                            {data == null ? <CircularProgress color="inherit" /> :
-                                data.length == 0 ? <Box justifyContent={'center'} display={'flex'}>
-                                    <SinInformacion />
-                                </Box>
-                                    : <TableEspecialidad datatable={data!} />}
-
-                        </Box>
-                    </Box>
-                }
+                        }
+                    </EspecialidadProvider>
+                </Box>
 
             </Box>
 

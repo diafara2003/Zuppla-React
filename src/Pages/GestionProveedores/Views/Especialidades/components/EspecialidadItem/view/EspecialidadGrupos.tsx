@@ -1,8 +1,8 @@
 import { Add, CheckBox, ChevronRightOutlined, ExpandMoreOutlined, RemoveOutlined, ShowChart } from "@mui/icons-material"
 import { Typography } from "@mui/material"
 import { Box } from "@mui/system"
-import { especialidadGrupoDTO } from "../../NuevaEspecialidad/model/especialidadGrupoDTO"
-import { useShowItem } from "../hook/useShowItem"
+import { especialidadGrupoDTO } from "../../NuevaEspecialidad/model"
+import { useShowItem } from "../hook"
 import { EspecialidadCategoria } from './EspecialidadCategoria';
 
 type props = {
@@ -13,13 +13,14 @@ type props = {
 
 export const EspecialidadGrupo = ({ grupo, categorias }: props) => {
 
+    const _filter = (id: number) => categorias.filter(c => c.grupo == id && c.especialidad == 0)
 
-    const { clickGrupo, show, info } = useShowItem(categorias);
+    const { Handleclick, show, info } = useShowItem({ data: categorias, handleClick: _filter });
 
     return (
         <Box key={`con-grupo-${grupo.grupo}`}>
             <Box display={"flex"} p={0.5} key={`flex-grupo-${grupo.grupo}`}
-                onClick={() => clickGrupo(grupo.grupo)}
+                onClick={() => Handleclick(grupo.grupo)}
                 sx={{
                     "&:hover": {
                         backgroundColor: "#D4E4F1",
@@ -40,7 +41,7 @@ export const EspecialidadGrupo = ({ grupo, categorias }: props) => {
                     <EspecialidadCategoria
                         key={`espe-cat-${c.categoria}-index-${i}`}
                         categoria={c}
-                        grupo={grupo.grupo}
+                        grupo={grupo}
                         especialidades={categorias.filter(e => e.grupo == grupo.grupo
                             && e.categoria == c.categoria
                             && e.especialidad > 0

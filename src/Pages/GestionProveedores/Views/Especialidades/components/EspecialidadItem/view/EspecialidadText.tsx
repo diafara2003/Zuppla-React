@@ -1,25 +1,29 @@
 
 import { Checkbox, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { especialidadGrupoDTO } from '../../NuevaEspecialidad/model/especialidadGrupoDTO'
-import { useEspecialidadText } from '../hook/useEspecialidadText';
-import { useShowItem } from '../hook/useShowItem';
+import { especialidadGrupoDTO } from '../../NuevaEspecialidad/model'
+import { useEspecialidadText } from '../hook';
 
+type especialidadType = {
+    id: number, texto: string
+}
 
 type props = {
-    categoria: number
+    grupo: especialidadType
+    categoria: especialidadType
     especialidad: especialidadGrupoDTO
 
 
 }
 
-export const EspecialidadText = ({ categoria, especialidad }: props) => {
+export const EspecialidadText = ({ categoria, especialidad, grupo }: props) => {
 
-    const { texto } = especialidad;
-    const { checked, handleCLick } = useEspecialidadText();
+
+    const { checked, handleCLick, texto } = useEspecialidadText({ especialidad, categoriaTexto: categoria.texto, grupoTexto: grupo.texto });
+
     return (
         <Box
-            onClick={handleCLick}
+            onClick={() => handleCLick(especialidad.especialidad)}
             key={`cont-cat-${categoria}`}
             display={"flex"}
             alignItems={"center"}
@@ -33,7 +37,7 @@ export const EspecialidadText = ({ categoria, especialidad }: props) => {
         >
             <Checkbox
                 checked={checked}
-                sx={{p:0.5}}
+                sx={{ p: 0.5 }}
                 color="primary" />
             <Typography sx={{ color: 'rgba(8, 21, 36, 0.87);' }}>{texto}</Typography>
         </Box>

@@ -60,7 +60,7 @@ export const NavigationComponent = ({ options, sizeLayout }: props) => {
         });
     }
     return (
-        <Grid item spacing={0} {...sizeGrid} >
+        <Grid container item spacing={0} {...sizeGrid} >
             <Box sx={{
                 width: '100%',
                 // borderRight: "1px solid #ebebeb",

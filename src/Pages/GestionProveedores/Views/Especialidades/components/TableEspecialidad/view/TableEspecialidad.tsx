@@ -1,6 +1,6 @@
 import { DeleteOutline } from "@mui/icons-material";
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
-import { useState } from "react";
+import { useTableEspecialdiad } from "../hook/useTableEspecialidad";
 import { EspecialidadDTO } from "../model/EspecialidadDTO";
 
 type props = {
@@ -9,7 +9,7 @@ type props = {
 
 export const TableEspecialidad = ({ datatable }: props) => {
 
-
+const {state} = useTableEspecialdiad(datatable);
     return (
 
         <TableContainer sx={{ maxHeight: 440 }}>

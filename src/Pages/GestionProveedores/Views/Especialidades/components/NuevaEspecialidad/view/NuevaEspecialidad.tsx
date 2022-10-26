@@ -5,6 +5,7 @@ import { SkeletonDinamic } from '../../../../../Components/SkeletonComp/View/Ske
 import { AgregarEspecialidad } from '../../AgregarEspecialidad/view/AgregarEspecialidad';
 import { ContainerEspecialidad } from '../../EspecialidadItem/view/ContainerEspecialidad';
 
+
 export const NuevaEspecialidad = () => {
     const { isLoading, especialidades, handleCLick } = useNuevaEspecialidad();
 
@@ -15,6 +16,7 @@ export const NuevaEspecialidad = () => {
                     <SkeletonDinamic NoColumnas={1} NoFilas={5} Tipo={"TABLE"} />
                     :
                     <Box sx={{ flexGrow: 1 }} p={2} >
+
                         <Grid container spacing={2}>
                             <Grid item xs={11}>
                                 <TextField
@@ -36,13 +38,16 @@ export const NuevaEspecialidad = () => {
                             </Grid>
                         </Grid>
                         <Grid container spacing={2} mt={1}>
-                            <Grid item xs={6} sx={{ overflow: 'auto', height: 'calc(100vh - 268px)' }}>
+
+                            <Grid item xs={6} sx={{ overflow: 'auto', height: 'calc(100vh - 300px)' }}>
                                 {especialidades.length == 0 ? null : <ContainerEspecialidad data={especialidades} />}
                             </Grid>
-                            <Grid item xs={6} sx={{ overflow: 'auto', maxheight: 'calc(100vh - 254px)' }}>
+                            <Grid item xs={6} sx={{ overflow: 'auto', maxheight: 'calc(100vh - 300px)' }}>
                                 <AgregarEspecialidad />
                             </Grid>
+
                         </Grid>
+
                     </Box>
             }
         </>

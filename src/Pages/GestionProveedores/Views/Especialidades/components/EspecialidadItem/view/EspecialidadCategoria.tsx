@@ -1,12 +1,12 @@
-import { Add, CheckBox, ChevronRightOutlined, ExpandMoreOutlined, RemoveOutlined, ShowChart } from "@mui/icons-material"
+import { Add, CheckBox, ChevronRightOutlined, ExpandMoreOutlined } from "@mui/icons-material"
 import { Typography } from "@mui/material"
 import { Box } from "@mui/system"
-import { especialidadGrupoDTO } from "../../NuevaEspecialidad/model/especialidadGrupoDTO"
-import { useShowItem } from "../hook/useShowItem"
+import { especialidadGrupoDTO } from "../../NuevaEspecialidad/model"
+import { useShowItem } from "../hook"
 import { EspecialidadText } from "./EspecialidadText"
 
 type props = {
-    grupo: number;
+    grupo: especialidadGrupoDTO;
     categoria: especialidadGrupoDTO,
     especialidades: especialidadGrupoDTO[],
 
@@ -14,15 +14,16 @@ type props = {
 
 export const EspecialidadCategoria = ({ grupo, categoria, especialidades }: props) => {
 
+    const _filter = (id: number) => especialidades.filter(c => c.categoria == id && c.especialidad > 0);
 
     const { texto } = categoria;
-    const { clickCategoria, show, info } = useShowItem(especialidades);
+    const { Handleclick, show, info } = useShowItem({ data: especialidades, handleClick: _filter });
 
     return (
 
         <Box >
             <Box
-                onClick={() => clickCategoria(categoria.categoria)}
+                onClick={() => Handleclick(categoria.categoria)}
                 display={"flex"}
                 pl={2.5}
                 pt={0.5}
@@ -45,7 +46,8 @@ export const EspecialidadCategoria = ({ grupo, categoria, especialidades }: prop
                 info.map((e, i) =>
                     <EspecialidadText
                         key={`espe-espe-${e.especialidad}-index-${i}`}
-                        categoria={e.categoria}
+                        categoria={{ id: e.categoria, texto: e.texto }}
+                        grupo={{ id: grupo.grupo, texto: grupo.texto }}
                         especialidad={e} />)
                 : null
             }

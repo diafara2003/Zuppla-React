@@ -1,5 +1,5 @@
-import { Box } from '@mui/material'
-import { especialidadGrupoDTO } from '../../NuevaEspecialidad/model/especialidadGrupoDTO'
+
+import { especialidadGrupoDTO } from '../../NuevaEspecialidad/model'
 import { EspecialidadGrupo } from './EspecialidadGrupos';
 
 
@@ -11,7 +11,7 @@ type props = {
 export const ContainerEspecialidad = ({ data }: props) => {
 
   return (
-    <Box>
+    <>
       {
         data.filter(c => c.categoria == 0).map(g => {
           const categorias = data.filter(c => c.grupo == g.grupo && c.categoria > 0);
@@ -21,7 +21,7 @@ export const ContainerEspecialidad = ({ data }: props) => {
             grupo={g}
             categorias={categorias} />
         })}
-    </Box>
+    </>
   )
 
 

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { especialidadGrupoDTO } from "../../NuevaEspecialidad/model/especialidadGrupoDTO"
+import { especialidadGrupoDTO } from "../../NuevaEspecialidad/model"
 
 type props = {
     data: especialidadGrupoDTO,
