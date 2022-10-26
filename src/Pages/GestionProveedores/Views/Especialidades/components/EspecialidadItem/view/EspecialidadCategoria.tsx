@@ -1,4 +1,5 @@
-import { Add, CheckBox, ChevronRightOutlined, ExpandMoreOutlined } from "@mui/icons-material"
+import { ChevronRightOutlined, ExpandMoreOutlined } from "@mui/icons-material"
+import Collapse from '@mui/material/Collapse';
 import { Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import { especialidadGrupoDTO } from "../../NuevaEspecialidad/model"
@@ -41,16 +42,23 @@ export const EspecialidadCategoria = ({ grupo, categoria, especialidades }: prop
 
                 <Typography sx={{ color: '#1E62A1', fontWeight: 500 }}>{texto}</Typography>
             </Box>
-            {show && info.length > 0
-                ?
-                info.map((e, i) =>
-                    <EspecialidadText
-                        key={`espe-espe-${e.especialidad}-index-${i}`}
-                        categoria={{ id: e.categoria, texto: e.texto }}
-                        grupo={{ id: grupo.grupo, texto: grupo.texto }}
-                        especialidad={e} />)
-                : null
-            }
+
+            <Collapse in={show}>
+                {show && info.length > 0
+                    ?
+
+                    info.map((e, i) =>
+                        <EspecialidadText
+                            key={`espe-espe-${e.especialidad}-index-${i}`}
+                            categoria={{ id: e.categoria, texto: e.texto }}
+                            grupo={{ id: grupo.grupo, texto: grupo.texto }}
+                            especialidad={e} />)
+
+                    : null
+                }
+            </Collapse>
+
+
         </Box>
 
 

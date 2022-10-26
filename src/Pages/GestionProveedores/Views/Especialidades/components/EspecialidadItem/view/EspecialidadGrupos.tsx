@@ -4,7 +4,7 @@ import { Box } from "@mui/system"
 import { especialidadGrupoDTO } from "../../NuevaEspecialidad/model"
 import { useShowItem } from "../hook"
 import { EspecialidadCategoria } from './EspecialidadCategoria';
-
+import Collapse from '@mui/material/Collapse';
 type props = {
     grupo: especialidadGrupoDTO,
     categorias: especialidadGrupoDTO[],
@@ -35,19 +35,21 @@ export const EspecialidadGrupo = ({ grupo, categorias }: props) => {
 
                 <Typography sx={{ color: '#1B344C', fontWeight: 600, paddingBottom: '0' }}>{grupo.texto}</Typography>
             </Box>
-            {show && info.length > 0
-                ?
-                info.map((c, i) =>
-                    <EspecialidadCategoria
-                        key={`espe-cat-${c.categoria}-index-${i}`}
-                        categoria={c}
-                        grupo={grupo}
-                        especialidades={categorias.filter(e => e.grupo == grupo.grupo
-                            && e.categoria == c.categoria
-                            && e.especialidad > 0
-                        )} />)
-                : null
-            }
+            <Collapse in={show}>
+                {show && info.length > 0
+                    ?
+                    info.map((c, i) =>
+                        <EspecialidadCategoria
+                            key={`espe-cat-${c.categoria}-index-${i}`}
+                            categoria={c}
+                            grupo={grupo}
+                            especialidades={categorias.filter(e => e.grupo == grupo.grupo
+                                && e.categoria == c.categoria
+                                && e.especialidad > 0
+                            )} />)
+                    : null
+                }
+            </Collapse>
         </Box>
     )
 }
