@@ -8,7 +8,7 @@ import { EspecialidadDTO } from "../components/TableEspecialidad";
 import { EspecialidadContext } from "../store";
 
 
-export const EspecilidadContainer = () => {
+export const useEspecilidadContainer = () => {
 
 
 
