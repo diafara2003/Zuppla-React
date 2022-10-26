@@ -36,7 +36,7 @@ export interface IEspecialidadContext {
 }
 
 export const storeEspecialidad = (state: State, action: AuthActionsEspecialidad): State => {
-    debugger;
+    
     switch (action.type) {
 
 

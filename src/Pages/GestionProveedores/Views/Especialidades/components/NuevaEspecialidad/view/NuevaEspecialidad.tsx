@@ -15,7 +15,7 @@ export const NuevaEspecialidad = () => {
                 isLoading ?
                     <SkeletonDinamic NoColumnas={1} NoFilas={5} Tipo={"TABLE"} />
                     :
-                    <Box sx={{ flexGrow: 1 }} p={2} >
+                    <Box sx={{ flexGrow: 1 }}  >
 
                         <Grid container spacing={2}>
                             <Grid item xs={11}>
@@ -39,7 +39,7 @@ export const NuevaEspecialidad = () => {
                         </Grid>
                         <Grid container spacing={2} mt={1}>
 
-                            <Grid item xs={6} sx={{ overflow: 'auto', height: 'calc(100vh - 300px)' }}>
+                            <Grid item xs={6} sx={{ overflow: 'auto', height: 'calc(100vh - 249px)' }}>
                                 {especialidades.length == 0 ? null : <ContainerEspecialidad data={especialidades} />}
                             </Grid>
                             <Grid item xs={6} sx={{ overflow: 'auto', maxheight: 'calc(100vh - 300px)' }}>
