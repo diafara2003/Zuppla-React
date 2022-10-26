@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { EspecialidadContext } from "../../store";
 import { especialidadGrupoDTO } from "../../NuevaEspecialidad/model";
 
@@ -29,6 +29,17 @@ export const useEspecialidadText = ({ especialidad, categoriaTexto, grupoTexto }
         setChecked(() => !checked);
     }
 
+    useEffect(() => {
+
+        if (state.length > 0) {
+
+            const existeStore = state.find(c => c.id == especialidad.especialidad);
+
+            if (existeStore != undefined && existeStore != null) setChecked(true);
+        }
+
+
+    }, []);
 
 
     return {

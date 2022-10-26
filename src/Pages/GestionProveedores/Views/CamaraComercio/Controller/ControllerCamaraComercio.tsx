@@ -6,7 +6,7 @@ import { TerInformacionGeneralDTO } from '../../InformacionGeneral/Model/Informa
 import { TerCamaraComercioDTO } from '../Model/CamaraComercio';
 
 export const ControllerCamaraComercio = () => {
-  const { state } = useContext(AuthContext);
+  const { storeUsuario } = useContext(AuthContext);
   const [dataCamara, setDataCamaraComercio] = useState<TerCamaraComercioDTO[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openDelete, setOpenDelete] = useState(false);
@@ -18,7 +18,7 @@ export const ControllerCamaraComercio = () => {
 
   const cargaCamaraComercio = async () => {
     const request: RequestModel = {
-      metodo: `TercerosGI/CamaraComercio?id=${state.user.idEmpresa}`,
+      metodo: `TercerosGI/CamaraComercio?id=${storeUsuario.user.idEmpresa}`,
       AllowAnonymous: false,
       type: APiMethod.GET
     }

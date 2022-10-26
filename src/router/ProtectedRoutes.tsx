@@ -5,9 +5,9 @@ import { MenuPages } from "../Pages/Menu";
 
 export const ProtectedRoutes = () => {
 
-    const { state } = useContext(AuthContext);
+    const { storeUsuario } = useContext(AuthContext);
 
-    return state.token != "" ? (
+    return storeUsuario.token != "" ? (
         <MenuPages />
     ) : (
         <Navigate to="/login" />

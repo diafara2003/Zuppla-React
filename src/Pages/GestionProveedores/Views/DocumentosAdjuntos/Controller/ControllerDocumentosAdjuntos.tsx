@@ -5,7 +5,7 @@ import { ConstructoraDTO } from '../../../Components/SelectConstructora/Model/Mo
 import { adjuntoCompleteERP, AdjuntosDTO, AdjuntoTerceroDTO, DocumentosRequeridosERPDTO } from '../Model/AdjuntosDTO';
 
 export const ControllerDocumentosAdjuntos = () => {
-    const { state } = useContext(AuthContext);
+    const { storeUsuario } = useContext(AuthContext);
     const [dataDoc, setDocAdjuntos] = useState<AdjuntoTerceroDTO[]>();    
     const [isLoading, setIsLoading] = useState(true);
     const [dataConst, setDataConst] = useState<ConstructoraDTO>();
@@ -15,7 +15,7 @@ export const ControllerDocumentosAdjuntos = () => {
     const cargaDocumentosAdjuntos = async () => {
         const request: RequestModel = {
             AllowAnonymous: false,
-            metodo: `documentos/tercero?id=${state.user.idEmpresa}`,
+            metodo: `documentos/tercero?id=${storeUsuario.user.idEmpresa}`,
             type: APiMethod.GET
         }
         const response = await requestAPI<AdjuntoTerceroDTO[]>(request)!;

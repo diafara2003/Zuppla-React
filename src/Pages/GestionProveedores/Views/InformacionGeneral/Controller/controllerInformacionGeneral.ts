@@ -28,7 +28,7 @@ type validacionFormulario = {
 }
 
 export const controllerInformacionGeneral = () => {
-    const { state } = useContext(AuthContext);
+    const { storeUsuario } = useContext(AuthContext);
     // const { hasError, data, isLoading, doFetch } = useFetch();
 
 
@@ -45,7 +45,7 @@ export const controllerInformacionGeneral = () => {
 
     const cargaInfGeneral = async () => {
         const request: RequestModel = {
-            metodo: `TercerosGI/InformacionGeneral?id=${state.user.idEmpresa}`,
+            metodo: `TercerosGI/InformacionGeneral?id=${storeUsuario.user.idEmpresa}`,
             AllowAnonymous: true,
             type: APiMethod.GET
         }

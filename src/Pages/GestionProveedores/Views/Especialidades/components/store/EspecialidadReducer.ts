@@ -36,17 +36,14 @@ export interface IEspecialidadContext {
 }
 
 export const storeEspecialidad = (state: State, action: AuthActionsEspecialidad): State => {
-    
+    debugger;
     switch (action.type) {
 
 
         case 'add all':
 
             return {
-                especialidades: [
-                    ...state.especialidades,
-                    ...action.payload
-                ],
+                especialidades: [...action.payload],
             };
 
 

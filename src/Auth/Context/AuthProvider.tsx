@@ -13,7 +13,7 @@ interface Props {
 
 export const AuthProvider = ({ children }: Props) => {
 
-    const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
+    const [storeUsuario, dispatch] = useReducer(authReducer, INITIAL_STATE);
 
     const updateSession = (data: AuthContextProps) => {
         
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }: Props) => {
 
     return (
         <AuthContext.Provider value={{
-            state,
+            storeUsuario,
             // Methods
             updateSession,
             removeSession

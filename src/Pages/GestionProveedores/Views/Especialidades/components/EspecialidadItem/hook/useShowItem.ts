@@ -13,15 +13,12 @@ export const useShowItem = ({ data, handleClick }: props) => {
 
     const Handleclick = (id: number) => {
         SetShow(!show);
-        setInfo(handleClick(id)
-            //data.filter(c => c.grupo == id && c.especialidad == 0)
-        )
+        if (show)
+            setInfo(handleClick(id)
+                //data.filter(c => c.grupo == id && c.especialidad == 0)
+            )
     }
 
-    const clickCategoria = (id: number) => {
-        SetShow(!show);
-        setInfo(data.filter(c => c.categoria == id && c.especialidad > 0))
-    }
     return {
 
         show,

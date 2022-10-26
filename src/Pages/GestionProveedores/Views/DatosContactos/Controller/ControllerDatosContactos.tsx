@@ -6,7 +6,7 @@ import { AuthContext } from '../../../../../Auth';
 import { requestAPI } from '../../../../../Provider/Requestfetch';
 
 export const ControllerDatosContactos = () => {
-  const { state } = useContext(AuthContext);
+  const { storeUsuario } = useContext(AuthContext);
   const [value, setValue] = useState(0);
   const [valueContacto, setValueContacto] = useState(1);
   const [openDelete, setOpenDelete] = React.useState(false);
@@ -26,7 +26,7 @@ export const ControllerDatosContactos = () => {
 
   const cargaDatosContacto = async () => {
     const request: RequestModel = {
-      metodo: `TercerosGI/DatosContacto?TipoContacto=${valueContacto}&id=${state.user.idEmpresa}`,
+      metodo: `TercerosGI/DatosContacto?TipoContacto=${valueContacto}&id=${storeUsuario.user.idEmpresa}`,
       AllowAnonymous: false,
       type: APiMethod.GET
     }

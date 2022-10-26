@@ -12,17 +12,17 @@ import { EspecialidadProvider } from "../components/Context";
 
 export const EspecialidadesPage = () => {
 
-    const { data, openNew, handleDialog } = useEspecialidadPages();
+    const { openNew, handleDialog } = useEspecialidadPages();
 
     return (
         <>
             <HeaderComponent title={"Especialidades"} />
 
 
-            <Box sx={{ m: '1px', background: 'white', }}>
+            <Box sx={{ background: 'white', }}>
 
                 <Box sx={{ height: 'calc(100vh - 150px)' }}>
-                    <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={"10px"}>
+                    <Box display={"flex"} justifyContent={"end"} pr={"10px"}>
                         {openNew
                             ? <Button onClick={handleDialog} sx={{ ml: "20px" }} variant="text" > <KeyboardBackspaceOutlined sx={{ mr: "8px" }} />Regresar</Button>
                             : <>
@@ -49,16 +49,11 @@ export const EspecialidadesPage = () => {
 
                     <EspecialidadProvider>
                         {openNew
-                            ? <Box m={"10px"} mt={"25px"}>
+                            ? <Box m={"10px"} >
                                 <NuevaEspecialidad />
                             </Box>
                             : <Box m={"10px"} mt={"25px"}>
-                                {data == null ? <CircularProgress color="inherit" /> :
-                                    data.length == 0 ? <Box justifyContent={'center'} display={'flex'}>
-                                        <SinInformacion />
-                                    </Box>
-                                        : <TableEspecialidad datatable={data!} />}
-
+                                <TableEspecialidad />
                             </Box>
 
                         }

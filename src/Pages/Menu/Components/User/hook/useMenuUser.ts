@@ -4,7 +4,7 @@ import { AuthContext, NameStorageConstructora, NameStoragetoken, NameStorageUsua
 import { theme } from '../../../../../theme/theme';
 
 export const useMenuUser = () => {
-    const { state } = useContext(AuthContext);
+    const { storeUsuario } = useContext(AuthContext);
     const navigate = useNavigate();
     const [user, setUser] = useState({
 
@@ -13,14 +13,13 @@ export const useMenuUser = () => {
         logo: "",
         nombreEmpresa: "N N",
         nombreUsuario: "",
-        tipo: "",
         userCorreo: ""
     });
 
 
     useEffect(() => {
 
-        const { user } = state;
+        const { user } = storeUsuario;
 
         setUser(user);
 
@@ -32,12 +31,12 @@ export const useMenuUser = () => {
         if (name == "") return {}
         let split = name.split(' ');
 
-        if (split.length == 1) 
+        if (split.length == 1)
             split.push(' ');
-        
+
 
         return {
-            sx: { color:'#FBFBFB', background: '#003972' },
+            sx: { color: '#FBFBFB', background: '#003972' },
             children: `${split[0][0]}${split[1][0]}`,
         };
     }
