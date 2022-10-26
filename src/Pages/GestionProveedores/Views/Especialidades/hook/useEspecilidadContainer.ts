@@ -5,10 +5,10 @@ import { APiMethod, useFetch } from "../../../../../Provider";
 
 import { useState } from 'react';
 import { EspecialidadDTO } from "../components/TableEspecialidad";
-import { EspecialidadContext } from "../components/store";
+import { EspecialidadContext } from "../store";
 
 
-export const useEspecialidadPapa = () => {
+export const EspecilidadContainer = () => {
 
 
 

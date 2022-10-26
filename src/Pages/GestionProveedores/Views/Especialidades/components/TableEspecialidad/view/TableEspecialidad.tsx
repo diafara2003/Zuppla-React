@@ -4,7 +4,7 @@ import { useTableEspecialdiad } from "../hook/useTableEspecialidad";
 import { EspecialidadDTO } from "../model/EspecialidadDTO";
 import { SkeletonDinamic } from '../../../../../Components/SkeletonComp/View/SkeletonDinamic';
 import { useContext } from "react";
-import { EspecialidadContext } from "../../store";
+import { EspecialidadContext } from "../../../store";
 
 type props = {
     datatable: EspecialidadDTO[]

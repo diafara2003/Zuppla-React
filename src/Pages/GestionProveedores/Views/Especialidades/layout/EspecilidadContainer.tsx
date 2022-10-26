@@ -1,14 +1,13 @@
 import { KeyboardBackspaceOutlined, Add } from '@mui/icons-material'
 import { Box, Button, TextField, InputAdornment } from '@mui/material'
-import React from 'react'
 import { NuevaEspecialidad } from '../components/NuevaEspecialidad'
 import { TableEspecialidad } from '../components/TableEspecialidad'
-import { useEspecialidadPapa } from '../hook/useEspecialidadPapa'
+import { useEspecilidadContainer } from '../hook/useEspecilidadContainer'
 import SearchIcon from '@mui/icons-material/Search';
 import HistoryIcon from '@mui/icons-material/History';
 
-export const EspecilidadPapa = () => {
-    const { handleDialog, isLoading, openNew } = useEspecialidadPapa();
+export const EspecilidadContainer = () => {
+    const { handleDialog,  openNew } = useEspecilidadContainer();
     return (
 
         <Box sx={{  background: 'white', }}>
@@ -41,7 +40,7 @@ export const EspecilidadPapa = () => {
 
 
                 {openNew
-                    ? <Box >
+                    ? <Box mt={3}>
                         <NuevaEspecialidad />
                     </Box>
                     : <Box mt={3}>

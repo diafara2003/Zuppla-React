@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { EspecialidadContext } from "../../store";
+import { EspecialidadContext } from "../../../store";
 
 
 

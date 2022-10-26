@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { EspecialidadContext } from "../../store";
+import { EspecialidadContext } from "../../../store";
 import { especialidadGrupoDTO } from "../../NuevaEspecialidad/model";
 
 type props = {

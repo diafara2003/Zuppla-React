@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 // import './App.css'
-import { EspecialidadProvider } from "../components/Context";
-import { EspecilidadPapa } from "./EspecilidadPapa";
+import { EspecialidadProvider } from "../Context";
+import { EspecilidadContainer } from "../layout";
 
 export const EspecialidadesPage = () => {
 
@@ -12,7 +12,7 @@ export const EspecialidadesPage = () => {
             <HeaderComponent title={"Especialidades"} />
             <Box p={2}>
                 <EspecialidadProvider>
-                    <EspecilidadPapa />
+                    <EspecilidadContainer />
                 </EspecialidadProvider>
             </Box>
         </>

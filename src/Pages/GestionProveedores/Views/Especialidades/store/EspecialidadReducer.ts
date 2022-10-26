@@ -1,7 +1,6 @@
-import { InterestsTwoTone } from '@mui/icons-material';
-import { createContext, useReducer } from 'react';
-import { especialidadGrupoDTO } from '../NuevaEspecialidad/model/especialidadGrupoDTO';
-import { EspecialidadDTO } from '../TableEspecialidad';
+
+import { createContext } from 'react';
+import { EspecialidadDTO } from '../components/TableEspecialidad';
 
 export enum typeActionsEspecialidad {
     add,
@@ -36,7 +35,7 @@ export interface IEspecialidadContext {
 }
 
 export const storeEspecialidad = (state: State, action: AuthActionsEspecialidad): State => {
-    
+
     switch (action.type) {
 
 

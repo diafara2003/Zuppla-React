@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { EspecialidadContext } from "../../store";
+import { EspecialidadContext } from "../../../store";
 
 export const useAgregarEspecialidad = () => {
 
