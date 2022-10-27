@@ -1,16 +1,20 @@
 import { KeyboardBackspaceOutlined, Add } from '@mui/icons-material'
-import { Box, Button, TextField, InputAdornment } from '@mui/material'
+import { Box, Button, TextField, InputAdornment, TextFieldProps } from '@mui/material'
 import { NuevaEspecialidad } from '../components/NuevaEspecialidad'
 import { TableEspecialidad } from '../components/TableEspecialidad'
 import { useEspecilidadContainer } from '../hook/useEspecilidadContainer'
 import SearchIcon from '@mui/icons-material/Search';
 import HistoryIcon from '@mui/icons-material/History';
+import { useRef } from 'react'
 
 export const EspecilidadContainer = () => {
-    const { handleDialog,  openNew } = useEspecilidadContainer();
+    const typing = useRef<TextFieldProps>(null);
+    
+    const { handleDialog, openNew, handleChangeTyping } = useEspecilidadContainer(typing);
+    
     return (
 
-        <Box sx={{  background: 'white', }}>
+        <Box sx={{ background: 'white', }}>
 
             <Box sx={{ height: 'calc(100vh - 190px)' }}>
                 <Box display={"flex"} justifyContent={"end"}>
@@ -20,6 +24,8 @@ export const EspecilidadContainer = () => {
                             <TextField
                                 id="outlined-basic"
                                 size='small'
+                                inputRef={typing}
+                                onInput={handleChangeTyping}
                                 placeholder='Buscar...'
                                 sx={{ width: "400px" }}
                                 InputProps={{
