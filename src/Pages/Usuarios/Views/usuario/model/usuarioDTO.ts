@@ -5,7 +5,7 @@ export interface UsuariosDTO {
     tipo: string;
     correo: string;
     clave: string;
-    estado: boolean;
+    estado: number;
     nombre: string;
     documento: string;
     cargo: string;
@@ -20,6 +20,7 @@ export enum ActionUser {
     Pass = "P",
     EstadoTrue = "Estado en true",
     EstadoFalse = "Estado en false",
+    New = "New user",
     Default = "F"
 }
 

@@ -14,14 +14,11 @@ import { FrmNewUser } from '../components/view/FrmNewUser';
 
 export const UsuarioPages = () => {
 
-    const { data, isLoading, dataUserSelect, alertData, handleCloseDelete, openDelete, handleDeleteUser, actionUser } = useUsuario();
+    const { data, isLoading, dataUserSelect, alertData, handleCloseDelete, openDelete, handleDeleteUser, actionUser,setDataNewUser } = useUsuario();
     const [openD, setOpen] = useState(false);
     const handleClickDialogOpen = () => {
         setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
+    };   
     return (
 
         <>
@@ -95,6 +92,8 @@ export const UsuarioPages = () => {
             <FrmNewUser open={openD}
                 newUser={(dataUser) => {
                     console.log(dataUser)
+                    setDataNewUser(dataUser)
+                    actionUser(ActionUser.New);                 
                 }}
                 close={(close) => {
                     setOpen(close);

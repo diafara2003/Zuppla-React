@@ -16,6 +16,7 @@ export const useUsuario = () => {
     const handleCloseDelete = () => {
         setOpenDelete(false);
     };
+    const [dataNewUser, setDataNewUser] = useState<UsuariosDTO>()
     const actionUser = (action: ActionUser) => {
         switch (action) {
             case ActionUser.Delete:
@@ -39,7 +40,8 @@ export const useUsuario = () => {
             case ActionUser.Pass:
                 resetPassword();
                 break;
-
+            case ActionUser.New:
+                crearUsuarioNuevo();
             default:
                 break;
         }
@@ -131,8 +133,19 @@ export const useUsuario = () => {
        
         setState({ isLoading: false, hasError: '' })
     }
-    const crearUsuarioNuevo =()=>{
-        
+    const crearUsuarioNuevo = async ()=>{
+        setState({ isLoading: true, hasError: '' })
+       
+        const request: RequestModel = {
+            metodo: 'Usuario',
+            type: APiMethod.POST,
+            data: dataNewUser
+        };
+        const response = await requestAPI<ResponseDTO>(request)!;
+        debugger
+        console.log(response)
+       
+        setState({ isLoading: false, hasError: '' })
     }
     useEffect(() => {
         doFetch({
@@ -143,6 +156,6 @@ export const useUsuario = () => {
     }, []);
 
 
-    return { isLoading, data, openDelete, dataUserSelect,alertData, handleCloseDelete, handleDeleteUser, actionUser }
+    return { isLoading, data, openDelete, dataUserSelect,alertData, handleCloseDelete, handleDeleteUser, actionUser, setDataNewUser }
 
 }

@@ -27,7 +27,7 @@ export const FrmNewUser = ({ newUser, open, close }: props) => {
         celular: { hasError: false, msn: '' },
         documento: { hasError: false, msn: '' },
     }
-    const stateInitialNewUser = { cargo: '', celular: '', clave: '', correo: '', documento: '', estado: true, id: -1, isPrincipal: false, nombre: '', tipo: 'P' }
+    const stateInitialNewUser = { cargo: '', celular: '', clave: '', correo: '', documento: '', estado: 1, id: 0, isPrincipal: false, nombre: '', tipo: 'P' }
 
     const [dataNewUser, setDataNewUser] = useState<UsuariosDTO>(stateInitialNewUser)
     const [dataValidate, setDataValidate] = useState(stateValidacionInitial)
