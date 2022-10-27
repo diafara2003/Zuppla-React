@@ -1,19 +1,18 @@
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../../../Auth";
 import { APiMethod, useFetch } from "../../../../../Provider";
-
-
 import { useState } from 'react';
 import { EspecialidadDTO } from "../components/TableEspecialidad";
 import { EspecialidadContext } from "../store";
+import useRef from 'react';
+import { TextFieldProps } from "@mui/material";
 
 
-export const useEspecilidadContainer = () => {
-
-
+export const useEspecilidadContainer = (typing:React.RefObject<TextFieldProps>) => {
 
     const [openNew, setOpenDialog] = useState(false);
-    const { data, isLoading, doFetch } = useFetch<EspecialidadDTO[] | null>();
+
+    const { data, doFetch } = useFetch<EspecialidadDTO[] | null>();
     const { dispatch } = useContext(EspecialidadContext);
     const { storeUsuario } = useContext(AuthContext);
 
@@ -43,9 +42,13 @@ export const useEspecilidadContainer = () => {
         setOpenDialog(() => !openNew);
     }
 
+    const handleChangeTyping = () => {
+        
+        console.log(typing.current?.value)
+    }
 
 
 
-    return { handleDialog, openNew, isLoading }
+    return { handleDialog, openNew, handleChangeTyping }
 
 }

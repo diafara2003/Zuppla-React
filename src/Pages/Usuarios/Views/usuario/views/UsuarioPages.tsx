@@ -35,37 +35,7 @@ export const UsuarioPages = () => {
                     <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)', mr: "10px", ml: '10px' }}>
                         <AlertPortal data={alertData} />
 
-                        <Box display={"flex"} justifyContent={"end"} pt={"10px"} >
-
-                            <TextField
-                                id="outlined-basic"
-                                size='small'
-                                placeholder='Buscar...'
-                                sx={{ width: "400px" }}
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <SearchIcon />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                label="Buscar..." variant="outlined" />
-                            <Button sx={{ ml: "20px" }} variant="text" onClick={handleClickDialogOpen} > <Add sx={{ mr: "8px" }} />Agregar usuario</Button>
-                            <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                        </Box>
-                        <Box m={"10px"} mt={"25px"}>
-                            {data == null ?
-                                <CircularProgress color="inherit" />
-                                :
-                                <TableUsuario
-                                    datatable={data!}
-                                    onDelete={(dataAction) => {
-                                        if (dataAction.action != ActionUser.Default) {
-                                            dataUserSelect.current = (dataAction.userData)
-                                            actionUser(dataAction.action)
-                                        }
-                                    }} />}
-                        </Box>
+                      
                     </Box>
 
             }

@@ -1,8 +1,9 @@
 import { DeleteOutline, EditOutlined, LockOutlined, MailOutline, MoreVert } from '@mui/icons-material';
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton, Switch, Menu, MenuItem, ListItemIcon, Typography } from '@mui/material';
 import { Action } from '@remix-run/router';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { ActionUser, UsuariosDTO } from '../../model/usuarioDTO';
+import { UserContext } from '../../store/StoreUsuario';
 
 type props = {
     datatable: UsuariosDTO[]
@@ -13,12 +14,13 @@ type typeAction = {
     userData: UsuariosDTO;
 }
 
-export const TableUsuario = ({ datatable, onDelete }: props) => {
+export const TableUsuario = () => {
     const label = { inputProps: { 'aria-label': 'Switch demo' } };
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [userDataSelect, setUser] = useState<UsuariosDTO>()
     const [userDataEntrante, setDataEntrante] = useState<UsuariosDTO[]>([...datatable])
     const open = Boolean(anchorEl);
+    const { dispatch, state } = useContext(UserContext);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>, user: UsuariosDTO) => {
         setAnchorEl(event.currentTarget);
@@ -97,7 +99,7 @@ export const TableUsuario = ({ datatable, onDelete }: props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {userDataEntrante
+                    {state
                         //.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map((row, index) => {
                             return (
