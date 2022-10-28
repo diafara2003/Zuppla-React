@@ -16,6 +16,8 @@ export interface State {
 export interface IContextModel {
     state: EspecialidadDTO[];
     dispatch: React.Dispatch<AuthActionsEspecialidad>;
+    deleteEspecialidad: (id: number) => void;
+    addEspecialidad: (especialdiad: EspecialidadDTO) => void;
 }
 
 
@@ -61,4 +63,13 @@ export const storeEspecialidad = (state: State, action: AuthActionsEspecialidad)
     }
 }
 
-export const EspecialidadContext = createContext({ state: [], dispatch: () => { } } as IContextModel);
+
+
+
+export const EspecialidadContext = createContext(
+    {
+        state: [],
+        dispatch: () => { },
+        addEspecialidad: (newData: EspecialidadDTO) => { },
+        deleteEspecialidad(id) { },
+    } as IContextModel);

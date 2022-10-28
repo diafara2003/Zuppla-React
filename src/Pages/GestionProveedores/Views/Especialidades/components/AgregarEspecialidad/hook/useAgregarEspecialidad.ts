@@ -3,21 +3,15 @@ import { EspecialidadContext } from "../../../store";
 
 export const useAgregarEspecialidad = () => {
 
-    const { state, dispatch } = useContext(EspecialidadContext);
+    const { state, deleteEspecialidad } = useContext(EspecialidadContext);
 
-    const handleDelete = (id: number) => {
-        dispatch(
-            {
-                type: 'remove', payload: id
-            }
-        );
-    }
+ 
 
 
     return {
 
         state,
-        handleDelete,
+        deleteEspecialidad,
 
     }
 }

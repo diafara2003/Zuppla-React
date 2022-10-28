@@ -7,7 +7,7 @@ import Collapse from '@mui/material/Collapse';
 
 export const AgregarEspecialidad = () => {
 
-    const { handleDelete, state } = useAgregarEspecialidad();
+    const { deleteEspecialidad, state } = useAgregarEspecialidad();
 
     return (
         <>
@@ -24,8 +24,7 @@ export const AgregarEspecialidad = () => {
                     <TransitionGroup>
                         {
 
-                            state.length == 0 ? <SinInformacion /> :
-                                state.map(c => {
+                           state.map(c => {
                                     const texto = `${c.grupoTexto} / ${c.categoriaTexto} / ${c.nombre}`;
 
                                     return (<Collapse key={`collapse-${c.id}`}>
@@ -36,7 +35,7 @@ export const AgregarEspecialidad = () => {
                                                         <Typography sx={{ color: 'rgba(8, 21, 36, 0.87);', fontSize: 12 }} variant="body2">{texto}</Typography>
                                                     </div>
                                                     <div>
-                                                        <RemoveCircleOutlineOutlined sx={{ pl: 0.5 }} color="primary" onClick={() => handleDelete(c.id)} />
+                                                        <RemoveCircleOutlineOutlined sx={{ pl: 0.5 }} color="primary" onClick={() => deleteEspecialidad(c.id)} />
                                                     </div>
                                                 </Box>
 

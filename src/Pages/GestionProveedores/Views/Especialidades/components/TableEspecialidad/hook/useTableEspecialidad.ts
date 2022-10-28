@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 export const useTableEspecialdiad = (inputRef: string) => {
 
 
-    const { state } = useContext(EspecialidadContext);
+    const { state ,deleteEspecialidad} = useContext(EspecialidadContext);
     const [data, setData] = useState(state);
 
 
@@ -33,7 +33,7 @@ export const useTableEspecialdiad = (inputRef: string) => {
 
     return {
         data,
-
+        deleteEspecialidad
 
     }
 }

@@ -4,21 +4,23 @@ import { useTableEspecialdiad } from "../hook/useTableEspecialidad";
 import { EspecialidadDTO } from "../model/EspecialidadDTO";
 import SearchIcon from '@mui/icons-material/Search';
 import { useRef } from "react";
+import { TransitionGroup } from "react-transition-group";
 
 
 type props = {
     filter: string
 }
 
-export const TableEspecialidad = ({filter}:props) => {
+export const TableEspecialidad = ({ filter }: props) => {
 
 
     // const { state } = useTableEspecialdiad();
-    const { data } = useTableEspecialdiad(filter);
+    const { data, deleteEspecialidad } = useTableEspecialdiad(filter);
 
 
     return (
         <TableContainer sx={{ maxHeight: 440 }}>
+
             <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                     <TableRow>
@@ -53,10 +55,12 @@ export const TableEspecialidad = ({filter}:props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
+
                     {data
                         //.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map((row) => {
                             return (
+
                                 <TableRow hover role="checkbox" tabIndex={-1} key={`tr${row.id}`}>
                                     <TableCell key={`tdGrupoTexto${row.id}`}>
                                         {row.grupoTexto}
@@ -68,13 +72,15 @@ export const TableEspecialidad = ({filter}:props) => {
                                         {row.nombre}
                                     </TableCell>
                                     <TableCell key={`tdEliminar${row.id}`} align={"right"}>
-                                        <IconButton size="small">
+                                        <IconButton size="small" onClick={() => deleteEspecialidad(row.id)}>
                                             <DeleteOutline color="primary" />
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
+
                             );
                         })}
+
                 </TableBody>
             </Table>
 
