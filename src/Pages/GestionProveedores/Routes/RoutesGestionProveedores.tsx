@@ -14,7 +14,7 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import { FolderOutlined } from '@mui/icons-material';
 export const rutas: NavigationModel[] = [
     {
-        path: "/gestionproveedor/General",
+        path: "/gestionproveedor/InfGeneral",
         texto: "Información general",
         Icono: () => <BusinessOutlinedIcon />
     },
@@ -60,7 +60,7 @@ const InformacionGeneralPage = lazy(() => import('../../GestionProveedores/Views
 export default function RoutesGestionProveedores() {
     return (
         <Routes>
-            <Route path="/General" element={<InformacionGeneralPage />} />
+            <Route path="/InfGeneral" element={<InformacionGeneralPage />} />
             <Route path="/DatosContactos" element={<DatosContactos />} />
             <Route path="/DatosNotificaciones" element={<DatosNotifiaciones />} />
             <Route path="/DocumentosAdjuntos" element={<DocumentosAdjuntosPage />} />
@@ -68,7 +68,7 @@ export default function RoutesGestionProveedores() {
             <Route path="/Novedades" element={<NovedadesPage />} />
             <Route path="/Especialidades" element={<EspecialidadesPage />} />
 
-            <Route path="/*" element={<Navigate to="/gestionproveedor/General" />}></Route>
+            <Route path="/*" element={<Navigate to="/gestionproveedor/InfGeneral" />}></Route>
         </Routes>
     )
 }
