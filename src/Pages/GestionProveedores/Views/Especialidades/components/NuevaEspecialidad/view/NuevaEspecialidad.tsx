@@ -1,10 +1,11 @@
 import { Box, Button, Divider, Grid, InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNuevaEspecialidad } from '../hook/useNuevaEspecialidad';
-import { SkeletonDinamic } from '../../../../../Components/SkeletonComp/View/SkeletonDinamic';
+
 import { AgregarEspecialidad } from '../../AgregarEspecialidad/view/AgregarEspecialidad';
 import { ContainerEspecialidad } from '../../EspecialidadItem/view/ContainerEspecialidad';
 import { useRef } from 'react';
+import { SkeletonDinamic } from '../../../../../../../SharedComponents/Skeleton/view/SkeletonDynamic';
 
 type props = {
     filter: string;
@@ -19,7 +20,7 @@ export const NuevaEspecialidad = ({ filter }: props) => {
         <>
             {
                 isLoading ?
-                    <SkeletonDinamic key={"SkeletonNuevaEspecialidad"} NoColumnas={1} NoFilas={5} Tipo={"TABLE"} />
+                    <SkeletonDinamic key={"SkeletonNuevaEspecialidad"} NoColumnas={1} NoFilas={5} Tipo={"table"} />
                     :
                     <Box>
 

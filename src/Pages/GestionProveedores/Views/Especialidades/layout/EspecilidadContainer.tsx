@@ -21,13 +21,14 @@ export const EspecilidadContainer = () => {
                     {openNew
                         ? <Grid container justifyContent={"flex-start"}>
 
+                            <Grid item xs={10.5}>
                             <TextField
                                 id="txtbuscarEspecialidad"
                                 size='small'
                                 inputRef={typing}
                                 onInput={() => handleChangeTyping("new")}
                                 placeholder='Buscar especialidad...'
-                                sx={{ width: "calc(100vw - 350px)" }}
+                                sx={{ width: "100%" }}
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
@@ -36,7 +37,11 @@ export const EspecilidadContainer = () => {
                                     ),
                                 }}
                                 label="Buscar especialidad" variant="outlined" />
-                            <Button onClick={handleDialog} sx={{ ml: "20px" }} variant="text" > <KeyboardBackspaceOutlined sx={{ mr: "8px" }} />Regresar</Button>
+                            </Grid>
+                           <Grid item xs={1.5}>
+                           <Button onClick={handleDialog} sx={{ ml: "20px" }} variant="text" > <KeyboardBackspaceOutlined sx={{ mr: "8px" }} />Regresar</Button>
+                           </Grid>
+                            
                         </Grid>
                         : <Grid>
                             <TextField
