@@ -6,37 +6,40 @@ import { ActionUser, UsuariosDTO } from '../../model/usuarioDTO';
 import { UserContext } from '../../store/StoreUsuario';
 
 type props = {
-    datatable: UsuariosDTO[]
-    onDelete: (data: typeAction) => void
+    //datatable: UsuariosDTO[]
+    onClick: (data: typeAction) => void
 }
 type typeAction = {
     action: ActionUser;
     userData: UsuariosDTO;
 }
 
-export const TableUsuario = () => {
+export const TableUsuario = ({ onClick }: props) => {
+    const { state } = useContext(UserContext);
+
     const label = { inputProps: { 'aria-label': 'Switch demo' } };
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [userDataSelect, setUser] = useState<UsuariosDTO>()
-    const [userDataEntrante, setDataEntrante] = useState<UsuariosDTO[]>([...datatable])
+    const [userDataEntrante, setDataEntrante] = useState<UsuariosDTO[]>([...state])
     const open = Boolean(anchorEl);
-    const { dispatch, state } = useContext(UserContext);
+
 
     const handleClick = (event: React.MouseEvent<HTMLElement>, user: UsuariosDTO) => {
         setAnchorEl(event.currentTarget);
         setUser(user);
-        onDelete({ action: ActionUser.Default, userData: user })
+        onClick({ action: ActionUser.Default, userData: user })
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
     const clickAction = (action: ActionUser) => {
-        onDelete({ action: action, userData: userDataSelect! });
+        onClick({ action: action, userData: userDataSelect! });
     }
     const clickEstado = (event: React.ChangeEvent<HTMLInputElement>, _user: UsuariosDTO, _index: number) => {
-        event.target.checked == true ? onDelete({ action: ActionUser.EstadoTrue, userData: _user! }) : onDelete({ action: ActionUser.EstadoFalse, userData: _user! });
-        datatable[_index].estado = event.target.checked
-        setDataEntrante([...datatable]);        
+        event.target.checked == true ?
+            onClick({ action: ActionUser.EstadoTrue, userData: _user! })
+            :
+            onClick({ action: ActionUser.EstadoFalse, userData: _user! });
     }
 
     return (
@@ -121,7 +124,7 @@ export const TableUsuario = () => {
                                     </TableCell>
                                     <TableCell key={`tdSwi${row.id}`}>
                                         <Switch {...label}
-                                            checked={row.estado}
+                                            checked={row.estado == 1 ? true : false}
                                             onChange={(event) => clickEstado(event, row, index)}
                                             size="small" />
                                     </TableCell>

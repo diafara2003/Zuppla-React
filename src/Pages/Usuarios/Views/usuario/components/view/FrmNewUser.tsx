@@ -5,9 +5,19 @@ import { UsuariosDTO } from '../../model/usuarioDTO'
 
 type props = {
     open: boolean,
+    tipo:typeModal,
+    editUser:UsuariosDTO
     close: (dataClose: boolean) => void
     newUser: (dataUser: UsuariosDTO) => void
 }
+export enum typeModal {
+    add ='add',
+    edit = 'edit'
+
+}
+type tipoModal =
+    { type:'add' } | {type:'edit'}
+
 type inputFormulario = {
     hasError: boolean, msn: string
 }
@@ -19,7 +29,7 @@ type validacionFormulario = {
     celular: inputFormulario,
     documento: inputFormulario
 }
-export const FrmNewUser = ({ newUser, open, close }: props) => {
+export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
     const stateValidacionInitial = {
         email: { hasError: false, msn: '' },
         nombre: { hasError: false, msn: '' },
@@ -28,10 +38,11 @@ export const FrmNewUser = ({ newUser, open, close }: props) => {
         documento: { hasError: false, msn: '' },
     }
     const stateInitialNewUser = { cargo: '', celular: '', clave: '', correo: '', documento: '', estado: 1, id: 0, isPrincipal: false, nombre: '', tipo: 'P' }
-
+    const stateInitialEditUser = {editUser}
+    const [dataEdit, setDataEdit] = useState<UsuariosDTO>(editUser)
     const [dataNewUser, setDataNewUser] = useState<UsuariosDTO>(stateInitialNewUser)
     const [dataValidate, setDataValidate] = useState(stateValidacionInitial)
-
+    
 
     const handleClose = () => {
         close(false)
@@ -41,6 +52,7 @@ export const FrmNewUser = ({ newUser, open, close }: props) => {
         setDataNewUser(prevState => {
             return { ...prevState, [name]: value }
         });
+        console.log(dataNewUser)
 
         //newUser(dataNewUser);
 
@@ -90,16 +102,16 @@ export const FrmNewUser = ({ newUser, open, close }: props) => {
                 maxWidth={"md"}
             >
                 <DialogTitle id="alert-dialog-title">
-                    Nuevo usuario
+                   {tipo == typeModal.add ? "Nuevo usuario": "Editar usuario"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         <Grid container
                             spacing={2}
-                            width={'100%'}
+                            width={'100%'}  
                             display={"flex"}
                             alignItems={"center"}
-                            justifyContent={"center"}
+                            justifyContent={"center"}                            
                             p={1}>
 
                             <Grid item xs={6}>
@@ -110,6 +122,7 @@ export const FrmNewUser = ({ newUser, open, close }: props) => {
                                     fullWidth
                                     size="small"
                                     onChange={onChangeFrm}
+                                    value={editUser?.nombre}
                                     error={dataValidate.nombre.hasError}
                                     helperText={dataValidate.nombre.msn}
 
@@ -125,7 +138,8 @@ export const FrmNewUser = ({ newUser, open, close }: props) => {
                                     onChange={onChangeFrm}
                                     error={dataValidate.documento.hasError}
                                     helperText={dataValidate.documento.msn}
-                                    type="number"
+                                    value={editUser?.documento}
+                                    type="number"                                    
                                 />
                             </Grid>
                             <Grid item xs={6}>
@@ -138,6 +152,7 @@ export const FrmNewUser = ({ newUser, open, close }: props) => {
                                     onChange={onChangeFrm}
                                     error={dataValidate.cargo.hasError}
                                     helperText={dataValidate.cargo.msn}
+                                    value={editUser?.cargo}
                                 />
                             </Grid>
                             <Grid item xs={6}>
@@ -150,6 +165,7 @@ export const FrmNewUser = ({ newUser, open, close }: props) => {
                                     size="small"
                                     onChange={onChangeFrm}
                                     helperText={dataValidate.email.msn}
+                                    value={editUser?.correo}
                                 />
                             </Grid>
 
@@ -164,6 +180,7 @@ export const FrmNewUser = ({ newUser, open, close }: props) => {
                                     error={dataValidate.celular.hasError}
                                     helperText={dataValidate.celular.msn}
                                     type="number"
+                                    value={editUser?.celular}
                                 />
                             </Grid>
                             <Grid item xs={6}>

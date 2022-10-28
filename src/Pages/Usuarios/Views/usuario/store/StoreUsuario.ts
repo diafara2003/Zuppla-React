@@ -10,6 +10,8 @@ export interface StateUsuario {
 export interface IContextUserModel {
     state: UsuariosDTO[];
     dispatch: React.Dispatch<AuthActionsUser>;
+    isloading: boolean;
+    newUser: (user: UsuariosDTO) => void
 }
 
 
@@ -18,6 +20,7 @@ type AuthActionsUser =
     | { type: 'add', payload: UsuariosDTO }
     | { type: 'add all', payload: UsuariosDTO[] }
     | { type: 'remove', payload: number }
+    | { type: 'cambia estado', payload: { _id: number, estado: number } }
 
 
 export interface IUserContext {
@@ -30,12 +33,13 @@ export const storeUser = (state: StateUsuario, action: AuthActionsUser): StateUs
 
 
         case 'add all':
-
             return {
                 usuarios: [...action.payload],
             };
         case 'add':
-            return {
+           //state.usuarios.push(action.payload);
+
+            return {                
                 usuarios: [
                     ...state.usuarios,
                     action.payload
@@ -47,8 +51,19 @@ export const storeUser = (state: StateUsuario, action: AuthActionsUser): StateUs
                 usuarios: [...state.usuarios.filter((item) => item.id !== action.payload)],
             };
 
+        case 'cambia estado':
+            return {
+                usuarios: [...state.usuarios.map(c => {
+                    const _user = c;
+
+                    if (_user.id == action.payload._id)
+                        _user.estado = action.payload.estado;
+
+                    return _user;
+                })]
+            }
     }
 }
 
 
-export const UserContext = createContext({ state: [], dispatch: () => { } } as IContextUserModel);
+export const UserContext = createContext({ newUser: (data: UsuariosDTO) => { }, isloading: false, state: [], dispatch: () => { } } as IContextUserModel);

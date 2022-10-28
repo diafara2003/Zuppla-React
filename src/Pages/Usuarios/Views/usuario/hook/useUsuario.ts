@@ -1,22 +1,38 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { requestAPI } from "../../../../../Provider";
 import { APiMethod, RequestModel, ResponseDTO } from "../../../../../Provider/model/FetchModel";
 import { useFetch } from "../../../../../Provider/useFech";
 
 import { ModelAlerta } from "../../../../../SharedComponents/Alert/View/Model/alertaModel";
+import { typeModal } from "../components/view/FrmNewUser";
 import { ActionUser, CambiarEstadoUsuarioDTO, UsuarioIdDTO, UsuariosDTO } from "../model/usuarioDTO";
+import { UserContext } from "../store/StoreUsuario";
 
 export const useUsuario = () => {
 
     const { hasError, data, isLoading, doFetch, setState } = useFetch<UsuariosDTO[] | null>();
     const [openDelete, setOpenDelete] = useState(false);
     const [alertData, setAlertData] = useState<ModelAlerta>({ msgBody: "", msgTitle: "", tipo: "info", estado: false })
-    //const [dataUserSelect, setDataUserSelect] = useState<UsuariosDTO>();
+    const { dispatch, state, newUser } = useContext(UserContext);
+    const [openD, setOpen] = useState(false);
+    const [tipoModal, setTipoModal] = useState(typeModal.add)
     const dataUserSelect = useRef<UsuariosDTO>()
     const handleCloseDelete = () => {
         setOpenDelete(false);
     };
+    const handleClickDialogOpenAdd = () => {
+        setTipoModal(typeModal.add);
+        setOpen(true);
+
+    };
+    const handleClickDialogOpenEdit = () => {
+        setTipoModal(typeModal.edit);
+        setOpen(true);
+
+    };
     const [dataNewUser, setDataNewUser] = useState<UsuariosDTO>()
+    const [dataEditUser, setDataEditUser] = useState<UsuariosDTO>()
+
     const actionUser = (action: ActionUser) => {
         switch (action) {
             case ActionUser.Delete:
@@ -24,7 +40,9 @@ export const useUsuario = () => {
                 setOpenDelete(true);
                 break;
             case ActionUser.Edit:
-                console.log("Edit")
+                let _editUser = state.find((element) => element.id == dataUserSelect.current?.id)
+                setDataEditUser(_editUser);
+                handleClickDialogOpenEdit();
 
                 break;
             case ActionUser.Send:
@@ -46,6 +64,7 @@ export const useUsuario = () => {
                 break;
         }
     }
+
 
     const handleDeleteUser = async () => {
         setState({ isLoading: true, hasError: '' })
@@ -80,11 +99,11 @@ export const useUsuario = () => {
         };
         const response = await requestAPI<ResponseDTO>(request)!;
         console.log(response)
-        if(response?.success){
-            let newAlert: ModelAlerta={
-                estado : true,
-                msgBody :response.mensaje,
-                msgTitle:"Exitoso",
+        if (response?.success) {
+            let newAlert: ModelAlerta = {
+                estado: true,
+                msgBody: response.mensaje,
+                msgTitle: "Exitoso",
                 tipo: "success"
             };
             setAlertData(newAlert);
@@ -104,13 +123,17 @@ export const useUsuario = () => {
             data: estadoUser
         };
         const response = await requestAPI<ResponseDTO>(request)!;
-        if(response?.success){
-            let newAlert: ModelAlerta={
-                estado : true,
-                msgBody :"Estado actualizado existosamente",
-                msgTitle:"",
+        if (response?.success) {
+            let newAlert: ModelAlerta = {
+                estado: true,
+                msgBody: "Estado actualizado existosamente",
+                msgTitle: "",
                 tipo: "success"
             };
+            dispatch({
+                type: "cambia estado",
+                payload: { _id: dataUserSelect?.current!.id, estado: _estado ? 1 : 0 }
+            });
             setAlertData(newAlert);
         }
         console.log(response)
@@ -130,32 +153,24 @@ export const useUsuario = () => {
         };
         const response = await requestAPI<ResponseDTO>(request)!;
         console.log(response)
-       
+
         setState({ isLoading: false, hasError: '' })
     }
-    const crearUsuarioNuevo = async ()=>{
-        setState({ isLoading: true, hasError: '' })
-       
-        const request: RequestModel = {
-            metodo: 'Usuario',
-            type: APiMethod.POST,
-            data: dataNewUser
-        };
-        const response = await requestAPI<ResponseDTO>(request)!;
-        debugger
-        console.log(response)
-       
-        setState({ isLoading: false, hasError: '' })
+    const crearUsuarioNuevo = async () => {
+
     }
-    useEffect(() => {
-        doFetch({
-            metodo: "Usuario?tipo=p",
-            type: APiMethod.GET,
-            AllowAnonymous: false
-        });
-    }, []);
+    // useEffect(() => {
+    //     doFetch({
+    //         metodo: "Usuario?tipo=p",
+    //         type: APiMethod.GET,
+    //         AllowAnonymous: false
+    //     });
+    // }, []);
 
 
-    return { isLoading, data, openDelete, dataUserSelect,alertData, handleCloseDelete, handleDeleteUser, actionUser, setDataNewUser }
+    return {
+        isLoading, data, openDelete, dataUserSelect, alertData, openD, dataEditUser, tipoModal,
+        handleCloseDelete, handleDeleteUser, newUser, actionUser, setDataNewUser, handleClickDialogOpenAdd,handleClickDialogOpenEdit, setOpen
+    }
 
 }

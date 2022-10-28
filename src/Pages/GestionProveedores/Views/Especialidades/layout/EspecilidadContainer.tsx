@@ -9,9 +9,9 @@ import { useRef } from 'react'
 
 export const EspecilidadContainer = () => {
     const typing = useRef<TextFieldProps>(null);
-    
+
     const { handleDialog, openNew, handleChangeTyping } = useEspecilidadContainer(typing);
-    
+
     return (
 
         <Box sx={{ background: 'white', }}>
