@@ -27,7 +27,7 @@ type AuthActionsEspecialidad =
     | { type: 'add', payload: EspecialidadDTO }
     | { type: 'add all', payload: EspecialidadDTO[] }
     | { type: 'remove', payload: number }
-    | { type: 'get' }
+
 
 
 export interface IEspecialidadContext {
@@ -46,10 +46,6 @@ export const storeEspecialidad = (state: State, action: AuthActionsEspecialidad)
             };
 
 
-
-        case 'get':
-
-            return { ...state };
 
         case 'add':
             return {

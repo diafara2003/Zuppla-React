@@ -26,7 +26,7 @@ export const UserMenu = () => {
         <Box display={'flex'} alignItems={"center"} >
             <NotificationsActiveIcon sx={{ marginRight: '10px' }} color="inherit" />
 
-            <Avatar onClick={handleClick} id="basic-button"  {...stringAvatar(user.nombreUsuario)} />
+            <Avatar onClick={handleClick} id="basic-button"  {...stringAvatar()} />
             <ExpandMore color="inherit" />
 
             <Box>

@@ -11,7 +11,7 @@ import { TextFieldProps } from "@mui/material";
 export const useEspecilidadContainer = (typing:React.RefObject<TextFieldProps>) => {
 
     const [openNew, setOpenDialog] = useState(false);
-
+    const [inputfilter, setinputfilter] = useState("");
     const { data, doFetch } = useFetch<EspecialidadDTO[] | null>();
     const { dispatch } = useContext(EspecialidadContext);
     const { storeUsuario } = useContext(AuthContext);
@@ -45,10 +45,12 @@ export const useEspecilidadContainer = (typing:React.RefObject<TextFieldProps>) 
     const handleChangeTyping = () => {
         
         console.log(typing.current?.value)
+
+        setinputfilter((typing.current?.value as string));
     }
 
 
 
-    return { handleDialog, openNew, handleChangeTyping }
+    return { handleDialog, openNew, handleChangeTyping,inputfilter }
 
 }

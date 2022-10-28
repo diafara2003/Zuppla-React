@@ -9,9 +9,9 @@ import { useRef } from 'react'
 
 export const EspecilidadContainer = () => {
     const typing = useRef<TextFieldProps>(null);
-    
-    const { handleDialog, openNew, handleChangeTyping } = useEspecilidadContainer(typing);
-    
+
+    const { handleDialog, openNew, handleChangeTyping, inputfilter } = useEspecilidadContainer(typing);
+
     return (
 
         <Box sx={{ background: 'white', }}>
@@ -50,7 +50,7 @@ export const EspecilidadContainer = () => {
                         <NuevaEspecialidad />
                     </Box>
                     : <Box mt={3}>
-                        <TableEspecialidad />
+                        <TableEspecialidad filter={inputfilter} />
                     </Box>
 
                 }

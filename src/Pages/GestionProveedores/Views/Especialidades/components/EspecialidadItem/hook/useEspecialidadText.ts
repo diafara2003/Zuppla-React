@@ -13,6 +13,12 @@ export const useEspecialidadText = ({ especialidad, categoriaTexto, grupoTexto }
 
     const [checked, setChecked] = useState(false);
     const { dispatch, state } = useContext(EspecialidadContext);
+    const [info, setInfo] = useState<especialidadGrupoDTO>({
+        categoria: 0,
+        especialidad: 0,
+        grupo: 0,
+        texto: ''
+    });
 
     const handleCLick = (id: number) => {
 
@@ -41,10 +47,16 @@ export const useEspecialidadText = ({ especialidad, categoriaTexto, grupoTexto }
 
     }, []);
 
+    useEffect(() => {
+
+        setInfo(especialidad);
+
+    }, [especialidad]);
+
 
     return {
         checked,
         handleCLick,
-        ...especialidad
+        info
     }
 }

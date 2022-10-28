@@ -1,19 +1,22 @@
-import { Box, Button, Grid, InputAdornment, TextField } from '@mui/material';
+import { Box, Button, Grid, InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNuevaEspecialidad } from '../hook/useNuevaEspecialidad';
 import { SkeletonDinamic } from '../../../../../Components/SkeletonComp/View/SkeletonDinamic';
 import { AgregarEspecialidad } from '../../AgregarEspecialidad/view/AgregarEspecialidad';
 import { ContainerEspecialidad } from '../../EspecialidadItem/view/ContainerEspecialidad';
+import { useRef } from 'react';
 
 
 export const NuevaEspecialidad = () => {
-    const { isLoading, especialidades, handleCLick } = useNuevaEspecialidad();
+    const typing = useRef<TextFieldProps>(null);
+
+    const { isLoading, especialidades, filter, handleChangeTyping } = useNuevaEspecialidad(typing);
 
     return (
         <>
             {
                 isLoading ?
-                    <SkeletonDinamic NoColumnas={1} NoFilas={5} Tipo={"TABLE"} />
+                    <SkeletonDinamic key={"SkeletonNuevaEspecialidad"} NoColumnas={1} NoFilas={5} Tipo={"TABLE"} />
                     :
                     <Box sx={{ flexGrow: 1 }}  >
 
@@ -22,6 +25,8 @@ export const NuevaEspecialidad = () => {
                                 <TextField
                                     id="txtbuscarEspecialidad"
                                     size='small'
+                                    inputRef={typing}
+                                    onInput={handleChangeTyping}
                                     placeholder='Buscar especialidad...'
                                     sx={{ width: "100%" }}
                                     InputProps={{
@@ -40,7 +45,7 @@ export const NuevaEspecialidad = () => {
                         <Grid container spacing={2} mt={1}>
 
                             <Grid item xs={6} sx={{ overflow: 'auto', height: 'calc(100vh - 269px)' }}>
-                                {especialidades.length == 0 ? null : <ContainerEspecialidad data={especialidades} />}
+                                {especialidades.length == 0 ? null : <ContainerEspecialidad data={especialidades} filter={filter} />}
                             </Grid>
                             <Grid item xs={6} sx={{ overflow: 'auto', maxheight: 'calc(100vh - 320px)' }}>
                                 <AgregarEspecialidad />

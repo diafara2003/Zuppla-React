@@ -13,18 +13,21 @@ type props = {
 
 }
 
-export const EspecialidadCategoria = ({ grupo, categoria, especialidades }: props) => {
+export const EspecialidadCategoria = ({  categoria, especialidades }: props) => {
 
-    const _filter = (id: number) => especialidades.filter(c => c.categoria == id && c.especialidad > 0);
+    const _filter = (data: especialidadGrupoDTO[], id: number) => {
 
-    const { texto } = categoria;
-    const { Handleclick, show, info } = useShowItem({ data: especialidades, handleClick: _filter });
+        return data.filter(c => c.categoria == id && c.especialidad > 0);
+    }
+
+  
+    const { Handleclick, show, info,item } = useShowItem({ data: especialidades, handleClick: _filter, id: categoria.categoria ,item:categoria});
 
     return (
 
         <Box >
             <Box
-                onClick={() => Handleclick(categoria.categoria)}
+                onClick={Handleclick}
                 display={"flex"}
                 pl={2.5}
                 pt={0.5}
@@ -40,7 +43,7 @@ export const EspecialidadCategoria = ({ grupo, categoria, especialidades }: prop
                     : <ChevronRightOutlined color="primary" />
                 }
 
-                <Typography sx={{ color: '#1E62A1', fontWeight: 500 }}>{texto}</Typography>
+                <Typography sx={{ color: '#1E62A1', fontWeight: 500 }}>{item.texto}</Typography>
             </Box>
 
             <Collapse in={show}>
@@ -51,7 +54,7 @@ export const EspecialidadCategoria = ({ grupo, categoria, especialidades }: prop
                         <EspecialidadText
                             key={`espe-espe-${e.especialidad}-index-${i}`}
                             categoria={{ id: e.categoria, texto: e.texto }}
-                            grupo={{ id: grupo.grupo, texto: grupo.texto }}
+                            grupo={{ id: item.grupo, texto: item.texto }}
                             especialidad={e} />)
 
                     : null

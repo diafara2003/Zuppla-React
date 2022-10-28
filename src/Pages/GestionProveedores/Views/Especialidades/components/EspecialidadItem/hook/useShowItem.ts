@@ -1,28 +1,48 @@
 import { useState } from "react";
 import { especialidadGrupoDTO } from "../../NuevaEspecialidad/model";
+import { useEffect } from 'react';
 
 type props = {
+    item: especialidadGrupoDTO;
     data: especialidadGrupoDTO[];
-    handleClick: (id: number) => especialidadGrupoDTO[]
+    handleClick: (data: especialidadGrupoDTO[], id: number) => especialidadGrupoDTO[],
+    id: number;
 }
 
-export const useShowItem = ({ data, handleClick }: props) => {
+export const useShowItem = ({ data, handleClick, id, item }: props) => {
 
     const [show, SetShow] = useState(false);
-    const [info, setInfo] = useState(data);
+    const [contextInfo, SetSetItem] = useState<especialidadGrupoDTO>({
 
-    const Handleclick = (id: number) => {
-        SetShow(!show);
-        if (show)
-            setInfo(handleClick(id)
-                //data.filter(c => c.grupo == id && c.especialidad == 0)
-            )
+        categoria: 0,
+        especialidad: 0,
+        grupo: 0,
+        texto: ''
+    });
+    const [info, setInfo] = useState<especialidadGrupoDTO[]>([]);
+
+    const Handleclick = () => {
+
+        SetShow(() => !show);
+        if (!show) setInfo(() => handleClick(info, id));
     }
+
+    useEffect(() => {
+        if (data.length > 0)
+            setInfo(() => handleClick(data, id));
+
+        SetSetItem(item);
+
+    }, [data]);
+
+
+
 
     return {
 
         show,
         info,
+        item:contextInfo,
         Handleclick
     }
 }

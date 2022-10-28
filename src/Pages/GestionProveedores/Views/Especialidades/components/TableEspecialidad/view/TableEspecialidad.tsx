@@ -1,22 +1,23 @@
 import { DeleteOutline } from "@mui/icons-material";
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton, TextField, InputAdornment, TextFieldProps } from "@mui/material";
 import { useTableEspecialdiad } from "../hook/useTableEspecialidad";
 import { EspecialidadDTO } from "../model/EspecialidadDTO";
-import { SkeletonDinamic } from '../../../../../Components/SkeletonComp/View/SkeletonDinamic';
-import { useContext } from "react";
-import { EspecialidadContext } from "../../../store";
+import SearchIcon from '@mui/icons-material/Search';
+import { useRef } from "react";
+
 
 type props = {
-    datatable: EspecialidadDTO[]
+    filter: string
 }
 
-export const TableEspecialidad = () => {
+export const TableEspecialidad = ({filter}:props) => {
+
 
     // const { state } = useTableEspecialdiad();
-    const { state } = useContext(EspecialidadContext);
+    const { data } = useTableEspecialdiad(filter);
+
+
     return (
-
-
         <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
@@ -52,7 +53,7 @@ export const TableEspecialidad = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {state
+                    {data
                         //.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map((row) => {
                             return (
@@ -78,7 +79,6 @@ export const TableEspecialidad = () => {
             </Table>
 
         </TableContainer>
-
 
     )
 }
