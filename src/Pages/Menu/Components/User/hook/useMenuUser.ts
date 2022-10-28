@@ -26,10 +26,10 @@ export const useMenuUser = () => {
     }, []);
 
     const color = theme.palette.primary.main;
-    const stringAvatar = (name: string) => {
-
-        if (name == "") return {}
-        let split = name.split(' ');
+    const stringAvatar = () => {
+        
+        if (user.nombreUsuario == "") return {}
+        let split = user.nombreUsuario.split(' ');
 
         if (split.length == 1)
             split.push(' ');

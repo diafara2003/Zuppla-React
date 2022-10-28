@@ -1,5 +1,5 @@
 import { KeyboardBackspaceOutlined, Add } from '@mui/icons-material'
-import { Box, Button, TextField, InputAdornment, TextFieldProps } from '@mui/material'
+import { Box, Button, TextField, InputAdornment, TextFieldProps, Grid } from '@mui/material'
 import { NuevaEspecialidad } from '../components/NuevaEspecialidad'
 import { TableEspecialidad } from '../components/TableEspecialidad'
 import { useEspecilidadContainer } from '../hook/useEspecilidadContainer'
@@ -10,7 +10,7 @@ import { useRef } from 'react'
 export const EspecilidadContainer = () => {
     const typing = useRef<TextFieldProps>(null);
 
-    const { handleDialog, openNew, handleChangeTyping } = useEspecilidadContainer(typing);
+    const { handleDialog, openNew, handleChangeTyping, inputfilter } = useEspecilidadContainer(typing);
 
     return (
 
@@ -19,13 +19,36 @@ export const EspecilidadContainer = () => {
             <Box sx={{ height: 'calc(100vh - 190px)' }}>
                 <Box display={"flex"} justifyContent={"end"}>
                     {openNew
-                        ? <Button onClick={handleDialog} sx={{ ml: "20px" }} variant="text" > <KeyboardBackspaceOutlined sx={{ mr: "8px" }} />Regresar</Button>
-                        : <>
+                        ? <Grid container justifyContent={"flex-start"}>
+
+                            <Grid item xs={10.5}>
+                            <TextField
+                                id="txtbuscarEspecialidad"
+                                size='small'
+                                inputRef={typing}
+                                onInput={() => handleChangeTyping("new")}
+                                placeholder='Buscar especialidad...'
+                                sx={{ width: "100%" }}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                label="Buscar especialidad" variant="outlined" />
+                            </Grid>
+                           <Grid item xs={1.5}>
+                           <Button onClick={handleDialog} sx={{ ml: "20px" }} variant="text" > <KeyboardBackspaceOutlined sx={{ mr: "8px" }} />Regresar</Button>
+                           </Grid>
+                            
+                        </Grid>
+                        : <Grid>
                             <TextField
                                 id="outlined-basic"
                                 size='small'
                                 inputRef={typing}
-                                onInput={handleChangeTyping}
+                                onInput={() => handleChangeTyping("table")}
                                 placeholder='Buscar...'
                                 sx={{ width: "400px" }}
                                 InputProps={{
@@ -38,7 +61,7 @@ export const EspecilidadContainer = () => {
                                 label="Buscar" variant="outlined" />
                             <Button onClick={handleDialog} sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar especialidad</Button>
                             <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                        </>
+                        </Grid>
                     }
 
 
@@ -47,10 +70,10 @@ export const EspecilidadContainer = () => {
 
                 {openNew
                     ? <Box mt={3}>
-                        <NuevaEspecialidad />
+                        <NuevaEspecialidad filter={inputfilter.filterNew} />
                     </Box>
                     : <Box mt={3}>
-                        <TableEspecialidad />
+                        <TableEspecialidad filter={inputfilter.filterTable} />
                     </Box>
 
                 }

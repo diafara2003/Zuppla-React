@@ -7,10 +7,15 @@ import { EspecialidadContext } from "../store";
 import useRef from 'react';
 import { TextFieldProps } from "@mui/material";
 
-
-export const useEspecilidadContainer = (typing:React.RefObject<TextFieldProps>) => {
+type filterType = "table" | "new";
+export const useEspecilidadContainer = (typing: React.RefObject<TextFieldProps>) => {
 
     const [openNew, setOpenDialog] = useState(false);
+    const [inputfilter, setinputfilter] = useState({
+
+        filterTable: '',
+        filterNew: ''
+    });
 
     const { data, doFetch } = useFetch<EspecialidadDTO[] | null>();
     const { dispatch } = useContext(EspecialidadContext);
@@ -42,13 +47,18 @@ export const useEspecilidadContainer = (typing:React.RefObject<TextFieldProps>) 
         setOpenDialog(() => !openNew);
     }
 
-    const handleChangeTyping = () => {
-        
-        console.log(typing.current?.value)
+    const handleChangeTyping = (name: filterType) => {
+
+        const _value = (typing.current?.value as string);
+
+        setinputfilter({
+            filterNew: name == "new" ? _value : inputfilter.filterNew,
+            filterTable: name == "table" ? _value : inputfilter.filterTable
+        });
     }
 
 
 
-    return { handleDialog, openNew, handleChangeTyping }
+    return { handleDialog, openNew, handleChangeTyping, inputfilter }
 
 }

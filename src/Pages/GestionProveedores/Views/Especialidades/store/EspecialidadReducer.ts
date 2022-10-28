@@ -16,6 +16,8 @@ export interface State {
 export interface IContextModel {
     state: EspecialidadDTO[];
     dispatch: React.Dispatch<AuthActionsEspecialidad>;
+    deleteEspecialidad: (id: number) => void;
+    addEspecialidad: (especialdiad: EspecialidadDTO) => void;
 }
 
 
@@ -27,7 +29,7 @@ type AuthActionsEspecialidad =
     | { type: 'add', payload: EspecialidadDTO }
     | { type: 'add all', payload: EspecialidadDTO[] }
     | { type: 'remove', payload: number }
-    | { type: 'get' }
+
 
 
 export interface IEspecialidadContext {
@@ -47,10 +49,6 @@ export const storeEspecialidad = (state: State, action: AuthActionsEspecialidad)
 
 
 
-        case 'get':
-
-            return { ...state };
-
         case 'add':
             return {
                 especialidades: [
@@ -65,4 +63,13 @@ export const storeEspecialidad = (state: State, action: AuthActionsEspecialidad)
     }
 }
 
-export const EspecialidadContext = createContext({ state: [], dispatch: () => { } } as IContextModel);
+
+
+
+export const EspecialidadContext = createContext(
+    {
+        state: [],
+        dispatch: () => { },
+        addEspecialidad: (newData: EspecialidadDTO) => { },
+        deleteEspecialidad(id) { },
+    } as IContextModel);

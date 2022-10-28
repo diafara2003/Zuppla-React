@@ -1,6 +1,6 @@
-import { Input } from '@mui/icons-material'
+
 import { Box, Button, Divider, Grid, IconButton, Typography, Tooltip } from '@mui/material'
-import React from 'react'
+
 import { AdjuntosDTO, AdjuntoTerceroDTO } from '../Model/AdjuntosDTO'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';

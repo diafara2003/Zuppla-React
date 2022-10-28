@@ -1,9 +1,9 @@
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, ListItem, Typography, makeStyles, Grid, Fab, Slide } from '@mui/material';
-import React, { useState, useRef } from 'react'
-import { NavLink } from 'react-router-dom';
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, ListItem, Typography, Grid, Fab } from '@mui/material';
+import { NavLink, useLocation } from 'react-router-dom';
 import { NavigationModel } from '../model/modelNavigation';
 import { theme } from '../../../theme/theme';
 import { MenuOpen } from '@mui/icons-material';
+import { tamLay, useNavigationComponent } from '../hook/useNavigationComponent';
 // import { NavigationModel } from '../model/modelNAvigation';
 
 
@@ -13,52 +13,12 @@ type props = {
     sizeLayout: (sizeL: tamLay) => void
 
 }
-interface tamLay {
-    sm: number,
-    lg: number,
-    md: number
-    xs: number
-}
 
-type typeDisplay = "end" | "start" | "none" | "block" | "center";
-
-type typeDirection = "right" | "left";
 
 export const NavigationComponent = ({ options, sizeLayout }: props) => {
 
+    const { hanbleClickMenu, handleListItemClick, displayMenu, displayText, sizeGrid, containerRef, selectedIndex } = useNavigationComponent(sizeLayout, options);
 
-    const [selectedIndex, setSelectedIndex] = useState(0);
-    const [sizeGrid, setSizeGrid] = useState({
-        sm: 3.2, lg: 2.0, md: 3.2, xs: 3.0
-    });
-    const [displayMenu, setMenuDisplay] = useState<typeDisplay>("end");
-    const [displayText, setMenuText] = useState<typeDisplay>("end");
-    const containerRef = useRef(null);
-
-    const handleListItemClick = (
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-        index: number,
-    ) => {
-        setSelectedIndex(index);
-    };
-
-    const hanbleClickMenu = () => {
-        setMenuDisplay((prev) => {
-
-            if (prev == "end") {
-                setSizeGrid({ sm: 3, lg: 0.6, md: 0.6, xs: 3 });
-                sizeLayout({ sm: 8.9, lg: 11.3, md: 11.3, xs: 8.9 })
-                setMenuText("none");
-                return "center";
-            }
-            else {
-                setSizeGrid({ sm: 3.2, lg: 2.0, md: 3.2, xs: 3.0 });
-                sizeLayout({ sm: 7, lg: 10, md: 10, xs: 7 })
-                setMenuText("block");
-                return "end";
-            }
-        });
-    }
     return (
         <Grid container item spacing={0} {...sizeGrid} >
             <Box sx={{

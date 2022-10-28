@@ -7,7 +7,8 @@ import { HeaderComponent } from "../../../../../SharedComponents/Header";
 
 import HistoryIcon from '@mui/icons-material/History';
 import { LogoEmpresa } from "../../../Components/LogoProveedor/View/LogoEmpresa";
-import { SkeletonDinamic } from "../../../Components/SkeletonComp/View/SkeletonDinamic";
+import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
+
 
 
 export const InformacionGeneralPage = () => {
@@ -53,7 +54,7 @@ export const InformacionGeneralPage = () => {
                     isLoadingCarga == true
                         ?
                         <Box m={5}>
-                            <SkeletonDinamic NoColumnas={3} NoFilas={4} Tipo={'FRM'} />
+                            <SkeletonDinamic NoColumnas={3} NoFilas={4} Tipo={'formulario'} />
                         </Box>
                         
                         :

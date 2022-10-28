@@ -8,27 +8,34 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import DescriptionIcon from '@mui/icons-material/Description';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import FolderOpenTwoToneIcon from '@mui/icons-material/FolderOpenTwoTone';
+import React, { useState } from 'react'
+import { BrowserRouter, NavLink, Routes, Route, Navigate, useLocation, useParams } from "react-router-dom";
+import { LogoEmpresa } from "../Components/LogoProveedor/View/LogoEmpresa";
+
 
 const drawerWidth = 280;
 
-import React from 'react'
-import { BrowserRouter, NavLink, Routes, Route, Navigate } from "react-router-dom";
-import { LogoEmpresa } from "../Components/LogoProveedor/View/LogoEmpresa";
 
 export const GestionProveedoresLayout = ({ children }: any) => {
-    const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    
     const handleListItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
         index: number,
     ) => {
+        
         setSelectedIndex(index);
+        
     };
+    
 
-  return (
-    <Box sx={{ display: 'flex', backgroundColor:"white" }}>
-        <HeaderPages drawerWidth={drawerWidth} />
-        {/* <SubMenu drawerWidth={drawerWidth} /> */}
-        <Box
+
+
+    return (
+        <Box sx={{ display: 'flex', backgroundColor: "white" }}>
+            <HeaderPages drawerWidth={drawerWidth} />
+            {/* <SubMenu drawerWidth={drawerWidth} /> */}
+            <Box
                 component='nav'
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
             >
@@ -48,26 +55,6 @@ export const GestionProveedoresLayout = ({ children }: any) => {
                     <Divider />
                     <BrowserRouter>
                         <List>
-                            {/* {
-                        ['Informacion General', 'Datos contacto', 'Datos notificaciones', 'Documentos', 'Camara de comercio', 'Novedades'].map(text => (
-                            <ListItem key={text} disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        {
-                                            <BusinessIcon/>
-                                        }
-
-                                    </ListItemIcon>
-                                    <Grid container>
-                                        <ListItemText secondary={text} title={text} />
-                                    </Grid>
-                                </ListItemButton>
-                            </ListItem>
-                        ))
-                    } */}
-
-
-
                             <ListItem disablePadding>
 
                                 <ListItemButton
@@ -145,14 +132,6 @@ export const GestionProveedoresLayout = ({ children }: any) => {
                                 </ListItemButton>
                             </ListItem>
                         </List>
-
-                        <Routes>
-                            <Route path="about" element={<h1>About Page</h1>} />
-                            <Route path="users" element={<h1>Users Page</h1>} />
-                            <Route path="home" element={<h1>Home Page</h1>} />
-
-                            <Route path="/*" element={<Navigate to="/home" replace />} />
-                        </Routes>
                     </BrowserRouter>
 
                 </Drawer>
@@ -160,13 +139,13 @@ export const GestionProveedoresLayout = ({ children }: any) => {
 
 
 
-        <Box
-            component='main'
-            sx={{ flexGrow: 1, p: 3 }}
-        >
-            <Toolbar />
-            {children}
+            <Box
+                component='main'
+                sx={{ flexGrow: 1, p: 3 }}
+            >
+                <Toolbar />
+                {children}
+            </Box>
         </Box>
-    </Box>
-  )
+    )
 }

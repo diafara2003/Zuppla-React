@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { Navigate,  Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { NavigationModel } from '../../../SharedComponents/Navigation';
 import { DatosContactos, DatosNotifiaciones, CamaraComercioPage, DocumentosAdjuntosPage, EspecialidadesPage, NovedadesPage } from '../../GestionProveedores';
 
@@ -11,20 +11,20 @@ import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
 import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import { Folder, FolderOutlined } from '@mui/icons-material';
+import { FolderOutlined } from '@mui/icons-material';
 export const rutas: NavigationModel[] = [
     {
-        path: "/gestionproveedor/InfGeneralPage",
+        path: "/gestionproveedor/InfGeneral",
         texto: "Información general",
         Icono: () => <BusinessOutlinedIcon />
     },
     {
-        path: "/gestionproveedor/EspecialidadesPage",
+        path: "/gestionproveedor/Especialidades",
         texto: "Especialidades",
         Icono: () => < StarBorderOutlinedIcon />
     },
     {
-        path: "/gestionproveedor/DatosContactosPage",
+        path: "/gestionproveedor/DatosContactos",
         texto: "Datos contacto",
         Icono: () => < ContactsOutlinedIcon />
     },
@@ -34,17 +34,17 @@ export const rutas: NavigationModel[] = [
         Icono: () => < ContactMailOutlinedIcon />
     },
     {
-        path: "/gestionproveedor/DocumentosAdjuntosPage",
+        path: "/gestionproveedor/DocumentosAdjuntos",
         texto: "Documentos",
         Icono: () => < FolderOutlined />
     },
     {
-        path: "/gestionproveedor/CamaraComercioPage",
+        path: "/gestionproveedor/CamaraComercio",
         texto: "Cámara de comercio",
         Icono: () => < DescriptionOutlinedIcon />
     },
     {
-        path: "/gestionproveedor/NovedadesPage",
+        path: "/gestionproveedor/Novedades",
         texto: "Novedades",
         Icono: () => <Badge color="primary" badgeContent={2}>
             < NotificationsNoneOutlinedIcon />
@@ -60,15 +60,15 @@ const InformacionGeneralPage = lazy(() => import('../../GestionProveedores/Views
 export default function RoutesGestionProveedores() {
     return (
         <Routes>
-            <Route path="/InfGeneralPage" element={<InformacionGeneralPage />} />
-            <Route path="/DatosContactosPage" element={<DatosContactos />} />
+            <Route path="/InfGeneral" element={<InformacionGeneralPage />} />
+            <Route path="/DatosContactos" element={<DatosContactos />} />
             <Route path="/DatosNotificaciones" element={<DatosNotifiaciones />} />
-            <Route path="/DocumentosAdjuntosPage" element={<DocumentosAdjuntosPage />} />
-            <Route path="/CamaraComercioPage" element={<CamaraComercioPage />} />
-            <Route path="/NovedadesPage" element={<NovedadesPage />} />
-            <Route path="/EspecialidadesPage" element={<EspecialidadesPage />} />
+            <Route path="/DocumentosAdjuntos" element={<DocumentosAdjuntosPage />} />
+            <Route path="/CamaraComercio" element={<CamaraComercioPage />} />
+            <Route path="/Novedades" element={<NovedadesPage />} />
+            <Route path="/Especialidades" element={<EspecialidadesPage />} />
 
-            <Route path="/*" element={<Navigate to="/gestionproveedor/InfGeneralPage" />}></Route>
+            <Route path="/*" element={<Navigate to="/gestionproveedor/InfGeneral" />}></Route>
         </Routes>
     )
 }

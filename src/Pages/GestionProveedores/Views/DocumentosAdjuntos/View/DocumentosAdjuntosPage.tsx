@@ -8,7 +8,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import { ControllerDocumentosAdjuntos } from '../Controller/ControllerDocumentosAdjuntos';
 import { DocumentoAdjunto } from '../Components/DocumentoAdjunto';
 import { SelectorConstructora } from '../../../Components/SelectConstructora/View/SelectorConstructora';
-import { SkeletonDinamic } from '../../../Components/SkeletonComp/View/SkeletonDinamic';
+import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
 import { SinInformacion } from '../../../Components/ImgComponents/View/SinInformacion';
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -90,7 +90,7 @@ export const DocumentosAdjuntosPage = () => {
           <Box m={1} mt={1}>
             {
               isLoading ?
-                <SkeletonDinamic NoColumnas={2} NoFilas={1} Tipo={'CARD'} />
+                <SkeletonDinamic NoColumnas={2} NoFilas={1} Tipo={'card'} />
                 :
                 <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
                   <Grid container spacing={2} >
@@ -116,7 +116,7 @@ export const DocumentosAdjuntosPage = () => {
           <Box m={1} mt={1}>
             {
               isLoading ?
-                <SkeletonDinamic NoColumnas={1} NoFilas={1} Tipo={'CARD'} />
+                <SkeletonDinamic NoColumnas={1} NoFilas={1} Tipo={'card'} />
                 :
 
                 dataAdjPorConst.length == 0

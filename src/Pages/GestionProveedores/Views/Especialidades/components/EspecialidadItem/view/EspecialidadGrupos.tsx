@@ -13,14 +13,17 @@ type props = {
 
 export const EspecialidadGrupo = ({ grupo, categorias }: props) => {
 
-    const _filter = (id: number) => categorias.filter(c => c.grupo == id && c.especialidad == 0)
+    const _filter = (data: especialidadGrupoDTO[], id: number) => {
+        
+        return data.filter(c => c.grupo == id && c.especialidad == 0);
+    }
 
-    const { Handleclick, show, info } = useShowItem({ data: categorias, handleClick: _filter });
+    const { Handleclick, show, info,item} = useShowItem({ data: categorias, handleClick: _filter, id: grupo.grupo ,item:grupo});
 
     return (
-        <Box key={`con-grupo-${grupo.grupo}`}>
-            <Box display={"flex"} p={0.5} key={`flex-grupo-${grupo.grupo}`}
-                onClick={() => Handleclick(grupo.grupo)}
+        <Box key={`con-grupo-${item.grupo}`}>
+            <Box display={"flex"} p={0.5} key={`flex-grupo-${item.grupo}`}
+                onClick={Handleclick}
                 sx={{
                     "&:hover": {
                         backgroundColor: "#D4E4F1",
@@ -33,7 +36,7 @@ export const EspecialidadGrupo = ({ grupo, categorias }: props) => {
                     : <Add color="primary" />
                 }
 
-                <Typography sx={{ color: '#1B344C', fontWeight: 600, paddingBottom: '0' }}>{grupo.texto}</Typography>
+                <Typography sx={{ color: '#1B344C', fontWeight: 600, paddingBottom: '0' }}>{item.texto}</Typography>
             </Box>
             <Collapse in={show}>
                 {show && info.length > 0
@@ -42,8 +45,8 @@ export const EspecialidadGrupo = ({ grupo, categorias }: props) => {
                         <EspecialidadCategoria
                             key={`espe-cat-${c.categoria}-index-${i}`}
                             categoria={c}
-                            grupo={grupo}
-                            especialidades={categorias.filter(e => e.grupo == grupo.grupo
+                            grupo={item}
+                            especialidades={categorias.filter(e => e.grupo == item.grupo
                                 && e.categoria == c.categoria
                                 && e.especialidad > 0
                             )} />)

@@ -19,12 +19,12 @@ type props = {
 export const EspecialidadText = ({ categoria, especialidad, grupo }: props) => {
 
 
-    const { checked, handleCLick, texto } = useEspecialidadText({ especialidad, categoriaTexto: categoria.texto, grupoTexto: grupo.texto });
+    const { checked, handleCLick,info} = useEspecialidadText({ especialidad, categoriaTexto: categoria.texto, grupoTexto: grupo.texto });
 
     return (
         <Box
-            onClick={() => handleCLick(especialidad.especialidad)}
-            key={`cont-cat-${categoria}`}
+            onClick={() => handleCLick(info.especialidad)}
+            key={`cont-cat-${info.categoria}`}
             display={"flex"}
             alignItems={"center"}
             pl={5.5}
@@ -39,7 +39,7 @@ export const EspecialidadText = ({ categoria, especialidad, grupo }: props) => {
                 checked={checked}
                 sx={{ p: 0.5 }}
                 color="primary" />
-            <Typography sx={{ color: 'rgba(8, 21, 36, 0.87);' }}>{texto}</Typography>
+            <Typography sx={{ color: 'rgba(8, 21, 36, 0.87);' }}>{info.texto}</Typography>
         </Box>
     )
 }
