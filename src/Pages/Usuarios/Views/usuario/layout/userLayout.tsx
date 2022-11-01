@@ -6,7 +6,7 @@ import { ActionUser } from '../model/usuarioDTO'
 import SearchIcon from '@mui/icons-material/Search';
 import HistoryIcon from '@mui/icons-material/History';
 import { useLayoutUsuario } from '../hook/useLayoutUsuario'
-import { SkeletonDinamic } from '../../../../GestionProveedores/Components/SkeletonComp/View/SkeletonDinamic'
+import { SkeletonDinamic } from '../../../../../SharedComponents/Skeleton/view/SkeletonDynamic'
 import { AlertPortal } from '../../../../../SharedComponents/Alert/View/AlertPortal'
 import { Eliminar } from '../../../../GestionProveedores/Components/ImgComponents/View/Eliminar'
 import { FrmNewUser, typeModal } from '../components/view/FrmNewUser'
@@ -26,7 +26,7 @@ export const UserLayout = () => {
       {
         isLoading ?
           <Box mt={6}>
-            <SkeletonDinamic NoColumnas={1} NoFilas={4} Tipo={'TABLE'} />
+            <SkeletonDinamic NoColumnas={1} NoFilas={4} Tipo={'table'} />
           </Box>
           :
           <><Box sx={{ m: '1px', background: 'white', height: '', mr: "10px", ml: '10px' }}>
