@@ -34,8 +34,8 @@ export const Autocompleteasync = (info: props) => {
                 setOpen(false);
             }}
             onInputChange={changeTyping}
-            isOptionEqualToValue={(option, value) => option[info.nombre] === value[info.nombre]}
-            getOptionLabel={(option) => option[info.nombre]}
+            isOptionEqualToValue={(option, value) => option[info.nombreDataOcject] === value[info.nombreDataOcject]}
+            getOptionLabel={(option) => option[info.nombreDataOcject]}
             renderInput={(params) => (
                 <TextField
 
