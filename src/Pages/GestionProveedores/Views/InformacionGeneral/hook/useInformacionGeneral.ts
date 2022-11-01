@@ -2,21 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../../../../Auth';
 import { APiMethod, RequestModel } from '../../../../../Provider/model/FetchModel';
 import { requestAPI } from '../../../../../Provider/Requestfetch';
-import { useFetch } from '../../../../../Provider/useFech';
-import { TerInformacionGeneralDTO } from '../Model/InformacionGeneral-model';
+import { CiudadesDTO, TerInformacionGeneralDTO, ActividadEconomicaDTO, INITIAL_INFORMACION_GENERAL } from '../Model';
 
-type loginForm = {
-    tipoPersona: string;
-    nombres: string;
-    apellidos: string;
-    numIdentificacion: string;
-    ciudad: string;
-    direccion: string;
-    correo: string;
-    telefono: string;
-    pagWeb: string
-    actividadEconomica: string;
-}
 
 type inputFormulario = {
     hasError: boolean, msn: string
@@ -27,16 +14,15 @@ type validacionFormulario = {
     password: inputFormulario
 }
 
-export const controllerInformacionGeneral = () => {
+export const useInformacionGeneral = () => {
     const { storeUsuario } = useContext(AuthContext);
     // const { hasError, data, isLoading, doFetch } = useFetch();
 
 
-    // const [formState, setFormState] = useState();
-    const [dataInitialState, setDataInitialState] = useState({});
+    const [dataInitialState, setDataInitialState] = useState<TerInformacionGeneralDTO>(INITIAL_INFORMACION_GENERAL);
     const [isLoadingCarga, setIsLoadingCarga] = useState(true);
     const [errorMessage, setError] = useState("");
-    const [errorState, errorStateState] = useState(
+    const [errorState, errorStateState] = useState<validacionFormulario>(
         {
             email: { hasError: false, msn: '' },
             password: { hasError: false, msn: '' }
@@ -50,28 +36,37 @@ export const controllerInformacionGeneral = () => {
             type: APiMethod.GET
         }
         const response = await requestAPI<TerInformacionGeneralDTO>(request)!;
-      
+
         //setDataInitialState(response!= null ?? response);
-        setDataInitialState(response!)
-        setIsLoadingCarga(false)               
+        if (response != null)
+            setDataInitialState(response);
+
+        setIsLoadingCarga(false);
     }
 
     useEffect(() => {
-        cargaInfGeneral();               
-    }, [])
+        cargaInfGeneral();
+    }, []);
 
 
+
+    const selectedCiudad = <CiudadesDTO>(value: CiudadesDTO) => {
+        console.log(value);
+    }
+
+
+    const selectedAcEcono = <ActividadEconomicaDTO>(value: ActividadEconomicaDTO) => {
+        console.log(value);
+    }
 
 
     return {
         dataInitialState: (dataInitialState as TerInformacionGeneralDTO),
         isLoadingCarga,
         errorState,
-        // onInputChange,
-        // onResetForm,
-        // handleSubmit,       
-        errorMessage
-
+        selectedCiudad,
+        selectedAcEcono,
+        errorMessage,
 
     }
 }

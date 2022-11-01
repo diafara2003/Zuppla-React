@@ -25,8 +25,6 @@ export const useNavigationComponent = (sizeLayout: (sizeL: tamLay) => void, opti
     const { pathname } = useLocation();
 
     useLayoutEffect(() => {
-        
-        console.log(pathname);
 
         const _index = options.findIndex(c => c.path.toLowerCase().includes(pathname.toLowerCase()));
 

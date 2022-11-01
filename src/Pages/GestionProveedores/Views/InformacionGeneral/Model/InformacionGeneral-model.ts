@@ -1,3 +1,6 @@
+import { ActividadEconomicaDTO, CiudadesDTO } from "./";
+
+
 export interface TerInformacionGeneralDTO {
     actividadEconomica: ActividadEconomicaDTO | null;
     certificadoISO: boolean;
@@ -15,15 +18,21 @@ export interface TerInformacionGeneralDTO {
     fechaRegistro: Date
 }
 
-export interface ActividadEconomicaDTO {
 
-    id: number;
-    codigo: string;
-    nombre: string;
-}
+export const INITIAL_INFORMACION_GENERAL: TerInformacionGeneralDTO = {
+    actividadEconomica: null,
+    apellido: '',
+    certificadoISO: false,
+    ciudad: null,
+    correo: '',
+    digitoVerificacion: '',
+    direccion: '',
+    fechaRegistro: new Date(),
+    nombre: '',
+    numeroIdentificacion: '',
+    paginaWeb: '',
+    telefono: '',
+    tipoDocumento: '',
+    tipoPersona: ''
 
-export interface CiudadesDTO {
-
-    id: number;
-    nombre: string;
 }
