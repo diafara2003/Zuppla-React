@@ -3,8 +3,7 @@ import { useAutoCompleteAsync } from '../hook/useAutocompleteasync';
 
 type props = {
 
-    id: string;
-    nombre: string;
+    nombreDataOcject: string;
     method: string;
     label: string;
     selected: handleSelected;
@@ -16,9 +15,9 @@ type handleSelected = <T>(value: T) => void;
 
 export const Autocompleteasync = (info: props) => {
 
-    const { changeTyping, loading, lstData, open, setOpen } = useAutoCompleteAsync(info);
+    const { changeTyping, loading, lstData, open, setOpen } = useAutoCompleteAsync(info.method);
 
-    const id = `AcAsync_${info}_${info.id}`;
+    const id = `AcAsync_${info}`;
     return (
         <Autocomplete
             disablePortal

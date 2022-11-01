@@ -84,10 +84,9 @@ export const InformacionGeneralPage = () => {
                                     </Grid>
                                     <Grid item xs={3.5} >
                                         <Autocompleteasync
-                                            id="id"
                                             label="Ciudad"
                                             method="Ciudad?filter="
-                                            nombre="nombre"
+                                            nombreDataOcject="nombre"
                                             selected={selectedCiudad}
                                             defaultValue={{ id: 1, nombre: 'jau' }}
                                         />
@@ -135,10 +134,9 @@ export const InformacionGeneralPage = () => {
                                     </Grid>
                                     <Grid item xs={3.5} >
                                         <Autocompleteasync
-                                            id="id"
                                             label="Actividad económica"
                                             method="ActividadEconomica?filter="
-                                            nombre="nombre"
+                                            nombreDataOcject="nombre"
                                             selected={selectedAcEcono}
                                         />
                                     </Grid>

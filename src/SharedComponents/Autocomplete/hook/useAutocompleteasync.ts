@@ -1,15 +1,8 @@
 import { useEffect, useState, useRef, ChangeEventHandler, SyntheticEvent } from "react";
 import { APiMethod, requestAPI, RequestModel } from "../../../Provider";
 
-type props = {
 
-    id: string;
-    nombre: string;
-    method: string;
-
-}
-
-export const useAutoCompleteAsync = ({ id, method, nombre }: props) => {
+export const useAutoCompleteAsync = (method:string) => {
 
 
     const [lstData, setlstData] = useState<[]>([]);
