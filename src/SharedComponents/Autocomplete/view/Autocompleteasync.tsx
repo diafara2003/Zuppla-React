@@ -7,15 +7,22 @@ type props = {
     method: string;
     label: string;
     selected: handleSelected;
-    defaultValue?: Object;
+    defaultValue?: Object | null;
 }
 
 type handleSelected = <T>(value: T) => void;
 
-
+interface Foo {
+    [key: string]: string;
+}
 export const Autocompleteasync = (info: props) => {
 
     const { changeTyping, loading, lstData, open, setOpen } = useAutoCompleteAsync(info.method);
+    let obj: Foo = {};
+
+    if (info.defaultValue != undefined && info.defaultValue != null)
+        obj[info.nombreDataOcject] = (info.defaultValue as Foo)[info.nombreDataOcject];
+    else obj[info.nombreDataOcject] = '';
 
     const id = `AcAsync_${info}`;
     return (
@@ -33,6 +40,7 @@ export const Autocompleteasync = (info: props) => {
             onClose={() => {
                 setOpen(false);
             }}
+            value={obj}
             onInputChange={changeTyping}
             isOptionEqualToValue={(option, value) => option[info.nombreDataOcject] === value[info.nombreDataOcject]}
             getOptionLabel={(option) => option[info.nombreDataOcject]}

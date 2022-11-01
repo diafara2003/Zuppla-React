@@ -88,7 +88,7 @@ export const InformacionGeneralPage = () => {
                                             method="Ciudad?filter="
                                             nombreDataOcject="nombre"
                                             selected={selectedCiudad}
-                                            defaultValue={{ id: 1, nombre: 'jau' }}
+                                            defaultValue={dataInitialState.ciudad}
                                         />
 
                                     </Grid>
@@ -138,6 +138,7 @@ export const InformacionGeneralPage = () => {
                                             method="ActividadEconomica?filter="
                                             nombreDataOcject="nombre"
                                             selected={selectedAcEcono}
+                                            defaultValue={dataInitialState.actividadEconomica}
                                         />
                                     </Grid>
                                     <Grid item xs={7} >
