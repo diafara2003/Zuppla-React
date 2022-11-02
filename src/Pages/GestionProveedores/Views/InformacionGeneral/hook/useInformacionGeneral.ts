@@ -21,13 +21,33 @@ export const useInformacionGeneral = () => {
 
     const [dataInitialState, setDataInitialState] = useState<TerInformacionGeneralDTO>(INITIAL_INFORMACION_GENERAL);
     const [isLoadingCarga, setIsLoadingCarga] = useState(true);
-    const [errorMessage, setError] = useState("");
-    const [errorState, errorStateState] = useState<validacionFormulario>(
-        {
-            email: { hasError: false, msn: '' },
-            password: { hasError: false, msn: '' }
+    const [isSaving, setIsSaving] = useState(false);
+
+
+    const handleGuardar = () => {
+
+        guardarInfo();
+    }
+
+    const guardarInfo = async () => {
+        setIsSaving(true);
+        const request: RequestModel = {
+            metodo: `TercerosGI/GuardaInfGeneral`,
+            AllowAnonymous: true,
+            type: APiMethod.POST,
+            data: dataInitialState
         }
-    );
+        const response = await requestAPI<TerInformacionGeneralDTO>(request)!;
+        setIsSaving(false);
+    }
+
+    const onInputChange = (e: React.SyntheticEvent) => {
+        const { name, value } = (e.target as HTMLInputElement);
+        setDataInitialState({
+            ...dataInitialState,
+            [name]: value
+        });
+    }
 
     const cargaInfGeneral = async () => {
         const request: RequestModel = {
@@ -50,23 +70,30 @@ export const useInformacionGeneral = () => {
 
 
 
-    const selectedCiudad = <CiudadesDTO>(value: CiudadesDTO) => {
-        console.log(value);
+    const selectedCiudad = <Selected>(value: Selected ) => {
+        setDataInitialState({
+            ...dataInitialState,
+            ciudad : (value as CiudadesDTO)
+        });
     }
 
 
-    const selectedAcEcono = <ActividadEconomicaDTO>(value: ActividadEconomicaDTO) => {
-        console.log(value);
+    const selectedAcEcono = <Selected>(value: Selected) => {
+        setDataInitialState({
+            ...dataInitialState,
+            actividadEconomica: (value as ActividadEconomicaDTO)
+        });
     }
 
 
     return {
         dataInitialState: (dataInitialState as TerInformacionGeneralDTO),
         isLoadingCarga,
-        errorState,
+        isSaving,
         selectedCiudad,
         selectedAcEcono,
-        errorMessage,
+        handleGuardar,
+        onInputChange
 
     }
 }

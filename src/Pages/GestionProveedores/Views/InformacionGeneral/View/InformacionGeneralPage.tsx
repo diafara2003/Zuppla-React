@@ -1,4 +1,4 @@
-import {  Box, Button, FormControlLabel, Grid, Stack, Switch, TextField } from "@mui/material"
+import { Box, Button, FormControlLabel, Grid, Stack, Switch, TextField } from "@mui/material"
 import SaveIcon from '@mui/icons-material/Save';
 import { useInformacionGeneral } from "../hook/useInformacionGeneral";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
@@ -12,7 +12,7 @@ import { CiudadesDTO } from "../Model";
 
 export const InformacionGeneralPage = () => {
 
-    const { isLoadingCarga, dataInitialState, selectedCiudad, selectedAcEcono } = useInformacionGeneral();
+    const { isLoadingCarga,dataInitialState,  selectedCiudad, selectedAcEcono, handleGuardar,onInputChange} = useInformacionGeneral();
 
 
 
@@ -47,6 +47,7 @@ export const InformacionGeneralPage = () => {
                                             fullWidth
                                             // onChange={handleChange}
                                             disabled
+                                            onChange={onInputChange}
                                             size="small"
 
                                         />
@@ -57,8 +58,10 @@ export const InformacionGeneralPage = () => {
                                             required
                                             id="txtnombres"
                                             label="Nombres"
+                                            name="nombre"
                                             value={dataInitialState.nombre}
                                             fullWidth
+                                            onChange={onInputChange}
                                             size="small"
                                         />
                                     </Grid>
@@ -67,8 +70,10 @@ export const InformacionGeneralPage = () => {
                                             required
                                             id="txtApellidos"
                                             label="Apellidos"
+                                            name="apellido"
                                             value={dataInitialState.apellido}
                                             fullWidth
+                                            onChange={onInputChange}
                                             size="small"
                                         />
                                     </Grid>
@@ -77,8 +82,10 @@ export const InformacionGeneralPage = () => {
                                             required
                                             id="txtIdentificacion"
                                             label="Identificación"
+                                            name="numeroIdentificacion"
                                             value={dataInitialState.numeroIdentificacion}
                                             fullWidth
+                                            onChange={onInputChange}
                                             size="small"
                                         />
                                     </Grid>
@@ -97,8 +104,10 @@ export const InformacionGeneralPage = () => {
                                             required
                                             id="txtDireccion"
                                             label="Direccion"
+                                            name="direccion"
                                             value={dataInitialState.direccion}
                                             fullWidth
+                                            onChange={onInputChange}
                                             size="small"
                                         />
                                     </Grid>
@@ -107,6 +116,8 @@ export const InformacionGeneralPage = () => {
                                             required
                                             id="txtCorreo"
                                             label="Correo"
+                                            name="Correo"
+                                            onChange={onInputChange}
                                             value={dataInitialState.correo}
                                             fullWidth
                                             size="small"
@@ -116,7 +127,9 @@ export const InformacionGeneralPage = () => {
                                         <TextField
                                             required
                                             id="txtTelefono"
+                                            name="telefono"
                                             label="Telefono"
+                                            onChange={onInputChange}
                                             value={dataInitialState.telefono}
                                             fullWidth
                                             size="small"
@@ -127,6 +140,8 @@ export const InformacionGeneralPage = () => {
                                             required
                                             id="txtPaginaWeb"
                                             label="Pagina WEB"
+                                            onChange={onInputChange}
+                                            name="paginaWeb"
                                             value={dataInitialState.paginaWeb}
                                             fullWidth
                                             size="small"
@@ -149,7 +164,7 @@ export const InformacionGeneralPage = () => {
                                 </Grid>
                                 <Grid style={{ display: "flex", justifyContent: 'end', marginBottom: '25px', marginRight: '150px' }}>
                                     <Stack direction="row">
-                                        <Button variant="contained" endIcon={<SaveIcon />}>Guardar</Button>
+                                        <Button variant="contained" onClick={handleGuardar} endIcon={<SaveIcon />}>Guardar</Button>
                                     </Stack>
                                 </Grid>
                             </form>

@@ -18,6 +18,7 @@ export interface IContextUserModel {
 type AuthActionsUser =
 
     | { type: 'add', payload: UsuariosDTO }
+    | { type: 'edit', payload: UsuariosDTO }
     | { type: 'add all', payload: UsuariosDTO[] }
     | { type: 'remove', payload: number }
     | { type: 'cambia estado', payload: { _id: number, estado: number } }
@@ -37,14 +38,30 @@ export const storeUser = (state: StateUsuario, action: AuthActionsUser): StateUs
                 usuarios: [...action.payload],
             };
         case 'add':
-           //state.usuarios.push(action.payload);
+            //state.usuarios.push(action.payload);
 
-            return {                
+            return {
                 usuarios: [
                     ...state.usuarios,
                     action.payload
                 ],
             };
+
+
+        case 'edit':
+            //state.usuarios.push(action.payload);
+
+            return {
+                usuarios: [...state.usuarios.map(c => {
+                    const _user = c;
+
+                    if (_user.id == action.payload.id)
+                        return action.payload
+                    else
+                        return _user;
+                })]
+            }
+
 
         case 'remove':
             return {
