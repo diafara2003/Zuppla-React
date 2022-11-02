@@ -8,15 +8,17 @@ type props = {
     label: string;
     fnSeleted: handleSelected;
     defaultValue?: Object | null;
+    showError?: errorAC;
 }
 
 type handleSelected = <T>(value: T) => void;
-
+type errorAC = { hasError: boolean; msn: string }
 interface Foo {
     [key: string]: string;
 }
 
-export const useAutoCompleteAsync = ({ method, fnSeleted, defaultValue, nombreDataOcject }: props) => {
+export const useAutoCompleteAsync = ({ method, fnSeleted, defaultValue, nombreDataOcject, showError }: props) => {
+
 
     let valueInitial: string = "";
 
@@ -90,6 +92,7 @@ export const useAutoCompleteAsync = ({ method, fnSeleted, defaultValue, nombreDa
                 });
             } else {
                 fnSeleted(textInput);
+
             }
         }
 

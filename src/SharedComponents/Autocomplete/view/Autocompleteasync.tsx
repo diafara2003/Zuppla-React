@@ -8,8 +8,10 @@ type props = {
     label: string;
     fnSeleted: handleSelected;
     defaultValue?: Object | null;
+    showError?: errorAC;
 }
 
+type errorAC = { hasError: boolean; msn: string }
 type handleSelected = <T>(value: T) => void;
 
 interface Foo {
@@ -17,10 +19,10 @@ interface Foo {
 }
 export const Autocompleteasync = (info: props) => {
 
+    if (info.showError == undefined) info.showError = { hasError: false, msn: "" }
+
 
     const { changeTyping, loading, lstData, open, setOpen, textInput, handleSelected } = useAutoCompleteAsync(info);
-
-
 
     const id = `AcAsync_${info}`;
     return (
@@ -44,6 +46,8 @@ export const Autocompleteasync = (info: props) => {
             getOptionLabel={(option) => option[info.nombreDataOcject]}
             renderInput={(params) => (
                 <TextField
+                    error={info.showError!.hasError}
+                    helperText={info.showError!.msn}
                     {...params}
                     label={info.label}
                     InputProps={{

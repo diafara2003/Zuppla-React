@@ -4,25 +4,21 @@ import { useInformacionGeneral } from "../hook/useInformacionGeneral";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 import HistoryIcon from '@mui/icons-material/History';
 import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
-import { useState } from "react";
 import { Autocompleteasync } from "../../../../../SharedComponents/Autocomplete/view/Autocompleteasync";
-import { CiudadesDTO } from "../Model";
-import { AlertPortal } from "../../../../../SharedComponents/Alert";
 import { LoadingButton } from "@mui/lab";
 
 
 
 export const InformacionGeneralPage = () => {
 
-    const { isLoadingCarga, dataInitialState, stateAlert,isSaving, selectedCiudad, selectedAcEcono, handleGuardar, onInputChange } = useInformacionGeneral();
-
+    const { isLoadingCarga, dataInitialState, isSaving,
+        validation,
+        selectedCiudad, selectedAcEcono, handleGuardar, onInputChange } = useInformacionGeneral();
 
 
     return (
         <>
             <HeaderComponent title={"Información general"} />
-
-            <AlertPortal data={stateAlert}></AlertPortal>
 
             <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)' }}>
                 {
@@ -36,7 +32,7 @@ export const InformacionGeneralPage = () => {
                             <Box display={"flex"} justifyContent={"end"}>
                                 <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                             </Box>
-                            <Box component="form" onSubmit={handleGuardar}>
+                            <Box >
                                 <Grid container width={'100%'}
                                     display={"flex"}
                                     alignItems={"center"}
@@ -52,6 +48,8 @@ export const InformacionGeneralPage = () => {
                                             fullWidth
                                             // onChange={handleChange}
                                             disabled
+                                            error={validation.tipoPersona.hasError}
+                                            helperText={validation.tipoDocumento.msn}
                                             onChange={onInputChange}
                                             size="small"
 
@@ -66,6 +64,8 @@ export const InformacionGeneralPage = () => {
                                             name="nombre"
                                             value={dataInitialState.nombre}
                                             fullWidth
+                                            error={validation.nombre.hasError}
+                                            helperText={validation.nombre.msn}
                                             onChange={onInputChange}
                                             size="small"
                                         />
@@ -77,6 +77,8 @@ export const InformacionGeneralPage = () => {
                                             label="Apellidos"
                                             name="apellido"
                                             value={dataInitialState.apellido}
+                                            error={validation.apellido.hasError}
+                                            helperText={validation.apellido.msn}
                                             fullWidth
                                             onChange={onInputChange}
                                             size="small"
@@ -88,6 +90,8 @@ export const InformacionGeneralPage = () => {
                                             id="txtIdentificacion"
                                             label="Identificación"
                                             name="numeroIdentificacion"
+                                            error={validation.numeroIdentificacion.hasError}
+                                            helperText={validation.numeroIdentificacion.msn}
                                             value={dataInitialState.numeroIdentificacion}
                                             fullWidth
                                             onChange={onInputChange}
@@ -100,6 +104,7 @@ export const InformacionGeneralPage = () => {
                                             method="Ciudad?filter="
                                             nombreDataOcject="nombre"
                                             fnSeleted={selectedCiudad}
+                                            showError={validation.ciudad}
                                             defaultValue={dataInitialState.ciudad}
                                         />
 
@@ -110,6 +115,8 @@ export const InformacionGeneralPage = () => {
                                             id="txtDireccion"
                                             label="Direccion"
                                             name="direccion"
+                                            error={validation.direccion.hasError}
+                                            helperText={validation.direccion.msn}
                                             value={dataInitialState.direccion}
                                             fullWidth
                                             onChange={onInputChange}
@@ -123,6 +130,8 @@ export const InformacionGeneralPage = () => {
                                             label="Correo"
                                             name="Correo"
                                             onChange={onInputChange}
+                                            error={validation.correo.hasError}
+                                            helperText={validation.correo.msn}
                                             value={dataInitialState.correo}
                                             fullWidth
                                             size="small"
@@ -135,6 +144,8 @@ export const InformacionGeneralPage = () => {
                                             name="telefono"
                                             label="Telefono"
                                             onChange={onInputChange}
+                                            error={validation.telefono.hasError}
+                                            helperText={validation.telefono.msn}
                                             value={dataInitialState.telefono}
                                             fullWidth
                                             size="small"
@@ -157,6 +168,7 @@ export const InformacionGeneralPage = () => {
                                             method="ActividadEconomica?filter="
                                             nombreDataOcject="nombre"
                                             fnSeleted={selectedAcEcono}
+                                            showError={validation.actividadEconomica}
                                             defaultValue={dataInitialState.actividadEconomica}
                                         />
                                     </Grid>
@@ -168,12 +180,13 @@ export const InformacionGeneralPage = () => {
                                 </Grid>
                                 <Grid style={{ display: "flex", justifyContent: 'end', marginBottom: '25px', marginRight: '150px' }}>
                                     <Stack direction="row">
-                                        <LoadingButton 
-                                        type="submit" 
-                                        loadingPosition="end"
-                                        variant="contained" 
-                                        loading={isSaving}
-                                        endIcon={<SaveIcon />}>Guardar</LoadingButton>
+                                        <LoadingButton
+                                            type="submit"
+                                            loadingPosition="end"
+                                            variant="contained"
+                                            onClick={handleGuardar}
+                                            loading={isSaving}
+                                            endIcon={<SaveIcon />}>Guardar</LoadingButton>
                                     </Stack>
                                 </Grid>
                             </Box>
