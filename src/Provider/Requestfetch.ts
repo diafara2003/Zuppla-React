@@ -22,7 +22,7 @@ export const downloadFileAPI = async (metodo: string) => {
     if (response.ok) {
 
         
-debugger;
+
         let filename = "";
         var disposition = response.headers.get('Content-Disposition');
         var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;

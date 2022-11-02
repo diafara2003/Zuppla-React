@@ -15,9 +15,10 @@ type typeFile = {
 
 export const useUploadDocument = ({ file, idOrigen, idOrigen2, tipo, uploadedCompleted }: typeFile) => {
 
-    const { data, doFetch,downloadFile, isLoading } = useFetch();
+    const { data, doFetch, downloadFile, isLoading } = useFetch();
     const [document, setDocument] = useState<AdjuntosDTO>(file);
     const [textoFile, settextofile] = useState(file.nombre);
+    const [download, setdonload] = useState(false);
 
 
     const saveFile = (value: ChangeEvent<HTMLInputElement>) => {
@@ -48,8 +49,9 @@ export const useUploadDocument = ({ file, idOrigen, idOrigen2, tipo, uploadedCom
 
 
     const descargarArchivo = async () => {
-
+        setdonload(() => true);
         await downloadFile(`Documentos/Descargar?id=${document.id}`);
+        setdonload(() => false);
     }
 
     useEffect(() => {
@@ -68,6 +70,6 @@ export const useUploadDocument = ({ file, idOrigen, idOrigen2, tipo, uploadedCom
 
     return {
 
-        isLoading, document, textoFile, saveFile,descargarArchivo
+        isLoading, document, textoFile, saveFile, descargarArchivo, download
     }
 }

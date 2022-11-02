@@ -19,7 +19,7 @@ type props = {
 
 export const UploadDocument = (info: props) => {
 
-    const { isLoading, document, saveFile, textoFile, descargarArchivo } = useUploadDocument({
+    const { isLoading, document, saveFile, textoFile, descargarArchivo, download } = useUploadDocument({
         file: info.file.adjunto,
         idOrigen: info.idOrigen,
         idOrigen2: info.idOrigen2 ?? "",
@@ -68,7 +68,7 @@ export const UploadDocument = (info: props) => {
                 {document.id > 0
                     ? <Grid item xs={1}>
                         <IconButton color="primary" aria-label="upload picture" component="label" onClick={descargarArchivo}>
-                            <FileDownloadOutlinedIcon color='success' />
+                            {download ? <CircularProgress color="success" size={20} /> : <FileDownloadOutlinedIcon color='success' />}
                         </IconButton>
                     </Grid>
                     : null
