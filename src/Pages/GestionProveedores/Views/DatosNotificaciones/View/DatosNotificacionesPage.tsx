@@ -4,23 +4,14 @@ import { Box, Button, Tab, Tabs } from "@mui/material";
 import React from "react";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 import HistoryIcon from '@mui/icons-material/History';
-<<<<<<< HEAD
-import { ControllerDatosNotificaciones } from "../Controller/ControllerDatosNotificaciones";
-import { TableDatosNotificaciones } from "../Components/TableDatosNotificaciones";
-import { TableDatosNotLicitaciones } from "../Components/TableDatosNotLicitaciones";
-import { FrmDatoContacto } from "../../DatosContactos/Components/FormularioDatosContacto/FrmDatoContacto";
-import { FrmUser } from "../Components/FrmUser";
-import { FrmUserLicitacion } from "../Components/FrmUserLicitacion";
-import { Eliminar } from "../../../Components/ImgComponents/View/Eliminar";
-=======
 import { useDatosNotificaciones } from "../hook/useDatosNotificaciones";
 import { TableNotificacionProv } from "../Components";
->>>>>>> 5745b88e85f92d9b9f68c00671f1a9c59428fdae
 import { SinInformacion } from "../../../Components/ImgComponents/View/SinInformacion";
 import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
 import { DialogDelete } from "../Components/DialogDelete";
 import { NewNotificacionUser } from "../Components/NewNotificacionUser";
 import { TipoNotificacion } from "../Model/TipoNotificacion";
+
 
 interface TabPanelProps {
     children?: React.ReactNode;
