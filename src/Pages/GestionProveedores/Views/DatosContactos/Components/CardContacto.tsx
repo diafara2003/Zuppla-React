@@ -14,7 +14,7 @@ type props = {
 
 type typeAction = {
     action: ActionContacto;
-    id: number;
+    contacto: TerDatosContactoDTO;
 }
 
 
@@ -31,9 +31,10 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
     };
 
     const clickAction = (actionSelect: ActionContacto, contactoSelect: TerDatosContactoDTO) => {
+        debugger
         onChangeAction({
             action: actionSelect,
-            id: contactoSelect.id
+            contacto: contactoSelect
         });
     };
 
@@ -98,7 +99,7 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
                             Email
                         </Typography>
                         <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
-                            {contacto.numeroDocumento}
+                            {contacto.correo}
                         </Typography>
                     </Box>
 

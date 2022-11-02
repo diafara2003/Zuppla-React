@@ -13,7 +13,7 @@ type props = {
     close: (dataClose: boolean) => void
     newDatosContacto: (dataContacto: TerDatosContactoDTO) => void
     _title: string
-  
+
 }
 
 export enum typeModal {
@@ -22,14 +22,16 @@ export enum typeModal {
 
 }
 
-export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, open, tipo, _title }: props) => {
-   
-    const [dataValidate, setDataValidate] = useState(INITIAL_STATE_VALIDATION_CONTACTO)  
-    const [dataNewContacto, setdataNewContacto] = useState<TerDatosContactoDTO>(INITIAL_STATE_CONTACTO)
+export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, open, tipo, _title }: props) => {
+    // if (tipo == typeModal.add)
+    //     editDatosContacto = INITIAL_STATE_CONTACTO
+
+    const [dataValidate, setDataValidate] = useState(INITIAL_STATE_VALIDATION_CONTACTO)
+    const [dataNewContacto, setdataNewContacto] = useState<TerDatosContactoDTO>(tipo == typeModal.add ? INITIAL_STATE_CONTACTO! : editDatosContacto!)
 
     const handleClose = () => {
         close(false)
-    };    
+    };
 
     const selectedCiudad = (value: Object) => {
         setdataNewContacto({
@@ -42,10 +44,6 @@ export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, ope
         setdataNewContacto(prevState => {
             return { ...prevState, [name]: value }
         });
-        console.log(dataNewContacto)
-
-        //newUser(dataNewUser);
-
     }
 
     const submit = () => {
@@ -57,7 +55,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, ope
             || _datosValidados.ciudad.hasError || _datosValidados.direccion.hasError) {
             return;
         }
-        setDataValidate(INITIAL_STATE_VALIDATION_CONTACTO);       
+        setDataValidate(INITIAL_STATE_VALIDATION_CONTACTO);
         newDatosContacto(dataNewContacto);
         setdataNewContacto(INITIAL_STATE_CONTACTO)
         handleClose();
@@ -67,7 +65,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, ope
         let validaFRM: validacionFormulario = INITIAL_STATE_VALIDATION_CONTACTO;
         debugger
         if (!new Validationforms().EmailIsValid(dataNewContacto.correo)) {
-           
+
             return { ...validaFRM, email: { hasError: true, msn: 'Correo invalido' } }
         }
         if (dataNewContacto.correo == '') {
@@ -88,7 +86,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, ope
         if (dataNewContacto.telefono == '') {
             return { ...validaFRM, telefono: { hasError: true, msn: 'Campo obligatorio' } }
         }
-        if (dataNewContacto.ciudad.id == 0) {
+        if (dataNewContacto.ciudad.id == 0 || dataNewContacto.ciudad.nombre == "") {
             return { ...validaFRM, ciudad: { hasError: true, msn: 'Campo obligatorio' } }
         }
         return validaFRM;
@@ -125,7 +123,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, ope
                                     fullWidth
                                     size="small"
                                     onChange={onChangeFrm}
-                                    value={editDatosContacto?.nombre}
+                                    value={dataNewContacto?.nombre}
                                     error={dataValidate.nombre.hasError}
                                     helperText={dataValidate.nombre.msn}
                                 />
@@ -139,7 +137,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, ope
                                     fullWidth
                                     size="small"
                                     onChange={onChangeFrm}
-                                    value={editDatosContacto?.numeroDocumento}
+                                    value={dataNewContacto?.numeroDocumento}
                                     error={dataValidate.documento.hasError}
                                     helperText={dataValidate.documento.msn}
                                 />
@@ -153,7 +151,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, ope
                                     fullWidth
                                     size="small"
                                     onChange={onChangeFrm}
-                                    value={editDatosContacto?.correo}
+                                    value={dataNewContacto?.correo}
                                     error={dataValidate.email.hasError}
                                     helperText={dataValidate.email.msn}
                                 />
@@ -168,7 +166,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, ope
                                     fullWidth
                                     size="small"
                                     onChange={onChangeFrm}
-                                    value={editDatosContacto?.telefono}
+                                    value={dataNewContacto?.telefono}
                                     error={dataValidate.telefono.hasError}
                                     helperText={dataValidate.telefono.msn}
                                 />
@@ -182,7 +180,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, ope
                                     fullWidth
                                     size="small"
                                     onChange={onChangeFrm}
-                                    value={editDatosContacto?.celular}
+                                    value={dataNewContacto?.celular}
                                     error={dataValidate.celular.hasError}
                                     helperText={dataValidate.celular.msn}
                                 />
@@ -196,7 +194,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, ope
                                     fullWidth
                                     size="small"
                                     onChange={onChangeFrm}
-                                    value={editDatosContacto?.direccion}
+                                    value={dataNewContacto?.direccion}
                                     error={dataValidate.direccion.hasError}
                                     helperText={dataValidate.direccion.msn}
                                 />
@@ -211,20 +209,20 @@ export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, ope
                                     fullWidth
                                     size="small"
                                     onChange={onChangeFrm}
-                                    value={editDatosContacto?.cargo}
+                                    value={dataNewContacto?.cargo}
                                     error={dataValidate.cargo.hasError}
                                     helperText={dataValidate.cargo.msn}
                                 />
                             </Grid>
-                            <Grid item xs={4}>                                
-                                 <Autocompleteasync
-                                            label="Ciudad"
-                                            method="Ciudad?filter="
-                                            nombreDataOcject="nombre"
-                                            showError={dataValidate.ciudad.hasError}
-                                            fnSeleted={(data)=>selectedCiudad(data as Object)}
-                                            defaultValue={editDatosContacto?.ciudad}
-                                        /> 
+                            <Grid item xs={4}>
+                                <Autocompleteasync
+                                    label="Ciudad"
+                                    method="Ciudad?filter="
+                                    nombreDataOcject="nombre"
+                                    showError={dataValidate.ciudad}
+                                    fnSeleted={(data) => selectedCiudad(data as Object)}
+                                    defaultValue={dataNewContacto?.ciudad}
+                                />
                             </Grid>
                             <Grid item xs={4}>
                             </Grid>

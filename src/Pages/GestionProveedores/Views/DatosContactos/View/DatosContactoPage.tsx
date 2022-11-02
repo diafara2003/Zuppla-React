@@ -1,5 +1,5 @@
 import { Autocomplete, Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, FormControlLabel, Grid, IconButton, List, ListItem, ListItemText, Menu, MenuItem, Paper, Stack, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 import { Add } from "@mui/icons-material";
@@ -30,15 +30,11 @@ export const DatosContactos = () => {
         { nombre: 'Asesor comercial', id: 5 },
         { nombre: 'Responsable de cartera', id: 6 }
     ];
-
     const { dataContactos, isLoading, value, openDelete, dataEditContacto, valueContacto, stateAlertData,
-        handleChange, handleCloseDelete, handleDeleteContacto, setDataDeleteId, actionCardContacto, setNewDatosContactos } = ControllerDatosContactos();
+        handleChange, handleCloseDelete, handleDeleteContacto, dataContactoSelect, actionCardContacto, setNewDatosContactos } = ControllerDatosContactos();
 
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickDialogOpen = () => {
-        setOpen(true);
-    };
+    const [open, setOpen] = useState(false);
+    const [stateTipoModal, setStateTipoModal] = useState(typeModal.add)
 
     const handleClose = () => {
         setOpen(false);
@@ -50,8 +46,12 @@ export const DatosContactos = () => {
             {stateAlertData.estado ? <AlertPortal data={stateAlertData} /> : null}
             <Box sx={{ width: '100%' }}>
                 <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
-
-                    <Button variant="text" onClick={handleClickDialogOpen}> <Add />Agregar nuevo contacto</Button>
+                    <Button variant="text"
+                        onClick={() => {
+                            setOpen(true);
+                            setStateTipoModal(typeModal.add);
+                        }}>
+                        <Add />Agregar nuevo contacto</Button>
                     <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                 </Box>
                 <Box>
@@ -83,12 +83,18 @@ export const DatosContactos = () => {
                                             return (<CardContacto
                                                 contacto={contacto}
                                                 onChangeAction={(valor) => {
-                                                    actionCardContacto(valor.action);
-                                                    setDataDeleteId(valor.id);
+                                                    dataContactoSelect.current = valor.contacto
+                                                    if (valor.action == ActionContacto.Delete)
+                                                        actionCardContacto(valor.action);
+                                                    if (valor.action == ActionContacto.Edit) {
+                                                        setStateTipoModal(typeModal.edit);
+                                                        console.log(dataContactoSelect.current)
+                                                        setOpen(true);
+                                                    }
+
                                                 }}
 
                                             />)
-
                                         })
                                     }
                                 </Grid>
@@ -96,24 +102,24 @@ export const DatosContactos = () => {
                     }
                 </Box>
             </Box>
-            {/* Dialog insercion */}
+            {/* Dialog EDIT - NEW */}
             {open ?
                 <FrmDatoContacto
                     _title={options[value].nombre}
                     open={open}
-                    editDatosContacto={dataEditContacto}
+                    editDatosContacto={dataContactoSelect.current}
                     newDatosContacto={((newContacto) => {
                         newContacto.tipoContactoId = valueContacto
+                        stateTipoModal == typeModal.edit ?? newContacto.isNew == false
                         console.log(newContacto)
-                        actionCardContacto(ActionContacto.New, newContacto);
+                        actionCardContacto((stateTipoModal == typeModal.add ? ActionContacto.New : ActionContacto.Edit), newContacto);
                     })}
-                    tipo={typeModal.add}
+                    tipo={stateTipoModal}
                     close={(close) => {
                         setOpen(close);
                     }}
                 /> : null
             }
-
 
             {/* Dialog de eliminacion */}
             <Dialog
@@ -141,7 +147,6 @@ export const DatosContactos = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-
         </>
     );
 }
