@@ -56,7 +56,7 @@ export const useDatosNotificaciones = () => {
 
   return {
     openNew, HandleOpenNew,setOpenNew,
-    openDelete, HandleOpenDelete,
+    openDelete, HandleOpenDelete,setOpenDelete,
 
     tabActive, handleChange,
 

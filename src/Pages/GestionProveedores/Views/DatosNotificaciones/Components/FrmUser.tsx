@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Typography } from '@mui/material'
+import { Box, Divider, Grid, Paper, Typography } from '@mui/material'
 import { Autocompleteasync } from '../../../../../SharedComponents/Autocomplete/view/Autocompleteasync'
 import { useState } from 'react';
 import { DTOKeyValue } from '../Model/TipoNotificacion';
@@ -16,14 +16,12 @@ export const FrmUser = () => {
 
 
   return (
-
-    <Grid container
-      spacing={2}
-      width={'100%'}
-      display={"flex"}
-      alignItems={"center"}
-      justifyContent={"center"}
-      p={1}>
+    <Box
+      display={"block"}
+      
+      width={"100%"}
+      mt={1}
+    >
 
       <Grid item xs={12}>
         <Autocompleteasync
@@ -31,32 +29,44 @@ export const FrmUser = () => {
           method="Usuario?tipo=p&filter="
           nombreDataOcject="nombre"
           fnSeleted={(value) => { selectedUsuario(value as DTOKeyValue) }}
-
         />
       </Grid>
-      <Grid item xs={12}>
-        <Divider />
-      </Grid>
 
       <Grid item xs={12}>
-        <Typography>Nombre {user.nombre} </Typography>
+        {user.nombre == ""
+          ? null
+          : <Grid mt={2} item xs={12}>
+            <Paper variant="outlined" elevation={1}>
+              <Box p={2}>
+
+                <Box display={"flex"} alignItems={"center"}>
+                  <Typography variant='body1' fontWeight={600}>Nombre: </Typography>
+                  <Typography sx={{ pl: 1 }} variant='body2'>{user.nombre} </Typography>
+                </Box>
+
+
+                <Box display={"flex"} alignItems={"center"}>
+                  <Typography variant='body1' fontWeight={600}>Correo: </Typography>
+                  <Typography sx={{ pl: 1 }} variant='body2'>{user.correo} </Typography>
+                </Box>
+
+                <Box display={"flex"} alignItems={"center"}>
+                  <Typography variant='body1' fontWeight={600}>Cargo: </Typography>
+                  <Typography sx={{ pl: 1 }} variant='body2'>{user.cargo} </Typography>
+                </Box>
+
+
+
+
+              </Box>
+
+
+            </Paper>
+          </Grid>}
       </Grid>
 
 
-      <Grid item xs={12}>
-        <Typography>Documento {user.documento}</Typography>
-      </Grid>
-
-      <Grid item xs={12}>
-        <Typography>Correo {user.correo}</Typography>
-      </Grid>
-
-      <Grid item xs={12}>
-        <Typography>Cargo {user.cargo}</Typography>
-      </Grid>
-
-
-    </Grid>
+    </Box>
 
   )
 }

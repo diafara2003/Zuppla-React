@@ -12,20 +12,36 @@ type props = {
     tipoNotificacion: TipoNotificacion;
     title: string;
     handleOk: (newNotificacion: NotificacionDTO) => void;
+    handleCancel: () => void;
 }
 
-export const NewNotificacionUser = ({ tipoNotificacion, title, handleOk }: props) => {
+export const NewNotificacionUser = ({ tipoNotificacion, title, handleOk, handleCancel }: props) => {
     const [open, setOpen] = useState(true);
     const [newData, setNewData] = useState<NotificacionDTO>(INITIAL_NOTIFICACION);
 
-    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+
+    const handleClose = (
+        event: {},
+        reason: "backdropClick" | "escapeKeyDown"
+    ) => {
+        if (reason === "backdropClick") {
+            console.log(reason);
+        } else {
+            setOpen(false);
+        }
+    };
+
 
 
     return (
         <Dialog
-        fullScreen={fullScreen}
+            scroll={"paper"}
+            disableEscapeKeyDown
+            fullWidth={true}
             open={open}
-            onClose={() => setOpen(false)}
+            onClose={handleClose}
+            onBackdropClick={() => false}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
             maxWidth={"md"}
@@ -42,7 +58,10 @@ export const NewNotificacionUser = ({ tipoNotificacion, title, handleOk }: props
 
             </DialogContent>
             <DialogActions>
-                <Button variant="outlined" onClick={() => setOpen(false)} >Cancelar</Button>
+                <Button variant="outlined" onClick={() => {
+                    handleCancel();
+                    setOpen(false);
+                }} >Cancelar</Button>
                 <LoadingButton
                     endIcon={<SaveIcon />}
                     variant="contained"

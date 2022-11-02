@@ -54,7 +54,7 @@ export const DatosNotifiaciones = () => {
 
     const { tabActive, handleChange, lstNotificacion,
         isLoading,
-        openDelete, HandleOpenDelete,
+        openDelete, HandleOpenDelete, setOpenDelete,
         HandleDeleteOk,
         openNew, HandleOpenNew, setOpenNew
     } = useDatosNotificaciones();
@@ -106,6 +106,7 @@ export const DatosNotifiaciones = () => {
             {openDelete
                 ? <DialogDelete
                     handleOk={HandleDeleteOk}
+                    handleCancel={() => setOpenDelete(false)}
                     title={tabActive == 0 ? options.Proveedores.titleDelete : options.Licitaciones.titleDelete} />
                 : null
             }
@@ -114,6 +115,7 @@ export const DatosNotifiaciones = () => {
             {openNew
                 ? <NewNotificacionUser
                     handleOk={HandleOpenNew}
+                    handleCancel={() => setOpenNew(false)}
                     title={tabActive == 0 ? options.Proveedores.addTitle : options.Licitaciones.addTitle}
                     tipoNotificacion={tabActive == 0 ? TipoNotificacion.Proveddores : TipoNotificacion.Licitaciones}
                 />

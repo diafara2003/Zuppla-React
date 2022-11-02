@@ -5,20 +5,35 @@ import { useState } from 'react';
 type props = {
 
     title: string,
-   
-    handleOk: () => void
+
+    handleOk: () => void,
+    handleCancel: () => void
 }
 
-export const DialogDelete = ({ title,  handleOk }: props) => {
+export const DialogDelete = ({ title, handleOk, handleCancel }: props) => {
 
 
     const [open, setOpen] = useState(true);
 
 
+    const handleClose = (
+        event: {},
+        reason: "backdropClick" | "escapeKeyDown"
+    ) => {
+        if (reason === "backdropClick") {
+            console.log(reason);
+        } else {
+            setOpen(false);
+        }
+    };
+
+
     return (
         <Dialog
+            disableEscapeKeyDown
+            onClose={handleClose}
+            onBackdropClick={() => false}
             open={open}
-            onClose={() => setOpen(false)}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
             maxWidth={"md"}
@@ -35,7 +50,10 @@ export const DialogDelete = ({ title,  handleOk }: props) => {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button variant="text" onClick={() => setOpen(false)} >Cancelar</Button>
+                <Button variant="text" onClick={() => {
+                    handleCancel();
+                    setOpen(false);
+                }} >Cancelar</Button>
 
                 <Button variant="contained" color="error" onClick={() => {
                     setOpen(false);
