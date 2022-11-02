@@ -4,7 +4,7 @@ import { APiMethod, requestAPI, RequestModel } from '../../../../../Provider';
 import { ConstructoraDTO } from '../../../Components/SelectConstructora/Model/ModelConstructoras';
 import { adjuntoCompleteERP, AdjuntosDTO, AdjuntoTerceroDTO, DocumentosRequeridosERPDTO } from '../Model/AdjuntosDTO';
 
-export const ControllerDocumentosAdjuntos = () => {
+export const useDocumentosAdjuntos = () => {
     const { storeUsuario } = useContext(AuthContext);
     const [dataDoc, setDocAdjuntos] = useState<AdjuntoTerceroDTO[]>();    
     const [isLoading, setIsLoading] = useState(true);
@@ -78,7 +78,7 @@ export const ControllerDocumentosAdjuntos = () => {
     }, [dataConst])
 
 
-    return { dataDoc, dataAdjPorConst, isLoading, setDataConst }
+    return { dataDoc, dataAdjPorConst, isLoading, setDataConst,storeUsuario }
 }
 
 

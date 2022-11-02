@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { RequestModel } from "./model/FetchModel";
-import { requestAPI } from "./Requestfetch";
+import { requestAPI, downloadFileAPI } from "./Requestfetch";
 
 
 export const useFetch = <T,>() => {
@@ -12,6 +12,14 @@ export const useFetch = <T,>() => {
         hasError: "",
     })
 
+
+
+    const downloadFile = async (url: string) => {
+
+        await downloadFileAPI(url);
+    }
+
+
     const doFetch = async (request: RequestModel) => {
         setState({
             ...state,
@@ -19,6 +27,7 @@ export const useFetch = <T,>() => {
         });
 
         try {
+
             const response = await requestAPI<T>(request);
 
             if (response != null) {
@@ -50,6 +59,6 @@ export const useFetch = <T,>() => {
     return {
         data,
         ...state,
-        doFetch, setState
+        doFetch, setState, downloadFile
     };
 }

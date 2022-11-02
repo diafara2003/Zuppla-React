@@ -10,9 +10,11 @@ export interface RequestModel {
     data?: Object;
     metodo: string;
     AllowAnonymous?:boolean;
+    isformData?:boolean;
 }
 export interface ResponseDTO {
     codigo:number,
     mensaje:string,
     success:boolean
+   
 }
