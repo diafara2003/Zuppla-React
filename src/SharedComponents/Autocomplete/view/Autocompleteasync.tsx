@@ -10,7 +10,7 @@ type props = {
     defaultValue?: Object | null;
 }
 
-type handleSelected = (value: Object) => void;
+type handleSelected = <T>(value: T) => void;
 
 interface Foo {
     [key: string]: string;

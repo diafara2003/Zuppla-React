@@ -1,6 +1,6 @@
 import { Alert, AlertTitle, Box, Collapse, LinearProgress, Snackbar, Stack } from '@mui/material'
 import React, { useEffect, useRef } from 'react'
-import { ModelAlerta } from './Model/alertaModel'
+import { ModelAlerta } from '../Model/alertaModel'
 type props = {
   data: ModelAlerta
 }

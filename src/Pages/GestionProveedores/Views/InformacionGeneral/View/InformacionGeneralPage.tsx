@@ -7,18 +7,23 @@ import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/S
 import { useState } from "react";
 import { Autocompleteasync } from "../../../../../SharedComponents/Autocomplete/view/Autocompleteasync";
 import { CiudadesDTO } from "../Model";
+import { AlertPortal } from "../../../../../SharedComponents/Alert";
+import { LoadingButton } from "@mui/lab";
 
 
 
 export const InformacionGeneralPage = () => {
 
-    const { isLoadingCarga,dataInitialState,  selectedCiudad, selectedAcEcono, handleGuardar,onInputChange} = useInformacionGeneral();
+    const { isLoadingCarga, dataInitialState, stateAlert,isSaving, selectedCiudad, selectedAcEcono, handleGuardar, onInputChange } = useInformacionGeneral();
 
 
 
     return (
         <>
             <HeaderComponent title={"Información general"} />
+
+            <AlertPortal data={stateAlert}></AlertPortal>
+
             <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)' }}>
                 {
                     isLoadingCarga == true
@@ -31,7 +36,7 @@ export const InformacionGeneralPage = () => {
                             <Box display={"flex"} justifyContent={"end"}>
                                 <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                             </Box>
-                            <form>
+                            <Box component="form" onSubmit={handleGuardar}>
                                 <Grid container width={'100%'}
                                     display={"flex"}
                                     alignItems={"center"}
@@ -137,7 +142,6 @@ export const InformacionGeneralPage = () => {
                                     </Grid>
                                     <Grid item xs={3.5} >
                                         <TextField
-                                            required
                                             id="txtPaginaWeb"
                                             label="Pagina WEB"
                                             onChange={onInputChange}
@@ -164,10 +168,15 @@ export const InformacionGeneralPage = () => {
                                 </Grid>
                                 <Grid style={{ display: "flex", justifyContent: 'end', marginBottom: '25px', marginRight: '150px' }}>
                                     <Stack direction="row">
-                                        <Button variant="contained" onClick={handleGuardar} endIcon={<SaveIcon />}>Guardar</Button>
+                                        <LoadingButton 
+                                        type="submit" 
+                                        loadingPosition="end"
+                                        variant="contained" 
+                                        loading={isSaving}
+                                        endIcon={<SaveIcon />}>Guardar</LoadingButton>
                                     </Stack>
                                 </Grid>
-                            </form>
+                            </Box>
                         </Grid>
                 }
 

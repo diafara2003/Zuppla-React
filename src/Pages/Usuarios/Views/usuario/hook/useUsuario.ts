@@ -3,7 +3,7 @@ import { requestAPI } from "../../../../../Provider";
 import { APiMethod, RequestModel, ResponseDTO } from "../../../../../Provider/model/FetchModel";
 import { useFetch } from "../../../../../Provider/useFech";
 
-import { ModelAlerta } from "../../../../../SharedComponents/Alert/View/Model/alertaModel";
+import { ModelAlerta } from "../../../../../SharedComponents/Alert/Model/alertaModel";
 import { typeModal } from "../components/view/FrmNewUser";
 import { ActionUser, CambiarEstadoUsuarioDTO, UsuarioIdDTO, UsuariosDTO } from "../model/usuarioDTO";
 import { UserContext } from "../store/StoreUsuario";

@@ -26,7 +26,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>
@@ -67,11 +67,7 @@ export const DocumentosAdjuntosPage = () => {
     <>
       <HeaderComponent title={"Documentos adjuntos"} />
       <Box sx={{ width: '100%' }}>
-        {/* <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
-          <Button variant="text" onClick={handleClickDialogOpen} > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
-          <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
 
-        </Box> */}
         <Box pt={1}>
           <Tabs value={value} onChange={handleChange}
             aria-label="basic tabs example"
@@ -79,7 +75,7 @@ export const DocumentosAdjuntosPage = () => {
             sx={{ borderBottom: 1, borderColor: 'divider' }}
             centered>
             {options.map((opcion, index) => {
-              return (<Tab label={opcion.nombre} {...a11yProps(index)} />)
+              return (<Tab key={`tab-key-${opcion.nombre}`} label={opcion.nombre} {...a11yProps(index)} />)
             })}
           </Tabs>
         </Box>
