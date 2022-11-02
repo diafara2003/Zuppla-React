@@ -6,7 +6,7 @@ type props = {
     nombreDataOcject: string;
     method: string;
     label: string;
-    selected: handleSelected;
+    fnSeleted: handleSelected;
     defaultValue?: Object | null;
 }
 
@@ -17,12 +17,10 @@ interface Foo {
 }
 export const Autocompleteasync = (info: props) => {
 
-    const { changeTyping, loading, lstData, open, setOpen } = useAutoCompleteAsync(info.method);
-    let obj: Foo = {};
 
-    if (info.defaultValue != undefined && info.defaultValue != null)
-        obj[info.nombreDataOcject] = (info.defaultValue as Foo)[info.nombreDataOcject];
-    else obj[info.nombreDataOcject] = '';
+    const { changeTyping, loading, lstData, open, setOpen, textInput, handleSelected } = useAutoCompleteAsync(info);
+
+
 
     const id = `AcAsync_${info}`;
     return (
@@ -32,7 +30,7 @@ export const Autocompleteasync = (info: props) => {
             options={lstData}
             loading={loading}
             size="small"
-            onChange={(event, value) => info.selected(value ?? {})}
+            onChange={(event, value) => handleSelected(value)}
             open={open}
             onOpen={() => {
                 setOpen(true);
@@ -40,23 +38,19 @@ export const Autocompleteasync = (info: props) => {
             onClose={() => {
                 setOpen(false);
             }}
-            value={obj}
+            value={textInput}
             onInputChange={changeTyping}
             isOptionEqualToValue={(option, value) => option[info.nombreDataOcject] === value[info.nombreDataOcject]}
             getOptionLabel={(option) => option[info.nombreDataOcject]}
             renderInput={(params) => (
                 <TextField
-
                     {...params}
                     label={info.label}
                     InputProps={{
-
                         ...params.InputProps,
-
                         endAdornment: (
                             <>
                                 {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                                {params.InputProps.endAdornment}
                             </>
                         ),
                     }}

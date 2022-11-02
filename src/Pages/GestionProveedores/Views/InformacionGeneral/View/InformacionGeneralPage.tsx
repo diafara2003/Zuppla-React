@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Button, CircularProgress, FormControlLabel, Grid, Stack, Switch, TextField } from "@mui/material"
+import {  Box, Button, FormControlLabel, Grid, Stack, Switch, TextField } from "@mui/material"
 import SaveIcon from '@mui/icons-material/Save';
 import { useInformacionGeneral } from "../hook/useInformacionGeneral";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
@@ -87,8 +87,8 @@ export const InformacionGeneralPage = () => {
                                             label="Ciudad"
                                             method="Ciudad?filter="
                                             nombreDataOcject="nombre"
-                                            selected={selectedCiudad}
-                                            defaultValue={dataInitialState.ciudad}
+                                            fnSeleted={selectedCiudad}
+                                           
                                         />
 
                                     </Grid>
@@ -137,7 +137,7 @@ export const InformacionGeneralPage = () => {
                                             label="Actividad económica"
                                             method="ActividadEconomica?filter="
                                             nombreDataOcject="nombre"
-                                            selected={selectedAcEcono}
+                                            fnSeleted={selectedAcEcono}
                                             defaultValue={dataInitialState.actividadEconomica}
                                         />
                                     </Grid>
