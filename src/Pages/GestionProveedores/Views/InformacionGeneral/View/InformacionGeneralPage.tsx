@@ -77,7 +77,7 @@ export const InformacionGeneralPage = () => {
                                             required
                                             id="txtIdentificacion"
                                             label="Identificación"
-                                            defaultValue
+                                            value={dataInitialState.numeroIdentificacion}
                                             fullWidth
                                             size="small"
                                         />
@@ -88,7 +88,7 @@ export const InformacionGeneralPage = () => {
                                             method="Ciudad?filter="
                                             nombreDataOcject="nombre"
                                             fnSeleted={selectedCiudad}
-                                           
+                                            defaultValue={dataInitialState.ciudad}
                                         />
 
                                     </Grid>

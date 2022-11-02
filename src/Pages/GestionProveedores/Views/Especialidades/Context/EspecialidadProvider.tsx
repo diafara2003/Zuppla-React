@@ -13,7 +13,7 @@ export const EspecialidadProvider = ({ children }: Props) => {
 
     const addEspecialidad = (newData: EspecialidadDTO) => {
         requestAPI({
-            metodo: `Especialidades/tercero`,
+            metodo: `Especialidades/tercero/guardar`,
             type: APiMethod.POST,
             data: { id: newData.id }
         }).then(c => {
