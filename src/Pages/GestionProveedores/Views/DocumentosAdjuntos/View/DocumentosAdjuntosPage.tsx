@@ -13,7 +13,7 @@ interface TabPanelProps {
   value: number;
 }
 
-function TabPanel(props: TabPanelProps) {
+const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -51,16 +51,6 @@ export const DocumentosAdjuntosPage = () => {
     setValue(newValue);
   };
 
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickDialogOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   const { dataDoc, dataAdjPorConst, isLoading, setDataConst, storeUsuario } = useDocumentosAdjuntos();
 
   return (
