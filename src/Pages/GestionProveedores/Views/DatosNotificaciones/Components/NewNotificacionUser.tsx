@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
 
 import { INITIAL_NOTIFICACION, NotificacionDTO, TipoNotificacion } from '../Model/TipoNotificacion';
@@ -6,6 +6,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import { LoadingButton } from '@mui/lab';
 import { FrmUser } from './FrmUser';
 import { FrmUserLicitacion } from './FrmUserLicitacion';
+import { theme } from '../../../../../theme/theme';
 
 type props = {
     tipoNotificacion: TipoNotificacion;
@@ -17,8 +18,12 @@ export const NewNotificacionUser = ({ tipoNotificacion, title, handleOk }: props
     const [open, setOpen] = useState(true);
     const [newData, setNewData] = useState<NotificacionDTO>(INITIAL_NOTIFICACION);
 
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+
     return (
         <Dialog
+        fullScreen={fullScreen}
             open={open}
             onClose={() => setOpen(false)}
             aria-labelledby="alert-dialog-title"
