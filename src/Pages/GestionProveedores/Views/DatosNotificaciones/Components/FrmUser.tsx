@@ -1,8 +1,8 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Divider, Grid, Typography } from '@mui/material'
 import { Autocompleteasync } from '../../../../../SharedComponents/Autocomplete/view/Autocompleteasync'
 import { useState } from 'react';
 import { DTOKeyValue } from '../Model/TipoNotificacion';
-import {  INITIAL_USUARIO_DTO, UsuariosDTO } from '../../../../Usuarios/Views/usuario/model/usuarioDTO';
+import { INITIAL_USUARIO_DTO, UsuariosDTO } from '../../../../Usuarios/Views/usuario/model/usuarioDTO';
 
 
 
@@ -27,23 +27,34 @@ export const FrmUser = () => {
 
       <Grid item xs={12}>
         <Autocompleteasync
-          label="Usuario para notificación"
+          label="Buscar usuario para notificación"
           method="Usuario?tipo=p&filter="
           nombreDataOcject="nombre"
           fnSeleted={(value) => { selectedUsuario(value as DTOKeyValue) }}
 
         />
       </Grid>
+      <Grid item xs={12}>
+        <Divider />
+      </Grid>
 
-      
-        <Grid item xs={6}>
-          <Typography>Correo</Typography>
-          
-        </Grid>
-        <Grid item xs={6}>
-          Hola2
-        </Grid>
-      
+      <Grid item xs={12}>
+        <Typography>Nombre {user.nombre} </Typography>
+      </Grid>
+
+
+      <Grid item xs={12}>
+        <Typography>Documento {user.documento}</Typography>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Typography>Correo {user.correo}</Typography>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Typography>Cargo {user.cargo}</Typography>
+      </Grid>
+
 
     </Grid>
 

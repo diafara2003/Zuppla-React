@@ -113,7 +113,7 @@ export const DatosNotifiaciones = () => {
             {openNew
                 ? <NewNotificacionUser
                     handleOk={HandleOpenNew}
-                    title={tabActive == 0 ? options.Proveedores.titleDelete : options.Licitaciones.titleDelete}
+                    title={tabActive == 0 ? options.Proveedores.addTitle : options.Licitaciones.addTitle}
                     tipoNotificacion={tabActive == 0 ? TipoNotificacion.Proveddores : TipoNotificacion.Licitaciones}
                 />
                 : null
