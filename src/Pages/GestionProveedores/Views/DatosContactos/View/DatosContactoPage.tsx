@@ -6,11 +6,13 @@ import { Add } from "@mui/icons-material";
 import HistoryIcon from '@mui/icons-material/History';
 import { ControllerDatosContactos } from "../Controller/ControllerDatosContactos";
 import { CardContacto } from "../Components/CardContacto";
-import { FrmDatoContacto } from "../Components/FrmDatoContacto";
+import { FrmDatoContacto, typeModal } from "../Components/FrmDatoContacto";
 import { SinInformacion } from "../../../Components/ImgComponents/View/SinInformacion";
 
 import { Eliminar } from "../../../Components/ImgComponents/View/Eliminar";
 import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
+import { ActionContacto } from "../Model/DatosContacto-Model";
+import { AlertPortal } from "../../../../../SharedComponents/Alert";
 // import  from "../../../../../img/Estados/SinInformacion.png"
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -29,8 +31,8 @@ export const DatosContactos = () => {
         { nombre: 'Responsable de cartera', id: 6 }
     ];
 
-    const { dataContactos, isLoading, value, openDelete,
-        handleChange, handleCloseDelete, handleDeleteContacto, setDataDeleteId, actionCardContacto } = ControllerDatosContactos();
+    const { dataContactos, isLoading, value, openDelete, dataEditContacto, valueContacto, stateAlertData,
+        handleChange, handleCloseDelete, handleDeleteContacto, setDataDeleteId, actionCardContacto, setNewDatosContactos } = ControllerDatosContactos();
 
     const [open, setOpen] = React.useState(false);
 
@@ -45,6 +47,7 @@ export const DatosContactos = () => {
     return (
         <>
             <HeaderComponent title={"Datos contactos"} />
+            {stateAlertData.estado ? <AlertPortal data={stateAlertData} /> : null}
             <Box sx={{ width: '100%' }}>
                 <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
 
@@ -79,11 +82,11 @@ export const DatosContactos = () => {
                                         dataContactos.map((contacto) => {
                                             return (<CardContacto
                                                 contacto={contacto}
-                                                onChangeAction ={(valor) => { 
+                                                onChangeAction={(valor) => {
                                                     actionCardContacto(valor.action);
                                                     setDataDeleteId(valor.id);
-                                                 }}
-                                                
+                                                }}
+
                                             />)
 
                                         })
@@ -94,28 +97,23 @@ export const DatosContactos = () => {
                 </Box>
             </Box>
             {/* Dialog insercion */}
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-                maxWidth={"md"}
-            >
-                <DialogTitle id="alert-dialog-title">
-                    {options[value].nombre}
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        <FrmDatoContacto />
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button variant="outlined" onClick={handleClose} >Cancelar</Button>
-                    <Button variant="contained" color="primary" onClick={handleClose} autoFocus >
-                        Guardar
-                    </Button>
-                </DialogActions>
-            </Dialog>
+            {open ?
+                <FrmDatoContacto
+                    _title={options[value].nombre}
+                    open={open}
+                    editDatosContacto={dataEditContacto}
+                    newDatosContacto={((newContacto) => {
+                        newContacto.tipoContactoId = valueContacto
+                        console.log(newContacto)
+                        actionCardContacto(ActionContacto.New, newContacto);
+                    })}
+                    tipo={typeModal.add}
+                    close={(close) => {
+                        setOpen(close);
+                    }}
+                /> : null
+            }
+
 
             {/* Dialog de eliminacion */}
             <Dialog

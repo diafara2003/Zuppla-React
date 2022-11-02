@@ -1,95 +1,245 @@
 import { TextFields } from '@mui/icons-material'
-import { Grid, TextField } from '@mui/material'
-import React from 'react'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TextField } from '@mui/material'
+import React, { useState } from 'react'
+import { Validationforms } from '../../../../../Helper/ValidationForms'
+import { Autocompleteasync } from '../../../../../SharedComponents/Autocomplete/view/Autocompleteasync'
+import { INITIAL_STATE_CONTACTO, INITIAL_STATE_VALIDATION_CONTACTO, validacionFormulario } from '../Model/DatosContacto-Model'
+import { CiudadesDTO, TerDatosContactoDTO } from '../Model/DatosContactoDTO'
 
-export const FrmDatoContacto = () => {
+type props = {
+    open: boolean,
+    tipo: typeModal,
+    editDatosContacto?: TerDatosContactoDTO
+    close: (dataClose: boolean) => void
+    newDatosContacto: (dataContacto: TerDatosContactoDTO) => void
+    _title: string
+  
+}
+
+export enum typeModal {
+    add = 'add',
+    edit = 'edit'
+
+}
+
+export const FrmDatoContacto = ({ close, newDatosContacto,editDatosContacto, open, tipo, _title }: props) => {
+   
+    const [dataValidate, setDataValidate] = useState(INITIAL_STATE_VALIDATION_CONTACTO)  
+    const [dataNewContacto, setdataNewContacto] = useState<TerDatosContactoDTO>(INITIAL_STATE_CONTACTO)
+
+    const handleClose = () => {
+        close(false)
+    };    
+
+    const selectedCiudad = (value: Object) => {
+        setdataNewContacto({
+            ...dataNewContacto,
+            ciudad: (value as CiudadesDTO)
+        });
+    }
+    const onChangeFrm = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setdataNewContacto(prevState => {
+            return { ...prevState, [name]: value }
+        });
+        console.log(dataNewContacto)
+
+        //newUser(dataNewUser);
+
+    }
+
+    const submit = () => {
+        debugger
+        const _datosValidados = validaciones();
+        setDataValidate(_datosValidados);
+        if (_datosValidados.cargo.hasError || _datosValidados.celular.hasError || _datosValidados.documento.hasError
+            || _datosValidados.email.hasError || _datosValidados.nombre.hasError || _datosValidados.telefono.hasError
+            || _datosValidados.ciudad.hasError || _datosValidados.direccion.hasError) {
+            return;
+        }
+        setDataValidate(INITIAL_STATE_VALIDATION_CONTACTO);       
+        newDatosContacto(dataNewContacto);
+        setdataNewContacto(INITIAL_STATE_CONTACTO)
+        handleClose();
+    }
+    const validaciones = (): validacionFormulario => {
+
+        let validaFRM: validacionFormulario = INITIAL_STATE_VALIDATION_CONTACTO;
+        debugger
+        if (!new Validationforms().EmailIsValid(dataNewContacto.correo)) {
+           
+            return { ...validaFRM, email: { hasError: true, msn: 'Correo invalido' } }
+        }
+        if (dataNewContacto.correo == '') {
+            return { ...validaFRM, email: { hasError: true, msn: 'Campo obligatorio' } }
+        }
+        if (dataNewContacto.nombre == '') {
+            return { ...validaFRM, nombre: { hasError: true, msn: 'Campo obligatorio' } }
+        }
+        if (dataNewContacto.cargo == '') {
+            return { ...validaFRM, cargo: { hasError: true, msn: 'Campo obligatorio' } }
+        }
+        if (dataNewContacto.numeroDocumento == '') {
+            return { ...validaFRM, documento: { hasError: true, msn: 'Campo obligatorio' } }
+        }
+        if (dataNewContacto.celular == '') {
+            return { ...validaFRM, celular: { hasError: true, msn: 'Campo obligatorio' } }
+        }
+        if (dataNewContacto.telefono == '') {
+            return { ...validaFRM, telefono: { hasError: true, msn: 'Campo obligatorio' } }
+        }
+        if (dataNewContacto.ciudad.id == 0) {
+            return { ...validaFRM, ciudad: { hasError: true, msn: 'Campo obligatorio' } }
+        }
+        return validaFRM;
+    }
+
     return (
         <>
-            <Grid container
-             spacing={2}
-             width={'100%'}
-             display={"flex"}
-             alignItems={"center"}
-             justifyContent={"center"}
-             p={1}>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                maxWidth={"md"}
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {_title}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        <Grid container
+                            spacing={2}
+                            width={'100%'}
+                            display={"flex"}
+                            alignItems={"center"}
+                            justifyContent={"center"}
+                            p={1}>
 
-                <Grid item xs={4}>
-                    <TextField
-                        required
-                        id=""
-                        label="Nombre"                        
-                        fullWidth
-                        size="small"
-                    />
-                </Grid>
-                <Grid item xs={4}>
-                    <TextField
-                        required
-                        id=""
-                        label="Numero de documento"                        
-                        fullWidth
-                        size="small"
-                    />
-                </Grid>
-                <Grid item xs={4}>
-                    <TextField
-                        required
-                        id=""
-                        label="Email"                        
-                        fullWidth
-                        size="small"
-                    />
-                </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    required
+                                    id=""
+                                    label="Nombre"
+                                    name="nombre"
+                                    fullWidth
+                                    size="small"
+                                    onChange={onChangeFrm}
+                                    value={editDatosContacto?.nombre}
+                                    error={dataValidate.nombre.hasError}
+                                    helperText={dataValidate.nombre.msn}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    required
+                                    id=""
+                                    label="Numero de documento"
+                                    name="numeroDocumento"
+                                    fullWidth
+                                    size="small"
+                                    onChange={onChangeFrm}
+                                    value={editDatosContacto?.numeroDocumento}
+                                    error={dataValidate.documento.hasError}
+                                    helperText={dataValidate.documento.msn}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    required
+                                    id=""
+                                    label="Email"
+                                    name="correo"
+                                    fullWidth
+                                    size="small"
+                                    onChange={onChangeFrm}
+                                    value={editDatosContacto?.correo}
+                                    error={dataValidate.email.hasError}
+                                    helperText={dataValidate.email.msn}
+                                />
+                            </Grid>
 
-                <Grid item xs={4}>
-                    <TextField
-                        required
-                        id=""
-                        label="Telefono"                        
-                        fullWidth
-                        size="small"
-                    />
-                </Grid>
-                <Grid item xs={4}>
-                    <TextField
-                        required
-                        id=""
-                        label="Celular"                        
-                        fullWidth
-                        size="small"
-                    />
-                </Grid>
-                <Grid item xs={4}>
-                    <TextField
-                        required
-                        id=""
-                        label="Direccion"                        
-                        fullWidth
-                        size="small"
-                    />
-                </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    required
+                                    id=""
+                                    label="Telefono"
+                                    name="telefono"
+                                    fullWidth
+                                    size="small"
+                                    onChange={onChangeFrm}
+                                    value={editDatosContacto?.telefono}
+                                    error={dataValidate.telefono.hasError}
+                                    helperText={dataValidate.telefono.msn}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    required
+                                    id=""
+                                    label="Celular"
+                                    name="celular"
+                                    fullWidth
+                                    size="small"
+                                    onChange={onChangeFrm}
+                                    value={editDatosContacto?.celular}
+                                    error={dataValidate.celular.hasError}
+                                    helperText={dataValidate.celular.msn}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    required
+                                    id=""
+                                    label="Direccion"
+                                    name="direccion"
+                                    fullWidth
+                                    size="small"
+                                    onChange={onChangeFrm}
+                                    value={editDatosContacto?.direccion}
+                                    error={dataValidate.direccion.hasError}
+                                    helperText={dataValidate.direccion.msn}
+                                />
+                            </Grid>
 
-                <Grid item xs={4}>
-                    <TextField
-                        required
-                        id=""
-                        label="Cargo"                        
-                        fullWidth
-                        size="small"
-                    />
-                </Grid>
-                <Grid item xs={4}>
-                    <TextField
-                        required
-                        id=""
-                        label="Ciudad"                        
-                        fullWidth
-                        size="small"
-                    />
-                </Grid>
-                <Grid item xs={4}>                   
-                </Grid>
-            </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    required
+                                    id=""
+                                    label="Cargo"
+                                    name="cargo"
+                                    fullWidth
+                                    size="small"
+                                    onChange={onChangeFrm}
+                                    value={editDatosContacto?.cargo}
+                                    error={dataValidate.cargo.hasError}
+                                    helperText={dataValidate.cargo.msn}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>                                
+                                 <Autocompleteasync
+                                            label="Ciudad"
+                                            method="Ciudad?filter="
+                                            nombreDataOcject="nombre"
+                                            showError={dataValidate.ciudad.hasError}
+                                            fnSeleted={(data)=>selectedCiudad(data as Object)}
+                                            defaultValue={editDatosContacto?.ciudad}
+                                        /> 
+                            </Grid>
+                            <Grid item xs={4}>
+                            </Grid>
+                        </Grid>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button variant="outlined" onClick={handleClose} >Cancelar</Button>
+                    <Button variant="contained" color="primary" onClick={submit} autoFocus >
+                        Guardar
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+
         </>
     )
 }

@@ -7,7 +7,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import { ControllerDatosNotificaciones } from "../Controller/ControllerDatosNotificaciones";
 import { TableDatosNotificaciones } from "../Components/TableDatosNotificaciones";
 import { TableDatosNotLicitaciones } from "../Components/TableDatosNotLicitaciones";
-import { FrmDatoContacto } from "../../DatosContactos/Components/FrmDatoContacto";
+import { FrmDatoContacto } from "../../DatosContactos/Components/FormularioDatosContacto/FrmDatoContacto";
 import { FrmUser } from "../Components/FrmUser";
 import { FrmUserLicitacion } from "../Components/FrmUserLicitacion";
 import { Eliminar } from "../../../Components/ImgComponents/View/Eliminar";

@@ -7,7 +7,7 @@ import { ControllerCamaraComercio } from "../Controller/ControllerCamaraComercio
 import { TableCamaraComercio } from "../Components/TableCamaraComercio";
 import { Add } from "@mui/icons-material";
 import HistoryIcon from '@mui/icons-material/History';
-import { FrmDatoContacto } from "../../DatosContactos/Components/FrmDatoContacto";
+import { FrmDatoContacto } from "../../DatosContactos/Components/FormularioDatosContacto/FrmDatoContacto";
 import { FrmUsuarioCC } from "../Components/FrmUsuarioCC";
 import React from "react";
 import { Eliminar } from "../../../Components/ImgComponents/View/Eliminar";

@@ -5,7 +5,7 @@ export const  SinInformacion = () => {
         <img
             src='../src/img/Estados/SinInformacion.png'
             loading="lazy"
-            width={'70%'}
+            width={'17%'}
         />
     )
 }

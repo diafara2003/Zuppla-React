@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { TerDatosContactoDTO } from '../Model/DatosContactoDTO'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { EditOutlined, MailOutline, LockOutlined, DeleteOutline } from '@mui/icons-material';
+import { ActionContacto } from '../Model/DatosContacto-Model';
 type props = {
     contacto: TerDatosContactoDTO,
     // valorDelete: (valorId: number) => void,
@@ -12,7 +13,7 @@ type props = {
 
 
 type typeAction = {
-    action: string;
+    action: ActionContacto;
     id: number;
 }
 
@@ -29,7 +30,7 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
         setAnchorEl(null);
     };
 
-    const clickAction = (actionSelect: string, contactoSelect: TerDatosContactoDTO) => {
+    const clickAction = (actionSelect: ActionContacto, contactoSelect: TerDatosContactoDTO) => {
         onChangeAction({
             action: actionSelect,
             id: contactoSelect.id
@@ -62,13 +63,13 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
                                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                             >
-                                <MenuItem onClick={() => clickAction('I', contacto)}>
+                                <MenuItem onClick={() => clickAction(ActionContacto.Edit, contacto)}>
                                     <ListItemIcon>
                                         <EditOutlined color="primary" />
                                     </ListItemIcon>
                                     <Typography>Editar contacto</Typography>
                                 </MenuItem>
-                                <MenuItem onClick={() => clickAction('D', contacto)}>
+                                <MenuItem onClick={() => clickAction(ActionContacto.Delete, contacto)}>
                                     <ListItemIcon>
                                         <DeleteOutline color="error" />
                                     </ListItemIcon>

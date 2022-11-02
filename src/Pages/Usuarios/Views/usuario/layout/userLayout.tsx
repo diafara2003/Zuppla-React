@@ -18,9 +18,9 @@ export const UserLayout = () => {
 
   const { state } = useLayoutUsuario();
 
-  const { data, isLoading, dataUserSelect, alertData, openD,dataEditUser,tipoModal, handleCloseDelete,
-    openDelete, handleDeleteUser, actionUser, setDataNewUser, newUser,setOpen,handleClickDialogOpenAdd,handleClickDialogOpenEdit } = useUsuario();
- 
+  const { data, isLoading, dataUserSelect, alertData, openD, dataEditUser, tipoModal, handleCloseDelete,
+    openDelete, handleDeleteUser, actionUser, setDataNewUser, newUser, setOpen, handleClickDialogOpenAdd, handleClickDialogOpenEdit } = useUsuario();
+
   return (
     <>
       {
@@ -29,9 +29,10 @@ export const UserLayout = () => {
             <SkeletonDinamic NoColumnas={1} NoFilas={4} Tipo={'table'} />
           </Box>
           :
-          <><Box sx={{ m: '1px', background: 'white', height: '', mr: "10px", ml: '10px' }}>
-            <AlertPortal data={alertData} />
-          </Box>
+          <>
+            <Box sx={{ m: '1px', background: 'white', height: '', mr: "10px", ml: '10px' }}>              
+              {alertData.estado? <AlertPortal data={alertData} />: null}
+            </Box>
             <Box display={"flex"} justifyContent={"end"} pt={"10px"} >
               <TextField
                 id="outlined-basic"
@@ -71,7 +72,6 @@ export const UserLayout = () => {
         editUser={dataEditUser!}
         newUser={(dataUser) => {
           console.log(dataUser)
-          debugger
           newUser(dataUser);
           //setDataNewUser(dataUser)
           // actionUser(ActionUser.New);

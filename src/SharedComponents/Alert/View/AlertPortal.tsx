@@ -1,23 +1,23 @@
 import { Alert, AlertTitle, Box, Collapse, LinearProgress, Snackbar, Stack } from '@mui/material'
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
+
 import { ModelAlerta } from '../Model/alertaModel'
 type props = {
   data: ModelAlerta
 }
 
 const duracion = 5000
-export const AlertPortal = ({ data }: props) => {
-  const [open, setOpen] = React.useState(data.estado);
-  const [linealBar, setLinealBar] = React.useState(0);
+export const AlertPortal = ({ data }: props) => {    
+  const [open, setOpen] = useState(data.estado);
+  const [linealBar, setLinealBar] = useState(0);
   
-  useEffect(() => {
-  
-    setInterval(function () {
-      setLinealBar((currentNumber) => currentNumber + 1)
+  useEffect(() => {  
+    const inter = setInterval(function () {
+      setLinealBar((currentNumber) => currentNumber + 1)      
     }, 90);
-
     setTimeout(() => {
       setOpen(false)
+      clearInterval(inter);
     }, duracion);  
   }, [])
   
