@@ -9,8 +9,21 @@ export interface UsuariosDTO {
     nombre: string;
     documento: string;
     cargo: string;
-    celular:string;
+    celular: string;
 
+}
+
+export const INITIAL_USUARIO_DTO: UsuariosDTO = {
+    cargo: "",
+    celular: "",
+    clave: "",
+    correo: "",
+    documento: "",
+    estado: 1,
+    id: 0,
+    isPrincipal: true,
+    nombre: "",
+    tipo: ""
 }
 
 export enum ActionUser {
@@ -25,7 +38,7 @@ export enum ActionUser {
 }
 
 export interface UsuarioIdDTO {
-    idUsuario : number;
+    idUsuario: number;
 }
 
 export interface CambiarEstadoUsuarioDTO {

@@ -19,7 +19,8 @@ interface Foo {
 }
 export const Autocompleteasync = (info: props) => {
 
-    if (info.showError == undefined) info.showError = { hasError: false, msn: "" }
+    let error = info.showError;
+    if (info.showError == undefined) error = { hasError: false, msn: "" }
 
 
     const { changeTyping, loading, lstData, open, setOpen, textInput, handleSelected } = useAutoCompleteAsync(info);
@@ -46,8 +47,8 @@ export const Autocompleteasync = (info: props) => {
             getOptionLabel={(option) => option[info.nombreDataOcject]}
             renderInput={(params) => (
                 <TextField
-                    error={info.showError!.hasError}
-                    helperText={info.showError!.msn}
+                    error={error!.hasError}
+                    helperText={error!.msn}
                     {...params}
                     label={info.label}
                     InputProps={{

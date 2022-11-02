@@ -7,11 +7,11 @@ import { ConstructoraDTO } from '../../../Components/SelectConstructora/Model/Mo
 
 type props = {
     datatable: DatosNotificacionesDTO[],
-    valorDelete: (value:number) => void
+    valorDelete: (value: number) => void
 }
 
-export const TableDatosNotificaciones = ({ datatable, valorDelete }: props) => {
-    const clickDelete = (val:number) => {
+export const TableNotificacionProv = ({ datatable, valorDelete }: props) => {
+    const clickDelete = (val: number) => {
         valorDelete(val);
     };
     return (
@@ -62,7 +62,7 @@ export const TableDatosNotificaciones = ({ datatable, valorDelete }: props) => {
                     <TableBody>
                         {datatable.map((row) => {
                             return (
-                                <TableRow hover role="checkbox" tabIndex={-1} >
+                                <TableRow key={`tr-prov-id-${row.id}`} hover role="checkbox" tabIndex={-1} >
                                     <TableCell >
                                         {row.usuario.nombres}
                                     </TableCell>
@@ -75,9 +75,9 @@ export const TableDatosNotificaciones = ({ datatable, valorDelete }: props) => {
                                     <TableCell >
                                         {row.usuario.celular}
                                     </TableCell>
-                                    <TableCell  align="center">
+                                    <TableCell align="center">
                                         <IconButton onClick={() => clickDelete(row.id)} edge="end" aria-label="delete">
-                                            <DeleteOutlineOutlinedIcon  color='primary' />
+                                            <DeleteOutlineOutlinedIcon color='primary' />
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
