@@ -1,15 +1,14 @@
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material'
-import React from 'react'
-import { TerCamaraComercioDTO } from '../Model/CamaraComercio'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material'
+import { TerCamaraComercioDTO } from '../../../Model/CamaraComercio'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+
 type props = {
     datatable: TerCamaraComercioDTO[],
-    onDelete:(valorId:number)=> void
+    onDelete: (valorId: number) => void
 }
 
 export const TableCamaraComercio = ({ datatable, onDelete }: props) => {
-    const clickAction = ( camaraSelect:TerCamaraComercioDTO ) => {
+    const clickAction = (camaraSelect: TerCamaraComercioDTO) => {
         onDelete(camaraSelect.id);
     };
     return (
@@ -61,20 +60,20 @@ export const TableCamaraComercio = ({ datatable, onDelete }: props) => {
                         {datatable.map((row) => {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                    <TableCell key={row.id * 2}>
+                                    <TableCell >
                                         {row.tipoDocumento}
                                     </TableCell>
-                                    <TableCell key={row.id * 2}>
+                                    <TableCell >
                                         {row.documento}
                                     </TableCell>
-                                    <TableCell key={row.id * 2}>
+                                    <TableCell >
                                         {row.nombre}
                                     </TableCell>
-                                    <TableCell key={row.id * 2}>
+                                    <TableCell >
                                         {row.cargo}
                                     </TableCell>
-                                    <TableCell key={row.id * 2} align="center">
-                                        <IconButton edge="end" onClick={()=>clickAction(row)} aria-label="delete">
+                                    <TableCell align="center">
+                                        <IconButton edge="end" onClick={() => clickAction(row)} aria-label="delete">
                                             <DeleteOutlineOutlinedIcon color="primary" />
                                         </IconButton>
                                     </TableCell>
