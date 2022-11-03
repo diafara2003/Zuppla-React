@@ -20,7 +20,6 @@ export const NewNotificacionUser = ({ tipoNotificacion, title, handleOk, handleC
     const [newData, setNewData] = useState<NotificacionDTO>(INITIAL_NOTIFICACION);
 
 
-
     const handleClose = (
         event: {},
         reason: "backdropClick" | "escapeKeyDown"
@@ -32,7 +31,12 @@ export const NewNotificacionUser = ({ tipoNotificacion, title, handleOk, handleC
         }
     };
 
+    const saveUser = (data: NotificacionDTO) => {
+       
+        if (data.usuario > 0)
+            setNewData(data);
 
+    }
 
     return (
         <Dialog
@@ -49,11 +53,11 @@ export const NewNotificacionUser = ({ tipoNotificacion, title, handleOk, handleC
             <DialogTitle id="alert-dialog-title">
                 {title}
             </DialogTitle>
-            <DialogContent>
+            <DialogContent dividers={true}>
 
                 {tipoNotificacion == TipoNotificacion.Proveddores
-                    ? <FrmUser />
-                    : <FrmUserLicitacion />
+                    ? <FrmUser saveUser={saveUser} />
+                    : <FrmUserLicitacion saveUser={saveUser} />
                 }
 
             </DialogContent>

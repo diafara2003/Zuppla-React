@@ -11,7 +11,7 @@ export const useDatosNotificaciones = () => {
   const [openNew, setOpenNew] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const [tabActive, setTabActive] = useState(0);
-  const { consultarNotificacion, lstNotificacion, isLoading, eliminarContacto, handleAgregarNotificacion } = useUsersNotificacion(tipoNotificacion);
+  const { consultarNotificacion, setTipo, lstNotificacion, isLoading, eliminarContacto, handleAgregarNotificacion } = useUsersNotificacion(tipoNotificacion);
   const [idDelete, setIdDelete] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -20,8 +20,10 @@ export const useDatosNotificaciones = () => {
 
 
   const HandleOpenNew = (info: NotificacionDTO) => {
-    setOpenNew(true);
-    handleAgregarNotificacion(info);
+    if (info.usuario > 0) {
+      setOpenNew(true);
+      handleAgregarNotificacion(info);
+    }
   };
 
   const HandleOpenDelete = (id: number) => {
@@ -40,6 +42,7 @@ export const useDatosNotificaciones = () => {
     const active = tabActive == 0 ? TipoNotificacion.Proveddores : TipoNotificacion.Licitaciones;
 
     setTipoNotificacion(active);
+    setTipo(active);
 
   }, [tabActive])
 
@@ -55,8 +58,8 @@ export const useDatosNotificaciones = () => {
   }, []);
 
   return {
-    openNew, HandleOpenNew,setOpenNew,
-    openDelete, HandleOpenDelete,setOpenDelete,
+    openNew, HandleOpenNew, setOpenNew,
+    openDelete, HandleOpenDelete, setOpenDelete,
 
     tabActive, handleChange,
 

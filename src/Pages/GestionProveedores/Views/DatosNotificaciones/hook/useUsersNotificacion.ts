@@ -9,11 +9,12 @@ type ResponseNotificacion = {
 
 
 
-export const useUsersNotificacion = (tipo: TipoNotificacion) => {
+export const useUsersNotificacion = (tipoNotificacion: TipoNotificacion) => {
 
     const [lstNotificacion, setNotificacion] = useState<ConsultarNotificacionDTO[]>([]);
     const [error, setError] = useState<ErrorGuardarNotificacionDTO>(INITIAL_ERROR_NOTIFICACION)
     const [isLoading, setIsLoading] = useState(false);
+    const [tipo, setTipo] = useState(tipoNotificacion);
 
     const handleAgregarNotificacion = async (info: NotificacionDTO) => {
 
@@ -41,8 +42,11 @@ export const useUsersNotificacion = (tipo: TipoNotificacion) => {
         const response = await requestAPI<ConsultarNotificacionDTO[]>(request)!;
 
 
-        if (response != null && response.length > 0)
-            setNotificacion(response)
+        if (response != null)
+            setNotificacion(() => response);
+        else setNotificacion([]);
+
+
         setIsLoading(false);
     }
 
@@ -67,5 +71,5 @@ export const useUsersNotificacion = (tipo: TipoNotificacion) => {
     }
 
 
-    return { handleAgregarNotificacion, consultarNotificacion, eliminarContacto, lstNotificacion, error, isLoading }
+    return { handleAgregarNotificacion, consultarNotificacion, eliminarContacto, lstNotificacion, error, isLoading, setTipo }
 }
