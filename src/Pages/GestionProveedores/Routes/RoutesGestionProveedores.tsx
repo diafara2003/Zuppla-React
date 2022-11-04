@@ -1,9 +1,8 @@
 import { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { NavigationModel } from '../../../SharedComponents/Navigation';
-import { DatosContactos, DatosNotifiaciones, CamaraComercioPage, DocumentosAdjuntosPage, EspecialidadesPage, NovedadesPage } from '../../GestionProveedores';
 
-
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { Badge } from '@mui/material';
 import BusinessOutlinedIcon from '@mui/icons-material/BusinessOutlined';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
@@ -17,6 +16,11 @@ export const rutas: NavigationModel[] = [
         path: "/gestionproveedor/InfGeneral",
         texto: "Información general",
         Icono: () => <BusinessOutlinedIcon />
+    },
+    {
+        path: "/gestionproveedor/InfBancaria",
+        texto: "Información bancaria",
+        Icono: () => <AccountBalanceIcon />
     },
     {
         path: "/gestionproveedor/Especialidades",
@@ -55,12 +59,22 @@ export const rutas: NavigationModel[] = [
 
 
 const InformacionGeneralPage = lazy(() => import('../../GestionProveedores/Views/InformacionGeneral/View/InformacionGeneralPage'));
+const InfBancariaPage = lazy(() => import('../../GestionProveedores/Views/InformacionBancaria/view/InfBancariaPage'));
+
+
+const DatosContactos = lazy(() => import('../../GestionProveedores/Views/DatosContactos/View/DatosContactoPage'));
+const DatosNotifiaciones = lazy(() => import('../../GestionProveedores/Views/DatosNotificaciones/View/DatosNotificacionesPage'));
+const DocumentosAdjuntosPage = lazy(() => import('../../GestionProveedores/Views/DocumentosAdjuntos/View/DocumentosAdjuntosPage'));
+const CamaraComercioPage = lazy(() => import('../../GestionProveedores/Views/CamaraComercio/View/CamaraComercioPage'));
+const NovedadesPage = lazy(() => import('../../GestionProveedores/Views/Novedades/View/NovedadesPage'));
+const EspecialidadesPage = lazy(() => import('../../GestionProveedores/Views/Especialidades/View/EspecialidadesPage'));
 
 
 export default function RoutesGestionProveedores() {
     return (
         <Routes>
             <Route path="/InfGeneral" element={<InformacionGeneralPage />} />
+            <Route path="/InfBancaria" element={<InfBancariaPage />} />
             <Route path="/DatosContactos" element={<DatosContactos />} />
             <Route path="/DatosNotificaciones" element={<DatosNotifiaciones />} />
             <Route path="/DocumentosAdjuntos" element={<DocumentosAdjuntosPage />} />

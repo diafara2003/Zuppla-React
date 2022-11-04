@@ -7,3 +7,6 @@ export const NovedadesPage = () => {
     
   )
 }
+
+
+export default NovedadesPage;

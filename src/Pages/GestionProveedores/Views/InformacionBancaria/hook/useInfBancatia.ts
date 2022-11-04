@@ -1,0 +1,163 @@
+import { useState, useEffect } from 'react';
+import { RequestModel, APiMethod, requestAPI } from '../../../../../Provider';
+import { infBancariaDTO, INITIAL_INF_BANCARIA, INITIAL_VALIDATION_FORMUMLARIO_BANCARIO, ValidacionformularioBancarioDTO, validacionFormularioDTO } from '../model/infBancariaDTO';
+import { ResponseDTO } from '../../../../../Provider/model/FetchModel';
+import { Validationforms } from '../../../../../Helper/ValidationForms';
+import { SelectChangeEvent } from '@mui/material';
+import { CiudadesDTO } from '../../InformacionGeneral/Model';
+export const useInfBancaria = () => {
+
+    const [state, setState] = useState<infBancariaDTO>(INITIAL_INF_BANCARIA);
+    const [validation, setValidation] = useState<ValidacionformularioBancarioDTO>(INITIAL_VALIDATION_FORMUMLARIO_BANCARIO);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
+
+
+    const handleChange = (event: SelectChangeEvent, name: string) => {
+
+        setState({
+            ...state,
+            [name]: event.target.value as string
+        });
+
+    };
+
+
+    const onInputChange = (e: React.SyntheticEvent) => {
+        const { name, value } = (e.target as HTMLInputElement);
+        setState({
+            ...state,
+            [name]: value
+        });
+        setValidation({ ...validation, [name]: { hasError: false, msn: '' } })
+    }
+
+    const conultarBancos = () => {
+
+
+    }
+
+    const selectedCiudad = <Selected>(value: Selected) => {
+        const _ciudad = (value as CiudadesDTO);
+        setState({
+            ...state,
+            ciudad: _ciudad.id,
+            ciudadTexto: _ciudad.nombre
+        });
+        setValidation({ ...validation, ciudad: { hasError: false, msn: '' } })
+    }
+
+
+    const consultarInfo = async () => {
+        setIsLoading(true);
+        const request: RequestModel = {
+            metodo: `TercerosGI/informacionbancaria`,
+            type: APiMethod.GET,
+        }
+        const data = await requestAPI<infBancariaDTO>(request);
+
+        setIsLoading(false);
+        if (data != null) setState(data!);
+
+    }
+
+    const guardar = async () => {
+
+        setIsSaving(true);
+        const request: RequestModel = {
+            metodo: `TercerosGI/informacionbancaria`,
+            type: APiMethod.POST,
+            data: state
+        }
+        const data = await requestAPI<ResponseDTO>(request);
+
+        if (data != null) setState({ ...state, id: data.codigo });
+
+        setIsSaving(false);
+
+    }
+
+    const handleguardar = () => {
+
+        const validacionCampos = validaCamposInfGeneral();
+
+        if (validacionCampos.isvalid) {
+            guardar();
+        }
+        else {
+            setValidation({ ...validation, [validacionCampos.name]: validacionCampos.property })
+        }
+
+
+    }
+
+    const validaCamposInfGeneral = (): validacionFormularioDTO => {
+
+        const data = state;
+        const _validationForms = new Validationforms();
+
+        let _validation: validacionFormularioDTO = {
+            isvalid: true,
+            property: { hasError: false, msn: '' },
+            name: ""
+        };
+
+
+        if (data.banco <= 0) {
+            _validation.isvalid = false;
+            _validation.property = { hasError: true, msn: "El banco  es obligatorio" };
+            _validation.name = "banco";
+            return _validation;
+        }
+
+        if (data.ciudad <= 0) {
+            _validation.isvalid = false;
+            _validation.property = { hasError: true, msn: "La ciudad  es obligatorio" };
+            _validation.name = "banco";
+            return _validation;
+        }
+
+        if (data.tipoCuenta <= 0) {
+            _validation.isvalid = false;
+            _validation.property = { hasError: true, msn: "El tipo de cuenta  es obligatorio" };
+            _validation.name = "banco";
+            return _validation;
+        }
+
+
+        if (data.numero == null || data.numero == "") {
+            _validation.isvalid = false;
+            _validation.property = { hasError: true, msn: "El número de la cuenta es obligatorio" };
+            _validation.name = "correoPagos";
+            return _validation;
+        }
+
+
+        if (data.correoPagos == null || data.correoPagos == "") {
+            _validation.isvalid = false;
+            _validation.property = { hasError: true, msn: "El correo de notificación de pagos es obligatorio" };
+            _validation.name = "correoPagos";
+            return _validation;
+        }
+
+        if (!_validationForms.EmailIsValid(data.correoPagos)) {
+            _validation.isvalid = false;
+            _validation.property = { hasError: true, msn: "El correo ingresado no es valido" };
+            _validation.name = "correoPagos";
+            return _validation;
+        }
+
+        return _validation;
+    }
+
+
+
+    useEffect(() => {
+        consultarInfo();
+    }, []);
+
+    return {
+
+        state, isLoading, isSaving, handleguardar, validation, onInputChange, handleChange, selectedCiudad
+    }
+}
