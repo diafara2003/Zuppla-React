@@ -10,8 +10,6 @@ export const theme = createTheme({
         button: {
             textTransform: 'none'
         },
-        fontFamily: 'Nunito, Arial',
-        fontSize: 13,
         h6: {
             color: '#1B344C'
         }
@@ -37,14 +35,7 @@ export const theme = createTheme({
     },
 
     components: {
-
-
-        MuiCssBaseline: {
-            styleOverrides: `
-              @font-face {
-                font-family: 'Nunito';
-              }`,
-        },
+         
         MuiTableHead: {
             defaultProps: {
                 color: 'red'

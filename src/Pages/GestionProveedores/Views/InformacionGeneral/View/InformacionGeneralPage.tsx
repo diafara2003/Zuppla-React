@@ -6,6 +6,8 @@ import HistoryIcon from '@mui/icons-material/History';
 import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
 import { Autocompleteasync } from "../../../../../SharedComponents/Autocomplete/view/Autocompleteasync";
 import { LoadingButton } from "@mui/lab";
+import { InfTributariaPages } from "../../InformacionTributaria/Views/InfTributariaPages";
+import { InfSISO } from "../../InformacionSISO/view/InfSISO";
 
 
 
@@ -193,8 +195,13 @@ export const InformacionGeneralPage = () => {
                         </Grid>
                 }
 
-
+                <InfTributariaPages></InfTributariaPages>
+                <InfSISO></InfSISO>
             </Box>
+
+
+
+
         </>
 
     )
