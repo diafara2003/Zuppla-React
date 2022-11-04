@@ -58,6 +58,9 @@ export const useUsersNotificacion = (tipoNotificacion: TipoNotificacion) => {
         }
         await requestAPI<ConsultarNotificacionDTO[]>(request)!;
 
+
+
+        setNotificacion(() => [...lstNotificacion.filter(c => c.id != id)]);
         return true;
 
     }

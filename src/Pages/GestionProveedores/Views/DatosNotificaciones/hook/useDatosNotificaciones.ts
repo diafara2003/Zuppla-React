@@ -21,7 +21,7 @@ export const useDatosNotificaciones = () => {
 
   const HandleOpenNew = (info: NotificacionDTO) => {
     if (info.usuario > 0) {
-      setOpenNew(true);
+      setOpenNew(false);
       handleAgregarNotificacion(info);
     }
   };
