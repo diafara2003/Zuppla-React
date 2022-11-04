@@ -13,12 +13,7 @@ import { Eliminar } from "../../../Components/ImgComponents/View/Eliminar";
 import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
 import { ActionContacto } from "../Model/DatosContacto-Model";
 import { AlertPortal } from "../../../../../SharedComponents/Alert";
-// import  from "../../../../../img/Estados/SinInformacion.png"
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
+
 
 export const DatosContactos = () => {
 
@@ -81,6 +76,7 @@ export const DatosContactos = () => {
                                     {
                                         dataContactos.map((contacto) => {
                                             return (<CardContacto
+                                                key={contacto.id}
                                                 contacto={contacto}
                                                 onChangeAction={(valor) => {
                                                     dataContactoSelect.current = valor.contacto
@@ -142,7 +138,7 @@ export const DatosContactos = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button variant="text" onClick={handleCloseDelete} >Cancelar</Button>
-                    <Button variant="contained" color="error" onClick={handleDeleteContacto} autoFocus >
+                    <Button variant="outlined" color="error" onClick={handleDeleteContacto} autoFocus >
                         Eliminar
                     </Button>
                 </DialogActions>

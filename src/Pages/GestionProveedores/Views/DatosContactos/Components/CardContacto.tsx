@@ -39,9 +39,9 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
     };
 
     return (
-        <Grid item xs={4}>
+        <Grid item xs={3}>
             <Card variant="outlined" sx={{ backgroundColor: '#FBFBFB' }}>
-                <CardHeader
+                <CardHeader key={contacto.id}
                     sx={{ pb: 0, }}
                     action={
                         <><IconButton aria-label="settings" color="primary" onClick={(event) => handleClick(event)}>

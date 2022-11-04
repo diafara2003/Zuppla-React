@@ -70,14 +70,13 @@ export const DocumentosAdjuntosPage = () => {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <Box m={1} mt={1}>
+          <Box m={1} mt={1}  sx={{ justifyContent:'center', display:'flex'}}className='JKDoc'>
             {
               isLoading ?
                 <SkeletonDinamic NoColumnas={2} NoFilas={1} Tipo={'card'} />
                 :
                 <Box sx={{ backgroundColor: 'white' }} maxWidth="lg">
                   <Grid container spacing={2} >
-
                     {dataDoc?.map((DocAdjunto) => {
                       return (
                         <Grid item xs={6} key={`div-upload-tab0-id${DocAdjunto.tipoAdjunto.id}`}>
@@ -115,10 +114,10 @@ export const DocumentosAdjuntosPage = () => {
                     <SinInformacion />
                   </Box>
                   :
-                  <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
+                  <Container sx={{backgroundColor: 'white' }} maxWidth="lg">
                     {dataAdjPorConst?.map((DocAdjunto) => {
                       return (
-                        <Card elevation={1} sx={{ mt: 2 }}>
+                        <Card elevation={3} sx={{ mt: 2 }}>
                           <CardHeader
                             title={DocAdjunto.nombreEspecialidad}
                             titleTypographyProps={{ fontWeight: '600' }}

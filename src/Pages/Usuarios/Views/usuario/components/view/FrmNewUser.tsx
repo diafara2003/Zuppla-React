@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { Validationforms } from '../../../../../../Helper/ValidationForms'
-import { UsuariosDTO } from '../../model/usuarioDTO'
+import { INITIAL_USUARIO_DTO, INITIAL_VALIDATION_USUARIO, UsuariosDTO } from '../../model/usuarioDTO'
 
 type props = {
     open: boolean,
@@ -30,18 +30,10 @@ type validacionFormulario = {
     documento: inputFormulario
 }
 export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
-    const stateValidacionInitial = {
-        email: { hasError: false, msn: '' },
-        nombre: { hasError: false, msn: '' },
-        cargo: { hasError: false, msn: '' },
-        celular: { hasError: false, msn: '' },
-        documento: { hasError: false, msn: '' },
-    }
-    const stateInitialNewUser = { cargo: '', celular: '', clave: '', correo: '', documento: '', estado: 1, id: 0, isPrincipal: false, nombre: '', tipo: 'P' }
-    const stateInitialEditUser = {editUser}
-    const [dataEdit, setDataEdit] = useState<UsuariosDTO>(editUser)
-    const [dataNewUser, setDataNewUser] = useState<UsuariosDTO>(stateInitialNewUser)
-    const [dataValidate, setDataValidate] = useState(stateValidacionInitial)
+    console.log(editUser);
+    debugger
+    const [dataNewUser, setDataNewUser] = useState<UsuariosDTO>(tipo==typeModal.add? INITIAL_USUARIO_DTO: editUser)
+    const [dataValidate, setDataValidate] = useState(INITIAL_VALIDATION_USUARIO)
     
 
     const handleClose = () => {
@@ -52,10 +44,6 @@ export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
         setDataNewUser(prevState => {
             return { ...prevState, [name]: value }
         });
-        console.log(dataNewUser)
-
-        //newUser(dataNewUser);
-
     }
     const submit = () => {
         const _datosValidados = validaciones();
@@ -64,13 +52,13 @@ export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
             || _datosValidados.email.hasError || _datosValidados.nombre.hasError) {
             return;
         }
-        setDataValidate(stateValidacionInitial);       
+        setDataValidate(INITIAL_VALIDATION_USUARIO);       
         newUser(dataNewUser);
-        setDataNewUser(stateInitialNewUser)
+        setDataNewUser(INITIAL_USUARIO_DTO)
         handleClose();
     }
     const validaciones = (): validacionFormulario => {
-        let validaFRM: validacionFormulario = stateValidacionInitial;
+        let validaFRM: validacionFormulario = INITIAL_VALIDATION_USUARIO;
         if (!new Validationforms().EmailIsValid(dataNewUser.correo)) {
             debugger
             return { ...validaFRM, email: { hasError: true, msn: 'Correo invalido' } }
@@ -122,7 +110,7 @@ export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
                                     fullWidth
                                     size="small"
                                     onChange={onChangeFrm}
-                                    value={editUser?.nombre}
+                                    value={dataNewUser?.nombre}
                                     error={dataValidate.nombre.hasError}
                                     helperText={dataValidate.nombre.msn}
 
@@ -138,7 +126,7 @@ export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
                                     onChange={onChangeFrm}
                                     error={dataValidate.documento.hasError}
                                     helperText={dataValidate.documento.msn}
-                                    value={editUser?.documento}
+                                    value={dataNewUser?.documento}
                                     type="number"                                    
                                 />
                             </Grid>
@@ -152,7 +140,7 @@ export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
                                     onChange={onChangeFrm}
                                     error={dataValidate.cargo.hasError}
                                     helperText={dataValidate.cargo.msn}
-                                    value={editUser?.cargo}
+                                    value={dataNewUser?.cargo}
                                 />
                             </Grid>
                             <Grid item xs={6}>
@@ -165,7 +153,7 @@ export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
                                     size="small"
                                     onChange={onChangeFrm}
                                     helperText={dataValidate.email.msn}
-                                    value={editUser?.correo}
+                                    value={dataNewUser?.correo}
                                 />
                             </Grid>
 
@@ -180,7 +168,7 @@ export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
                                     error={dataValidate.celular.hasError}
                                     helperText={dataValidate.celular.msn}
                                     type="number"
-                                    value={editUser?.celular}
+                                    value={dataNewUser?.celular}
                                 />
                             </Grid>
                             <Grid item xs={6}>

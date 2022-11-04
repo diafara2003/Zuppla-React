@@ -55,7 +55,7 @@ export const DialogDelete = ({ title, handleOk, handleCancel }: props) => {
                     setOpen(false);
                 }} >Cancelar</Button>
 
-                <Button variant="contained" color="error" onClick={() => {
+                <Button variant="outlined" color="error" onClick={() => {
                     setOpen(false);
                     handleOk();
 

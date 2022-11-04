@@ -16,6 +16,7 @@ export const useUsuario = () => {
     const { dispatch, state, newUser } = useContext(UserContext);
     const [openD, setOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(typeModal.add)
+    
     const dataUserSelect = useRef<UsuariosDTO>()
     const handleCloseDelete = () => {
         setOpenDelete(false);
@@ -23,7 +24,6 @@ export const useUsuario = () => {
     const handleClickDialogOpenAdd = () => {
         setTipoModal(typeModal.add);
         setOpen(true);
-
     };
     const handleClickDialogOpenEdit = () => {
         setTipoModal(typeModal.edit);
@@ -35,13 +35,12 @@ export const useUsuario = () => {
 
     const actionUser = (action: ActionUser) => {
         switch (action) {
-            case ActionUser.Delete:
-                console.log("Delete")
+            case ActionUser.Delete:                
                 setOpenDelete(true);
                 break;
             case ActionUser.Edit:
-                let _editUser = state.find((element) => element.id == dataUserSelect.current?.id)
-                setDataEditUser(_editUser);
+               // let _editUser = state.find((element) => element.id == dataUserSelect.current?.id)
+                //setDataEditUser(_editUser);
                 handleClickDialogOpenEdit();
 
                 break;

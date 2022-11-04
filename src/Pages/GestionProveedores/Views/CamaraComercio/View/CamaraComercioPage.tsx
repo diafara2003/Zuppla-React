@@ -93,7 +93,7 @@ export const CamaraComercioPage = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button variant="text" onClick={handleCloseDelete} >Cancelar</Button>
-                    <Button variant="contained" color="error" onClick={handleDeleteCamara} autoFocus >
+                    <Button variant="outlined" color="error" onClick={handleDeleteCamara} autoFocus >
                         Eliminar
                     </Button>
                 </DialogActions>

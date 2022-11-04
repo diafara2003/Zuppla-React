@@ -140,6 +140,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
                                     value={dataNewContacto?.numeroDocumento}
                                     error={dataValidate.documento.hasError}
                                     helperText={dataValidate.documento.msn}
+                                    type="number"   
                                 />
                             </Grid>
                             <Grid item xs={4}>
@@ -154,6 +155,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
                                     value={dataNewContacto?.correo}
                                     error={dataValidate.email.hasError}
                                     helperText={dataValidate.email.msn}
+                                    type="email"   
                                 />
                             </Grid>
 
@@ -169,6 +171,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
                                     value={dataNewContacto?.telefono}
                                     error={dataValidate.telefono.hasError}
                                     helperText={dataValidate.telefono.msn}
+                                    type="number"   
                                 />
                             </Grid>
                             <Grid item xs={4}>
@@ -183,6 +186,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
                                     value={dataNewContacto?.celular}
                                     error={dataValidate.celular.hasError}
                                     helperText={dataValidate.celular.msn}
+                                    type="number"   
                                 />
                             </Grid>
                             <Grid item xs={4}>
@@ -236,8 +240,6 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
                     </Button>
                 </DialogActions>
             </Dialog>
-
-
         </>
     )
 }

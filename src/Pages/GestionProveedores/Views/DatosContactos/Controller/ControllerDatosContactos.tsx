@@ -52,7 +52,7 @@ export const ControllerDatosContactos = () => {
         handleAddEditContact(contacto!, ActionContacto.New);
         break;
       case ActionContacto.Edit:
-        handleAddEditContact(contacto!,ActionContacto.Edit );
+        handleAddEditContact(contacto!, ActionContacto.Edit);
         break;
 
       default:
@@ -81,7 +81,7 @@ export const ControllerDatosContactos = () => {
   }
 
 
-  const handleAddEditContact = async (_contacto: TerDatosContactoDTO,tipoAction :ActionContacto ) => {
+  const handleAddEditContact = async (_contacto: TerDatosContactoDTO, tipoAction: ActionContacto) => {
     debugger
     setIsLoading(true)
     const request: RequestModel = {
@@ -92,22 +92,24 @@ export const ControllerDatosContactos = () => {
     const response = await requestAPI<ResponseDTO>(request)!;
     debugger
     if (response?.success) {
-      if(tipoAction == ActionContacto.New)
+      if (tipoAction == ActionContacto.New) {
         setDataState([...dataContactos, _contacto!]);
-      else{
-        setDataState([...dataContactos.map(con=>{
+        setAlertData({ ...stateAlertData, msgBody: 'Se ha agregado el nuevo contacto exitosamente', estado: true, tipo: 'success' });
+      }
+      else {
+        setDataState([...dataContactos.map(con => {
           let _cont = con;
-          if(_cont.id == _contacto.id ){
+          if (_cont.id == _contacto.id) {
             _cont = _contacto
           }
-          return _cont          
+          return _cont
         })]);
+        setAlertData({ ...stateAlertData, msgBody: 'Se ha actualizado el contacto correctamente', estado: true, tipo: 'success' });
       }
       setNewDatosContactos(INITIAL_STATE_CONTACTO);
-      setAlertData({ ...stateAlertData, msgBody: 'Se ha agregado el nuevo contacto exitosamente', estado: true, tipo: 'success' });
+      
     } else {
-
-      setAlertData({ ...stateAlertData, msgBody: 'No se pudo agregar el contacto', estado: true, tipo: 'warning' });
+      setAlertData({ ...stateAlertData, msgBody: 'No se pudo actualizar el contacto', estado: true, tipo: 'warning' });
     }
     console.log(stateAlertData);
     setIsLoading(false)

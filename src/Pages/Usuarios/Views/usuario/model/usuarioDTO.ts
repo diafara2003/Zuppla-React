@@ -26,6 +26,14 @@ export const INITIAL_USUARIO_DTO: UsuariosDTO = {
     tipo: ""
 }
 
+ export const INITIAL_VALIDATION_USUARIO = {
+        email: { hasError: false, msn: '' },
+        nombre: { hasError: false, msn: '' },
+        cargo: { hasError: false, msn: '' },
+        celular: { hasError: false, msn: '' },
+        documento: { hasError: false, msn: '' },
+    }
+
 export enum ActionUser {
     Delete = "D",
     Edit = "E",

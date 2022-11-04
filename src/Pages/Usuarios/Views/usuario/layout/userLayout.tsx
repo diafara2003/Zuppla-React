@@ -58,6 +58,7 @@ export const UserLayout = () => {
                 <TableUsuario
                   onClick={(dataAction) => {
                     if (dataAction.action != ActionUser.Default) {
+                      console.log(dataUserSelect.current);
                       dataUserSelect.current = (dataAction.userData)
                       actionUser(dataAction.action)
                     }
@@ -69,12 +70,10 @@ export const UserLayout = () => {
       <FrmNewUser
         open={openD}
         tipo={tipoModal}
-        editUser={dataEditUser!}
+        editUser={dataUserSelect.current!}
         newUser={(dataUser) => {
           console.log(dataUser)
-          newUser(dataUser);
-          //setDataNewUser(dataUser)
-          // actionUser(ActionUser.New);
+          newUser(dataUser);        
         }}
         close={(close) => {
           setOpen(close);
@@ -102,7 +101,7 @@ export const UserLayout = () => {
         </DialogContent>
         <DialogActions>
           <Button variant="text" onClick={handleCloseDelete} >Cancelar</Button>
-          <Button variant="contained" color="error" onClick={handleDeleteUser} autoFocus >
+          <Button variant="outlined" color="error" onClick={handleDeleteUser} autoFocus >
             Eliminar
           </Button>
         </DialogActions>
