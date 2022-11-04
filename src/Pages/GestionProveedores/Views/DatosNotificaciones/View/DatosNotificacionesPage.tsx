@@ -11,6 +11,7 @@ import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/S
 import { DialogDelete } from "../Components/DialogDelete";
 import { NewNotificacionUser } from "../Components/NewNotificacionUser";
 import { TipoNotificacion } from "../Model/TipoNotificacion";
+import { TableNotificacionLici } from '../Components/TableNotificacionLici';
 
 
 interface TabPanelProps {
@@ -94,7 +95,7 @@ export const DatosNotifiaciones = () => {
                     <Box m={1} mt={1}>
                         {isLoading
                             ? <SkeletonDinamic Tipo="table" NoFilas={5} NoColumnas={5} />
-                            : <TableNotificacionProv
+                            : <TableNotificacionLici
                                 datatable={lstNotificacion}
                                 valorDelete={(id: number) => { HandleOpenDelete(id) }}
                             />}
