@@ -4,15 +4,18 @@ import { APiMethod, RequestModel, ResponseDTO } from "../../../../../Provider/mo
 import { useFetch } from "../../../../../Provider/useFech";
 
 import { ModelAlerta } from "../../../../../SharedComponents/Alert/Model/alertaModel";
+import { AlertContext } from "../../../../Menu/context/AlertContext";
 import { typeModal } from "../components/view/FrmNewUser";
 import { ActionUser, CambiarEstadoUsuarioDTO, UsuarioIdDTO, UsuariosDTO } from "../model/usuarioDTO";
 import { UserContext } from "../store/StoreUsuario";
 
 export const useUsuario = () => {
 
+    const { showAlert } = useContext(AlertContext);
+
     const { hasError, data, isLoading, doFetch, setState } = useFetch<UsuariosDTO[] | null>();
     const [openDelete, setOpenDelete] = useState(false);
-    const [alertData, setAlertData] = useState<ModelAlerta>({ msgBody: "", msgTitle: "", tipo: "info", estado: false })
+    
     const { dispatch, state, newUser } = useContext(UserContext);
     const [openD, setOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(typeModal.add)
@@ -45,7 +48,7 @@ export const useUsuario = () => {
 
                 break;
             case ActionUser.Send:
-                console.log("send email")
+              
                 sendMail()
                 break;
             case ActionUser.EstadoTrue:
@@ -99,13 +102,7 @@ export const useUsuario = () => {
         const response = await requestAPI<ResponseDTO>(request)!;
         console.log(response)
         if (response?.success) {
-            let newAlert: ModelAlerta = {
-                estado: true,
-                msgBody: response.mensaje,
-                msgTitle: "Exitoso",
-                tipo: "success"
-            };
-            setAlertData(newAlert);
+            showAlert(response.mensaje, "Exitoso", "success")
         }
         setState({ isLoading: false, hasError: '' })
     }
@@ -123,19 +120,13 @@ export const useUsuario = () => {
         };
         const response = await requestAPI<ResponseDTO>(request)!;
         if (response?.success) {
-            let newAlert: ModelAlerta = {
-                estado: true,
-                msgBody: "Estado actualizado existosamente",
-                msgTitle: "",
-                tipo: "success"
-            };
+           
             dispatch({
                 type: "cambia estado",
                 payload: { _id: dataUserSelect?.current!.id, estado: _estado ? 1 : 0 }
             });
-            setAlertData(newAlert);
-        }
-        console.log(response)
+            showAlert("Estado actualizado existosamente", "Exitoso", "success")
+        }        
         setState({ isLoading: false, hasError: '' })
 
     }
@@ -168,7 +159,7 @@ export const useUsuario = () => {
 
 
     return {
-        isLoading, data, openDelete, dataUserSelect, alertData, openD, dataEditUser, tipoModal,
+        isLoading, data, openDelete, dataUserSelect, openD, dataEditUser, tipoModal,
         handleCloseDelete, handleDeleteUser, newUser, actionUser, setDataNewUser, handleClickDialogOpenAdd,handleClickDialogOpenEdit, setOpen
     }
 

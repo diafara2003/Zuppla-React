@@ -30,9 +30,7 @@ export const UserLayout = () => {
           </Box>
           :
           <>
-            <Box sx={{ m: '1px', background: 'white', height: '', mr: "10px", ml: '10px' }}>
-              {alertData.estado ? <AlertPortal data={alertData} /> : null}
-            </Box>
+           
             <Box display={"flex"} justifyContent={"end"} pt={"10px"} >
               <TextField
                 id="outlined-basic"

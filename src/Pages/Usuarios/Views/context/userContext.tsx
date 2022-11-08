@@ -1,5 +1,6 @@
-import { useReducer, useState } from "react";
+import { useContext, useReducer, useState } from "react";
 import { APiMethod, requestAPI, ResponseDTO } from "../../../../Provider";
+import { AlertContext } from "../../../Menu/context/AlertContext";
 import { UsuariosDTO } from "../usuario/model/usuarioDTO";
 import { storeUser, UserContext } from "../usuario/store/StoreUsuario";
 
@@ -11,6 +12,8 @@ export const UserProvider = ({ children }: Props) => {
     const [state, dispatch] = useReducer(storeUser, { usuarios: [] });
 
     const [isLoading, setisLoading] = useState(false);
+    const { showAlert } = useContext(AlertContext);
+
     const newUser = (user: UsuariosDTO) => {
         setisLoading(true);
         requestAPI<{ item1: ResponseDTO, item2: UsuariosDTO }>({
@@ -23,6 +26,10 @@ export const UserProvider = ({ children }: Props) => {
                     type: user.id == 0 ? "add" : "edit",
                     payload: response.item2
                 })
+                showAlert(response?.item1?.mensaje!, "Exitoso", "success")
+            }
+            else{
+                showAlert(response?.item1?.mensaje!, "Mensaje", "warning")
             }
             setisLoading(() => false);
         }).catch(() => {

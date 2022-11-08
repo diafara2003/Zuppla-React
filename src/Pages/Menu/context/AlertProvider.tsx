@@ -1,4 +1,4 @@
-import { colorLineProgress, ModelAlerta } from "../../../SharedComponents/Alert";
+import { AlertPortal, colorLineProgress, ModelAlerta } from "../../../SharedComponents/Alert";
 import { AlertContext } from './AlertContext';
 import { useState } from 'react';
 
@@ -29,6 +29,10 @@ export const AlertProvider = ({ children }: Props) => {
 
 
         <AlertContext.Provider value={{ stateAlert, showAlert,hideAlert }}>
+            {
+                stateAlert.estado ? <AlertPortal />:null
+            }
+            
             {children}
         </AlertContext.Provider>
     );
