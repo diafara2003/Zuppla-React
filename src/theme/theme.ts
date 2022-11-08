@@ -1,7 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 
-import { IconButton, SvgIconTypeMap, CssBaseline, ListItemIcon, colors } from '@mui/material';
-
 
 
 export const theme = createTheme({

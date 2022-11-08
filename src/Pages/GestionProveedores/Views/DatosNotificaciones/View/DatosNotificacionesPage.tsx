@@ -125,3 +125,5 @@ export const DatosNotifiaciones = () => {
         </>
     );
 }
+
+export default DatosNotifiaciones;

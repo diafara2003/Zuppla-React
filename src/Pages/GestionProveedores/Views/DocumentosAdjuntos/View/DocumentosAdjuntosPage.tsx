@@ -151,3 +151,6 @@ export const DocumentosAdjuntosPage = () => {
     </>
   )
 }
+
+
+export default DocumentosAdjuntosPage;

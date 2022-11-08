@@ -147,3 +147,4 @@ export const DatosContactos = () => {
     );
 }
 
+export default DatosContactos;

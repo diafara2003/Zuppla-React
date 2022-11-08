@@ -67,3 +67,5 @@ export const CamaraComercioPage = () => {
     )
 
 }
+
+export default CamaraComercioPage;

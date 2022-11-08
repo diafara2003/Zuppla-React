@@ -8,6 +8,7 @@ import { Autocompleteasync } from "../../../../../SharedComponents/Autocomplete/
 import { LoadingButton } from "@mui/lab";
 import { InfTributariaPages } from "../../InformacionTributaria/Views/InfTributariaPages";
 import { InfSISO } from "../../InformacionSISO/view/InfSISO";
+import { InfBancariaPage } from '../../InformacionBancaria/view/InfBancariaPage';
 
 
 
@@ -197,6 +198,7 @@ export const InformacionGeneralPage = () => {
 
                 <InfTributariaPages></InfTributariaPages>
                 <InfSISO></InfSISO>
+              
             </Box>
 
 
