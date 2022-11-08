@@ -15,7 +15,7 @@ export const CambiarClave = () => {
 
         <Grid container direction="row" justifyContent="center" mt={2}>
 
-            {stateAlert.msgBody != "" ? <AlertPortal data={stateAlert} /> : null}
+            {stateAlert.estado ? <AlertPortal /> : null}
 
             <Grid item md={5} xs={12} lg={4} xl={3}>
                 <Paper variant="outlined" elevation={0} >

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from 'react';
 import { APiMethod, requestAPI, RequestModel, ResponseDTO } from "../../../Provider";
 import { ModelAlerta } from "../../../SharedComponents/Alert";
 import { CambioClaveDTO } from "../../Login";
+import { AlertContext } from '../../Menu/context/AlertContext';
 
 interface showPassword {
     showPassOld: boolean;
@@ -12,8 +13,9 @@ interface showPassword {
 
 
 export const useCambiarClave = () => {
+
+    const { showAlert, stateAlert } = useContext(AlertContext);
     const [formState, setFormState] = useState<CambioClaveDTO>({ PassNew: '', PassNewR: '', PassOld: '' });
-    const [stateAlert, setStateAlert] = useState<ModelAlerta>({ estado: false, msgBody: '', msgTitle: 'Cambio de contraseña', tipo: "warning" });
     const [showPass, setshowPass] = useState<showPassword>({
         showPassNew: false,
         showPassNewR: false,
@@ -41,11 +43,7 @@ export const useCambiarClave = () => {
                 guardarCambios();
             }
             else {
-                setStateAlert({
-                    ...stateAlert,
-                    estado: true,
-                    msgBody: passValidate.mensaje
-                });
+                showAlert(passValidate.mensaje, "Cambiar contraseña", "warning")
             }
 
         }
@@ -62,12 +60,7 @@ export const useCambiarClave = () => {
         const response = await requestAPI<ResponseDTO>(request)!;
 
         setisLoading(() => false);
-
-        setStateAlert({
-            ...stateAlert,
-            estado: true,
-            msgBody: response!.mensaje
-        });
+        showAlert(response!.mensaje, "Cambiar contraseña", "warning")
     }
 
 
@@ -119,7 +112,7 @@ export const useCambiarClave = () => {
     return {
         ...formState,
         showPass, handleShowPassword,
-        onInputChange, handleSubmit,
-        isLoading, stateAlert
+        onInputChange, handleSubmit, stateAlert,
+        isLoading
     }
 }

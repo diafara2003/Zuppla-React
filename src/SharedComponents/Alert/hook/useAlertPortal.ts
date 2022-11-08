@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
-import { ModelAlerta } from '..';
+import { useContext, useEffect, useState } from 'react'
+import { AlertContext } from '../../../Pages/Menu/context/AlertContext';
 
 
 
-export const useAlertPortal = (data: ModelAlerta) => {
+export const useAlertPortal = () => {
     const duracion = 5000;
 
-    const [open, setOpen] = useState<boolean>(data.estado);
+    const {  stateAlert, hideAlert } = useContext(AlertContext);
     const [linealBar, setLinealBar] = useState(0);
 
     useEffect(() => {
@@ -14,7 +14,7 @@ export const useAlertPortal = (data: ModelAlerta) => {
             setLinealBar((currentNumber) => currentNumber + 1)
         }, 90);
         setTimeout(() => {
-            setOpen(false)
+            hideAlert();
             clearInterval(inter);
         }, duracion);
     }, [])
@@ -23,11 +23,11 @@ export const useAlertPortal = (data: ModelAlerta) => {
         if (reason === 'clickaway') {
             return;
         }
-        setOpen(false);
+        hideAlert();
     };
 
-    return {
+return {
 
-        open, handleClose, linealBar
-    }
+    handleClose, linealBar, ...stateAlert
+}
 }

@@ -5,6 +5,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import logo from '../../../img/logoApp/logo.png';
 import { MenuOption } from '../Components/MenuOption/view/MenuOption';
 import { UserMenu } from '../Components/User/View/UserMenu';
+import { AlertProvider } from '../context/AlertProvider';
 export const MenuPages = () => {
   const navigate = useNavigate();
   return (
@@ -24,7 +25,9 @@ export const MenuPages = () => {
       </AppBar>
 
       <Box component='main' sx={{ flexGrow: 5, p: 0.5, height: 'calc(100vh - 82px)', overflow: 'auto' }}>
-        <Outlet />
+        <AlertProvider>
+          <Outlet />
+        </AlertProvider>
       </Box>
     </Box>
   )
