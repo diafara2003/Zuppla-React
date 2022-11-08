@@ -14,7 +14,7 @@ export const FrmUser = ({ saveUser }: props) => {
   const [user, setUser] = useState<UsuariosDTO>(INITIAL_USUARIO_DTO);
 
   const selectedUsuario = (value: DTOKeyValue) => {
-    debugger;
+
     setUser((value as UsuariosDTO));
     saveUser({ categoria: 0, constructora: 0, id: 0, usuario: value.id, zona: "" });
   }

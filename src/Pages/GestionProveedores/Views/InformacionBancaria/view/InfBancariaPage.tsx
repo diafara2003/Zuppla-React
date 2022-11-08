@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, Stack, TextField } from '@mui/material';
+import { Box, Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, Stack, TextField } from '@mui/material';
 import { HeaderComponent } from '../../../../../SharedComponents/Header';
 import { useInfBancaria } from '../hook/useInfBancatia';
 import { SkeletonDinamic } from '../../../../../SharedComponents/Skeleton/view/SkeletonDynamic';
@@ -6,10 +6,11 @@ import HistoryIcon from '@mui/icons-material/History';
 import { Autocompleteasync } from '../../../../../SharedComponents/Autocomplete/view/Autocompleteasync';
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
+import { InfTributariaPages } from '../../InformacionTributaria/Views/InfTributariaPages';
 
 export const InfBancariaPage = () => {
 
-    const { isLoading, handleChange, handleguardar, isSaving, onInputChange, state, validation, selectedCiudad } = useInfBancaria();
+    const { isLoading, handleChange, handleguardar, isSaving, onInputChange, state, validation, selectedCiudad, stateBancos, statetipoCuenta } = useInfBancaria();
     return (
         <>
             <HeaderComponent title={"Información bancaria"} />
@@ -27,7 +28,7 @@ export const InfBancariaPage = () => {
                             <Grid container width={'100%'}
                                 display={"flex"}
                                 alignItems={"center"}
-                              
+
                                 spacing={2}
                                 mt={0}>
                                 <Grid item xs={3.5} >
@@ -37,12 +38,14 @@ export const InfBancariaPage = () => {
                                             size="small"
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
+                                            error={validation.banco.hasError}
                                             label="Age"
+                                            value={state.banco}
+                                            onChange={(e) => { handleChange("banco", e.target.value as string) }}
                                         >
-                                            <MenuItem value={"cc"}>Cédula de ciudadanía</MenuItem>
-                                            <MenuItem value={"NIT"}>NIT</MenuItem>
-                                            <MenuItem value={"ce"}>Cédula de extranjeria</MenuItem>
+                                            {stateBancos.map(e => <MenuItem key={e.id} value={e.id}>{e.texto}</MenuItem>)}
                                         </Select>
+                                        {validation.tipoCuenta.hasError && <FormHelperText>{validation.banco.msn}</FormHelperText>}
                                     </FormControl>
                                 </Grid>
 
@@ -52,14 +55,16 @@ export const InfBancariaPage = () => {
                                         <Select
                                             size="small"
                                             name="tipocuenta"
+                                            error={validation.tipoCuenta.hasError}
+                                            value={state.tipoCuenta}
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
                                             label="Age"
+                                            onChange={(e) => { handleChange("tipoCuenta", e.target.value as number) }}
                                         >
-                                            <MenuItem value={"cc"}>Cédula de ciudadanía</MenuItem>
-                                            <MenuItem value={"NIT"}>NIT</MenuItem>
-                                            <MenuItem value={"ce"}>Cédula de extranjeria</MenuItem>
+                                            {statetipoCuenta.map(e => <MenuItem key={e.id} value={e.id}>{e.codigo}</MenuItem>)}
                                         </Select>
+                                        {validation.tipoCuenta.hasError && <FormHelperText>{validation.tipoCuenta.msn}</FormHelperText>}
                                     </FormControl>
                                 </Grid>
 
@@ -69,10 +74,12 @@ export const InfBancariaPage = () => {
                                         label="Número de cuenta"
                                         value={state.numero}
                                         fullWidth
+                                        required
                                         name="numero"
                                         error={validation.numero.hasError}
                                         helperText={validation.numero.msn}
                                         onChange={onInputChange}
+                                        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                                         size="small"
 
                                     />
@@ -93,11 +100,12 @@ export const InfBancariaPage = () => {
                                     <TextField
                                         id="txtcorreopago"
                                         label="Correo notificación pagos"
-                                        value={state.numero}
+                                        value={state.correoPagos}
                                         fullWidth
-                                        name="numero"
-                                        error={validation.numero.hasError}
-                                        helperText={validation.numero.msn}
+                                        required
+                                        name="correoPagos"
+                                        error={validation.correoPago.hasError}
+                                        helperText={validation.correoPago.msn}
                                         onChange={onInputChange}
                                         size="small"
 
@@ -115,8 +123,12 @@ export const InfBancariaPage = () => {
                                         endIcon={<SaveIcon />}>Guardar</LoadingButton>
                                 </Stack>
                             </Grid>
+                            <Grid item xs={12}>
+                                <InfTributariaPages></InfTributariaPages>
+                            </Grid>
                         </Box>
                     </Grid>}
+
             </Box>
         </>
     )

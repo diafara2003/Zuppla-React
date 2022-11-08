@@ -40,7 +40,7 @@ export const DatosContactos = () => {
             <HeaderComponent title={"Datos contactos"} />
             {stateAlertData.estado ? <AlertPortal data={stateAlertData} /> : null}
             <Box sx={{ width: '100%' }}>
-                <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+                <Box display={"flex"} justifyContent={"end"} pt={"10px"} >
                     <Button variant="text"
                         onClick={() => {
                             setOpen(true);

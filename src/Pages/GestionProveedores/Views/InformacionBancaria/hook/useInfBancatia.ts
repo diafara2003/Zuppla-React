@@ -3,21 +3,23 @@ import { RequestModel, APiMethod, requestAPI } from '../../../../../Provider';
 import { infBancariaDTO, INITIAL_INF_BANCARIA, INITIAL_VALIDATION_FORMUMLARIO_BANCARIO, ValidacionformularioBancarioDTO, validacionFormularioDTO } from '../model/infBancariaDTO';
 import { ResponseDTO } from '../../../../../Provider/model/FetchModel';
 import { Validationforms } from '../../../../../Helper/ValidationForms';
-import { SelectChangeEvent } from '@mui/material';
 import { CiudadesDTO } from '../../InformacionGeneral/Model';
+import { TipoCuentaBancariaDTO, BancosDTO } from '../model';
 export const useInfBancaria = () => {
 
     const [state, setState] = useState<infBancariaDTO>(INITIAL_INF_BANCARIA);
     const [validation, setValidation] = useState<ValidacionformularioBancarioDTO>(INITIAL_VALIDATION_FORMUMLARIO_BANCARIO);
     const [isLoading, setIsLoading] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
+    const [stateBancos, setStateBancos] = useState<BancosDTO[]>([]);
+    const [statetipoCuenta, setstatetipoCuenta] = useState<TipoCuentaBancariaDTO[]>([]);
 
 
-    const handleChange = (event: SelectChangeEvent, name: string) => {
+    const handleChange = (name: string, value: string | number) => {
 
         setState({
             ...state,
-            [name]: event.target.value as string
+            [name]: value
         });
 
     };
@@ -30,11 +32,6 @@ export const useInfBancaria = () => {
             [name]: value
         });
         setValidation({ ...validation, [name]: { hasError: false, msn: '' } })
-    }
-
-    const conultarBancos = () => {
-
-
     }
 
     const selectedCiudad = <Selected>(value: Selected) => {
@@ -61,6 +58,32 @@ export const useInfBancaria = () => {
 
     }
 
+    const consultarBancos = async () => {
+
+        const request: RequestModel = {
+            metodo: `TercerosGI/bancos`,
+            type: APiMethod.GET,
+        }
+        const data = await requestAPI<BancosDTO[]>(request);
+
+
+        if (data != null) setStateBancos(data!);
+
+    }
+
+    const consultarTipoCuenta = async () => {
+
+        const request: RequestModel = {
+            metodo: `TercerosGI/tipocuentas`,
+            type: APiMethod.GET,
+        }
+        const data = await requestAPI<TipoCuentaBancariaDTO[]>(request);
+
+
+        if (data != null) setstatetipoCuenta(data!);
+
+    }
+
     const guardar = async () => {
 
         setIsSaving(true);
@@ -81,12 +104,10 @@ export const useInfBancaria = () => {
 
         const validacionCampos = validaCamposInfGeneral();
 
-        if (validacionCampos.isvalid) {
+        if (validacionCampos.isvalid)
             guardar();
-        }
-        else {
-            setValidation({ ...validation, [validacionCampos.name]: validacionCampos.property })
-        }
+        else
+            setValidation({ ...INITIAL_VALIDATION_FORMUMLARIO_BANCARIO, [validacionCampos.name]: validacionCampos.property })
 
 
     }
@@ -103,7 +124,7 @@ export const useInfBancaria = () => {
         };
 
 
-        if (data.banco <= 0) {
+        if (data.banco == "") {
             _validation.isvalid = false;
             _validation.property = { hasError: true, msn: "El banco  es obligatorio" };
             _validation.name = "banco";
@@ -113,14 +134,14 @@ export const useInfBancaria = () => {
         if (data.ciudad <= 0) {
             _validation.isvalid = false;
             _validation.property = { hasError: true, msn: "La ciudad  es obligatorio" };
-            _validation.name = "banco";
+            _validation.name = "ciudad";
             return _validation;
         }
 
         if (data.tipoCuenta <= 0) {
             _validation.isvalid = false;
             _validation.property = { hasError: true, msn: "El tipo de cuenta  es obligatorio" };
-            _validation.name = "banco";
+            _validation.name = "tipoCuenta";
             return _validation;
         }
 
@@ -128,10 +149,23 @@ export const useInfBancaria = () => {
         if (data.numero == null || data.numero == "") {
             _validation.isvalid = false;
             _validation.property = { hasError: true, msn: "El número de la cuenta es obligatorio" };
-            _validation.name = "correoPagos";
+            _validation.name = "numero";
             return _validation;
         }
 
+        if (!_validationForms.OnlyInteger(data.numero)) {
+            _validation.isvalid = false;
+            _validation.property = { hasError: true, msn: "El número de la cuenta es incorrecto" };
+            _validation.name = "numero";
+            return _validation;
+        }
+
+        if (data.numero.toString().length < 7) {
+            _validation.isvalid = false;
+            _validation.property = { hasError: true, msn: "El número de la cuenta es incorrecto" };
+            _validation.name = "numero";
+            return _validation;
+        }
 
         if (data.correoPagos == null || data.correoPagos == "") {
             _validation.isvalid = false;
@@ -153,11 +187,14 @@ export const useInfBancaria = () => {
 
 
     useEffect(() => {
-        consultarInfo();
+
+        Promise.all([consultarInfo(), consultarBancos(), consultarTipoCuenta()]);
     }, []);
 
     return {
 
-        state, isLoading, isSaving, handleguardar, validation, onInputChange, handleChange, selectedCiudad
+        state, stateBancos, statetipoCuenta,
+
+        isLoading, isSaving, handleguardar, validation, onInputChange, handleChange, selectedCiudad
     }
 }

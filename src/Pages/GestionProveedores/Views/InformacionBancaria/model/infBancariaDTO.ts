@@ -1,6 +1,6 @@
 export interface infBancariaDTO {
     id: number;
-    banco: number;
+    banco: string;
     bancoTexto: string;
     tipoCuenta: number;
     tipoCuentaTexto: string;
@@ -12,7 +12,7 @@ export interface infBancariaDTO {
 
 export const INITIAL_INF_BANCARIA: infBancariaDTO = {
 
-    banco: 0,
+    banco: "",
     bancoTexto: "",
     ciudad: 0,
     ciudadTexto: "",

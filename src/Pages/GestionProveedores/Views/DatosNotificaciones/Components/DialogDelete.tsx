@@ -42,12 +42,10 @@ export const DialogDelete = ({ title, handleOk, handleCancel }: props) => {
                 <Typography>  {title} </Typography>
             </DialogTitle>
             <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                    <Box justifyContent={'center'} display={"flex"}>
-                        <Eliminar />
-                    </Box>
-                    <Typography>¿Esta seguro que desea eliminar el contacto ?</Typography>
-                </DialogContentText>
+                <Box justifyContent={'center'} display={"flex"}>
+                    <Eliminar />
+                </Box>
+                <Typography>¿Esta seguro que desea eliminar el contacto ?</Typography>
             </DialogContent>
             <DialogActions>
                 <Button variant="text" onClick={() => {
