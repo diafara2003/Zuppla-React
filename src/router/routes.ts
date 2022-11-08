@@ -19,17 +19,21 @@ export const routes: Route[] = [
         Component: lazy(() => import(/* webpackChunkName: "HomePages" */"../Pages/Home/views/HomePages"))
     },
     {
+        path: "/cambiarClave",
+        Component: lazy(() => import(/* webpackChunkName: "cambiarClave" */"../Pages/CambiarClave/view/CambiarClave"))
+    },
+    {
         path: "/home",
         Component: lazy(() => import(/* webpackChunkName: "HomePages" */"../Pages/Home/views/HomePages"))
     },
     {
         path: "/gestionproveedor/*",
-        Component: lazy(() => import(/* webpackChunkName: "HomePages" */"../Pages/GestionProveedores/GestionProveedoresPage"))
+        Component: lazy(() => import(/* webpackChunkName: "GestionProveedoresPage" */"../Pages/GestionProveedores/GestionProveedoresPage"))
     },
 
     {
         path: "/usuarios/*",
-        Component: lazy(() => import(/* webpackChunkName: "UsuariosPages" */"../Pages/Usuarios/Layout/LayaoutUsuarioPages"))
+        Component: lazy(() => import(/* webpackChunkName: "LayaoutUsuarioPages" */"../Pages/Usuarios/Layout/LayaoutUsuarioPages"))
     }
 
 

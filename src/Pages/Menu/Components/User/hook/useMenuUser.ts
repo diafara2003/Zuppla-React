@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext, NameStorageConstructora, NameStoragetoken, NameStorageUsuario, UserSessionModel } from "../../../../../Auth";
-import { theme } from '../../../../../theme/theme';
+import { AuthContext, NameStorageConstructora, NameStoragetoken, NameStorageUsuario } from "../../../../../Auth";
+
 
 export const useMenuUser = () => {
     const { storeUsuario } = useContext(AuthContext);
@@ -17,6 +17,8 @@ export const useMenuUser = () => {
     });
 
 
+
+
     useEffect(() => {
 
         const { user } = storeUsuario;
@@ -25,7 +27,6 @@ export const useMenuUser = () => {
 
     }, []);
 
-    const color = theme.palette.primary.main;
     const stringAvatar = () => {
         
         if (user.nombreUsuario == "") return {}
@@ -49,8 +50,13 @@ export const useMenuUser = () => {
         navigate('/login', { replace: true })
     }
 
+    const changePassword = ()=>{
+        navigate('/cambiarClave', { replace: true })
+    }
+
     return {
-        user, signOut, stringAvatar
+        user, signOut, stringAvatar,changePassword
+
 
     };
 }

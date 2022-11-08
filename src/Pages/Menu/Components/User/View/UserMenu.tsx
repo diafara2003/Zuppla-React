@@ -1,18 +1,18 @@
-import { IconButton, Avatar, Box, Menu, MenuItem, Divider, ListItemIcon, Typography, ListItem } from '@mui/material';
+import { Avatar, Box, Menu, MenuItem, Divider, ListItemIcon, Typography } from '@mui/material';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { useState } from 'react';
-import { PersonAdd, Settings, Logout, ExpandMore } from '@mui/icons-material';
-import { ThemeProvider } from "@mui/material/styles";
-import { useMenuUser } from '../hook/useMenuUser';
-import { theme } from '../../../../../theme/theme';
+import { Logout, ExpandMore } from '@mui/icons-material';
 
+import { useMenuUser } from '../hook/useMenuUser';
+
+import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 
 export const UserMenu = () => {
-    const { user, signOut, stringAvatar } = useMenuUser();
+    const { user, signOut, stringAvatar, changePassword } = useMenuUser();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
-    const handleClick = (event: React.MouseEvent<HTMLElement> ) => {
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         if (event == undefined) return;
         setAnchorEl((event as React.MouseEvent<HTMLElement>).currentTarget);
     };
@@ -81,6 +81,19 @@ export const UserMenu = () => {
                             </Typography>
                         </Box>
 
+                    </MenuItem>
+
+
+                    <Divider />
+
+                    <MenuItem onClick={() => {
+                        setAnchorEl(null);
+                        changePassword();
+                    }}>
+                        <ListItemIcon>
+                            <VpnKeyOutlinedIcon fontSize="small" />
+                        </ListItemIcon>
+                        <Typography >  Cambiar contraseña</Typography>
                     </MenuItem>
 
                     <Divider />
