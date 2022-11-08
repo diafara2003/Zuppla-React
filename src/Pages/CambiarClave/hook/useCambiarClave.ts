@@ -60,7 +60,7 @@ export const useCambiarClave = () => {
         const response = await requestAPI<ResponseDTO>(request)!;
 
         setisLoading(() => false);
-        showAlert(response!.mensaje, "Cambiar contraseña", "warning")
+        showAlert(response!.mensaje, "Cambiar contraseña", response!.success ? "success" : "warning")
     }
 
 
