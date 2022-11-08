@@ -170,12 +170,12 @@ export const TableUsuario = ({ onClick }: props) => {
                                                 <Typography>Cambiar contrasena</Typography>
                                             </MenuItem>
 
-                                            <MenuItem onClick={() => clickAction(ActionUser.Delete)} >
+                                            {/* <MenuItem onClick={() => clickAction(ActionUser.Delete)} >
                                                 <ListItemIcon >
                                                     <DeleteOutline color="error" />
                                                 </ListItemIcon>
                                                 <Typography color="error">Eliminar usuario</Typography>
-                                            </MenuItem>
+                                            </MenuItem> */}
                                         </Menu>
                                     </TableCell>
                                 </TableRow>

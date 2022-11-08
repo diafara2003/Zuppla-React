@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { Validationforms } from '../../../../../../Helper/ValidationForms'
-import { INITIAL_USUARIO_DTO, INITIAL_VALIDATION_USUARIO, UsuariosDTO } from '../../model/usuarioDTO'
+import { INITIAL_USUARIO_DTO, INITIAL_VALIDATION_USUARIO, UsuariosDTO, validacionFormulario } from '../../model/usuarioDTO'
 
 type props = {
     open: boolean,
@@ -18,20 +18,8 @@ export enum typeModal {
 type tipoModal =
     { type:'add' } | {type:'edit'}
 
-type inputFormulario = {
-    hasError: boolean, msn: string
-}
 
-type validacionFormulario = {
-    email: inputFormulario,
-    nombre: inputFormulario
-    cargo: inputFormulario,
-    celular: inputFormulario,
-    documento: inputFormulario
-}
-export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
-    console.log(editUser);
-    debugger
+export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => { 
     const [dataNewUser, setDataNewUser] = useState<UsuariosDTO>(tipo==typeModal.add? INITIAL_USUARIO_DTO: editUser)
     const [dataValidate, setDataValidate] = useState(INITIAL_VALIDATION_USUARIO)
     

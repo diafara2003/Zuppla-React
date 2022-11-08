@@ -4,7 +4,7 @@ import { APiMethod, requestAPI, RequestModel } from '../../../../../Provider';
 import { ConstructoraDTO } from '../Model/ModelConstructoras';
 
 export const useConstructoras = () => {
-  const { state } = useContext(AuthContext);
+  // const { state } = useContext(AuthContext);
   const [dataConst, setdataConst] = useState<ConstructoraDTO[]>();
   const [isLoading, setIsLoading] = useState(true);
 

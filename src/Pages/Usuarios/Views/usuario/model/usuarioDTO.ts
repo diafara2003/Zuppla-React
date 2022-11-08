@@ -53,3 +53,14 @@ export interface CambiarEstadoUsuarioDTO {
     usuario: number;
     activo: boolean;
 }
+
+export type validacionFormulario = {
+    email: inputFormulario,
+    nombre: inputFormulario
+    cargo: inputFormulario,
+    celular: inputFormulario,
+    documento: inputFormulario
+}
+type inputFormulario = {
+    hasError: boolean, msn: string
+}

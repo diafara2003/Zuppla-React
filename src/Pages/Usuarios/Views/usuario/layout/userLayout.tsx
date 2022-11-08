@@ -30,8 +30,8 @@ export const UserLayout = () => {
           </Box>
           :
           <>
-            <Box sx={{ m: '1px', background: 'white', height: '', mr: "10px", ml: '10px' }}>              
-              {alertData.estado? <AlertPortal data={alertData} />: null}
+            <Box sx={{ m: '1px', background: 'white', height: '', mr: "10px", ml: '10px' }}>
+              {alertData.estado ? <AlertPortal data={alertData} /> : null}
             </Box>
             <Box display={"flex"} justifyContent={"end"} pt={"10px"} >
               <TextField
@@ -67,17 +67,21 @@ export const UserLayout = () => {
           </>
       }
       {/* Dialog insercion - edicion */}
-      <FrmNewUser
-        open={openD}
-        tipo={tipoModal}
-        editUser={dataUserSelect.current!}
-        newUser={(dataUser) => {
-          console.log(dataUser)
-          newUser(dataUser);        
-        }}
-        close={(close) => {
-          setOpen(close);
-        }} />
+      {openD
+        ?
+        <FrmNewUser
+          open={openD}
+          tipo={tipoModal}
+          editUser={dataUserSelect.current!}
+          newUser={(dataUser) => {
+            console.log(dataUser)
+            newUser(dataUser);
+          }}
+          close={(close) => {
+            setOpen(close);
+          }} />
+        :
+         null}
 
 
       {/* Dialog de eliminacion */}
