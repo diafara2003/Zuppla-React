@@ -192,13 +192,16 @@ export const InformacionGeneralPage = () => {
                                             endIcon={<SaveIcon />}>Guardar</LoadingButton>
                                     </Stack>
                                 </Grid>
+                                <Grid item xs={12}>
+                                    <InfSISO></InfSISO>
+                                </Grid>
                             </Box>
                         </Grid>
                 }
 
-                <InfTributariaPages></InfTributariaPages>
-                <InfSISO></InfSISO>
-              
+
+
+
             </Box>
 
 
