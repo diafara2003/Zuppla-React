@@ -32,13 +32,6 @@ export const useCambiarClave = () => {
     const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
 
-
-        setStateAlert({
-            ...stateAlert,
-            estado: true,
-            msgBody:' passValidate.mensaje'
-        });
-        return;
         if (formState.PassOld != '' && formState.PassNew != '' && formState.PassNewR != '') {
 
             const passValidate = validaCampos();
