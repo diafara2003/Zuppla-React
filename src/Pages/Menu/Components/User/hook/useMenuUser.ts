@@ -17,8 +17,6 @@ export const useMenuUser = () => {
     });
 
 
-
-
     useEffect(() => {
 
         const { user } = storeUsuario;
@@ -28,7 +26,7 @@ export const useMenuUser = () => {
     }, []);
 
     const stringAvatar = () => {
-        
+
         if (user.nombreUsuario == "") return {}
         let split = user.nombreUsuario.split(' ');
 
@@ -50,12 +48,12 @@ export const useMenuUser = () => {
         navigate('/login', { replace: true })
     }
 
-    const changePassword = ()=>{
-        navigate('/cambiarClave', { replace: true })
+    const changePassword = () => {
+        navigate('/seguridad/', { replace: true })
     }
 
     return {
-        user, signOut, stringAvatar,changePassword
+        user, signOut, stringAvatar, changePassword
 
 
     };

@@ -20,7 +20,7 @@ export const routes: Route[] = [
     },
     {
         path: "/cambiarClave",
-        Component: lazy(() => import(/* webpackChunkName: "cambiarClave" */"../Pages/CambiarClave/view/CambiarClave"))
+        Component: lazy(() => import(/* webpackChunkName: "cambiarClave" */"../Pages/SeguridadYPrivacidad/Components/CambiarClave/view/CambiarClavePage"))
     },
     {
         path: "/home",
@@ -34,6 +34,11 @@ export const routes: Route[] = [
     {
         path: "/usuarios/*",
         Component: lazy(() => import(/* webpackChunkName: "LayaoutUsuarioPages" */"../Pages/Usuarios/Layout/LayaoutUsuarioPages"))
+    },
+
+    {
+        path: "/seguridad/*",
+        Component: lazy(() => import(/* webpackChunkName: "seguridad" */"../Pages/SeguridadYPrivacidad/view/SeguridadPrivacidadPages"))
     }
 
 

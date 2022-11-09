@@ -3,9 +3,10 @@ import { Divider, FormControl, Grid, IconButton, InputAdornment, InputLabel, Out
 import SaveIcon from '@mui/icons-material/Save';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useCambiarClave } from "../hook/useCambiarClave";
-import { AlertPortal } from '../../../SharedComponents/Alert/View/AlertPortal';
+import { AlertPortal } from '../../../../../SharedComponents/Alert/View/AlertPortal';
+import { Fondo } from '../../../../../SharedComponents/Fondo/view/Fondo';
 
-export const CambiarClave = () => {
+export const CambiarClavePage = () => {
 
     const { PassNew, PassNewR, PassOld, handleSubmit, onInputChange,
         handleShowPassword, showPass, isLoading, stateAlert
@@ -13,24 +14,18 @@ export const CambiarClave = () => {
 
     return (
 
-        <Grid container direction="row" justifyContent="center" mt={2}>
+        <Grid container mt={2}>
 
             {stateAlert.estado ? <AlertPortal /> : null}
 
-            <Grid item md={5} xs={12} lg={4} xl={3}>
+            <Grid item md={8} xs={12} lg={8} xl={6}>
                 <Paper variant="outlined" elevation={0} >
                     <Grid container spacing={2} p={2}   >
-                        <Grid item xs={12} md={12}>
-                            <Typography sx={{ color: "#283340", fontWeight: '600' }} variant='h6' noWrap component='div'> Cambiar contraseña </Typography>
+                        <Grid item xs={8} >
+                            <Fondo />
                         </Grid>
                         <Grid item xs={12} md={12}>
-                            <Typography sx={{ color: "#283340", fontWeight: '600' }} variant='subtitle1' noWrap > Usuario </Typography>
-                            <Typography sx={{ color: "#283340", fontWeight: '500' }} variant='subtitle2' noWrap > jhonnatan.uruena@sinco.com.co </Typography>
-                        </Grid>
-
-
-                        <Grid item xs={12} mt={2}>
-                            <Divider />
+                            <Typography sx={{ color: "#283340" }} variant='h6' noWrap component='div'> Cambiar contraseña </Typography>
                         </Grid>
 
                         <Grid item xs={12} mb={4}>
@@ -156,4 +151,4 @@ export const CambiarClave = () => {
 }
 
 
-export default CambiarClave;
+export default CambiarClavePage;

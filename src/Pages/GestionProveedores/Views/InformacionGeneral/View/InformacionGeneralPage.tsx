@@ -31,7 +31,7 @@ export const InformacionGeneralPage = () => {
                             <SkeletonDinamic NoColumnas={3} NoFilas={4} Tipo={'formulario'} />
                         </Box>
                         :
-                        <Grid sx={{ minWidth: 275, p: 2 }}>
+                        <Grid sx={{ minWidth: 275, }}>
                             <Box display={"flex"} justifyContent={"end"}>
                                 <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                             </Box>
