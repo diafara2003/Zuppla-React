@@ -10,7 +10,7 @@ export const useAlertPortal = () => {
     const [linealBar, setLinealBar] = useState(0);
 
     useEffect(() => {
-        const inter = setInterval(function () {
+         const inter = setInterval(function () {
             setLinealBar((currentNumber) => currentNumber + 1)
         }, 90);
         setTimeout(() => {
@@ -23,6 +23,7 @@ export const useAlertPortal = () => {
         if (reason === 'clickaway') {
             return;
         }
+        
         hideAlert();
     };
 

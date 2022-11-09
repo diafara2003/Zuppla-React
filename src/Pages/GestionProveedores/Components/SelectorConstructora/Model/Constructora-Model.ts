@@ -1,5 +1,5 @@
 export interface ConstructoraNovDTO {
-    id: number;
+    constructoraId: number;
     // nit: string;
     logoConst: string;
     nombreConst: string;

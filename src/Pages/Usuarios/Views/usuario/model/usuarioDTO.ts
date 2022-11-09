@@ -21,7 +21,7 @@ export const INITIAL_USUARIO_DTO: UsuariosDTO = {
     documento: "",
     estado: 1,
     id: 0,
-    isPrincipal: true,
+    isPrincipal: false,
     nombre: "",
     tipo: ""
 }

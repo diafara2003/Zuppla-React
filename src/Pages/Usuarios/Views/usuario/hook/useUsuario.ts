@@ -13,7 +13,7 @@ export const useUsuario = () => {
 
     const { showAlert } = useContext(AlertContext);
 
-    const { hasError, data, isLoading, doFetch, setState } = useFetch<UsuariosDTO[] | null>();
+    const { hasError, data, isLoading, setState } = useFetch<UsuariosDTO[] | null>();
     const [openDelete, setOpenDelete] = useState(false);
     
     const { dispatch, state, newUser } = useContext(UserContext);
@@ -33,9 +33,6 @@ export const useUsuario = () => {
         setOpen(true);
 
     };
-    const [dataNewUser, setDataNewUser] = useState<UsuariosDTO>()
-    const [dataEditUser, setDataEditUser] = useState<UsuariosDTO>()
-
     const actionUser = (action: ActionUser) => {
         switch (action) {
             case ActionUser.Delete:                
@@ -45,7 +42,6 @@ export const useUsuario = () => {
                // let _editUser = state.find((element) => element.id == dataUserSelect.current?.id)
                 //setDataEditUser(_editUser);
                 handleClickDialogOpenEdit();
-
                 break;
             case ActionUser.Send:
               
@@ -60,35 +56,13 @@ export const useUsuario = () => {
             case ActionUser.Pass:
                 resetPassword();
                 break;
-            case ActionUser.New:
-                crearUsuarioNuevo();
+            case ActionUser.New:         
             default:
                 break;
         }
     }
 
-
-    const handleDeleteUser = async () => {
-        setState({ isLoading: true, hasError: '' })
-        // setOpenDelete(false);
-        // const request: RequestModel = {
-        //   AllowAnonymous: false,
-        //   metodo: `TercerosGI/CamaraComercio/${dataIdDelete}`,
-        //   type: APiMethod.DELETE
-        // };
-        // const response = await requestAPI<ResponseDTO>(request)!;
-        // console.log(response)
-        // if (response?.success){
-        //  setDataCamaraComercio(prevState =>{
-        //     // dataContactos?.filter(elemento=> elemento.id!=dataDeleteId)
-        //     return [...prevState]?.filter(elemento=> elemento.id!=dataIdDelete)
-        //   });
-        //   setDataIdDelete(-1);
-        // }else{
-        //   console.log("no se pudo eliminar")
-        // }
-        setState({ isLoading: false, hasError: '' })
-    }
+  
     const sendMail = async () => {
         setState({ isLoading: true, hasError: '' })
         let usuario: UsuarioIdDTO = {
@@ -119,8 +93,7 @@ export const useUsuario = () => {
             data: estadoUser
         };
         const response = await requestAPI<ResponseDTO>(request)!;
-        if (response?.success) {
-           
+        if (response?.success) {           
             dispatch({
                 type: "cambia estado",
                 payload: { _id: dataUserSelect?.current!.id, estado: _estado ? 1 : 0 }
@@ -146,21 +119,10 @@ export const useUsuario = () => {
 
         setState({ isLoading: false, hasError: '' })
     }
-    const crearUsuarioNuevo = async () => {
-
-    }
-    // useEffect(() => {
-    //     doFetch({
-    //         metodo: "Usuario?tipo=p",
-    //         type: APiMethod.GET,
-    //         AllowAnonymous: false
-    //     });
-    // }, []);
-
 
     return {
-        isLoading, data, openDelete, dataUserSelect, openD, dataEditUser, tipoModal,
-        handleCloseDelete, handleDeleteUser, newUser, actionUser, setDataNewUser, handleClickDialogOpenAdd,handleClickDialogOpenEdit, setOpen
+        isLoading, data, openDelete, dataUserSelect, openD,  tipoModal,
+        handleCloseDelete, newUser, actionUser, handleClickDialogOpenAdd,handleClickDialogOpenEdit, setOpen
     }
 
 }

@@ -3,16 +3,24 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import React, { useState } from 'react'
 import { useSelectConstuctora } from '../Hook/useSelectConstuctora';
 import { SkeletonDinamic } from '../../../../../SharedComponents/Skeleton/view/SkeletonDynamic';
+import { ConstructoraNovDTO } from '../Model/Constructora-Model';
 
-export const SelectConstructora = () => {
+type props = {    
+    onClick: (data: ConstructoraNovDTO) => void
+}
+
+export const SelectConstructora = ({onClick}:props) => {
 
     const [selectedIndex, setSelectedIndex] = useState(0);
     const { dataConst, isLoading } = useSelectConstuctora();
+
     const handleListItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
         index: number,
     ) => {
+
         setSelectedIndex(index);
+        onClick(dataConst[index])
     };
 
     return (
@@ -40,13 +48,13 @@ export const SelectConstructora = () => {
                             {
                                 dataConst.length != 0
                                     ?
-                                    dataConst.map(({ contNotificaciones, nombreConst, id }, index) => {
+                                    dataConst.map(({ contNotificaciones, nombreConst, constructoraId }, index) => {
                                         return (
                                             <ListItemButton
                                                 selected={selectedIndex === index}
                                                 onClick={(event) => handleListItemClick(event, index)}
                                             >
-                                                <ListItemIcon sx={{ml:2}} key={`Const_${id}`}>
+                                                <ListItemIcon sx={{ml:2}} key={`Const_${constructoraId}`}>
                                                     <Badge badgeContent={Number(contNotificaciones)} color="info"  />
                                                 </ListItemIcon>
                                                 <ListItemText primary={nombreConst} >
@@ -56,37 +64,7 @@ export const SelectConstructora = () => {
                                     })
                                     :
                                     null
-                            }
-                            <ListItemButton>
-                                <ListItemIcon sx={{ml:2}}>
-                                    <Badge badgeContent="2" color="info" />
-                                </ListItemIcon>
-                                <ListItemText primary="Inbox" />
-                            </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon sx={{ml:2}}>
-                                    <Badge badgeContent="2" color="info" />
-                                </ListItemIcon>
-                                <ListItemText primary="Inbox" />
-                            </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon sx={{ml:2}}>
-                                    <Badge badgeContent="2" color="info" />
-                                </ListItemIcon>
-                                <ListItemText primary="Inbox" />
-                            </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon sx={{ml:2}}>
-                                    <Badge badgeContent="2" color="info" />
-                                </ListItemIcon>
-                                <ListItemText primary="Inbox" />
-                            </ListItemButton>
-                            <ListItemButton>
-                                <ListItemIcon sx={{ml:2}}>
-                                    <Badge badgeContent="2" color="info" />
-                                </ListItemIcon>
-                                <ListItemText primary="Inbox" />
-                            </ListItemButton>
+                            }                           
                         </List>
                     </>
             }
