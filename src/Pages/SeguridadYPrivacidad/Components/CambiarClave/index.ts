@@ -1,2 +1,2 @@
 export * from './model/cambiarClaveDTO'
-export * from './view/CambiarClave'
+export * from './view/CambiarClavePage'

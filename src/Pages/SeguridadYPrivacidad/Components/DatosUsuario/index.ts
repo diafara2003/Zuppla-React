@@ -1,1 +1,1 @@
-export * from './view/DatosUsuario'
+export * from './view/DatosUsuarioPage'
