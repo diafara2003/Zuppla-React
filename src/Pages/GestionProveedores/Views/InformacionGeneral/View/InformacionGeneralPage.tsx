@@ -1,4 +1,4 @@
-import { Box, Button, FormControlLabel, Grid, Stack, Switch, TextField } from "@mui/material"
+import { Box, Button, FormControlLabel, Grid, Stack, Switch, TextField, Divider } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import { useInformacionGeneral } from "../hook/useInformacionGeneral";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
@@ -31,14 +31,13 @@ export const InformacionGeneralPage = () => {
                             <SkeletonDinamic NoColumnas={3} NoFilas={4} Tipo={'formulario'} />
                         </Box>
                         :
-                        <Grid sx={{ minWidth: 275, }}>
+                        <Grid >
                             <Box display={"flex"} justifyContent={"end"}>
                                 <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                             </Box>
                             <Box >
                                 <Grid container width={'100%'}
                                     display={"flex"}
-                                    alignItems={"center"}
                                     justifyContent={"center"}
                                     spacing={2}
                                     mt={0}>
@@ -178,11 +177,15 @@ export const InformacionGeneralPage = () => {
                                     <Grid item xs={7} >
                                         <FormControlLabel sx={{ fontSize: '12px !important', ml: 1 }} control={<Switch defaultChecked size="small" />} label="Se encuentra certificado en normas ISO" />
                                     </Grid>
+                                    <Grid item xs={10.5}>
+                                        <Divider />
+                                    </Grid>
 
+                                    <Grid item xs={10.5} >
+                                        <InfSISO></InfSISO>
+                                    </Grid>
 
-                                </Grid>
-                                <Grid style={{ display: "flex", justifyContent: 'end', marginBottom: '25px', marginRight: '150px' }}>
-                                    <Stack direction="row">
+                                    <Grid style={{ display: "flex", justifyContent: 'end', }} item xs={10.5}>
                                         <LoadingButton
                                             type="submit"
                                             loadingPosition="end"
@@ -190,23 +193,14 @@ export const InformacionGeneralPage = () => {
                                             onClick={handleGuardar}
                                             loading={isSaving}
                                             endIcon={<SaveIcon />}>Guardar</LoadingButton>
-                                    </Stack>
+
+                                    </Grid>
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <InfSISO></InfSISO>
-                                </Grid>
+
                             </Box>
                         </Grid>
                 }
-
-
-
-
             </Box>
-
-
-
-
         </>
 
     )

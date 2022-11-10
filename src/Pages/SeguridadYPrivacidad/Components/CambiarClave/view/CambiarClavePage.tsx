@@ -126,17 +126,12 @@ export const CambiarClavePage = () => {
                         <CardActions>
                             <Box display={"flex"} justifyContent={"end"} width={"100%"}>
                                 <LoadingButton
-                                    size="large"
                                     type="submit"
-                                    fullWidth
-                                    sx={{ mt: 3, mb: 2 }}
                                     loading={isLoading}
                                     onClick={handleSubmit}
                                     loadingPosition="start"
                                     variant="contained"
-                                    startIcon={<SaveIcon />}
-
-                                >
+                                    startIcon={<SaveIcon />}>
                                     Cambiar contraseña
                                 </LoadingButton>
                             </Box>
