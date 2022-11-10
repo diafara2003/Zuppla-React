@@ -1,8 +1,8 @@
 import { useContext, useReducer, useState } from "react";
-import { APiMethod, requestAPI, ResponseDTO } from "../../../../Provider";
-import { AlertContext } from "../../../Menu/context/AlertContext";
-import { UsuariosDTO } from "../usuario/model/usuarioDTO";
-import { storeUser, UserContext } from "../usuario/store/StoreUsuario";
+import { APiMethod, requestAPI, ResponseDTO } from "../../../Provider";
+import { AlertContext } from "../../Menu/context/AlertContext";
+import { UsuariosDTO } from "../Views/usuario/model/usuarioDTO";
+import { storeUser, UserContext } from "../store/StoreUsuario";
 
 interface Props {
     children: JSX.Element | JSX.Element[]

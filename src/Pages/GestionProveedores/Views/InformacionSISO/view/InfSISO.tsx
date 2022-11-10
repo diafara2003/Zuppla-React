@@ -51,16 +51,6 @@ export const InfSISO = () => {
                         label="Tiene conformado comité paritario de S.O ó vigía S.O" />
                     <FormControlLabel
                         sx={styles.formControlLabel}
-                        onClick={() => handleChecked("tieneComiteSO", state.tieneComiteSO)}
-                        control={<Checkbox
-                            tabIndex={-1}
-                            checked={state.tieneComiteSO}
-                            disableRipple
-                            size="small"
-                        />}
-                        label="Tiene conformado comité paritario de S.O ó vigía S.O" />
-                    <FormControlLabel
-                        sx={styles.formControlLabel}
                         onClick={() => handleChecked("programaSeguridadEhigiene", state.programaSeguridadEhigiene)}
                         control={<Checkbox
                             tabIndex={-1}

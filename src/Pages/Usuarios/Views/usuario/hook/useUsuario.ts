@@ -7,7 +7,7 @@ import { ModelAlerta } from "../../../../../SharedComponents/Alert/Model/alertaM
 import { AlertContext } from "../../../../Menu/context/AlertContext";
 import { typeModal } from "../components/view/FrmNewUser";
 import { ActionUser, CambiarEstadoUsuarioDTO, UsuarioIdDTO, UsuariosDTO } from "../model/usuarioDTO";
-import { UserContext } from "../store/StoreUsuario";
+import { UserContext } from "../../../store/StoreUsuario";
 
 export const useUsuario = () => {
 

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { UsuariosDTO } from "../model/usuarioDTO";
+import { UsuariosDTO } from "../Views/usuario/model/usuarioDTO";
 
 export interface StateUsuario {
     usuarios: UsuariosDTO[];

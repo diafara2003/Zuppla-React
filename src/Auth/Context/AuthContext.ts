@@ -2,7 +2,8 @@ import { createContext } from 'react'
 import { AuthContextProps, ConstructoraDTO, INITIAL_STATE, UserSessionModel } from '../model/AuthModel';
 
 export interface IAuthContext {
-    updateSession: (data: AuthContextProps) => void,
+    updateUser: (data: UserSessionModel) => void,
+    addSession: (data: AuthContextProps) => void,
     removeSession: () => void,
     storeUsuario: AuthContextProps
 
@@ -11,8 +12,8 @@ export interface IAuthContext {
 
 const INITIAL_CONTEXT: IAuthContext = {
 
-    updateSession: (data: AuthContextProps) => { },
-
+    addSession: (data: AuthContextProps) => { },
+    updateUser: (data: UserSessionModel) => { },
     storeUsuario: INITIAL_STATE,
     removeSession: () => { }
 }

@@ -1,7 +1,7 @@
 import { HeaderComponent } from '../../../../../SharedComponents/Header'
 import { useUsuario } from '../hook/useUsuario';
 import { useState } from 'react';
-import { UserProvider } from '../../context/userContext';
+import { UserProvider } from '../../../context/userContext';
 import {UserLayout} from '../layout/UserLayout'
 
 export const UsuarioPages = () => {
