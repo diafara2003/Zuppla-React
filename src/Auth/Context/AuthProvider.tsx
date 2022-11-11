@@ -1,7 +1,7 @@
 
 
 import { useReducer } from 'react'
-import { AuthContextProps, ConstructoraDTO, INITIAL_STATE, INITIAL_STATE_CONSTRUCTORA, NameStorageConstructora, NameStoragetoken, NameStorageUsuario, UserSessionModel } from '../model/AuthModel'
+import { AuthContextProps, INITIAL_STATE, UserSessionModel } from '../model/AuthModel'
 import { AuthContext } from './AuthContext'
 import { authReducer } from './AuthReducer'
 
@@ -15,25 +15,30 @@ export const AuthProvider = ({ children }: Props) => {
 
     const [storeUsuario, dispatch] = useReducer(authReducer, INITIAL_STATE);
 
-    const updateSession = (data: AuthContextProps) => {
-        
+    const addSession = (data: AuthContextProps) => {
+
         dispatch({ type: 'addSession', payload: data });
     }
 
 
     const removeSession = () => {
-        
+
         dispatch({ type: 'removeSession' });
     }
+    const updateUser = (data: UserSessionModel) => {
 
+
+        dispatch({ type: 'updateUser', payload: data });
+    }
 
 
     return (
         <AuthContext.Provider value={{
             storeUsuario,
             // Methods
-            updateSession,
-            removeSession
+            addSession,
+            removeSession,
+            updateUser
         }}>
             {children}
         </AuthContext.Provider>

@@ -63,6 +63,9 @@ export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
         if (dataNewUser.documento == '') {
             return { ...validaFRM, documento: { hasError: true, msn: 'Campo obligatorio' } }
         }
+        if (!new Validationforms().OnlyInteger(dataNewUser.documento)) {
+            return { ...validaFRM, documento: { hasError: true, msn: 'Campo obligatorio' } }
+        }
         if (dataNewUser.celular == '') {
             return { ...validaFRM, celular: { hasError: true, msn: 'Campo obligatorio' } }
         }

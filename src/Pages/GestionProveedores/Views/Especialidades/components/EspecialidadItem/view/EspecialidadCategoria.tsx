@@ -43,7 +43,7 @@ export const EspecialidadCategoria = ({  categoria, especialidades }: props) => 
                     : <ChevronRightOutlined color="primary" />
                 }
 
-                <Typography sx={{ color: '#1E62A1', fontWeight: 500 }}>{item.texto}</Typography>
+                <Typography variant="subtitle2" sx={{ color: '#1E62A1', fontWeight: 500 }}>{item.texto}</Typography>
             </Box>
 
             <Collapse in={show}>

@@ -10,13 +10,16 @@ import { tamLay, useNavigationComponent } from '../hook/useNavigationComponent';
 type props = {
 
     options: NavigationModel[],
-    sizeLayout: (sizeL: tamLay) => void
+    sizeLayout: (sizeL: tamLay) => void,
+    showcolapse?: boolean
 
 }
 
 
-export const NavigationComponent = ({ options, sizeLayout }: props) => {
+export const NavigationComponent = ({ options, sizeLayout, showcolapse }: props) => {
 
+
+    if (showcolapse == undefined) showcolapse = true;
     const { hanbleClickMenu, handleListItemClick, displayMenu, displayText, sizeGrid, containerRef, selectedIndex } = useNavigationComponent(sizeLayout, options);
 
     return (
@@ -30,16 +33,18 @@ export const NavigationComponent = ({ options, sizeLayout }: props) => {
 
 
             }}>
+                {showcolapse
+                    ? <Box display={"flex"} justifyContent={displayMenu} sx={{ paddingRight: 1, pt: 1.5 }}
+                        ref={containerRef}
+                    >
+                        <Fab onClick={hanbleClickMenu} size='small' sx={{ background: '#0CBBE2', boxShadow: '0px 8px 8px -1px rgba(0, 0, 0, 0.08), 0px 10px 28px rgba(0, 0, 0, 0.02), 0px 2px 20px rgba(0, 0, 0, 0.04);' }}>
+                            <MenuOpen />
 
-                <Box display={"flex"} justifyContent={displayMenu} sx={{ paddingRight: 1, pt: 1.5 }}
-                    ref={containerRef}
-                >
-                    <Fab onClick={hanbleClickMenu} size='small' sx={{ background: '#0CBBE2', boxShadow: '0px 8px 8px -1px rgba(0, 0, 0, 0.08), 0px 10px 28px rgba(0, 0, 0, 0.02), 0px 2px 20px rgba(0, 0, 0, 0.04);' }}>
-                        <MenuOpen />
+                        </Fab>
 
-                    </Fab>
+                    </Box>
+                    : null}
 
-                </Box>
                 <List component="nav" aria-label="main mailbox folders">
                     {
                         options.map(({ path, Icono, texto }, index) => {

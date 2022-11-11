@@ -36,7 +36,7 @@ export const EspecialidadGrupo = ({ grupo, categorias }: props) => {
                     : <Add color="primary" />
                 }
 
-                <Typography sx={{ color: '#1B344C', fontWeight: 600, paddingBottom: '0' }}>{item.texto}</Typography>
+                <Typography variant="subtitle2" sx={{ color: '#1B344C', fontWeight: 500, paddingBottom: '0' }}>{item.texto}</Typography>
             </Box>
             <Collapse in={show}>
                 {show && info.length > 0

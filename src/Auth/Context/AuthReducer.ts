@@ -7,6 +7,7 @@ type AuthActions =
     | { type: 'removeSession' }
     | { type: 'getSession', payload: AuthContextProps }
     | { type: 'changeConstructora', payload: ConstructoraDTO }
+    | { type: 'updateUser', payload: UserSessionModel }
 
 
 
@@ -37,6 +38,13 @@ export const authReducer = (state: AuthContextProps, action: AuthActions): AuthC
             localStorage.setItem(NameStorageConstructora, JSON.stringify(action.payload));
 
             return { ...state, constructora: action.payload };
+
+
+        case 'updateUser':
+
+            localStorage.setItem(NameStorageUsuario, JSON.stringify(action.payload));
+
+            return { ...state, user: action.payload };
 
         case 'removeSession':
             localStorage.removeItem(NameStoragetoken);

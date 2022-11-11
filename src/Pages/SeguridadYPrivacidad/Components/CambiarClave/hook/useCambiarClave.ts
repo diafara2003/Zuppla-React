@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react';
-import { APiMethod, requestAPI, RequestModel, ResponseDTO } from "../../../Provider";
-import { ModelAlerta } from "../../../SharedComponents/Alert";
-import { CambioClaveDTO } from "../../Login";
-import { AlertContext } from '../../Menu/context/AlertContext';
+import { APiMethod, requestAPI, RequestModel, ResponseDTO } from "../../../../../Provider";
+import { ModelAlerta } from "../../../../../SharedComponents/Alert";
+import { CambioClaveDTO } from "../../../../Login";
+import { AlertContext } from '../../../../Menu/context/AlertContext';
 
 interface showPassword {
     showPassOld: boolean;

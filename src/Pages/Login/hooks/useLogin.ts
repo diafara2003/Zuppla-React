@@ -30,7 +30,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
 
     const { hasError, data, isLoading, doFetch } = useFetch<RegistrationResponse | null>();
 
-    const { updateSession } = useContext(AuthContext);
+    const { addSession } = useContext(AuthContext);
 
 
 
@@ -55,7 +55,7 @@ export const useForm = (initialForm: loginForm = { email: '', password: '' }) =>
             if (data.usuario.nombreUsuario == null || data.usuario.nombreUsuario == "")
                 data.usuario.nombreUsuario = data.usuario.nombreEmpresa;
 
-            updateSession({
+            addSession({
                 token: data.token,
                 user: data.usuario,
                 constructora: INITIAL_STATE_CONSTRUCTORA

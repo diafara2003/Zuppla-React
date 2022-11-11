@@ -52,7 +52,7 @@ export const useNavigationComponent = (sizeLayout: (sizeL: tamLay) => void, opti
             }
             else {
                 setSizeGrid({ sm: 3.2, lg: 2.0, md: 3.2, xs: 3.0 });
-                sizeLayout({ sm: 7, lg: 10, md: 10, xs: 7 })
+                sizeLayout({ sm: 7, lg: 9.9, md: 9.9, xs: 7 })
                 setMenuText("block");
                 return "end";
             }

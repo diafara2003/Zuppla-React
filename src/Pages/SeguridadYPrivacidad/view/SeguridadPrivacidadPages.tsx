@@ -1,28 +1,24 @@
 import { Grid } from '@mui/material'
-
-import RoutesGestionProveedores, { rutas } from './Routes/RoutesGestionProveedores'
-import { NavigationComponent } from '../../SharedComponents/Navigation';
-
-import { useState } from 'react';
+import { useState } from 'react'
+import { NavigationComponent } from '../../../SharedComponents/Navigation'
+import RoutesSeguridadPrivacidad, { rutas } from '../Routes/RoutesSeguridadPrivacidad'
 
 
-const drawerWidth = 280;
-
-export const GestionProveedoresPage = () => {
+export const SeguridadPrivacidadPages = () => {
     const [sizeLayout, setSizeLayout] = useState({ sm: 12, lg: 9.9, md: 9.9, xs: 12 })
     return (
         <>
             <Grid container spacing={2} >
 
-
                 <NavigationComponent
                     options={rutas}
+                    showcolapse={false}
                     sizeLayout={(size) => {
                         setSizeLayout(size)
                     }} />
 
                 <Grid item {...sizeLayout} sx={{ pr: 2, backgroundColor: 'white' }}   >
-                    <RoutesGestionProveedores />
+                    <RoutesSeguridadPrivacidad />
                 </Grid>
             </Grid>
 
@@ -31,4 +27,5 @@ export const GestionProveedoresPage = () => {
     )
 }
 
-export default GestionProveedoresPage;
+
+export default SeguridadPrivacidadPages;

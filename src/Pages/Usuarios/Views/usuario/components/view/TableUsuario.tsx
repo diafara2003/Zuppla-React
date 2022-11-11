@@ -3,7 +3,7 @@ import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconB
 import { Action } from '@remix-run/router';
 import React, { useContext, useState } from 'react'
 import { ActionUser, UsuariosDTO } from '../../model/usuarioDTO';
-import { UserContext } from '../../store/StoreUsuario';
+import { UserContext } from '../../../../store/StoreUsuario';
 
 type props = {
     //datatable: UsuariosDTO[]

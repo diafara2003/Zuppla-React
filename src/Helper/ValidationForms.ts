@@ -17,6 +17,16 @@ export class Validationforms {
 
     }
 
+    PhoneValid(text: string) {
+
+        const phoneRegex = /^\d{10}$/;
+
+        if (text == '') return false;
+
+        return phoneRegex.test(text);
+
+    }
+
 
     calcularDigitoVerificacion(myNit: string) {
         var vpri,

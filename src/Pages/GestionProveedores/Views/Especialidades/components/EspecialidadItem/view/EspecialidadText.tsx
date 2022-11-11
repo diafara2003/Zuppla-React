@@ -37,9 +37,9 @@ export const EspecialidadText = ({ categoria, especialidad, grupo }: props) => {
         >
             <Checkbox
                 checked={checked}
-                sx={{ p: 0.5 }}
+                sx={{ p: 0.4 }}
                 color="primary" />
-            <Typography sx={{ color: 'rgba(8, 21, 36, 0.87);' }}>{info.texto}</Typography>
+            <Typography variant="body2" sx={{ color: 'rgba(8, 21, 36, 0.87);' }}>{info.texto}</Typography>
         </Box>
     )
 }
