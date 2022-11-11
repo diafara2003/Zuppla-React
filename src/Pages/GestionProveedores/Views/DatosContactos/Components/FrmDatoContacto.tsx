@@ -80,11 +80,26 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
         if (dataNewContacto.numeroDocumento == '') {
             return { ...validaFRM, documento: { hasError: true, msn: 'Campo obligatorio' } }
         }
+        if (!new Validationforms().OnlyInteger(dataNewContacto.numeroDocumento)) {
+            return { ...validaFRM, documento: { hasError: true, msn: 'Ingrese un documento valido' } }
+        }
         if (dataNewContacto.celular == '') {
             return { ...validaFRM, celular: { hasError: true, msn: 'Campo obligatorio' } }
         }
+        if (!new Validationforms().OnlyInteger(dataNewContacto.celular)) {
+            return { ...validaFRM, celular: { hasError: true, msn: 'Ingrese un celular valido' } }
+        }
+        if (!new Validationforms().PhoneValid(dataNewContacto.celular)) {
+            return { ...validaFRM, celular: { hasError: true, msn: 'Ingrese un celular valido' } }
+        }
         if (dataNewContacto.telefono == '') {
             return { ...validaFRM, telefono: { hasError: true, msn: 'Campo obligatorio' } }
+        }
+        if (!new Validationforms().OnlyInteger(dataNewContacto.telefono)) {
+            return { ...validaFRM, celular: { hasError: true, msn: 'Ingrese un celular valido' } }
+        }
+        if (!new Validationforms().PhoneValid(dataNewContacto.telefono)) {
+            return { ...validaFRM, celular: { hasError: true, msn: 'Ingrese un celular valido' } }
         }
         if (dataNewContacto.ciudad.id == 0 || dataNewContacto.ciudad.nombre == "") {
             return { ...validaFRM, ciudad: { hasError: true, msn: 'Campo obligatorio' } }
@@ -140,7 +155,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
                                     value={dataNewContacto?.numeroDocumento}
                                     error={dataValidate.documento.hasError}
                                     helperText={dataValidate.documento.msn}
-                                    type="number"   
+                                    type="number"
                                 />
                             </Grid>
                             <Grid item xs={4}>
@@ -155,7 +170,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
                                     value={dataNewContacto?.correo}
                                     error={dataValidate.email.hasError}
                                     helperText={dataValidate.email.msn}
-                                    type="email"   
+                                    type="email"
                                 />
                             </Grid>
 
@@ -171,7 +186,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
                                     value={dataNewContacto?.telefono}
                                     error={dataValidate.telefono.hasError}
                                     helperText={dataValidate.telefono.msn}
-                                    type="number"   
+                                    type="number"
                                 />
                             </Grid>
                             <Grid item xs={4}>
@@ -186,7 +201,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
                                     value={dataNewContacto?.celular}
                                     error={dataValidate.celular.hasError}
                                     helperText={dataValidate.celular.msn}
-                                    type="number"   
+                                    type="number"
                                 />
                             </Grid>
                             <Grid item xs={4}>
