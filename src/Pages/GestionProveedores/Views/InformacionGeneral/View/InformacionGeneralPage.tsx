@@ -41,7 +41,7 @@ export const InformacionGeneralPage = () => {
                                 </Box>
                                 :
                                 <Grid>
-                                    <Box display={"flex"} justifyContent={"end"}>
+                                    <Box display={"flex"} justifyContent={"end"} mr={15}>
                                         <Button variant="text" onClick={MostrarHistorial}> <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                                     </Box>
                                     <Box >
