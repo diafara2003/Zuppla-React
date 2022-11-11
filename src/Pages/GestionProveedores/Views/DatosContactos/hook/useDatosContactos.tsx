@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { DatosContactos } from '../View/DatosContactoPage';
 import { TerDatosContactoDTO } from '../Model/DatosContactoDTO'
 import { APiMethod, RequestModel, ResponseDTO } from '../../../../../Provider/model/FetchModel';
 import { AuthContext } from '../../../../../Auth';
 import { requestAPI } from '../../../../../Provider/Requestfetch';
 import { ActionContacto, INITIAL_STATE_CONTACTO } from '../Model/DatosContacto-Model';
 import { ModelAlerta } from '../../../../../SharedComponents/Alert';
-import { TerCamaraComercioDTO } from '../../CamaraComercio/Model/CamaraComercio';
+import { AlertContext } from '../../../../Menu/context/AlertContext';
+
 
 export const ControllerDatosContactos = () => {
   const { storeUsuario } = useContext(AuthContext);
   const [value, setValue] = useState(0);
   const [valueContacto, setValueContacto] = useState(1);
   const [openDelete, setOpenDelete] = React.useState(false);
-  const [stateAlertData, setAlertData] = useState<ModelAlerta>({ msgBody: "", msgTitle: "", tipo: "info", estado: false })
+  const { showAlert, stateAlert } = useContext(AlertContext);
   const [dataContactos, setDataState] = useState<TerDatosContactoDTO[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   // const [dataDeleteId, setDataDeleteId] = useState<number>(-1);
@@ -72,11 +72,10 @@ export const ControllerDatosContactos = () => {
       setDataState(prevState => {
         return [...prevState]?.filter(elemento => elemento.id != dataContactoSelect.current?.id)
       });
-      setAlertData({ ...stateAlertData, msgBody: 'Se ha eliminado el contacto exitosamente', estado: true, tipo: 'success' });
+      showAlert('Se ha eliminado el contacto exitosamente', "Datos de contacto", 'success');
     } else {
-      setAlertData({ ...stateAlertData, msgBody: 'No se pudo eliminar el contacto', estado: true, tipo: 'warning' });
+      showAlert('No se pudo eliminar el contacto', "Datos de contacto", 'warning');
     }
-    console.log(stateAlertData);
     setIsLoading(false)
   }
 
@@ -94,7 +93,7 @@ export const ControllerDatosContactos = () => {
     if (response?.success) {
       if (tipoAction == ActionContacto.New) {
         setDataState([...dataContactos, _contacto!]);
-        setAlertData({ ...stateAlertData, msgBody: 'Se ha agregado el nuevo contacto exitosamente', estado: true, tipo: 'success' });
+        showAlert('Se ha agregado el nuevo contacto exitosamente', "Datos de contacto", 'warning');
       }
       else {
         setDataState([...dataContactos.map(con => {
@@ -104,18 +103,16 @@ export const ControllerDatosContactos = () => {
           }
           return _cont
         })]);
-        setAlertData({ ...stateAlertData, msgBody: 'Se ha actualizado el contacto correctamente', estado: true, tipo: 'success' });
+        showAlert('Se ha actualizado el contacto correctamente', "Datos de contacto", 'warning');
       }
       setNewDatosContactos(INITIAL_STATE_CONTACTO);
-      
+
     } else {
-      setAlertData({ ...stateAlertData, msgBody: 'No se pudo actualizar el contacto', estado: true, tipo: 'warning' });
+      showAlert('No se pudo actualizar el contacto', "Datos de contacto", 'warning');
     }
-    console.log(stateAlertData);
+
     setIsLoading(false)
   }
-
-
 
 
 
@@ -133,7 +130,7 @@ export const ControllerDatosContactos = () => {
   }, [value])
 
   return {
-    dataContactos, isLoading, value, openDelete, dataEditContacto, valueContacto, stateAlertData,
+    dataContactos, isLoading, value, openDelete, dataEditContacto, valueContacto, stateAlert,
     handleChange, handleCloseDelete, handleDeleteContacto, dataContactoSelect, actionCardContacto, setNewDatosContactos
 
   }
