@@ -63,13 +63,14 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
     const validaciones = (): validacionFormulario => {
 
         let validaFRM: validacionFormulario = INITIAL_STATE_VALIDATION_CONTACTO;
-        debugger
-        if (!new Validationforms().EmailIsValid(dataNewContacto.correo)) {
-
-            return { ...validaFRM, email: { hasError: true, msn: 'Correo invalido' } }
-        }
+       
+       
         if (dataNewContacto.correo == '') {
             return { ...validaFRM, email: { hasError: true, msn: 'Campo obligatorio' } }
+        }
+        if (!new Validationforms().EmailIsValid(dataNewContacto.correo)) {
+
+            return { ...validaFRM, email: { hasError: true, msn: 'Ingrese un correo valido' } }
         }
         if (dataNewContacto.nombre == '') {
             return { ...validaFRM, nombre: { hasError: true, msn: 'Campo obligatorio' } }
