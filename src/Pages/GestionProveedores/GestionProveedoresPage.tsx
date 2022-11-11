@@ -11,23 +11,19 @@ const drawerWidth = 280;
 export const GestionProveedoresPage = () => {
     const [sizeLayout, setSizeLayout] = useState({ sm: 12, lg: 9.9, md: 9.9, xs: 12 })
     return (
-        <>
-            <Grid container spacing={2} >
 
+        <Grid container>
+            <NavigationComponent
+                options={rutas}
+                sizeLayout={(size) => {
+                    setSizeLayout(size)
+                }} />
 
-                <NavigationComponent
-                    options={rutas}
-                    sizeLayout={(size) => {
-                        setSizeLayout(size)
-                    }} />
-
-                <Grid item {...sizeLayout} sx={{ pr: 2, backgroundColor: 'white' }}   >
-                    <RoutesGestionProveedores />
-                </Grid>
+            <Grid item {...sizeLayout} sx={{ backgroundColor: 'white' }}   >
+                <RoutesGestionProveedores />
             </Grid>
+        </Grid>
 
-
-        </>
     )
 }
 
