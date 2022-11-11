@@ -23,7 +23,7 @@ export const DatosContactos = () => {
         { nombre: 'Asesor comercial', id: 5 },
         { nombre: 'Responsable de cartera', id: 6 }
     ];
-    const { dataContactos, isLoading, value, openDelete, dataEditContacto, valueContacto,
+    const { dataContactos, isLoading, value, openDelete,  valueContacto,
         handleChange, handleCloseDelete, handleDeleteContacto, dataContactoSelect, actionCardContacto, setNewDatosContactos } = ControllerDatosContactos();
 
     const [open, setOpen] = useState(false);
