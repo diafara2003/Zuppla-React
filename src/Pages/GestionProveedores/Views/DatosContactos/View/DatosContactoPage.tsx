@@ -1,10 +1,8 @@
-import { Autocomplete, Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, FormControlLabel, Grid, IconButton, List, ListItem, ListItemText, Menu, MenuItem, Paper, Stack, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
-
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Tab, Tabs, Typography } from "@mui/material";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 import { Add } from "@mui/icons-material";
 import HistoryIcon from '@mui/icons-material/History';
-import { ControllerDatosContactos } from "../Controller/ControllerDatosContactos";
+import { ControllerDatosContactos } from "../hook/useDatosContactos";
 import { CardContacto } from "../Components/CardContacto";
 import { FrmDatoContacto, typeModal } from "../Components/FrmDatoContacto";
 import { SinInformacion } from "../../../Components/ImgComponents/View/SinInformacion";
@@ -12,7 +10,7 @@ import { SinInformacion } from "../../../Components/ImgComponents/View/SinInform
 import { Eliminar } from "../../../Components/ImgComponents/View/Eliminar";
 import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
 import { ActionContacto } from "../Model/DatosContacto-Model";
-import { AlertPortal } from "../../../../../SharedComponents/Alert";
+import { useState } from "react";
 
 
 export const DatosContactos = () => {
@@ -25,7 +23,7 @@ export const DatosContactos = () => {
         { nombre: 'Asesor comercial', id: 5 },
         { nombre: 'Responsable de cartera', id: 6 }
     ];
-    const { dataContactos, isLoading, value, openDelete, dataEditContacto, valueContacto, stateAlertData,
+    const { dataContactos, isLoading, value, openDelete, dataEditContacto, valueContacto,
         handleChange, handleCloseDelete, handleDeleteContacto, dataContactoSelect, actionCardContacto, setNewDatosContactos } = ControllerDatosContactos();
 
     const [open, setOpen] = useState(false);
@@ -38,7 +36,6 @@ export const DatosContactos = () => {
     return (
         <>
             <HeaderComponent title={"Datos contactos"} />
-            {stateAlertData.estado ? <AlertPortal data={stateAlertData} /> : null}
             <Box sx={{ width: '100%' }}>
                 <Box display={"flex"} justifyContent={"end"} pt={"10px"} >
                     <Button variant="text"
