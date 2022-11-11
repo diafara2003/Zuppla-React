@@ -39,6 +39,9 @@ export const useDatosUsuario = () => {
         if (user.correo == '') {
             return { ...validaFRM, email: { hasError: true, msn: 'Campo obligatorio' } }
         }
+        if (!new Validationforms().EmailIsValid(user.correo)) {
+            return { ...validaFRM, email: { hasError: true, msn: 'Ingrese un correo valido' } }
+        }
         if (user.nombre == '') {
             return { ...validaFRM, nombre: { hasError: true, msn: 'Campo obligatorio' } }
         }
@@ -49,11 +52,15 @@ export const useDatosUsuario = () => {
             return { ...validaFRM, documento: { hasError: true, msn: 'Campo obligatorio' } }
         }
         if (!new Validationforms().OnlyInteger(user.documento)) {
-            return { ...validaFRM, documento: { hasError: true, msn: 'Campo obligatorio' } }
+            return { ...validaFRM, documento: { hasError: true, msn: 'Ingrese un documento valido' } }
         }
         if (user.celular == '') {
             return { ...validaFRM, celular: { hasError: true, msn: 'Campo obligatorio' } }
         }
+        if (!new Validationforms().PhoneValid(user.celular)) {
+            return { ...validaFRM, email: { hasError: true, msn: 'Ingrese un celular valido' } }
+        }
+
         return validaFRM;
     }
 

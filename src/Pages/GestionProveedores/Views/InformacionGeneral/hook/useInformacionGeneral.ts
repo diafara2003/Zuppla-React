@@ -139,6 +139,13 @@ export const useInformacionGeneral = () => {
             return _validation;
         }
 
+        if (!_validationForms.PhoneValid(data.telefono)) {
+            _validation.isvalid = false;
+            _validation.property = { hasError: true, msn: "El telefono ingresado no es valido" };
+            _validation.name = "telefono";
+            return _validation;
+        }
+
         return _validation;
     }
 
