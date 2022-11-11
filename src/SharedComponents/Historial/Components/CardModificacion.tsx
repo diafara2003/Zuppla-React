@@ -21,15 +21,14 @@ export const CardModificacion = ({ auditoria }: props) => {
                 }
                 action={
                     <Button variant="text" endIcon={<KeyboardArrowDownOutlinedIcon color='primary' />}>
-                    Ver más
-                </Button>
+                        Ver más
+                    </Button>
                 }>
             </CardHeader>
             <Divider orientation="horizontal" flexItem />
             <CardContent>
               <CardContentModificacion _detalleAuditoria={auditoria} />
-            </CardContent>
-           
+            </CardContent>           
         </Card>
     )
 }

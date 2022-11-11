@@ -1,8 +1,7 @@
 import { Alert, AlertTitle, Box, LinearProgress, Snackbar } from '@mui/material'
 import { useAlertPortal } from '../hook/useAlertPortal'
 
-export const AlertPortal = () => {
-  // const { handleClose, linealBar, estado, msgBody, msgTitle, tipo } = useAlertPortal(info.data);
+export const AlertPortal = () => {  
   const { estado, handleClose, linealBar, msgBody, msgTitle, tipo } = useAlertPortal();
 
   return (

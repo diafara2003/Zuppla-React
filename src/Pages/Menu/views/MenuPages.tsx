@@ -26,6 +26,7 @@ export const MenuPages = () => {
 
       <Box component='main' sx={{ flexGrow: 5, p: 0.5, height: 'calc(100vh - 82px)', overflow: 'auto' }}>
         <AlertProvider>
+          
           <Outlet />
         </AlertProvider>
       </Box>

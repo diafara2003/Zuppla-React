@@ -28,7 +28,7 @@ export const InformacionGeneralPage = () => {
 
     return (
         <>
-            <HeaderComponent title={`${openHistorial?'Historial': ''} Información general`} />
+            <HeaderComponent title={`${openHistorial ? 'Historial' : ''} Información general`} />
             {
                 !openHistorial
                     ?
@@ -51,6 +51,9 @@ export const InformacionGeneralPage = () => {
                                             justifyContent={"center"}
                                             spacing={2}
                                             mt={0}>
+                                            <Grid item xs={10.5} style={{display:'flex' , justifyContent:'end'}}>
+                                                <Button variant="text" onClick={MostrarHistorial}> <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                                            </Grid>
                                             <Grid item xs={3.5} >
                                                 <TextField
                                                     id="txtTipoPersona"

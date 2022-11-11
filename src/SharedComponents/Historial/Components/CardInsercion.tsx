@@ -27,8 +27,9 @@ export const CardInsercion = ({ auditoria }: props) => {
             <Divider orientation="horizontal" flexItem />
             <CardContent>
                 <CardContentInsercion detalleAudit={auditoria} />
+
             </CardContent>
-           
+
         </Card>
     )
 }

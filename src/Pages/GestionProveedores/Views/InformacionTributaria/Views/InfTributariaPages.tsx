@@ -1,113 +1,88 @@
-import { Checkbox, IconButton, List, ListItem, ListItemButton, ListItemText, Paper } from '@mui/material'
+import { Checkbox, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Paper, Typography, FormGroup, FormControlLabel } from '@mui/material';
 import { useInfTributaria } from '../hook/useInfTributaria';
 
 export const InfTributariaPages = () => {
 
   const { state, handleChecked } = useInfTributaria();
 
- 
+
+  const styles = {
+    formControlLabel: {
+      height: 30,
+      "&:hover": {
+        background: "#e9eff4"
+      }
+    }
+  };
+
   return (
-    <Paper variant="outlined" sx={{ width: 360, p: 1 }}>
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <Grid container>
+      <Grid item xs={12}>
+        <Typography variant="subtitle2" fontWeight={600}>Información tributaria</Typography>
+      </Grid>
+
+      <Grid item xs={12} pl={1.5} mt={1}>
+
+        <FormGroup>
+          <FormControlLabel
+            sx={styles.formControlLabel}
+            componentsProps={{ typography: { variant: 'body1' } }}
+            onClick={() => handleChecked("responsableIVA", state.responsableIVA)}
+            control={<Checkbox
+              tabIndex={-1}
+              checked={state.responsableIVA}
+              disableRipple
+            />}
+            label={<Typography variant='body1'>¿Es responsable de IVA?</Typography>} />
 
 
-        <ListItem
-          disablePadding
-          secondaryAction={
-            <IconButton edge="end" aria-label="comments">
-              <Checkbox
-                tabIndex={-1}
-                checked={state.responsableIVA}
-                edge="start"
-                inputProps={{ 'aria-labelledby': "lblIVA" }}
-                disableRipple
-              />
-            </IconButton>
-          }
-        >
-          <ListItemButton role={undefined} dense onClick={() => handleChecked("responsableIVA", state.responsableIVA)}>
-            <ListItemText primary={`Responsable de IVA `} id={"lblIVA"} />
-          </ListItemButton>
-        </ListItem>
+          <FormControlLabel
+            sx={styles.formControlLabel}
+            componentsProps={{ typography: { variant: 'body1' } }}
+            onClick={() => handleChecked("autorretenedor", state.autorretenedor)}
+            control={<Checkbox
+              tabIndex={-1}
+              checked={state.autorretenedor}
+              disableRipple
+            />}
+            label={<Typography variant='body1'>¿Es autoretenedor?</Typography>} />
 
 
-        <ListItem
-          disablePadding
-          secondaryAction={
-            <IconButton edge="end" aria-label="comments" >
-              <Checkbox
-                tabIndex={-1}
-                checked={state.autorretenedor}
-                edge="start"
-                inputProps={{ 'aria-labelledby': "lblAutoRetenedor" }}
-                disableRipple
-              />
-            </IconButton>
-          }
-        >
-          <ListItemButton role={undefined} dense onClick={() => handleChecked("autorretenedor", state.autorretenedor)}>
-            <ListItemText primary={`¿Es autoretenedor? `} id={"lblAutoRetenedor"} />
-          </ListItemButton>
-        </ListItem>
+          <FormControlLabel
+            sx={styles.formControlLabel}
+            componentsProps={{ typography: { variant: 'body1' } }}
+            onClick={() => handleChecked("declarante", state.declarante)}
+            control={<Checkbox
+              tabIndex={-1}
+              checked={state.declarante}
+              disableRipple
+            />}
+            label={<Typography variant='body1'>¿Es declarente?</Typography>} />
 
-        <ListItem
-          disablePadding
-          secondaryAction={
-            <IconButton edge="end" aria-label="comments">
-              <Checkbox
-                tabIndex={-1}
-                checked={state.declarante}
-                edge="start"
-                inputProps={{ 'aria-labelledby': "lblDeclarante" }}
-                disableRipple
-              />
-            </IconButton>
-          }
-        >
-          <ListItemButton role={undefined} dense onClick={() => handleChecked("declarante", state.declarante)}>
-            <ListItemText primary={`¿Es declarente? `} id={"lblDeclarante"} />
-          </ListItemButton>
-        </ListItem>
+          <FormControlLabel
+            sx={styles.formControlLabel}
+            componentsProps={{ typography: { variant: 'body1' } }}
+            onClick={() => handleChecked("granContribuyente", state.granContribuyente)}
+            control={<Checkbox
+              tabIndex={-1}
+              checked={state.granContribuyente}
+              disableRipple
+            />}
+            label={<Typography variant='body1'>¿Es gran contribuyente?</Typography>} />
 
-        <ListItem
-          disablePadding
-          secondaryAction={
-            <IconButton edge="end" aria-label="comments">
-              <Checkbox
-                tabIndex={-1}
-                checked={state.granContribuyente}
-                edge="start"
-                inputProps={{ 'aria-labelledby': "lblGranContribuyente" }}
-                disableRipple
-              />
-            </IconButton>
-          }
-        >
-          <ListItemButton role={undefined} dense onClick={() => handleChecked("granContribuyente", state.granContribuyente)}>
-            <ListItemText primary={`¿Es gran contribuyente? `} id={"lblGranContribuyente"} />
-          </ListItemButton>
-        </ListItem>
+          <FormControlLabel
+            sx={styles.formControlLabel}
+            componentsProps={{ typography: { variant: 'body1' } }}
+            onClick={() => handleChecked("autoRetenedorICA", state.autoRetenedorICA)}
+            control={<Checkbox
+              tabIndex={-1}
+              checked={state.autoRetenedorICA}
+              disableRipple
+            />}
+            label={<Typography variant='body1'>¿Es auto retenedor ICA?</Typography>} />
 
-
-        <ListItem
-          disablePadding
-          secondaryAction={
-            <IconButton edge="end" aria-label="comments">
-              <Checkbox
-                tabIndex={-1}
-                checked={state.autoRetenedorICA}
-                edge="start"
-                inputProps={{ 'aria-labelledby': "lblautoRetenedorICA" }}
-                disableRipple
-              />
-            </IconButton>
-          }
-        >
-          <ListItemButton role={undefined} dense onClick={() => handleChecked("autoRetenedorICA", state.autoRetenedorICA)}>
-            <ListItemText primary={`¿Es auto retenedor ICA? `} id={"lblautoRetenedorICA"} />
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </Paper >
+        </FormGroup>
+      </Grid>
+    </Grid >
   )
 }

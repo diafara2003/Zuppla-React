@@ -13,8 +13,7 @@ export const NovedadesPage = () => {
   const { dataNovedades, consultarNovedades } = useNovedades();
   const [valueTab, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    debugger
-    setValue(newValue);
+      setValue(newValue);
   };
 
   return (
