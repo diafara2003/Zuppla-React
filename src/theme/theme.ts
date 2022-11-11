@@ -30,10 +30,11 @@ export const theme = createTheme({
         success: {
             main: '#0CBBE2'
         }
+       
     },
 
     components: {
-         
+
         MuiTableHead: {
             defaultProps: {
                 color: 'red'

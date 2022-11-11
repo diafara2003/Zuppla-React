@@ -5,8 +5,6 @@ import { EspecialidadProvider } from "../Context";
 import { EspecilidadContainer } from "../layout";
 
 export const EspecialidadesPage = () => {
-
-
     return (
         <>
             <HeaderComponent title={"Especialidades"} />

@@ -32,17 +32,7 @@ export const CardNovedades = ({ novedad }: props) => {
 
                     </Grid>
                     <Grid item xs={11}>
-                        {/* <Stack
-                            direction="row"
-                            justifyContent="space-between"
-                            alignItems="flex-start"
-                            spacing={0.5}
-                            mb={1}
-                        >
-                            <Typography variant='h6'>Novedad N° 1</Typography>
-                            <Typography variant='subtitle2'>{new Date(novedad.fecha).toLocaleDateString()}</Typography>
-                        </Stack>
-                        <Divider />                         */}
+                  
                         <Grid container spacing={1}>
                             <Grid item xs={5.9}>
                                 <Typography mb={0.5} variant='subtitle2' fontSize={"14px"} fontWeight={500}>Observaciones</Typography>
