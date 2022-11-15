@@ -66,7 +66,7 @@ export const HistorialComponent = ({ onClose, _tipoAuditoria }: props) => {
         <Grid item xs={10}>
           <Tabs value={valueTab}
             onChange={handleChangeTab}
-            aria-label="basic tabs example">
+            aria-label="">
             <Tab label="Agregado" key={"tabAgregado"} />
             <Tab label="Modificado" key={"tabModificado"} />
             <Tab label="Eliminado" key={"tabEliminado"} />

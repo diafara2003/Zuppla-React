@@ -1,6 +1,6 @@
 
 import { Add } from "@mui/icons-material";
-import { Box, Button, Tab, Tabs } from "@mui/material";
+import { Box, Button, Grid, Tab, Tabs } from "@mui/material";
 import React from "react";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 import HistoryIcon from '@mui/icons-material/History';
@@ -39,13 +39,6 @@ const TabPanel = (props: TabPanelProps) => {
     );
 }
 
-function a11yProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
-
 export const DatosNotifiaciones = () => {
     const options = {
         Proveedores: { nombre: 'Proveedores', id: 1, addTitle: "Nuevo contacto documentación", titleDelete: "Eliminar contacto notificación proveedor" },
@@ -64,8 +57,25 @@ export const DatosNotifiaciones = () => {
     return (
         <>
             <HeaderComponent title={"Datos contacto notificaciones"} />
-            <Box sx={{ width: '100%' }}>
-                <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+            <Box sx={{ width: '100%' }}  m={2} mt={1}>
+                <Grid container>
+                    <Grid item xs={5}>
+                        <Tabs
+                            value={tabActive}
+                            onChange={handleChange}
+                        >
+                            <Tab key={`tab-notificaciones-${options.Proveedores.nombre}`} label={options.Proveedores.nombre}/>
+                            <Tab key={`tab-notificaciones-${options.Licitaciones.nombre}`} label={options.Licitaciones.nombre} />
+                        </Tabs>
+                    </Grid>
+                    <Grid item xs={7}>
+                        <Box display={"flex"} justifyContent={"end"} pr={3}>
+                            <Button variant="text" onClick={() => setOpenNew(true)} > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
+                            <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                        </Box>
+                    </Grid>
+                </Grid>
+                {/* <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
                     <Button variant="text" onClick={() => setOpenNew(true)} > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
                     <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                 </Box>
@@ -78,7 +88,7 @@ export const DatosNotifiaciones = () => {
                         <Tab key={`tab-notificaciones-${options.Proveedores.nombre}`} label={options.Proveedores.nombre} {...a11yProps(0)} />
                         <Tab key={`tab-notificaciones-${options.Licitaciones.nombre}`} label={options.Licitaciones.nombre} {...a11yProps(1)} />
                     </Tabs>
-                </Box>
+                </Box> */}
                 <TabPanel value={tabActive} index={0}>
                     <Box m={1} mt={1}>
                         {isLoading

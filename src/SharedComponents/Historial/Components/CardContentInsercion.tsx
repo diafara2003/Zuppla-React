@@ -18,7 +18,7 @@ export const CardContentInsercion = ({detalleAudit}:props) => {
         </Box>
     </Grid>
     <Divider orientation="vertical" flexItem />
-    <Grid item xs={3} display={'flex'} alignItems={'center'}>
+    <Grid item xs={3} display={'flex'}  alignItems={'center'}>
         <AddTaskOutlinedIcon color="success" />
         <Box ml={1} display={'flex'} alignItems={''} flexDirection={'column'} justifyContent={''} >
             <Typography variant='subtitle2'>Valor agregado </Typography>
@@ -26,7 +26,7 @@ export const CardContentInsercion = ({detalleAudit}:props) => {
         </Box>
     </Grid>
     <Divider orientation="vertical" flexItem />
-    <Grid item xs={3} display={'flex'} alignItems={'center'}>
+    <Grid item xs={3} display={'flex'}  alignItems={'center'}>
         <CalendarMonthOutlinedIcon color='disabled' />
         <Box ml={1} display={'flex'} alignItems={''} flexDirection={'column'} justifyContent={''} >
             <Typography variant='subtitle2'>Fecha de inserción </Typography>

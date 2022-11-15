@@ -58,7 +58,7 @@ export const CardInsercion = ({ auditoria, _tipoAuditoria }: props) => {
     }
 
     return (
-        <Card variant="outlined" sx={{ backgroundColor: '#d8ffd826 !important' }}>
+        <Card variant="outlined" key={auditoria.documento + auditoria.glosario.nombreHTML} sx={{ backgroundColor: '#d8ffd826 !important' }}>
             <CardHeader
                 title={
                     <Typography fontWeight={600} color={''}>{auditoria.glosario.nombreHTML}</Typography>
