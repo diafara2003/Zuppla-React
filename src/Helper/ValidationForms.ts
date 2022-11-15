@@ -22,7 +22,7 @@ export class Validationforms {
         const phoneRegex = /^\d{10}$/;
 
         if (text == '') return false;
-
+debugger
         return phoneRegex.test(text);
 
     }

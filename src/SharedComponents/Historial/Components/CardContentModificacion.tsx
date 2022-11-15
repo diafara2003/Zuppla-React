@@ -39,7 +39,7 @@ export const CardContentModificacion = ({ _detalleAuditoria }: props) => {
                 <UndoOutlinedIcon color="primary" />
                 <Box ml={1} display={'flex'} alignItems={''} flexDirection={'column'} justifyContent={''} >
                     <Typography variant='subtitle2'>Valor anterior </Typography>
-                    <Typography variant='body1'>{_detalleAuditoria.valores.new}</Typography>
+                    <Typography variant='body1'>{_detalleAuditoria.valores.old}</Typography>
                 </Box>
             </Grid>
         </Grid>

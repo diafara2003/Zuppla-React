@@ -40,10 +40,7 @@ export const InformacionGeneralPage = () => {
                                     <SkeletonDinamic NoColumnas={3} NoFilas={4} Tipo={'formulario'} />
                                 </Box>
                                 :
-                                <Grid>
-                                    <Box display={"flex"} justifyContent={"end"} mr={15}>
-                                        <Button variant="text" onClick={MostrarHistorial}> <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                                    </Box>
+                                <Grid>                                   
                                     <Box >
                                         <Grid container width={'100%'}
                                             display={"flex"}

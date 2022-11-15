@@ -39,6 +39,7 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
             ciudad: (value as CiudadesDTO)
         });
     }
+
     const onChangeFrm = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setdataNewContacto(prevState => {
@@ -63,8 +64,8 @@ export const FrmDatoContacto = ({ close, newDatosContacto, editDatosContacto, op
     const validaciones = (): validacionFormulario => {
 
         let validaFRM: validacionFormulario = INITIAL_STATE_VALIDATION_CONTACTO;
-       
-       
+
+
         if (dataNewContacto.correo == '') {
             return { ...validaFRM, email: { hasError: true, msn: 'Campo obligatorio' } }
         }

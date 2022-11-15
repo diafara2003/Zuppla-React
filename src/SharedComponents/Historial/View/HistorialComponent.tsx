@@ -46,13 +46,13 @@ export const HistorialComponent = ({ onClose, _tipoAuditoria }: props) => {
   const renderSwitch = (_auditoria: AuditoriaGeneralDTO) => {
     switch (valueTab) {
       case 0:
-        return <CardInsercion auditoria={_auditoria} />
+        return <CardInsercion auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />
         break;
       case 1:
-        return <CardModificacion auditoria={_auditoria} />
+        return <CardModificacion auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />
         break;
       case 2:
-        return <CardEliminacion auditoria={_auditoria} />
+        return <CardEliminacion auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />
         break;
 
       default:

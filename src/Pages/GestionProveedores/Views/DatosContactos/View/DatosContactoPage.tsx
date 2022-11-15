@@ -29,9 +29,11 @@ export const DatosContactos = () => {
     const [open, setOpen] = useState(false);
     const [stateTipoModal, setStateTipoModal] = useState(typeModal.add)
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+    //Historial
+    const [openHistorial, setOpenHistorial] = useState(false);
+    const MostrarHistorial = () => {
+        setOpenHistorial(true);
+    }
 
     return (
         <>
