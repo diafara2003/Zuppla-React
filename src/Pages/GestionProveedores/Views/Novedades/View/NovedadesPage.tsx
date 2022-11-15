@@ -13,13 +13,13 @@ export const NovedadesPage = () => {
   const { dataNovedades, consultarNovedades } = useNovedades();
   const [valueTab, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-      setValue(newValue);
+    setValue(newValue);
   };
 
   return (
     <>
       <HeaderComponent title={"Novedades"} />
-      <Grid container spacing={2}>
+      <Grid container spacing={4} p={2}>
         <Grid mt={2} item xs={1} md={2} >
           <SelectConstructora
             onClick={(dataConst) => {
@@ -27,60 +27,61 @@ export const NovedadesPage = () => {
               consultarNovedades(dataConst);
             }} />
         </Grid>
-        <Grid item xs={11} md={10}>
-         
-            <Tabs value={valueTab}
-              onChange={handleChange}
-              aria-label="basic tabs example"
-              variant="fullWidth" centered
-            >
-              <Tab label="Pendientes por resolver" key={"tabPendiente"} />
-              <Tab label="Resueltas" key={"tabResueltas"} />
-            </Tabs>
-            {valueTab == 0
-              ? (
-                dataNovedades.length != 0
-                  ? (
-                    <Stack m={2} spacing={2}>{
-                      dataNovedades.map((_novedad) => {
-                        return (
-                          _novedad.isActiva
+        <Grid item xs={11} md={10} >
+
+          <Tabs value={valueTab}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+            variant="fullWidth" centered
+          >
+
+            <Tab label="Pendientes por resolver" key={"tabPendiente"} />
+            <Tab label="Resueltas" key={"tabResueltas"} />
+          </Tabs>
+          {valueTab == 0
+            ? (
+              dataNovedades.length != 0
+                ? (
+                  <Stack m={2} spacing={2}>{
+                    dataNovedades.map((_novedad) => {
+                      return (
+                        _novedad.isActiva
                           ?
                           <CardNovedades novedad={_novedad} />
-                          :null
-                        )
-                      })
-                    }
-                    </Stack>
-                  )
-                  :
-                  <Box mt={2} justifyContent={'center'} display={'flex'}>
-                    <SinInformacion />
-                  </Box>
-              )
-              :
-              (
-                dataNovedades.filter(data => !data.isActiva).length != 0
-                  ? (
-                    <Stack m={2} spacing={2}>{
-                      dataNovedades.map((_novedad) => {
-                        return (
-                          !_novedad.isActiva
+                          : null
+                      )
+                    })
+                  }
+                  </Stack>
+                )
+                :
+                <Box mt={2} justifyContent={'center'} display={'flex'}>
+                  <SinInformacion />
+                </Box>
+            )
+            :
+            (
+              dataNovedades.filter(data => !data.isActiva).length != 0
+                ? (
+                  <Stack m={2} spacing={2}>{
+                    dataNovedades.map((_novedad) => {
+                      return (
+                        !_novedad.isActiva
                           ?
                           <CardNovedades novedad={_novedad} />
-                          :null
-                        )
-                      })
-                    }
-                    </Stack>
-                  )
-                  :
-                  <Box mt={2} justifyContent={'center'} display={'flex'}>
-                    <SinInformacion />
-                  </Box>
-              )
-            }
-         
+                          : null
+                      )
+                    })
+                  }
+                  </Stack>
+                )
+                :
+                <Box mt={2} justifyContent={'center'} display={'flex'}>
+                  <SinInformacion />
+                </Box>
+            )
+          }
+
         </Grid>
       </Grid>
     </>

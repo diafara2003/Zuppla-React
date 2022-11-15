@@ -30,7 +30,7 @@ export const theme = createTheme({
         success: {
             main: '#0CBBE2'
         }
-       
+
     },
 
     components: {
@@ -44,8 +44,12 @@ export const theme = createTheme({
             styleOverrides: {
                 root: {
                     "&.MuiTabs-indicator": {
-                        color: '#2d9fc5 !important'
+                        color: 'rgba(8, 21, 36, 0.6) !important',
+                       
                     },
+                    // "& button.Mui-selected": {
+                    //     fontWeight: 'bold'
+                    // }
                 }
             }
         },
@@ -54,10 +58,11 @@ export const theme = createTheme({
                 root: {
                     "&.Mui-selected": {
                         backgroundColor: `white`,
-                        color: '#2d9fc5 !important'
+                        color: '#1E62A1 !important',
+                        fontWeight: '600 !important'
                     },
                     "&.MuiTabs-indicator": {
-                        color: '#2d9fc5 !important'
+                        color: 'rgba(8, 21, 36, 0.6) !important'
                     },
                 }
             }

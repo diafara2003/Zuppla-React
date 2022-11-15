@@ -46,7 +46,7 @@ export const useTableUsuario = ({ onClick }: props) => {
     }
 
     return {
-        state, clickEstado, handleClick, anchorEl, handleClose, open, clickAction
+        state, clickEstado, handleClick, anchorEl, handleClose, open, clickAction,label
 
     }
 }
