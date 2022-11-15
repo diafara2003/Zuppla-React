@@ -37,7 +37,7 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
             contacto: contactoSelect
         });
     };
-
+    
     return (
         <Grid item xs={3}>
             <Card variant="outlined" sx={{ backgroundColor: '#FBFBFB' }}>
