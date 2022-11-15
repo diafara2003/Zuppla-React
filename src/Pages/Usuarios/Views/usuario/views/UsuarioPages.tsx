@@ -1,21 +1,19 @@
 import { HeaderComponent } from '../../../../../SharedComponents/Header'
-import { useUsuario } from '../hook/useUsuario';
-import { useState } from 'react';
 import { UserProvider } from '../../../context/userContext';
-import {UserLayout} from '../layout/UserLayout'
+
+import { Box } from '@mui/material';
+import { UserLayout } from '../../..';
 
 export const UsuarioPages = () => {
 
-    const { data, isLoading, dataUserSelect, alertData, handleCloseDelete, openDelete, handleDeleteUser, actionUser, setDataNewUser } = useUsuario();
-    const [openD, setOpen] = useState(false);
-    const handleClickDialogOpen = () => {
-        setOpen(true);
-    };
+  
     return (
         <>
             <HeaderComponent title={"Usuarios"} />
             <UserProvider>
-              <UserLayout/>
+                <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)' }}>
+                    <UserLayout />
+                </Box>
             </UserProvider>
         </>
     )

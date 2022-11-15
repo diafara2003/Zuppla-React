@@ -1,5 +1,4 @@
 import { Box } from '@mui/material'
-import React from 'react'
 import { HeaderComponent } from '../../../../../SharedComponents/Header'
 
 export const PerfilPages = () => {
@@ -7,7 +6,7 @@ export const PerfilPages = () => {
 
         <>
             <HeaderComponent title={"Perfiles"} />
-            <Box sx={{ minWidth: 275, p: 2, mt: 7 }}>PerfilPages</Box>
+            <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)' }}>PerfilPages</Box>
         </>
     )
 }

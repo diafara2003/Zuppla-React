@@ -16,7 +16,7 @@ export interface IContextUserModel {
 
 
 type AuthActionsUser =
-    
+
     | { type: 'add', payload: UsuariosDTO }
     | { type: 'edit', payload: UsuariosDTO }
     | { type: 'add all', payload: UsuariosDTO[] }
