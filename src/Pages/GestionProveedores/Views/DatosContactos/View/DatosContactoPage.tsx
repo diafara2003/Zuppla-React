@@ -39,12 +39,12 @@ export const DatosContactos = () => {
 
     return (
         <>
-            <HeaderComponent title={`${openHistorial ? ( 'Historial '+ options[value].nombre ) : ''} ${!openHistorial ? 'Datos contacto':'' } ` } />
+            <HeaderComponent title={`${openHistorial ? ('Historial ' + options[value].nombre) : ''} ${!openHistorial ? 'Datos contacto' : ''} `} />
             {
                 !openHistorial
                     ?
                     <Box sx={{ width: '100%' }}>
-                        <Box display={"flex"} justifyContent={"end"} pt={"10px"} >
+                        <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={3} >
                             <Button variant="text"
                                 onClick={() => {
                                     setOpen(true);
@@ -68,7 +68,7 @@ export const DatosContactos = () => {
                         <Box m={2}>
                             {isLoading
                                 ?
-                                <SkeletonDinamic NoColumnas={3} NoFilas={2} Tipo={'card'} />
+                                <SkeletonDinamic NoColumnas={4} NoFilas={1} Tipo={'card'} />
                                 : (
                                     dataContactos?.length == 0
                                         ?
@@ -79,7 +79,8 @@ export const DatosContactos = () => {
                                         <Grid container spacing={2}>
                                             {
                                                 dataContactos.map((contacto) => {
-                                                    return (<CardContacto
+                                                    return (
+                                                    <CardContacto
                                                         key={contacto.id}
                                                         contacto={contacto}
                                                         onChangeAction={(valor) => {
@@ -105,7 +106,7 @@ export const DatosContactos = () => {
                     :
                     <HistorialComponent
                         _tipoAuditoria={Object.values(TiposAuditoria)[valueContacto]}
-                        onClose={(estado) => {                         
+                        onClose={(estado) => {
                             setOpenHistorial(estado);
                         }}
 

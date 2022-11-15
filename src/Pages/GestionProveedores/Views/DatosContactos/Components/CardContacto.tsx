@@ -37,9 +37,9 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
             contacto: contactoSelect
         });
     };
-    
+
     return (
-        <Grid item xs={3}>
+        <Grid item xs={4}>
             <Card variant="outlined" sx={{ backgroundColor: '#FBFBFB' }}>
                 <CardHeader key={contacto.id}
                     sx={{ pb: 0, }}
@@ -84,25 +84,26 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
                     subheader={contacto.cargo}
                 ></CardHeader>
                 <CardContent sx={{ pt: 1 }} style={{ paddingBottom: '0px !important' }} >
-                    <Box mb={1} p={0}>
-                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                            Numero de documento
-                        </Typography>
-
-                        <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
-                            {contacto.numeroDocumento}
-                        </Typography>
-                    </Box>
-
-                    <Box mb={1} p={0}>
-                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                            Email
-                        </Typography>
-                        <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
-                            {contacto.correo}
-                        </Typography>
-                    </Box>
-
+                    <Grid container mb={1} p={0}>
+                        <Grid item xs={5} mb={1} p={0}>
+                            <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
+                                Numero de documento
+                            </Typography>
+                            <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
+                                {contacto.numeroDocumento}
+                            </Typography>
+                            <Divider orientation="vertical" flexItem />
+                        </Grid>
+                        <Divider orientation="vertical" flexItem />
+                        <Grid item xs={5} mb={1} ml={2} p={0}>
+                            <Typography variant='subtitle2' m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
+                                Email
+                            </Typography>
+                            <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
+                                {contacto.correo}
+                            </Typography>
+                        </Grid>
+                    </Grid>
                     <Grid container mb={1} p={0}>
                         <Grid item xs={5} mb={1} p={0}>
                             <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
@@ -116,29 +117,35 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
                         <Divider orientation="vertical" flexItem />
                         <Grid item xs={5} mb={1} ml={2} p={0}>
                             <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                                Telefono
+                                Celular 2
                             </Typography>
                             <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
                                 {contacto.telefono}
                             </Typography>
                         </Grid>
                     </Grid>
-                    <Box mb={1} p={0}>
+                    <Grid container mb={1} p={0}>
+                        <Grid item xs={5} mb={1} p={0}>
+
                         <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                            Dirección
-                        </Typography>
-                        <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
-                            {contacto.direccion}
-                        </Typography>
-                    </Box>
-                    <Box mb={0} p={0}>
+                                Ciudad
+                            </Typography>
+                            <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
+                                {contacto.ciudad.nombre}
+                            </Typography>
+                            
+                            <Divider orientation="vertical" flexItem />
+                        </Grid>
+                        <Divider orientation="vertical" flexItem />
+                        <Grid item xs={5} mb={1} ml={2} p={0}>
                         <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                            Ciudad
-                        </Typography>
-                        <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
-                            {contacto.ciudad.nombre}
-                        </Typography>
-                    </Box>
+                                Dirección
+                            </Typography>
+                            <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
+                                {contacto.direccion}
+                            </Typography>
+                        </Grid>
+                    </Grid>                    
                 </CardContent>
             </Card>
         </Grid>
