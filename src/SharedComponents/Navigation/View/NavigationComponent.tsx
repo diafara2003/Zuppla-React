@@ -53,18 +53,19 @@ export const NavigationComponent = ({ options, sizeLayout, showcolapse }: props)
                                     key={path}
                                     className={"nav-link"}
                                     style={{ textDecoration: "none", color: theme.palette.secondary.light }} to={path}>
-                                    <ListItem disablePadding>
+                                    <ListItem disablePadding alignItems='center'>
                                         <ListItemButton
                                             key={"ListItemButton" + path}
                                             className='ListJk'
+                                            sx={{ display: 'flex', justifyContent: 'center' }}
                                             selected={selectedIndex === index}
                                             onClick={(event) => handleListItemClick(event, index)}
                                         >
-                                            <ListItemIcon key={"ListItemIcon" + path} color={theme.palette.secondary.main}>
+                                            <ListItemIcon sx={{ minWidth: 'auto' }} key={"ListItemIcon" + path} color={theme.palette.secondary.main}>
                                                 <Icono />
 
                                             </ListItemIcon>
-                                            <ListItemText sx={{ display: displayText }}>
+                                            <ListItemText sx={{ display: displayText, pl:2 }}>
                                                 <Typography variant='body2'> {texto} </Typography>
                                             </ListItemText>
 
