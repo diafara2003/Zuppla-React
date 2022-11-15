@@ -11,6 +11,8 @@ import { Eliminar } from "../../../Components/ImgComponents/View/Eliminar";
 import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
 import { ActionContacto } from "../Model/DatosContacto-Model";
 import { useState } from "react";
+import { HistorialComponent } from "../../../../../SharedComponents/Historial/View/HistorialComponent";
+import { TiposAuditoria } from "../../../../../SharedComponents/Historial/Model/Historial-Model";
 
 
 export const DatosContactos = () => {
@@ -23,7 +25,7 @@ export const DatosContactos = () => {
         { nombre: 'Asesor comercial', id: 5 },
         { nombre: 'Responsable de cartera', id: 6 }
     ];
-    const { dataContactos, isLoading, value, openDelete,  valueContacto,
+    const { dataContactos, isLoading, value, openDelete, valueContacto,
         handleChange, handleCloseDelete, handleDeleteContacto, dataContactoSelect, actionCardContacto, setNewDatosContactos } = ControllerDatosContactos();
 
     const [open, setOpen] = useState(false);
@@ -37,66 +39,81 @@ export const DatosContactos = () => {
 
     return (
         <>
-            <HeaderComponent title={"Datos contactos"} />
-            <Box sx={{ width: '100%' }}>
-                <Box display={"flex"} justifyContent={"end"} pt={"10px"} >
-                    <Button variant="text"
-                        onClick={() => {
-                            setOpen(true);
-                            setStateTipoModal(typeModal.add);
-                        }}>
-                        <Add />Agregar nuevo contacto</Button>
-                    <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                </Box>
-                <Box>
-                    <Tabs
-                        value={value}
-                        onChange={handleChange}
-                        aria-label="basic tabs example"
-                        variant="fullWidth" centered
-                        sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        {options.map((option, index) => (
-                            <Tab key={option.id} label={option.nombre} />
-                        ))}
-                    </Tabs>
-                </Box>
-                <Box m={2}>
-                    {isLoading
-                        ?
-                        <SkeletonDinamic NoColumnas={3} NoFilas={2} Tipo={'card'} />
-                        : (
-                            dataContactos?.length == 0
+            <HeaderComponent title={`${openHistorial ? ( 'Historial '+ options[value].nombre ) : ''} ${!openHistorial ? 'Datos contacto':'' } ` } />
+            {
+                !openHistorial
+                    ?
+                    <Box sx={{ width: '100%' }}>
+                        <Box display={"flex"} justifyContent={"end"} pt={"10px"} >
+                            <Button variant="text"
+                                onClick={() => {
+                                    setOpen(true);
+                                    setStateTipoModal(typeModal.add);
+                                }}>
+                                <Add />Agregar nuevo contacto</Button>
+                            <Button variant="text" onClick={MostrarHistorial} > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                        </Box>
+                        <Box>
+                            <Tabs
+                                value={value}
+                                onChange={handleChange}
+                                aria-label="basic tabs example"
+                                variant="fullWidth" centered
+                                sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                {options.map((option, index) => (
+                                    <Tab key={option.id} label={option.nombre} />
+                                ))}
+                            </Tabs>
+                        </Box>
+                        <Box m={2}>
+                            {isLoading
                                 ?
-                                <Box justifyContent={'center'} display={'flex'}>
-                                    <SinInformacion />
-                                </Box>
-                                :
-                                <Grid container spacing={2}>
-                                    {
-                                        dataContactos.map((contacto) => {
-                                            return (<CardContacto
-                                                key={contacto.id}
-                                                contacto={contacto}
-                                                onChangeAction={(valor) => {
-                                                    dataContactoSelect.current = valor.contacto
-                                                    if (valor.action == ActionContacto.Delete)
-                                                        actionCardContacto(valor.action);
-                                                    if (valor.action == ActionContacto.Edit) {
-                                                        setStateTipoModal(typeModal.edit);
-                                                        console.log(dataContactoSelect.current)
-                                                        setOpen(true);
-                                                    }
+                                <SkeletonDinamic NoColumnas={3} NoFilas={2} Tipo={'card'} />
+                                : (
+                                    dataContactos?.length == 0
+                                        ?
+                                        <Box justifyContent={'center'} display={'flex'}>
+                                            <SinInformacion />
+                                        </Box>
+                                        :
+                                        <Grid container spacing={2}>
+                                            {
+                                                dataContactos.map((contacto) => {
+                                                    return (<CardContacto
+                                                        key={contacto.id}
+                                                        contacto={contacto}
+                                                        onChangeAction={(valor) => {
+                                                            dataContactoSelect.current = valor.contacto
+                                                            if (valor.action == ActionContacto.Delete)
+                                                                actionCardContacto(valor.action);
+                                                            if (valor.action == ActionContacto.Edit) {
+                                                                setStateTipoModal(typeModal.edit);
+                                                                console.log(dataContactoSelect.current)
+                                                                setOpen(true);
+                                                            }
 
-                                                }}
+                                                        }}
 
-                                            />)
-                                        })
-                                    }
-                                </Grid>
-                        )
-                    }
-                </Box>
-            </Box>
+                                                    />)
+                                                })
+                                            }
+                                        </Grid>
+                                )
+                            }
+                        </Box>
+                    </Box>
+                    :
+                    <HistorialComponent
+                        _tipoAuditoria={Object.values(TiposAuditoria)[valueContacto]}
+                        onClose={(estado) => {                         
+                            setOpenHistorial(estado);
+                        }}
+
+                    />
+            }
+
+
+
             {/* Dialog EDIT - NEW */}
             {open ?
                 <FrmDatoContacto

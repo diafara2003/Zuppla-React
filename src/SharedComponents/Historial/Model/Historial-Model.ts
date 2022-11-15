@@ -1,8 +1,13 @@
 //Agregar nuevo enum segun los tipos de auditorias creados en la tabla |TipoAuditoria|
 export enum TiposAuditoria {
-    InformacionGeneral = '1',
+    InformacionGeneral = '1',   
+    RepresentanteLegal = '2',
+    ResponsablePedidos= '3',
+    Responsablecontratos= '4',
+    ResponsableActas= '5',
+    Comercial= '6',
+    Cartera= '7',
     CamaraComercio = '8'
-
 }
 
 export interface TiposHistorial {
