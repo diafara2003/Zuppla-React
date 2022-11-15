@@ -44,7 +44,6 @@ export const UserLayout = () => {
                 }}
                 label="Buscar..." variant="outlined" />
               <Button sx={{ ml: "20px" }} variant="text" onClick={handleClickDialogOpenAdd} > <Add sx={{ mr: "8px" }} />Agregar usuario</Button>
-              <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
             </Box>
             {
               state?.length != 0 ?

@@ -4,7 +4,7 @@ import { APiMethod, RequestModel, ResponseDTO } from "../../../../../Provider/mo
 import { useFetch } from "../../../../../Provider/useFech";
 
 import { AlertContext } from "../../../../Menu/context/AlertContext";
-import { typeModal } from "../components/view/FrmNewUser";
+import { typeModal } from "../components/FrmNewUser";
 import { ActionUser, CambiarEstadoUsuarioDTO, UsuarioIdDTO, UsuariosDTO } from "../model/usuarioDTO";
 import { UserContext } from "../store/StoreUsuario";
 
@@ -12,13 +12,13 @@ export const useUsuario = () => {
 
     const { showAlert } = useContext(AlertContext);
 
-    const { hasError, data, isLoading, setState } = useFetch<UsuariosDTO[] | null>();
+    const { data, isLoading, setState } = useFetch<UsuariosDTO[] | null>();
     const [openDelete, setOpenDelete] = useState(false);
-    
-    const { dispatch, state, newUser } = useContext(UserContext);
+
+    const { dispatch, newUser } = useContext(UserContext);
     const [openD, setOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(typeModal.add)
-    
+
     const dataUserSelect = useRef<UsuariosDTO>()
     const handleCloseDelete = () => {
         setOpenDelete(false);
@@ -34,16 +34,16 @@ export const useUsuario = () => {
     };
     const actionUser = (action: ActionUser) => {
         switch (action) {
-            case ActionUser.Delete:                
+            case ActionUser.Delete:
                 setOpenDelete(true);
                 break;
             case ActionUser.Edit:
-               // let _editUser = state.find((element) => element.id == dataUserSelect.current?.id)
+                // let _editUser = state.find((element) => element.id == dataUserSelect.current?.id)
                 //setDataEditUser(_editUser);
                 handleClickDialogOpenEdit();
                 break;
             case ActionUser.Send:
-              
+
                 sendMail()
                 break;
             case ActionUser.EstadoTrue:
@@ -55,13 +55,13 @@ export const useUsuario = () => {
             case ActionUser.Pass:
                 resetPassword();
                 break;
-            case ActionUser.New:         
+            case ActionUser.New:
             default:
                 break;
         }
     }
 
-  
+
     const sendMail = async () => {
         setState({ isLoading: true, hasError: '' })
         let usuario: UsuarioIdDTO = {
@@ -92,13 +92,13 @@ export const useUsuario = () => {
             data: estadoUser
         };
         const response = await requestAPI<ResponseDTO>(request)!;
-        if (response?.success) {           
+        if (response?.success) {
             dispatch({
                 type: "cambia estado",
                 payload: { _id: dataUserSelect?.current!.id, estado: _estado ? 1 : 0 }
             });
             showAlert("Estado actualizado existosamente", "Exitoso", "success")
-        }        
+        }
         setState({ isLoading: false, hasError: '' })
 
     }
@@ -120,8 +120,8 @@ export const useUsuario = () => {
     }
 
     return {
-        isLoading, data, openDelete, dataUserSelect, openD,  tipoModal,
-        handleCloseDelete, newUser, actionUser, handleClickDialogOpenAdd,handleClickDialogOpenEdit, setOpen
+        isLoading, data, openDelete, dataUserSelect, openD, tipoModal,
+        handleCloseDelete, newUser, actionUser, handleClickDialogOpenAdd, handleClickDialogOpenEdit, setOpen
     }
 
 }
