@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { APiMethod, useFetch } from "../../../../../Provider";
 import { UsuariosDTO } from "../model/usuarioDTO";
-import { UserContext } from "../../../store/StoreUsuario";
+import { UserContext } from "../store/StoreUsuario";
 
 export const useLayoutUsuario = () => {
 

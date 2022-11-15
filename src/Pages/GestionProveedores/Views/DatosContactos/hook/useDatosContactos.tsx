@@ -4,7 +4,6 @@ import { APiMethod, RequestModel, ResponseDTO } from '../../../../../Provider/mo
 import { AuthContext } from '../../../../../Auth';
 import { requestAPI } from '../../../../../Provider/Requestfetch';
 import { ActionContacto, INITIAL_STATE_CONTACTO } from '../Model/DatosContacto-Model';
-import { ModelAlerta } from '../../../../../SharedComponents/Alert';
 import { AlertContext } from '../../../../Menu/context/AlertContext';
 
 
@@ -93,7 +92,7 @@ export const ControllerDatosContactos = () => {
     if (response?.success) {
       if (tipoAction == ActionContacto.New) {
         setDataState([...dataContactos, _contacto!]);
-        showAlert('Se ha agregado el nuevo contacto exitosamente', "Datos de contacto", 'success');
+        showAlert('Se ha agregado el nuevo contacto exitosamente', "Datos de contacto", 'warning');
       }
       else {
         setDataState([...dataContactos.map(con => {
@@ -103,7 +102,7 @@ export const ControllerDatosContactos = () => {
           }
           return _cont
         })]);
-        showAlert('Se ha actualizado el contacto correctamente', "Datos de contacto", 'success');
+        showAlert('Se ha actualizado el contacto correctamente', "Datos de contacto", 'warning');
       }
       setNewDatosContactos(INITIAL_STATE_CONTACTO);
 

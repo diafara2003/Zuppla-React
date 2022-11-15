@@ -1,13 +1,12 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { requestAPI } from "../../../../../Provider";
 import { APiMethod, RequestModel, ResponseDTO } from "../../../../../Provider/model/FetchModel";
 import { useFetch } from "../../../../../Provider/useFech";
 
-import { ModelAlerta } from "../../../../../SharedComponents/Alert/Model/alertaModel";
 import { AlertContext } from "../../../../Menu/context/AlertContext";
 import { typeModal } from "../components/view/FrmNewUser";
 import { ActionUser, CambiarEstadoUsuarioDTO, UsuarioIdDTO, UsuariosDTO } from "../model/usuarioDTO";
-import { UserContext } from "../../../store/StoreUsuario";
+import { UserContext } from "../store/StoreUsuario";
 
 export const useUsuario = () => {
 
