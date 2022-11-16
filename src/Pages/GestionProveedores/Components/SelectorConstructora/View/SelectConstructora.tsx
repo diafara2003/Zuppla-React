@@ -5,11 +5,11 @@ import { useSelectConstuctora } from '../Hook/useSelectConstuctora';
 import { SkeletonDinamic } from '../../../../../SharedComponents/Skeleton/view/SkeletonDynamic';
 import { ConstructoraNovDTO } from '../Model/Constructora-Model';
 
-type props = {    
+type props = {
     onClick: (data: ConstructoraNovDTO) => void
 }
 
-export const SelectConstructora = ({onClick}:props) => {
+export const SelectConstructora = ({ onClick }: props) => {
 
     const [selectedIndex, setSelectedIndex] = useState(0);
     const { dataConst, isLoading } = useSelectConstuctora();
@@ -51,11 +51,12 @@ export const SelectConstructora = ({onClick}:props) => {
                                     dataConst.map(({ contNotificaciones, nombreConst, constructoraId }, index) => {
                                         return (
                                             <ListItemButton
+                                                key={`constructiraid${constructoraId}`}
                                                 selected={selectedIndex === index}
                                                 onClick={(event) => handleListItemClick(event, index)}
                                             >
-                                                <ListItemIcon sx={{ml:2}} key={`Const_${constructoraId}`}>
-                                                    <Badge badgeContent={Number(contNotificaciones)} color="info"  />
+                                                <ListItemIcon sx={{ ml: 2 }} key={`Const_${constructoraId}`}>
+                                                    <Badge badgeContent={Number(contNotificaciones)} color="info" />
                                                 </ListItemIcon>
                                                 <ListItemText primary={nombreConst} >
                                                     {/* <Typography variant='body2'> {nombreConst} </Typography> */}
@@ -64,7 +65,7 @@ export const SelectConstructora = ({onClick}:props) => {
                                     })
                                     :
                                     null
-                            }                           
+                            }
                         </List>
                     </>
             }

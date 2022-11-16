@@ -1,27 +1,30 @@
 import { CheckBox } from '@mui/icons-material'
 import { CardContent, Typography, CardActions, Button, Card, CardHeader, Grid, Divider, Box, Radio, Tooltip, Checkbox } from '@mui/material'
 import { Stack } from '@mui/system'
-import React from 'react'
+import { useState } from 'react'
 import { NovedadDTO } from '../../../Model/Novedades-Model'
 import { ListDocFaltante } from './ListDocFaltante'
 import { ListFrmFaltante } from './ListFrmFaltante'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { LoadingButton } from '@mui/lab'
+
 type props = {
     novedad: NovedadDTO,
     numNovedad: number,
-    clickFinaliza: (numeroNovedad: number) => void,
-    
+    clickFinaliza: (numeroNovedad: number) => void
+
 }
 export const CardNovedades = ({ novedad, numNovedad, clickFinaliza }: props) => {
 
     const cantidadDocFaltante = novedad.detalle?.find(ele => ele.tipo == "documento");
     const cantidadFrmFaltante = novedad.detalle?.find(ele => ele.tipo == "formulario");
     const _backgroundColor = novedad.isActiva ? 'rgba(30, 98, 161, 0.04);' : "#e8e8e8";
-
     const finalizarNovedad = (_numberNov: number) => {
+    
         clickFinaliza(_numberNov);
     }
+
+    if(novedad.ischecked==undefined)novedad.ischecked=false;
 
     return (
         <Card variant="outlined" sx={{ backgroundColor: _backgroundColor }}>
@@ -48,7 +51,7 @@ export const CardNovedades = ({ novedad, numNovedad, clickFinaliza }: props) => 
                             <Tooltip children={
                                 novedad.isActiva
                                     ?
-                                    <Checkbox color='success' onClick={()=>finalizarNovedad(novedad.numero)} />
+                                    <Checkbox checked={novedad.ischecked} color='success' onClick={() => finalizarNovedad(novedad.numero)} />
                                     :
                                     <Checkbox color='success' disabled defaultChecked />} title="Finalizar novedad"></Tooltip>
                         </Box>

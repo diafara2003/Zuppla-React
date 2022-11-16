@@ -4,34 +4,85 @@ import { APiMethod, RequestModel } from '../../../../../Provider/model/FetchMode
 import { ConstructoraNovDTO } from '../../../Components/SelectorConstructora/Model/Constructora-Model';
 import { NovedadDTO } from '../Model/Novedades-Model';
 
-export const useNovedades = () => {    
-    const [dataNovedades, setDataNovedades] = useState<NovedadDTO[]>([])
-    const consultarNovedades = async (_constructora:ConstructoraNovDTO) => {
-        const request: RequestModel = {            
+export const useNovedades = () => {
+    const [dataNovedades, setDataNovedades] = useState<NovedadDTO[]>([]);
+    const [openDialog, setOpenDialog] = useState(false);
+    const [valueTab, setValue] = useState(0);
+    const [idOpen, setIdOpen] = useState(0);
+    const [dataRequest, setDataRequest] = useState<NovedadDTO[]>([]);
+
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+    };
+
+    const consultarNovedades = async (_constructora: ConstructoraNovDTO) => {
+        const request: RequestModel = {
             metodo: `Novedad/constructora?constructora=${_constructora.constructoraId}`,
             type: APiMethod.GET
-        }       
+        }
         const response = await requestAPI<NovedadDTO[]>(request)!;
-        debugger
-        setDataNovedades(response!);        
+
+        if (response != null) {
+            
+            setDataRequest(response!);
+            setDataNovedades(response!.filter(c => c.isActiva == Boolean(valueTab-1)));
+        }
 
     }
 
     const cambiarEstado = async () => {
 
-        const request: RequestModel = {            
+        const request: RequestModel = {
             metodo: `Novedad/cambiarestado`,
             type: APiMethod.POST,
-            data:{
-                codigo: 1
+            data: {
+                codigo: idOpen
             }
-        }       
-        const response = await requestAPI<NovedadDTO[]>(request)!;
+        }
+        await requestAPI<NovedadDTO[]>(request)!;
+
+
+        setDataNovedades(() => dataNovedades.map(c => {
+
+            if (c.numero == idOpen) c.isActiva = false;
+            return c
+        }));
+
     }
 
-    useEffect(() => {
-        //cargaConstructoras();
-    }, []);
 
-    return {consultarNovedades, dataNovedades}
+    useEffect(() => {
+
+        setDataNovedades(dataRequest.filter(c => c.isActiva == Boolean(valueTab - 1)));
+    }, [valueTab]);
+
+
+
+    const handleClose = (isOk: boolean) => {
+        setOpenDialog(false);
+
+        if (isOk) {
+
+            cambiarEstado();
+        } else {
+            setDataNovedades(() => dataNovedades.map(c => {
+
+                if (c.numero == idOpen) c.ischecked = false;
+
+
+                return c
+            }));
+        }
+
+
+    };
+
+    const openModal = () => {
+        setOpenDialog(true);
+    };
+
+
+
+    return { consultarNovedades, dataNovedades, handleClose, openDialog, openModal, setIdOpen, setDataNovedades, handleChange, valueTab }
 }

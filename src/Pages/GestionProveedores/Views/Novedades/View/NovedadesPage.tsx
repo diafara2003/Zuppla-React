@@ -1,6 +1,5 @@
 
-import { Tune } from '@mui/icons-material';
-import { TabPanel } from '@mui/lab';
+
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Slide, Tab, Tabs, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
@@ -23,25 +22,9 @@ const Transition = React.forwardRef(function Transition(
 
 
 export const NovedadesPage = () => {
-  const { dataNovedades, consultarNovedades } = useNovedades();
-  const [valueTab, setValue] = useState(0);
-  const [stateFinalizar, setStateFinalizar] = useState(false)
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-  let contNovedades = 1;
+  const { dataNovedades, consultarNovedades, handleClose, openDialog, openModal, setIdOpen, setDataNovedades, handleChange, valueTab } = useNovedades();
 
 
-  //Dialog
-  const [openDialog, setOpenDialog] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpenDialog(true);
-  };
-
-  const handleClose = () => {
-    setOpenDialog(false);
-  };
   return (
     <>
       <HeaderComponent title={"Novedades"} />
@@ -49,7 +32,7 @@ export const NovedadesPage = () => {
         <Grid mt={2} item xs={2} md={3} >
           <SelectConstructora
             onClick={(dataConst) => {
-              console.log(dataConst);
+
               consultarNovedades(dataConst);
             }} />
         </Grid>
@@ -64,62 +47,41 @@ export const NovedadesPage = () => {
             <Tab label="Pendientes por resolver" key={"tabPendiente"} />
             <Tab label="Resueltas" key={"tabResueltas"} />
           </Tabs>
-          {valueTab == 0
+
+          {dataNovedades.length != 0
             ? (
-              dataNovedades.length != 0
-                ? (
-                  <Stack m={2} spacing={2}>{
+              <Stack m={2} spacing={2}>
+                {dataNovedades.map((_novedad, index) => {
+                  if (_novedad.ischecked == undefined) _novedad.ischecked = false;
+                  return (
 
-                    dataNovedades.map((_novedad, index) => {
+                    < CardNovedades
+                      key={`cardNovidad${_novedad.numero}`}
+                      novedad={_novedad}
+                      numNovedad={index++
+                      }
 
-                      return (
-                        _novedad.isActiva
-                          ?
-                          <CardNovedades 
-                          novedad={_novedad} 
-                          numNovedad={contNovedades++}
-                          clickFinaliza={(_number)=>{
-                            handleClickOpen();
-                          }} />
-                          : null
-                      )
-                    })
-                  }
-                  </Stack>
-                )
-                :
-                <Box mt={2} justifyContent={'center'} display={'flex'}>
-                  <SinInformacion />
-                </Box>
+                      clickFinaliza={(_number) => {
+                        setDataNovedades(dataNovedades.map(c => {
+
+                          if (c.numero == _number) c.ischecked = true;
+
+                          return c
+                        }));
+                        setIdOpen(_number);
+                        openModal();
+                      }} />
+
+                  )
+                })
+                }
+              </Stack>
             )
             :
-            (
-              dataNovedades.filter(data => !data.isActiva).length != 0
-                ? (
-                  <Stack m={2} spacing={2}>{
-                    dataNovedades.map((_novedad, index) => {
-                      return (
-                        !_novedad.isActiva
-                          ?
-                          <CardNovedades
-                            novedad={_novedad}
-                            numNovedad={contNovedades++}
-                            clickFinaliza={(_number)=>{
-                            }}
-                            />
-                          : null
-                      )
-                    })
-                  }
-                  </Stack>
-                )
-                :
-                <Box mt={2} justifyContent={'center'} display={'flex'}>
-                  <SinInformacion />
-                </Box>
-            )
+            <Box mt={2} justifyContent={'center'} display={'flex'}>
+              <SinInformacion />
+            </Box>
           }
-
         </Grid>
       </Grid>
 
@@ -138,8 +100,8 @@ export const NovedadesPage = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant='text' color='error' onClick={handleClose}>Cancelar</Button>
-          <Button variant='outlined' color='primary' onClick={handleClose}>Aceptar</Button>
+          <Button variant='text' color='error' onClick={() => { handleClose(false) }}>Cancelar</Button>
+          <Button variant='outlined' color='primary' onClick={() => handleClose(true)}>Aceptar</Button>
         </DialogActions>
       </Dialog>
 
