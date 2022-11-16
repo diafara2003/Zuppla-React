@@ -63,16 +63,17 @@ export const HistorialComponent = ({ onClose, _tipoAuditoria }: props) => {
   return (
     <Box m={2} mt={1}>
       <Grid container position={'sticky'} top={60} sx={{ backgroundColor: 'white' }}>
-        <Grid item xs={10}>
+        <Grid item  xl={10} lg={10} >
           <Tabs value={valueTab}
             onChange={handleChangeTab}
+            sx={{ borderBottom: 1, borderColor: 'divider' }}
             aria-label="">
             <Tab label="Agregado" key={"tabAgregado"} />
             <Tab label="Modificado" key={"tabModificado"} />
             <Tab label="Eliminado" key={"tabEliminado"} />
           </Tabs>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item  xl={2} lg={2} >
           <Box display={"flex"} justifyContent={"end"}>
             <Button variant="text" onClick={cerrarHistorial}> <ExitToAppIcon sx={{ mr: "8px" }} />Salir del historial</Button>
           </Box>
