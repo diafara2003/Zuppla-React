@@ -78,7 +78,7 @@ export const HistorialComponent = ({ onClose, _tipoAuditoria }: props) => {
           </Box>
         </Grid>
       </Grid>
-      <Box mt={2} ml={25} mr={25}>
+      <Box mt={2} ml={25} mr={25} sx={{overflow:'auto', maxHeight: 'calc(100vh - 15rem)' }}>
         <Stack m={2} spacing={2}>
           {
             stateAuditoria.length != 0

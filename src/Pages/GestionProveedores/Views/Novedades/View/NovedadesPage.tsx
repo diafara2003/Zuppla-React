@@ -50,32 +50,36 @@ export const NovedadesPage = () => {
 
           {dataNovedades.length != 0
             ? (
-              <Stack m={2} spacing={2}>
-                {dataNovedades.map((_novedad, index) => {
-                  if (_novedad.ischecked == undefined) _novedad.ischecked = false;
-                  return (
 
-                    < CardNovedades
-                      key={`cardNovidad${_novedad.numero}`}
-                      novedad={_novedad}
-                      numNovedad={index++
-                      }
+              <Box mt={2} style={{ overflow: 'auto', maxHeight: 'calc(100vh - 16rem)' }}>
+                <Stack m={2} spacing={2}>
+                  {dataNovedades.map((_novedad, index) => {
+                    if (_novedad.ischecked == undefined) _novedad.ischecked = false;
+                    return (
 
-                      clickFinaliza={(_number) => {
-                        setDataNovedades(dataNovedades.map(c => {
+                      < CardNovedades
+                        key={`cardNovidad${_novedad.numero}`}
+                        novedad={_novedad}
+                        numNovedad={index++
+                        }
 
-                          if (c.numero == _number) c.ischecked = true;
+                        clickFinaliza={(_number) => {
+                          setDataNovedades(dataNovedades.map(c => {
 
-                          return c
-                        }));
-                        setIdOpen(_number);
-                        openModal();
-                      }} />
+                            if (c.numero == _number) c.ischecked = true;
 
-                  )
-                })
-                }
-              </Stack>
+                            return c
+                          }));
+                          setIdOpen(_number);
+                          openModal();
+                        }} />
+
+                    )
+                  })
+                  }
+                </Stack>
+              </Box>
+
             )
             :
             <Box mt={2} justifyContent={'center'} display={'flex'}>
