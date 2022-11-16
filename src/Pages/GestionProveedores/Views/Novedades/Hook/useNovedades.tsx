@@ -17,6 +17,18 @@ export const useNovedades = () => {
 
     }
 
+    const cambiarEstado = async () => {
+
+        const request: RequestModel = {            
+            metodo: `Novedad/cambiarestado`,
+            type: APiMethod.POST,
+            data:{
+                codigo: 1
+            }
+        }       
+        const response = await requestAPI<NovedadDTO[]>(request)!;
+    }
+
     useEffect(() => {
         //cargaConstructoras();
     }, []);
