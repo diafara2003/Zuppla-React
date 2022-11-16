@@ -41,7 +41,8 @@ export const NovedadesPage = () => {
           <Tabs value={valueTab}
             onChange={handleChange}
             aria-label="basic tabs example"
-            variant="fullWidth" centered
+            sx={{ borderBottom: 1, borderColor: 'divider' }}
+            // variant="fullWidth" centered
           >
 
             <Tab label="Pendientes por resolver" key={"tabPendiente"} />

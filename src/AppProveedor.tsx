@@ -11,12 +11,12 @@ export const AppProveedor = () => {
         <AuthProvider>
 
             <Suspense fallback={
-                //  <Backdrop
-                //      sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                //      open={true}
-                //  >
-                <CircularProgress color="inherit" />
-                //  </Backdrop>
+                <Backdrop
+                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                    open={true}
+                >
+                    {/* <CircularProgress color="inherit" /> */}
+                </Backdrop>
             }>
                 <BrowserRouter>
                     <AppRouter />

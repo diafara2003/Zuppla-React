@@ -61,9 +61,9 @@ export const DocumentosAdjuntosPage = () => {
         <Box pt={1}>
           <Tabs value={value} onChange={handleChange}
             aria-label="basic tabs example"
-            variant="fullWidth"
+           
             sx={{ borderBottom: 1, borderColor: 'divider' }}
-            centered>
+            >
             {options.map((opcion, index) => {
               return (<Tab key={`tab-key-${opcion.nombre}`} label={opcion.nombre} {...a11yProps(index)} />)
             })}
