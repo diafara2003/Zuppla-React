@@ -59,7 +59,7 @@ export const DatosNotifiaciones = () => {
             <HeaderComponent title={"Datos contacto notificaciones"} />
             <Box sx={{ width: '100%' }}  m={2} mt={1}>
                 <Grid container>
-                    <Grid item  xl={9.2} lg={8} >
+                    <Grid item  xl={8.7} lg={8} >
                         <Tabs
                             value={tabActive}
                             sx={{ borderBottom: 1, borderColor: 'divider' }}
@@ -69,7 +69,7 @@ export const DatosNotifiaciones = () => {
                             <Tab key={`tab-notificaciones-${options.Licitaciones.nombre}`} label={options.Licitaciones.nombre} />
                         </Tabs>
                     </Grid>
-                    <Grid item xl={2.8} lg={4}>
+                    <Grid item xl={3.3} lg={4}>
                         <Box display={"flex"} justifyContent={"end"} pr={3}>
                             <Button variant="text" onClick={() => setOpenNew(true)} > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
                             <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>

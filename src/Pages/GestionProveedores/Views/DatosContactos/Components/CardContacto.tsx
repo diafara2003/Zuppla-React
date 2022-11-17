@@ -95,11 +95,11 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
                             <Divider orientation="vertical" flexItem />
                         </Grid>
                         <Divider orientation="vertical" flexItem />
-                        <Grid item xs={5} mb={1} ml={2} p={0}>
+                        <Grid item xs={6} ml={2} p={0}>
                             <Typography variant='subtitle2' m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                 Email
                             </Typography>
-                            <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
+                            <Typography sx={{ fontSize: 15, mb: 0, wordBreak: "break-all" }} color="text.primary" >
                                 {contacto.correo}
                             </Typography>
                         </Grid>
@@ -127,25 +127,25 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
                     <Grid container mb={1} p={0}>
                         <Grid item xs={5} mb={1} p={0}>
 
-                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
+                            <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                 Ciudad
                             </Typography>
                             <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
                                 {contacto.ciudad.nombre}
                             </Typography>
-                            
+
                             <Divider orientation="vertical" flexItem />
                         </Grid>
                         <Divider orientation="vertical" flexItem />
                         <Grid item xs={5} mb={1} ml={2} p={0}>
-                        <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
+                            <Typography m={0} p={0} sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
                                 Dirección
                             </Typography>
                             <Typography sx={{ fontSize: 15, mb: 0 }} color="text.primary" >
                                 {contacto.direccion}
                             </Typography>
                         </Grid>
-                    </Grid>                    
+                    </Grid>
                 </CardContent>
             </Card>
         </Grid>
