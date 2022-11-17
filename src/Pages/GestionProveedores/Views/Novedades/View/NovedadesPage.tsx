@@ -42,7 +42,7 @@ export const NovedadesPage = () => {
             onChange={handleChange}
             aria-label="basic tabs example"
             sx={{ borderBottom: 1, borderColor: 'divider' }}
-            // variant="fullWidth" centered
+          // variant="fullWidth" centered
           >
 
             <Tab label="Pendientes por resolver" key={"tabPendiente"} />
@@ -61,7 +61,7 @@ export const NovedadesPage = () => {
                       < CardNovedades
                         key={`cardNovidad${_novedad.numero}`}
                         novedad={_novedad}
-                        numNovedad={index++
+                        numNovedad={(index + 1)
                         }
 
                         clickFinaliza={(_number) => {
