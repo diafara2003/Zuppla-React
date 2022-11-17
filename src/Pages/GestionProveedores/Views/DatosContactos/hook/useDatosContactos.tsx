@@ -92,7 +92,7 @@ export const ControllerDatosContactos = () => {
     if (response?.success) {
       if (tipoAction == ActionContacto.New) {
         setDataState([...dataContactos, _contacto!]);
-        showAlert('Se ha agregado el nuevo contacto exitosamente', "Datos de contacto", 'warning');
+        showAlert('Se ha agregado el nuevo contacto exitosamente', "Datos de contacto", 'success');
       }
       else {
         setDataState([...dataContactos.map(con => {
@@ -102,7 +102,7 @@ export const ControllerDatosContactos = () => {
           }
           return _cont
         })]);
-        showAlert('Se ha actualizado el contacto correctamente', "Datos de contacto", 'warning');
+        showAlert('Se ha actualizado el contacto correctamente', "Datos de contacto", 'success');
       }
       setNewDatosContactos(INITIAL_STATE_CONTACTO);
 

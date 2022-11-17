@@ -76,29 +76,32 @@ export const DatosContactos = () => {
                                             <SinInformacion />
                                         </Box>
                                         :
-                                        <Grid container spacing={2}>
-                                            {
-                                                dataContactos.map((contacto) => {
-                                                    return (
-                                                    <CardContacto
-                                                        key={contacto.id}
-                                                        contacto={contacto}
-                                                        onChangeAction={(valor) => {
-                                                            dataContactoSelect.current = valor.contacto
-                                                            if (valor.action == ActionContacto.Delete)
-                                                                actionCardContacto(valor.action);
-                                                            if (valor.action == ActionContacto.Edit) {
-                                                                setStateTipoModal(typeModal.edit);
-                                                                console.log(dataContactoSelect.current)
-                                                                setOpen(true);
-                                                            }
+                                        <Box sx={{ overflow: 'auto', maxHeight: 'calc(100vh - 17rem)' }}>
+                                            <Grid container spacing={2} >
+                                                {
+                                                    dataContactos.map((contacto) => {
+                                                        return (
+                                                            <CardContacto
+                                                                key={contacto.id}
+                                                                contacto={contacto}
+                                                                onChangeAction={(valor) => {
+                                                                    dataContactoSelect.current = valor.contacto
+                                                                    if (valor.action == ActionContacto.Delete)
+                                                                        actionCardContacto(valor.action);
+                                                                    if (valor.action == ActionContacto.Edit) {
+                                                                        setStateTipoModal(typeModal.edit);
+                                                                        console.log(dataContactoSelect.current)
+                                                                        setOpen(true);
+                                                                    }
 
-                                                        }}
+                                                                }}
 
-                                                    />)
-                                                })
-                                            }
-                                        </Grid>
+                                                            />)
+                                                    })
+                                                }
+                                            </Grid>
+                                        </Box>
+
                                 )
                             }
                         </Box>

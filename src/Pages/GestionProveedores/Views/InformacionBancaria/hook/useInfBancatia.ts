@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { RequestModel, APiMethod, requestAPI } from '../../../../../Provider';
 import { infBancariaDTO, INITIAL_INF_BANCARIA, INITIAL_VALIDATION_FORMUMLARIO_BANCARIO, ValidacionformularioBancarioDTO, validacionFormularioDTO } from '../model/infBancariaDTO';
 import { ResponseDTO } from '../../../../../Provider/model/FetchModel';
 import { Validationforms } from '../../../../../Helper/ValidationForms';
 import { CiudadesDTO } from '../../InformacionGeneral/Model';
 import { TipoCuentaBancariaDTO, BancosDTO } from '../model';
+import { AlertContext } from '../../../../Menu/context/AlertContext';
 export const useInfBancaria = () => {
 
     const [state, setState] = useState<infBancariaDTO>(INITIAL_INF_BANCARIA);
@@ -13,6 +14,7 @@ export const useInfBancaria = () => {
     const [isSaving, setIsSaving] = useState(false);
     const [stateBancos, setStateBancos] = useState<BancosDTO[]>([]);
     const [statetipoCuenta, setstatetipoCuenta] = useState<TipoCuentaBancariaDTO[]>([]);
+    const { showAlert, stateAlert } = useContext(AlertContext);
 
 
     const handleChange = (name: string, value: string | number) => {
@@ -54,6 +56,7 @@ export const useInfBancaria = () => {
         const data = await requestAPI<infBancariaDTO>(request);
 
         setIsLoading(false);
+        debugger
         if (data != null) setState(data!);
 
     }
@@ -93,15 +96,17 @@ export const useInfBancaria = () => {
             data: state
         }
         const data = await requestAPI<ResponseDTO>(request);
-
-        if (data != null) setState({ ...state, id: data.codigo });
+        debugger
+        if (data?.success){            
+            setState({ ...state, id: data.codigo });
+            showAlert('Se ha guardado la información exitosamente', "Información bancaria", 'success');
+        } 
 
         setIsSaving(false);
-
     }
 
     const handleguardar = () => {
-
+debugger
         const validacionCampos = validaCamposInfGeneral();
 
         if (validacionCampos.isvalid)
