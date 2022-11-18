@@ -70,7 +70,7 @@ export const DatosNotifiaciones = () => {
                         </Tabs>
                     </Grid>
                     <Grid item xl={3.3} lg={4}>
-                        <Box display={"flex"} justifyContent={"end"} pr={3}>
+                        <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={5}>
                             <Button variant="text" onClick={() => setOpenNew(true)} > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
                             <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                         </Box>

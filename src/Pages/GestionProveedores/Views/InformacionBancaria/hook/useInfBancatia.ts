@@ -95,8 +95,7 @@ export const useInfBancaria = () => {
             type: APiMethod.POST,
             data: state
         }
-        const data = await requestAPI<ResponseDTO>(request);
-        debugger
+        const data = await requestAPI<ResponseDTO>(request);       
         if (data?.success){            
             setState({ ...state, id: data.codigo });
             showAlert('Se ha guardado la información exitosamente', "Información bancaria", 'success');
@@ -106,7 +105,6 @@ export const useInfBancaria = () => {
     }
 
     const handleguardar = () => {
-debugger
         const validacionCampos = validaCamposInfGeneral();
 
         if (validacionCampos.isvalid)
