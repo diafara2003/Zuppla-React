@@ -29,7 +29,7 @@ export default function LoginPages() {
                 }}
             >
 
-                <Avatar variant="circular" sx={{ m: 1, fontSize: "4rem", bgcolor: 'secondary.main', width: 60, height: 60 }}>
+                <Avatar variant="circular" sx={{ m: 5, fontSize: "4rem", bgcolor: 'secondary.main', width: 60, height: 60 }}>
                     <AccountCircleRoundedIcon sx={{
                         fontSize: "4rem"
                     }} />
