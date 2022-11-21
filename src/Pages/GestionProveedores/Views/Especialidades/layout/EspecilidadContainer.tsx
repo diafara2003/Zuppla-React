@@ -5,18 +5,26 @@ import { TableEspecialidad } from '../components/TableEspecialidad'
 import { useEspecilidadContainer } from '../hook/useEspecilidadContainer'
 import SearchIcon from '@mui/icons-material/Search';
 import HistoryIcon from '@mui/icons-material/History';
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+import { HistorialComponent } from '../../../../../SharedComponents/Historial/View/HistorialComponent'
+import { TiposAuditoria } from '../../../../../SharedComponents/Historial/Model/Historial-Model'
 
 export const EspecilidadContainer = () => {
     const typing = useRef<TextFieldProps>(null);
 
     const { handleDialog, openNew, handleChangeTyping, inputfilter } = useEspecilidadContainer(typing);
-
+    //Historial
+    const [openHistorial, setOpenHistorial] = useState(false);
+    const MostrarHistorial = () => {
+        setOpenHistorial(true);
+    }
     return (
 
         <Box sx={{ background: 'white', }}>
 
-            <Box sx={{ height: 'calc(100vh - 190px)' }}>
+            {
+                !openHistorial 
+                ? <Box sx={{ height: 'calc(100vh - 190px)' }}>
                 <Box display={"flex"} justifyContent={"end"}>
                     {openNew
                         ? <Grid container justifyContent={"flex-start"}>
@@ -60,13 +68,10 @@ export const EspecilidadContainer = () => {
                                 }}
                                 label="Buscar" variant="outlined" />
                             <Button onClick={handleDialog} sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar especialidad</Button>
-                            <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                            <Button variant="text" onClick={MostrarHistorial}  > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                         </Grid>
                     }
-
-
                 </Box>
-
 
                 {openNew
                     ? <Box mt={3}>
@@ -79,6 +84,15 @@ export const EspecilidadContainer = () => {
                 }
 
             </Box>
+                :
+                <HistorialComponent
+                _tipoAuditoria={TiposAuditoria.Especialidades}
+                onClose={(estado) => {
+                    setOpenHistorial(estado);
+                }}
+
+            />
+            }           
 
         </Box>
 

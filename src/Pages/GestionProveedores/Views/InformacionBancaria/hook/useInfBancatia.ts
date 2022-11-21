@@ -55,8 +55,7 @@ export const useInfBancaria = () => {
         }
         const data = await requestAPI<infBancariaDTO>(request);
 
-        setIsLoading(false);
-        debugger
+        setIsLoading(false);        
         if (data != null) setState(data!);
 
     }

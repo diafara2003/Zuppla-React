@@ -7,7 +7,16 @@ export enum TiposAuditoria {
     ResponsableActas= '5',
     Comercial= '6',
     Cartera= '7',
-    CamaraComercio = '8'
+    CamaraComercio = '8',
+    InformacionBancaria = '9',
+    InformacionTributaria = '10',
+    SISO = '11',
+    Novedades = '12',
+    DocumentosInformacionGeneral = '13',
+    DatosNotificacionesProveedor = '14',
+    DatosNotificacionesLicitaciones = '15',
+    Especialidades = '16',
+    AdminUsuarios = '17'
 }
 
 export interface TiposHistorial {
