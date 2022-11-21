@@ -24,13 +24,13 @@ export const RecuperarClavepages = () => {
                         fontSize: "3rem"
                     }} />
                 </Avatar>
-                <Typography component="h1" variant="h5">
+                <Typography component="h1" variant="h5" sx={{mt:2}}>
                     ¿Olvido la contraseña?
                 </Typography>
                 <Typography variant="body1" sx={{ color: 'rgba(8, 21, 36, 0.38);' }}>
                     No te preocupes, te enviaremos las instrucciones para cambiar la clave
                 </Typography>
-                <Box component="form" noValidate sx={{ mt: 3 }} >
+                <Box component="form" noValidate sx={{ mt: 5 }} >
 
                     <TextField
                         required

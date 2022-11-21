@@ -115,6 +115,3 @@ export default function LoginPages() {
     );
 }
 
-function setState(arg0: any) {
-    throw new Error('Function not implemented.');
-}
