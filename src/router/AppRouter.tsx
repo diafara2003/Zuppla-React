@@ -1,13 +1,9 @@
 
 import { Route, Routes, } from 'react-router-dom';
-
 import LoginPages from '../Pages/Login/views/LoginPages';
-import { MenuPages } from '../Pages/Menu/views/MenuPages';
-import { AuthPages } from '../Auth';
-import { GestionProveedoresPage } from '../Pages/GestionProveedores/';
 import { ProtectedRoutes } from './ProtectedRoutes';
-import { HomePages } from '../Pages/Home/views/HomePages';
 import { routes } from './routes';
+import RecuperarClavepages from '../Pages/Login/component/RecuperarClave/view/RecuperarClavepages';
 
 
 export const AppRouter = () => {
@@ -16,6 +12,7 @@ export const AppRouter = () => {
             <Routes>
 
                 <Route path="/login" element={<LoginPages />}></Route>
+                <Route path="/recuperarclave" element={<RecuperarClavepages />}></Route>
 
                 <Route element={<ProtectedRoutes />}>
 

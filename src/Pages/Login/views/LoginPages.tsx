@@ -1,4 +1,4 @@
-import { Avatar, Box, Container, Typography, Paper, Grid, TextField, FormControlLabel, Button, Link, Snackbar } from '@mui/material';
+import { Avatar, Box, Container, Typography,  Grid, TextField, Link, Snackbar } from '@mui/material';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useForm } from '../hooks/useLogin';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -18,7 +18,7 @@ export default function LoginPages() {
     };
     return (
 
-        <Container  maxWidth="xs">
+        <Container maxWidth="xs">
             <Box
                 sx={{
                     marginTop: 8,
@@ -29,7 +29,7 @@ export default function LoginPages() {
                 }}
             >
 
-                <Avatar variant="circular" sx={{ m: 1, fontSize: "4rem", bgcolor: 'secondary.main', width: 60, height: 60 }}>
+                <Avatar variant="circular" sx={{ m: 5, fontSize: "4rem", bgcolor: 'secondary.main', width: 60, height: 60 }}>
                     <AccountCircleRoundedIcon sx={{
                         fontSize: "4rem"
                     }} />
@@ -85,6 +85,7 @@ export default function LoginPages() {
                     >
                         Ingresar
                     </LoadingButton>
+                    
 
                     {errorMessage == "" ? null :
                         <Snackbar
@@ -99,18 +100,14 @@ export default function LoginPages() {
 
 
 
-                    <Grid container sx={{ display: "none" }}>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
+                    <Grid container >
+                        <Grid item xs justifyContent={"end"} display={"flex"}>
+                            <Link href="recuperarclave" variant="body2">
                                 ¿Recordar contraseña?
                             </Link>
                         </Grid>
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                {"¿Aun no estas registrado?"}
-                            </Link>
-                        </Grid>
                     </Grid>
+                  
                 </Box>
             </Box>
 
@@ -118,6 +115,3 @@ export default function LoginPages() {
     );
 }
 
-function setState(arg0: any) {
-    throw new Error('Function not implemented.');
-}

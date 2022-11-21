@@ -31,7 +31,7 @@ export const useMenu = () => {
 
     } else {
       if (response != null)
-        setPages(response.filter(c => c.descripcion.toLowerCase().includes("react")));
+        setPages(response.filter(c => c.descripcion.toLowerCase()));
 
     }
 
@@ -48,7 +48,12 @@ export const useMenu = () => {
   const handleNavigate = (ubicacion: string, mencodigo: string) => {
     setMenuActived(() => mencodigo);
     console.log(`menmodigo ${mencodigo}`);
-    navigate(ubicacion, { replace: true })
+    if (ubicacion.includes('.html')) {
+      localStorage.setItem("APP_PROVEEDOR_MENU_V01",ubicacion);
+      navigate('/menuv1', { replace: true });
+    }
+    else
+      navigate(ubicacion, { replace: true });
   };
 
   return {
