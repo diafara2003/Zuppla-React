@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Tab, Tabs, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Skeleton, Tab, Tabs, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { UseHistorial } from '../Hook/UseHistorial';
@@ -13,6 +13,7 @@ import { CardModificacion } from '../Components/CardModificacion';
 import { SinInformacion } from '../../../Pages/GestionProveedores/Components/ImgComponents/View/SinInformacion';
 import { CardInsercion } from '../Components/CardInsercion';
 import { CardEliminacion } from '../Components/CardEliminacion';
+import { SkeletonDinamic } from '../../Skeleton/view/SkeletonDynamic';
 type props = {
   onClose: (estado: boolean) => void,
   _tipoAuditoria: TiposAuditoria
@@ -21,7 +22,7 @@ export const HistorialComponent = ({ onClose, _tipoAuditoria }: props) => {
   let _isNew = true;
   let _isDelete = false;
 
-  const { stateAuditoria, setStateTipo } = UseHistorial(_tipoAuditoria, _isDelete, _isNew)
+  const { stateAuditoria, setStateTipo, isLoading } = UseHistorial(_tipoAuditoria, _isDelete, _isNew)
   const [valueTab, setValueTab] = useState(0);
 
   const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
@@ -63,7 +64,7 @@ export const HistorialComponent = ({ onClose, _tipoAuditoria }: props) => {
   return (
     <Box m={2} mt={1}>
       <Grid container position={'sticky'} top={60} sx={{ backgroundColor: 'white' }}>
-        <Grid item  xl={10} lg={10} >
+        <Grid item xl={10} lg={10} >
           <Tabs value={valueTab}
             onChange={handleChangeTab}
             sx={{ borderBottom: 1, borderColor: 'divider' }}
@@ -73,24 +74,29 @@ export const HistorialComponent = ({ onClose, _tipoAuditoria }: props) => {
             <Tab label="Eliminado" key={"tabEliminado"} />
           </Tabs>
         </Grid>
-        <Grid item  xl={2} lg={2} >
+        <Grid item xl={2} lg={2} >
           <Box display={"flex"} justifyContent={"end"}>
             <Button variant="text" onClick={cerrarHistorial}> <ExitToAppIcon sx={{ mr: "8px" }} />Salir del historial</Button>
           </Box>
         </Grid>
       </Grid>
-      <Box mt={2} ml={25} mr={25} sx={{overflow:'auto', maxHeight: 'calc(100vh - 15rem)' }}>
+      <Box mt={2} ml={25} mr={25} sx={{ overflow: 'auto', maxHeight: 'calc(100vh - 15rem)' }}>
         <Stack m={2} spacing={2}>
           {
-            stateAuditoria.length != 0
+            isLoading
               ?
-              stateAuditoria.map((_audit) => {
-                return (<> {renderSwitch(_audit)}</>)
-              })
+              <SkeletonDinamic NoColumnas={1} NoFilas={3} Tipo={'table'} />
               :
-              <Box mt={2} justifyContent={'center'} display={'flex'}>
-                <SinInformacion />
-              </Box>
+              stateAuditoria.length != 0
+                ?
+                stateAuditoria.map((_audit) => {
+                  return (<> {renderSwitch(_audit)}</>)
+                })
+                :
+                <Box mt={2} justifyContent={'center'} display={'flex'}>
+                  <SinInformacion />
+                </Box>
+
           }
         </Stack>
       </Box>

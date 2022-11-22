@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../../../../Auth';
 import { Validationforms } from '../../../../../Helper/ValidationForms';
-import { APiMethod, RequestModel } from '../../../../../Provider/model/FetchModel';
+import { APiMethod, RequestModel, ResponseDTO } from '../../../../../Provider/model/FetchModel';
 import { requestAPI } from '../../../../../Provider/Requestfetch';
+import { AlertContext } from '../../../../Menu/context/AlertContext';
 import { CiudadesDTO, TerInformacionGeneralDTO, ActividadEconomicaDTO, INITIAL_INFORMACION_GENERAL, validacionFormularioDTO, ValidacionformularioDTO, INITIAL_VALITACION_FORM } from '../Model';
 
 
@@ -18,13 +19,13 @@ type validacionFormulario = {
 
 export const useInformacionGeneral = () => {
     const { storeUsuario } = useContext(AuthContext);
-    // const { hasError, data, isLoading, doFetch } = useFetch();
-
 
     const [dataInitialState, setDataInitialState] = useState<TerInformacionGeneralDTO>(INITIAL_INFORMACION_GENERAL);
     const [isLoadingCarga, setIsLoadingCarga] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
     const [validation, setValidation] = useState<ValidacionformularioDTO>(INITIAL_VALITACION_FORM);
+
+    const { showAlert, stateAlert } = useContext(AlertContext);
 
 
     const handleGuardar = (e: React.SyntheticEvent) => {
@@ -45,9 +46,15 @@ export const useInformacionGeneral = () => {
                 type: APiMethod.POST,
                 data: dataInitialState
             }
-            await requestAPI<TerInformacionGeneralDTO>(request)!;
+            const response = await requestAPI<ResponseDTO>(request)!;
             setIsSaving(false);
-
+            if(response?.success){
+                showAlert(response.mensaje,"Información general","success");
+            }
+            else{
+                showAlert("No se pudo guardar la información","Información general","warning");
+            }
+           
         }
         else {
             setValidation({ ...validation, [validacionCampos.name]: validacionCampos.property })

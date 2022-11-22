@@ -29,8 +29,8 @@ export const InfBancariaPage = () => {
                     <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)' }}>
                         {
                             isLoading
-                                ? <Box m={5}>
-                                    <SkeletonDinamic NoColumnas={3} NoFilas={4} Tipo={'formulario'} />
+                                ? <Box m={10}>
+                                    <SkeletonDinamic NoColumnas={2} NoFilas={3} Tipo={'formulario'} />
                                 </Box>
                                 : <Grid >
                                     <Box>
@@ -52,7 +52,7 @@ export const InfBancariaPage = () => {
                                                             labelId="demo-simple-select-label"
                                                             id="demo-simple-select"
                                                             error={validation.banco.hasError}
-                                                            label="Age"
+                                                            label="Banco"
                                                             value={state.banco}
                                                             onChange={(e) => { handleChange("banco", e.target.value as string) }}
                                                         >
@@ -72,7 +72,7 @@ export const InfBancariaPage = () => {
                                                             value={state.tipoCuenta}
                                                             labelId="demo-simple-select-label"
                                                             id="demo-simple-select"
-                                                            label="Age"
+                                                            label="Tipo de cuenta"
                                                             onChange={(e) => { handleChange("tipoCuenta", e.target.value as number) }}
                                                         >
                                                             {statetipoCuenta.map(e => <MenuItem key={e.id} value={e.id}>{e.codigo}</MenuItem>)}

@@ -9,6 +9,7 @@ import { FrmUsuarioCC } from "../Components/FrmUsuarioCC";
 import { useState } from "react";
 import { HistorialComponent } from "../../../../../SharedComponents/Historial/View/HistorialComponent";
 import { TiposAuditoria } from "../../../../../SharedComponents/Historial/Model/Historial-Model";
+import { SinInformacion } from "../../../Components/ImgComponents/View/SinInformacion";
 export const CamaraComercioPage = () => {
 
     const { dataCamara, isLoading, openDelete, handleCloseDelete, handleDeleteCamara, setDataIdDelete, setOpenDelete, openNew, setOpenNew, newUser } = useCamaraComercio();
@@ -26,17 +27,19 @@ export const CamaraComercioPage = () => {
                 !openHistorial
                     ?
                     <Box sx={{ width: '100%' }}>
-                        <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
+                        <Box display={"flex"} justifyContent={"end"} pt={1} pr={2}>
                             <Button onClick={() => setOpenNew(() => true)} sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar usuario</Button>
                             <Button variant="text" onClick={MostrarHistorial}> <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-
                         </Box>
                         <Box m={"30px"} mt={"25px"}>
                             {isLoading ?
                                 <><Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} />
                                     <Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /></>
                                 :
-                                dataCamara == null ? <CircularProgress color="inherit" />
+                                dataCamara.length == 0
+                                    ? <Box justifyContent={'center'} display={'flex'}>
+                                        <SinInformacion />
+                                    </Box>
                                     : <TableCamaraComercio
                                         datatable={dataCamara!}
                                         onDelete={(valor) => {

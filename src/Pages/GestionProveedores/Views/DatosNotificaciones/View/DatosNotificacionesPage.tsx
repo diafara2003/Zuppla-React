@@ -89,10 +89,16 @@ export const DatosNotifiaciones = () => {
                             <Box m={1} mt={1}>
                                 {isLoading
                                     ? <SkeletonDinamic Tipo="table" NoFilas={5} NoColumnas={5} />
-                                    : <TableNotificacionProv
-                                        datatable={lstNotificacion}
-                                        valorDelete={(id: number) => { HandleOpenDelete(id) }}
-                                    />
+                                    :
+                                    lstNotificacion.length == 0
+                                        ? <Box justifyContent={'center'} display={'flex'}>
+                                            <SinInformacion />
+                                        </Box>
+                                        :
+                                        <TableNotificacionProv
+                                            datatable={lstNotificacion}
+                                            valorDelete={(id: number) => { HandleOpenDelete(id) }}
+                                        />
                                 }
 
                             </Box>
@@ -101,24 +107,29 @@ export const DatosNotifiaciones = () => {
                             <Box m={1} mt={1}>
                                 {isLoading
                                     ? <SkeletonDinamic Tipo="table" NoFilas={5} NoColumnas={5} />
-                                    : <TableNotificacionLici
-                                        datatable={lstNotificacion}
-                                        valorDelete={(id: number) => { HandleOpenDelete(id) }}
-                                    />}
+                                    :
+                                    lstNotificacion.length == 0
+                                        ? <Box justifyContent={'center'} display={'flex'}>
+                                            <SinInformacion />
+                                        </Box>
+                                        :
+                                        <TableNotificacionLici
+                                            datatable={lstNotificacion}
+                                            valorDelete={(id: number) => { HandleOpenDelete(id) }}
+                                        />
+                                }
                             </Box>
                         </TabPanel>
                     </Box>
-                    : <HistorialComponent
+                    :
+                     <HistorialComponent
                         _tipoAuditoria={tabActive == 0 ? TiposAuditoria.DatosNotificacionesProveedor :
-                                                TiposAuditoria.DatosNotificacionesLicitaciones }
+                            TiposAuditoria.DatosNotificacionesLicitaciones}
                         onClose={(estado) => {
                             setOpenHistorial(estado);
                         }}
-
                     />
             }
-
-
 
             {openDelete
                 ? <DialogDelete

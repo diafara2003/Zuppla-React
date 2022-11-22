@@ -20,6 +20,7 @@ export const useNavigationComponent = (sizeLayout: (sizeL: tamLay) => void, opti
         sm: 3.2, lg: 2.0, md: 3.2, xs: 3.0
     });
     const [displayMenu, setMenuDisplay] = useState<typeDisplay>("end");
+    const [stateTooltip, setStateTooltip] = useState<string>("Ocultar");
     const [displayText, setMenuText] = useState<typeDisplay>("end");
     const containerRef = useRef(null);
     const { pathname } = useLocation();
@@ -48,12 +49,15 @@ export const useNavigationComponent = (sizeLayout: (sizeL: tamLay) => void, opti
                 setSizeGrid({ sm: 3, lg: 0.6, md: 0.6, xs: 3 });
                 sizeLayout({ sm: 8.9, lg: 11.3, md: 11.3, xs: 8.9 })
                 setMenuText("none");
+                setStateTooltip("Mostrar")
                 return "center";
             }
             else {
                 setSizeGrid({ sm: 3.2, lg: 2.0, md: 3.2, xs: 3.0 });
                 sizeLayout({ sm: 7, lg: 9.9, md: 9.9, xs: 7 })
                 setMenuText("block");
+                
+                setStateTooltip("Ocultar")
                 return "end";
             }
         });
@@ -61,7 +65,7 @@ export const useNavigationComponent = (sizeLayout: (sizeL: tamLay) => void, opti
 
     return {
         displayMenu, displayText, sizeGrid,
-        containerRef, selectedIndex,
+        containerRef, selectedIndex,stateTooltip,
         handleListItemClick, hanbleClickMenu
     }
 }

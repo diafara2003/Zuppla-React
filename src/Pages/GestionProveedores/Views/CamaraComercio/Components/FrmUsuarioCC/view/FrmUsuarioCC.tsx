@@ -33,14 +33,14 @@ export const FrmUsuarioCC = (data: props) => {
                         p={1}>
 
                         <Grid item xs={6}>
-                            <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Tipo documento</InputLabel>
+                        <FormControl fullWidth size="small">
+                                <InputLabel id="demo-select-small">Tipo documento</InputLabel>
                                 <Select
                                     size="small"
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     value={dataInitialState.tipoDocumento}
-                                    label="Age"
+                                    label="Tipo documento"
                                     onChange={handleChange}
                                 >
                                     <MenuItem value={"cc"}>Cédula de ciudadanía</MenuItem>
