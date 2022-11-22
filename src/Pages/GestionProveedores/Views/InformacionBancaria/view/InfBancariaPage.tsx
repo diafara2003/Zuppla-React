@@ -22,7 +22,7 @@ export const InfBancariaPage = () => {
     }
     return (
         <>
-            <HeaderComponent title={"Información bancaria"} />
+            <HeaderComponent title={`${openHistorial ? 'Historial' : ''} Información bancaria`} />
             {
                 !openHistorial
                     ?

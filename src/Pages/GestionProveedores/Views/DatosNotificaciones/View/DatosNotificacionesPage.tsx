@@ -1,7 +1,7 @@
 
 import { Add } from "@mui/icons-material";
 import { Box, Button, Grid, Tab, Tabs } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 import HistoryIcon from '@mui/icons-material/History';
 import { useDatosNotificaciones } from "../hook/useDatosNotificaciones";
@@ -12,6 +12,8 @@ import { DialogDelete } from "../Components/DialogDelete";
 import { NewNotificacionUser } from "../Components/NewNotificacionUser";
 import { TipoNotificacion } from "../Model/TipoNotificacion";
 import { TableNotificacionLici } from '../Components/TableNotificacionLici';
+import { HistorialComponent } from "../../../../../SharedComponents/Historial/View/HistorialComponent";
+import { TiposAuditoria } from "../../../../../SharedComponents/Historial/Model/Historial-Model";
 
 
 interface TabPanelProps {
@@ -53,66 +55,69 @@ export const DatosNotifiaciones = () => {
         openNew, HandleOpenNew, setOpenNew
     } = useDatosNotificaciones();
 
+    //Historial
+    const [openHistorial, setOpenHistorial] = useState(false);
+    const MostrarHistorial = () => {
+        setOpenHistorial(true);
+    }
 
     return (
         <>
-            <HeaderComponent title={"Datos contacto notificaciones"} />
-            <Box sx={{ width: '100%' }}  m={2} mt={1}>
-                <Grid container>
-                    <Grid item  xl={8.7} lg={8} >
-                        <Tabs
-                            value={tabActive}
-                            sx={{ borderBottom: 1, borderColor: 'divider' }}
-                            onChange={handleChange}
-                        >
-                            <Tab key={`tab-notificaciones-${options.Proveedores.nombre}`} label={options.Proveedores.nombre}/>
-                            <Tab key={`tab-notificaciones-${options.Licitaciones.nombre}`} label={options.Licitaciones.nombre} />
-                        </Tabs>
-                    </Grid>
-                    <Grid item xl={3.3} lg={4}>
-                        <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={5}>
-                            <Button variant="text" onClick={() => setOpenNew(true)} > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
-                            <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                        </Box>
-                    </Grid>
-                </Grid>
-                {/* <Box display={"flex"} justifyContent={"end"} pt={"10px"}>
-                    <Button variant="text" onClick={() => setOpenNew(true)} > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
-                    <Button variant="text" > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
-                </Box>
-                <Box pt={1}>
-                    <Tabs value={tabActive} onChange={handleChange}
-                        aria-label="basic tabs example"
-                        variant="fullWidth"
-                        sx={{ borderBottom: 1, borderColor: 'divider' }}
-                        centered>
-                        <Tab key={`tab-notificaciones-${options.Proveedores.nombre}`} label={options.Proveedores.nombre} {...a11yProps(0)} />
-                        <Tab key={`tab-notificaciones-${options.Licitaciones.nombre}`} label={options.Licitaciones.nombre} {...a11yProps(1)} />
-                    </Tabs>
-                </Box> */}
-                <TabPanel value={tabActive} index={0}>
-                    <Box m={1} mt={1}>
-                        {isLoading
-                            ? <SkeletonDinamic Tipo="table" NoFilas={5} NoColumnas={5} />
-                            : <TableNotificacionProv
-                                datatable={lstNotificacion}
-                                valorDelete={(id: number) => { HandleOpenDelete(id) }}
-                            />
-                        }
+            <HeaderComponent title={`${openHistorial ? 'Historial' : ''} Datos contacto notificaciones`} />
+            {
+                !openHistorial ?
+                    <Box sx={{ width: '100%' }} m={2} mt={1}>
+                        <Grid container>
+                            <Grid item xl={8.7} lg={8} >
+                                <Tabs
+                                    value={tabActive}
+                                    sx={{ borderBottom: 1, borderColor: 'divider' }}
+                                    onChange={handleChange}
+                                >
+                                    <Tab key={`tab-notificaciones-${options.Proveedores.nombre}`} label={options.Proveedores.nombre} />
+                                    <Tab key={`tab-notificaciones-${options.Licitaciones.nombre}`} label={options.Licitaciones.nombre} />
+                                </Tabs>
+                            </Grid>
+                            <Grid item xl={3.3} lg={4}>
+                                <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={5}>
+                                    <Button variant="text" onClick={() => setOpenNew(true)} > <Add sx={{ mr: "8px" }} />Agregar nuevo contacto</Button>
+                                    <Button variant="text" onClick={MostrarHistorial}> <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                        <TabPanel value={tabActive} index={0}>
+                            <Box m={1} mt={1}>
+                                {isLoading
+                                    ? <SkeletonDinamic Tipo="table" NoFilas={5} NoColumnas={5} />
+                                    : <TableNotificacionProv
+                                        datatable={lstNotificacion}
+                                        valorDelete={(id: number) => { HandleOpenDelete(id) }}
+                                    />
+                                }
 
+                            </Box>
+                        </TabPanel>
+                        <TabPanel value={tabActive} index={1}>
+                            <Box m={1} mt={1}>
+                                {isLoading
+                                    ? <SkeletonDinamic Tipo="table" NoFilas={5} NoColumnas={5} />
+                                    : <TableNotificacionLici
+                                        datatable={lstNotificacion}
+                                        valorDelete={(id: number) => { HandleOpenDelete(id) }}
+                                    />}
+                            </Box>
+                        </TabPanel>
                     </Box>
-                </TabPanel>
-                <TabPanel value={tabActive} index={1}>
-                    <Box m={1} mt={1}>
-                        {isLoading
-                            ? <SkeletonDinamic Tipo="table" NoFilas={5} NoColumnas={5} />
-                            : <TableNotificacionLici
-                                datatable={lstNotificacion}
-                                valorDelete={(id: number) => { HandleOpenDelete(id) }}
-                            />}
-                    </Box>
-                </TabPanel>
-            </Box>
+                    : <HistorialComponent
+                        _tipoAuditoria={tabActive == 0 ? TiposAuditoria.DatosNotificacionesProveedor :
+                                                TiposAuditoria.DatosNotificacionesLicitaciones }
+                        onClose={(estado) => {
+                            setOpenHistorial(estado);
+                        }}
+
+                    />
+            }
+
 
 
             {openDelete

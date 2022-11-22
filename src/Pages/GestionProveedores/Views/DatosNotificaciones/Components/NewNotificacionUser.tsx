@@ -72,7 +72,7 @@ export const NewNotificacionUser = ({ tipoNotificacion, title, handleOk, handleC
                     color="primary"
                     onClick={() => {
                         handleOk(newData);
-                        setOpen(false);
+                       
                     }}
                 >
                     Guardar

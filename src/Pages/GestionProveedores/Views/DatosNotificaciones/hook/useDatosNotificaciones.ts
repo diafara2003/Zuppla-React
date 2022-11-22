@@ -1,5 +1,6 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AlertContext } from '../../../../Menu/context/AlertContext';
 import { NotificacionDTO, TipoNotificacion } from '../Model/TipoNotificacion';
 import { useUsersNotificacion } from './useUsersNotificacion';
 
@@ -17,13 +18,18 @@ export const useDatosNotificaciones = () => {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabActive(newValue);
   };
-
+  const { showAlert, stateAlert } = useContext(AlertContext);
 
   const HandleOpenNew = (info: NotificacionDTO) => {
     if (info.usuario > 0) {
       setOpenNew(false);
       handleAgregarNotificacion(info);
     }
+    else{
+      showAlert("El usuario es obligatorio", "Datos notificación", "warning")
+      
+    }
+
   };
 
   const HandleOpenDelete = (id: number) => {

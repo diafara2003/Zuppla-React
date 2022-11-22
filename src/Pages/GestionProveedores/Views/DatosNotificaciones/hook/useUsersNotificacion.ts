@@ -19,7 +19,7 @@ export const useUsersNotificacion = (tipoNotificacion: TipoNotificacion) => {
     const { showAlert, stateAlert } = useContext(AlertContext);
 
     const handleAgregarNotificacion = async (info: NotificacionDTO) => {
-
+        debugger
         const request: RequestModel = {
             metodo: armarURL(),
             type: APiMethod.POST,
@@ -29,7 +29,7 @@ export const useUsersNotificacion = (tipoNotificacion: TipoNotificacion) => {
 
         if (!response?.item1.success) {
             setError({ hasError: true, msn: response?.item1?.mensaje ?? "" })
-            showAlert('No se pudo guardar el contacto', "Datos notificaciones", 'warning')
+            showAlert(response?.item1?.mensaje ?? "", "Datos notificaciones", 'warning')
         } else {
             setNotificacion([...lstNotificacion, response!.item2]);
             showAlert('Se creo el contacto exitosamente', "Datos notificaciones", 'success')
