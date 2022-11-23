@@ -1,7 +1,8 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import { APiMethod, useFetch } from '../../../Provider';
 import { AdjuntosDTO } from '../model/documentDTO';
 import { useEffect } from 'react';
+import { AlertContext } from '../../../Pages/Menu/context/AlertContext';
 
 
 type typeFile = {
@@ -19,6 +20,7 @@ export const useUploadDocument = ({ file, idOrigen, idOrigen2, tipo, uploadedCom
     const [document, setDocument] = useState<AdjuntosDTO>(file);
     const [textoFile, settextofile] = useState(file.nombre);
     const [download, setdonload] = useState(false);
+    const { showAlert, stateAlert } = useContext(AlertContext);
 
 
     const saveFile = (value: ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +45,7 @@ export const useUploadDocument = ({ file, idOrigen, idOrigen2, tipo, uploadedCom
             isformData: true
 
         });
-
+        showAlert("Archivo guardado exitosamente", "Documentos Adjuntos", "success")
 
     }
 
@@ -60,8 +62,10 @@ export const useUploadDocument = ({ file, idOrigen, idOrigen2, tipo, uploadedCom
             const document = (data as AdjuntosDTO[])[0];
             setDocument(document);
             uploadedCompleted(document);
-            settextofile(document.nombre);
+            settextofile(document.nombre);          
         }
+       
+        
 
     }, [data])
 

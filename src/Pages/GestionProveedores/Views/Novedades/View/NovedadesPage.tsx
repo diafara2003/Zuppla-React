@@ -1,6 +1,6 @@
 
 
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Slide, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, Slide, Tab, Tabs, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
 import { useState } from 'react';
@@ -28,11 +28,10 @@ export const NovedadesPage = () => {
   return (
     <>
       <HeaderComponent title={"Novedades"} />
-      <Grid container spacing={4} p={2}>
-        <Grid mt={2} item xs={2} md={3} >
+      <Grid container spacing={4} p={2} pr={2}>
+        <Grid mt={2} item xs={2} md={3} sx={{ borderRight: "1px solid #e9e9e9" }}>
           <SelectConstructora
             onClick={(dataConst) => {
-
               consultarNovedades(dataConst);
             }} />
         </Grid>

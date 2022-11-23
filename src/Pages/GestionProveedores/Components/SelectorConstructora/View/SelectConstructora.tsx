@@ -4,6 +4,9 @@ import React, { useState } from 'react'
 import { useSelectConstuctora } from '../Hook/useSelectConstuctora';
 import { SkeletonDinamic } from '../../../../../SharedComponents/Skeleton/view/SkeletonDynamic';
 import { ConstructoraNovDTO } from '../Model/Constructora-Model';
+import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
+import NotificationsOffOutlinedIcon from '@mui/icons-material/NotificationsOffOutlined';
+import { display } from '@mui/system';
 
 type props = {
     onClick: (data: ConstructoraNovDTO) => void
@@ -12,30 +15,44 @@ type props = {
 export const SelectConstructora = ({ onClick }: props) => {
 
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const { dataConst, isLoading } = useSelectConstuctora();
+    const { dataConst, isLoading, stateSelectConst, setStateSelectConst } = useSelectConstuctora();
 
     const handleListItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
         index: number,
     ) => {
-
         setSelectedIndex(index);
+        setStateSelectConst(dataConst[index])
         onClick(dataConst[index])
     };
 
     return (
 
-        <Box ml={1}  >
+        <Box ml={1} mr={2}  >
             {
                 isLoading ?
                     <>
                         <SkeletonDinamic NoColumnas={1} NoFilas={4} Tipo={'formulario'} />
                     </>
                     :
-                    <>
+                    <Box >
+                        {stateSelectConst.constructoraId == -1
+                            ? null
+                            :
+                            <>
+                                <Box justifyContent="space-between" display="flex" mb={1}>
+                                    <Typography variant='subtitle2' fontWeight={600} color={"primary"} >Constructora: </Typography>
+                                    <Typography> {stateSelectConst.nombreConst}</Typography>
+                                </Box>
+                                <Box m={2} justifyContent={"center"} display={"flex"}>
+                                    <img src={stateSelectConst.logoConst}></img>
+                                </Box>
+                            </>
+                        }
+
                         <TextField sx={{ marginBottom: '1rem' }}
                             id="filled-basic"
-                            label="Buscar"
+                            label="Filtrar constructora"
                             variant="outlined"
                             size='small'
                             fullWidth
@@ -43,6 +60,7 @@ export const SelectConstructora = ({ onClick }: props) => {
                                 endAdornment: <InputAdornment position="end"><SearchOutlinedIcon /></InputAdornment>,
                             }}
                         />
+
                         <Divider />
                         <List component="nav" aria-label="main mailbox folders">
                             {
@@ -56,7 +74,16 @@ export const SelectConstructora = ({ onClick }: props) => {
                                                 onClick={(event) => handleListItemClick(event, index)}
                                             >
                                                 <ListItemIcon sx={{ ml: 2 }} key={`Const_${constructoraId}`}>
-                                                    <Badge badgeContent={Number(contNotificaciones)} color="info" />
+                                                    <Badge badgeContent={Number(contNotificaciones)} color="info" >
+                                                        {
+                                                            Number(contNotificaciones) > 0
+                                                                ?
+                                                                <NotificationsActiveOutlinedIcon />
+                                                                :
+                                                                <NotificationsOffOutlinedIcon />
+                                                        }
+
+                                                    </Badge>
                                                 </ListItemIcon>
                                                 <ListItemText primary={nombreConst} >
                                                     {/* <Typography variant='body2'> {nombreConst} </Typography> */}
@@ -67,7 +94,7 @@ export const SelectConstructora = ({ onClick }: props) => {
                                     null
                             }
                         </List>
-                    </>
+                    </Box>
             }
         </Box>
 

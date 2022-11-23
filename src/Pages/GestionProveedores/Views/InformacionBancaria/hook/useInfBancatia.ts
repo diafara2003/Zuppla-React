@@ -189,7 +189,6 @@ export const useInfBancaria = () => {
 
 
     useEffect(() => {
-
         Promise.all([consultarInfo(), consultarBancos(), consultarTipoCuenta()]);
     }, []);
 

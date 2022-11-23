@@ -6,6 +6,7 @@ import { ConstructoraNovDTO } from '../Model/Constructora-Model';
 export const useSelectConstuctora = () => {
     const [dataConst, setdataConst] = useState<ConstructoraNovDTO[]>();
     const [isLoading, setIsLoading] = useState(true);
+    const [stateSelectConst, setStateSelectConst] = useState<ConstructoraNovDTO>({constructoraId:-1,contNotificaciones:0,logoConst:"",nombreConst:""})
   
     const cargaConstructoras = async () => {
   
@@ -22,5 +23,5 @@ export const useSelectConstuctora = () => {
     useEffect(() => {
       cargaConstructoras();
     }, []);
-    return { dataConst: dataConst ?? [], isLoading }
+    return { dataConst: dataConst ?? [], isLoading, stateSelectConst, setStateSelectConst }
 }

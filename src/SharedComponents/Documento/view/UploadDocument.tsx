@@ -38,7 +38,10 @@ export const UploadDocument = (info: props) => {
     return (
         <Box key={info.file.tipoAdjunto.id.toString()} sx={{ flexGrow: 1, overflow: '', px: 3 }} >
             <Box display={'flex'}>
-                <Typography noWrap variant='subtitle1' fontWeight={600} fontSize={14}> {_title}</Typography>
+                <Tooltip title={_title} arrow>
+                    <Typography noWrap variant='subtitle1' fontWeight={600} fontSize={14}> {_title}</Typography>
+                </Tooltip>
+                
                 {
                     _info != undefined ? <Tooltip children={<InfoIcon sx={{ ml: 1 }} color='primary' />} title={_info}></Tooltip> : ''
                 }
