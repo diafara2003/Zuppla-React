@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { MenuOptionContext } from '../context/menuOptionContext';
 
-
 export const MenuOldPages = () => {
 
     const { pathSelected } = useContext(MenuOptionContext);
