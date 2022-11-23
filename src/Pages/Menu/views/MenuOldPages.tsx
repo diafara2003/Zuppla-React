@@ -13,7 +13,7 @@ export const MenuOldPages = () => {
                     height: 'calc(100vh - 84px)',
                     border: 0,
                 }}
-                src={item}
+                src={`/v1/Views/${item.replace('../', '')}`}
             ></iframe>
         </div>
     )
