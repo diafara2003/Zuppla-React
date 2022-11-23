@@ -46,9 +46,7 @@ export const useMenu = () => {
 
 
   const handleNavigate = (ubicacion: string, mencodigo: string) => {
-    setMenuActived(() => mencodigo);
-    debugger
-    console.log(`menmodigo ${mencodigo}`);
+    setMenuActived(() => mencodigo);    
     if (ubicacion.includes('.html')) {
       const ruta = pages.find(c => c.mencodigo == mencodigo);
       localStorage.setItem("APP_PROVEEDOR_MENU_V01", ubicacion);
