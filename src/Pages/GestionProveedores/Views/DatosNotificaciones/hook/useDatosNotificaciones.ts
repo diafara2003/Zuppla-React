@@ -26,10 +26,8 @@ export const useDatosNotificaciones = () => {
       handleAgregarNotificacion(info);
     }
     else{
-      showAlert("El usuario es obligatorio", "Datos notificación", "warning")
-      
+      showAlert("El usuario es obligatorio", "Datos notificación", "warning")      
     }
-
   };
 
   const HandleOpenDelete = (id: number) => {
