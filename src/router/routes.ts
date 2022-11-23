@@ -18,6 +18,11 @@ export const routes: Route[] = [
     },
 
     {
+        path: "/menuv1/*",
+        Component: lazy(() => import(/* webpackChunkName: "seguridad" */"../Pages/Menu/views/MenuOldPages"))
+    },
+
+    {
         path: "/",
         Component: lazy(() => import(/* webpackChunkName: "HomePages" */"../Pages/Home/views/HomePages"))
     },

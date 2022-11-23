@@ -46,11 +46,13 @@ export const useMenu = () => {
 
 
   const handleNavigate = (ubicacion: string, mencodigo: string) => {
+
     setMenuActived(() => mencodigo);
-    console.log(`menmodigo ${mencodigo}`);
+
     if (ubicacion.includes('.html')) {
-      localStorage.setItem("APP_PROVEEDOR_MENU_V01",ubicacion);
-      navigate('/menuv1', { replace: true });
+      const ruta = pages.find(c => c.mencodigo == mencodigo);
+      localStorage.setItem("APP_PROVEEDOR_MENU_V01", ubicacion);
+      navigate(`/menuv1/${ruta?.descripcion.replace(/\s+/g, '')}`, { replace: true });
     }
     else
       navigate(ubicacion, { replace: true });

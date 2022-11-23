@@ -38,7 +38,9 @@ export const MenuOption = () => {
             aria-expanded={false}
 
             endIcon={tieneHijos > 0 ? <ExpandMore color="primary" /> : null}
-            onClick={tieneHijos > 0 ? () => { } : () => { handleNavigate(ubicacion, mencodigo) }}
+            onClick={tieneHijos > 0 ? () => { } : () => {
+              handleNavigate(ubicacion, mencodigo)
+            }}
             sx={{ color: menuActived == mencodigo ? '#9ACAF5' : 'white' }}
           >
             <Typography

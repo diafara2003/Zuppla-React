@@ -1,7 +1,7 @@
 
 export const MenuOldPages = () => {
     const item = localStorage.getItem('APP_PROVEEDOR_MENU_V01') ?? "";
-    debugger;
+    
     return (
         <div>
             <iframe
