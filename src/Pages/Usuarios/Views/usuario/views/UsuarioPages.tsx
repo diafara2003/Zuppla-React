@@ -2,7 +2,7 @@ import { HeaderComponent } from '../../../../../SharedComponents/Header'
 import { UserProvider } from '../../../context/userContext';
 
 import { Box } from '@mui/material';
-import { UserLayout } from '../../..';
+import { UserLayout } from '../layout/userLayout';
 
 export const UsuarioPages = () => {
 
