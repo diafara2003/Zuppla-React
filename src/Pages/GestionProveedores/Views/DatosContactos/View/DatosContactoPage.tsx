@@ -45,12 +45,14 @@ export const DatosContactos = () => {
                     ?
                     <Box sx={{ width: '100%' }}>
                         <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={3} >
-                            <Button variant="text"
+                            <Button variant="outlined"
                                 onClick={() => {
                                     setOpen(true);
                                     setStateTipoModal(typeModal.add);
-                                }}>
-                                <Add />Agregar nuevo contacto</Button>
+                                }}
+                                startIcon={<Add color="primary" />}
+                                >
+                               Agregar nuevo contacto</Button>
                             <Button variant="text" onClick={MostrarHistorial} > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                         </Box>
                         <Box>
@@ -68,7 +70,7 @@ export const DatosContactos = () => {
                         <Box m={2}>
                             {isLoading
                                 ?
-                                <SkeletonDinamic NoColumnas={4} NoFilas={1} Tipo={'card'} />
+                                <SkeletonDinamic NoColumnas={3} NoFilas={1} Tipo={'card'} />
                                 : (
                                     dataContactos?.length == 0
                                         ?
