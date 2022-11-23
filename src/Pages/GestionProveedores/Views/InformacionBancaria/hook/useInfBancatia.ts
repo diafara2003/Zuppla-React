@@ -10,7 +10,7 @@ export const useInfBancaria = () => {
 
     const [state, setState] = useState<infBancariaDTO>(INITIAL_INF_BANCARIA);
     const [validation, setValidation] = useState<ValidacionformularioBancarioDTO>(INITIAL_VALIDATION_FORMUMLARIO_BANCARIO);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
     const [stateBancos, setStateBancos] = useState<BancosDTO[]>([]);
     const [statetipoCuenta, setstatetipoCuenta] = useState<TipoCuentaBancariaDTO[]>([]);

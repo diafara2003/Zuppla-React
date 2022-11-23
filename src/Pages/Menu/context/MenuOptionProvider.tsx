@@ -8,16 +8,16 @@ interface Props {
 
 export const MenuOptionProvider = ({ children }: Props) => {
 
-    const [stateAlert, setStateAlert] = useState("");
+    const [statepath, setStatepath] = useState("");
 
     const cambiarPathSelected = (path:string) => {
-        setStateAlert(path);
+        setStatepath(path);
     }
 
     return (
 
 
-        <MenuOptionContext.Provider value={{ pathSelected: stateAlert ,cambiarPathSelected}}>
+        <MenuOptionContext.Provider value={{ pathSelected: statepath ,cambiarPathSelected}}>
 
 
             {children}
