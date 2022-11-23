@@ -1,12 +1,8 @@
-import { CheckBox } from '@mui/icons-material'
-import { CardContent, Typography, CardActions, Button, Card, CardHeader, Grid, Divider, Box, Radio, Tooltip, Checkbox } from '@mui/material'
+import { CardContent, Typography, CardActions, Card, CardHeader, Grid, Divider, Box,  Tooltip, Checkbox } from '@mui/material'
 import { Stack } from '@mui/system'
-import { useState } from 'react'
 import { NovedadDTO } from '../../../Model/Novedades-Model'
 import { ListDocFaltante } from './ListDocFaltante'
 import { ListFrmFaltante } from './ListFrmFaltante'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { LoadingButton } from '@mui/lab'
 
 type props = {
     novedad: NovedadDTO,

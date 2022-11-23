@@ -11,6 +11,7 @@ export const AppRouter = () => {
         <>
             <Routes>
 
+
                 <Route path="/login" element={<LoginPages />}></Route>
                 <Route path="/recuperarclave" element={<RecuperarClavepages />}></Route>
 
