@@ -15,7 +15,7 @@ type props = {
     newUser: (dataUser: UsuariosDTO) => void
 }
 
-export const useFrmNewUser = ({newUser, open, close, tipo, editUser}:props) => {
+export const useFrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
 
     const [dataNewUser, setDataNewUser] = useState<UsuariosDTO>(tipo == typeModal.add ? INITIAL_USUARIO_DTO : editUser)
     const [dataValidate, setDataValidate] = useState(INITIAL_VALIDATION_USUARIO)
@@ -45,8 +45,8 @@ export const useFrmNewUser = ({newUser, open, close, tipo, editUser}:props) => {
     const validaciones = (): validacionFormulario => {
         let validaFRM: validacionFormulario = INITIAL_VALIDATION_USUARIO;
         if (!new Validationforms().EmailIsValid(dataNewUser.correo)) {
-            debugger
-            return { ...validaFRM, email: { hasError: true, msn: 'Correo invalido' } }
+
+            return { ...validaFRM, email: { hasError: true, msn: 'Ingrese un correo valido' } }
         }
         if (dataNewUser.correo == '') {
             return { ...validaFRM, email: { hasError: true, msn: 'Campo obligatorio' } }
@@ -65,6 +65,10 @@ export const useFrmNewUser = ({newUser, open, close, tipo, editUser}:props) => {
         }
         if (dataNewUser.celular == '') {
             return { ...validaFRM, celular: { hasError: true, msn: 'Campo obligatorio' } }
+        }
+
+        if (!new Validationforms().PhoneValid(dataNewUser.celular)) {
+            return { ...validaFRM, celular: { hasError: true, msn: 'Ingrese un celular valido' } }
         }
         return validaFRM;
     }

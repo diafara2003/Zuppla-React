@@ -45,7 +45,7 @@ export const DatosContactos = () => {
                     ?
                     <Box sx={{ width: '100%' }}>
                         <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={3} >
-                            <Button variant="outlined"
+                            <Button variant="text"
                                 onClick={() => {
                                     setOpen(true);
                                     setStateTipoModal(typeModal.add);
