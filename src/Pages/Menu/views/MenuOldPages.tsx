@@ -1,4 +1,4 @@
-import { useState,useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { MenuOptionContext } from '../context/menuOptionContext';
 
 
@@ -6,7 +6,7 @@ export const MenuOldPages = () => {
 
     const { pathSelected } = useContext(MenuOptionContext);
 
-    
+
 
     console.log("option v1" + localStorage.getItem('APP_PROVEEDOR_MENU_V01')!)
     return (
@@ -19,7 +19,7 @@ export const MenuOldPages = () => {
                 height: 'calc(100vh - 84px)',
                 border: 0,
             }}
-            src={`/v1/Views/${pathSelected.replace('../', '')}`}
+            src={`/v1/Views/${(pathSelected != "" ? pathSelected : localStorage.getItem('APP_PROVEEDOR_MENU_V01')!).replace('../', '')}`}
         ></iframe>
     )
 }
