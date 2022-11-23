@@ -6,6 +6,7 @@ import logo from '../../../img/logoApp/logo.png';
 import { MenuOption } from '../Components/MenuOption/view/MenuOption';
 import { UserMenu } from '../Components/User/View/UserMenu';
 import { AlertProvider } from '../context/AlertProvider';
+import { MenuOptionProvider } from '../context/MenuOptionProvider';
 export const MenuPages = () => {
   const navigate = useNavigate();
   return (
@@ -24,12 +25,15 @@ export const MenuPages = () => {
         </Toolbar>
       </AppBar>
 
-      <Box component='main' sx={{ p: 1  , height: 'calc(100vh - 80px)', overflow: 'auto' }}>
+      <Box component='main' sx={{ p: 1, height: 'calc(100vh - 80px)', overflow: 'auto' }}>
         <AlertProvider>
-          
-          <Outlet />
+       
+            <Outlet />
+       
         </AlertProvider>
+
+
       </Box>
-    </Box>
+    </Box >
   )
 }

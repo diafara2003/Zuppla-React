@@ -14,12 +14,12 @@ export const routes: Route[] = [
 
     {
         path: "/menuv1",
-        Component: lazy(() => import(/* webpackChunkName: "seguridad" */"../Pages/Menu/views/MenuOldPages"))
+        Component: lazy(() => import(/* webpackChunkName: "opcionesv1" */"../Pages/Menu/views/MenuOldPages"))
     },
 
     {
         path: "/menuv1/*",
-        Component: lazy(() => import(/* webpackChunkName: "seguridad" */"../Pages/Menu/views/MenuOldPages"))
+        Component: lazy(() => import(/* webpackChunkName: "opcionesv1" */"../Pages/Menu/views/MenuOldPages"))
     },
 
     {
