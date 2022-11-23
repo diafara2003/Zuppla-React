@@ -47,6 +47,7 @@ export const useMenu = () => {
 
   const handleNavigate = (ubicacion: string, mencodigo: string) => {
     setMenuActived(() => mencodigo);
+    debugger
     console.log(`menmodigo ${mencodigo}`);
     if (ubicacion.includes('.html')) {
       localStorage.setItem("APP_PROVEEDOR_MENU_V01",ubicacion);
