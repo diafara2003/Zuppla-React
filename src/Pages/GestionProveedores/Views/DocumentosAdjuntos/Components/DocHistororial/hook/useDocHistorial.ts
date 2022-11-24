@@ -24,7 +24,7 @@ export const useDocHistorial = () => {
     }
 
     const handleSelected = (tipo: number) => {
-        setTipoDocSelected(tipo);
+        setTipoDocSelected(()=>tipo);
     }
 
     useEffect(() => { consultarTipoDoc() }, []);
