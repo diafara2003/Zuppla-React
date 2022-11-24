@@ -48,13 +48,13 @@ export const useInformacionGeneral = () => {
             }
             const response = await requestAPI<ResponseDTO>(request)!;
             setIsSaving(false);
-            if(response?.success){
-                showAlert(response.mensaje,"Información general","success");
+            if (response?.success) {
+                showAlert(response.mensaje, "Información general", "success");
             }
-            else{
-                showAlert("No se pudo guardar la información","Información general","warning");
+            else {
+                showAlert("No se pudo guardar la información", "Información general", "warning");
             }
-           
+
         }
         else {
             setValidation({ ...validation, [validacionCampos.name]: validacionCampos.property })
@@ -195,6 +195,13 @@ export const useInformacionGeneral = () => {
         setValidation({ ...validation, actividadEconomica: { hasError: false, msn: '' } })
     }
 
+    const handleChecked = (value: boolean) => {
+        setDataInitialState({
+            ...dataInitialState,
+            certificadoISO: !value
+        });
+    }
+
 
     return {
         dataInitialState: (dataInitialState as TerInformacionGeneralDTO),
@@ -204,7 +211,8 @@ export const useInformacionGeneral = () => {
         selectedCiudad,
         selectedAcEcono,
         handleGuardar,
-        onInputChange
+        onInputChange,
+        handleChecked
 
     }
 }

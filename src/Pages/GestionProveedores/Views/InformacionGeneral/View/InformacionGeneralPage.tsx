@@ -6,9 +6,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
 import { Autocompleteasync } from "../../../../../SharedComponents/Autocomplete/view/Autocompleteasync";
 import { LoadingButton } from "@mui/lab";
-import { InfTributariaPages } from "../../InformacionTributaria/Views/InfTributariaPages";
 import { InfSISO } from "../../InformacionSISO/view/InfSISO";
-import { InfBancariaPage } from '../../InformacionBancaria/view/InfBancariaPage';
 import { useState } from "react";
 import { HistorialComponent } from "../../../../../SharedComponents/Historial/View/HistorialComponent";
 import { TiposAuditoria } from "../../../../../SharedComponents/Historial/Model/Historial-Model";
@@ -19,7 +17,7 @@ export const InformacionGeneralPage = () => {
 
     const { isLoadingCarga, dataInitialState, isSaving,
         validation,
-        selectedCiudad, selectedAcEcono, handleGuardar, onInputChange } = useInformacionGeneral();
+        selectedCiudad, selectedAcEcono, handleGuardar, onInputChange,handleChecked } = useInformacionGeneral();
     //Historial
     const [openHistorial, setOpenHistorial] = useState(false);
     const MostrarHistorial = () => {
@@ -67,35 +65,56 @@ export const InformacionGeneralPage = () => {
 
                                                 />
                                             </Grid>
+                                            {
+                                                dataInitialState.tipoPersona.toLowerCase().startsWith('j')
+                                                    ?
+                                                    <Grid item xs={7} >
+                                                        <TextField
+                                                            required
+                                                            id="txtnombres"
+                                                            label="Nombres"
+                                                            name="nombre"
+                                                            value={dataInitialState.nombre}
+                                                            fullWidth
+                                                            error={validation.nombre.hasError}
+                                                            helperText={validation.nombre.msn}
+                                                            onChange={onInputChange}
+                                                            size="small"
+                                                        />
+                                                    </Grid>
+                                                    :
+                                                    <>
+                                                        <Grid item xs={3.5} >
+                                                            <TextField
+                                                                required
+                                                                id="txtnombres"
+                                                                label="Nombres"
+                                                                name="nombre"
+                                                                value={dataInitialState.nombre}
+                                                                fullWidth
+                                                                error={validation.nombre.hasError}
+                                                                helperText={validation.nombre.msn}
+                                                                onChange={onInputChange}
+                                                                size="small"
+                                                            />
+                                                        </Grid>
+                                                        <Grid item xs={3.5} >
+                                                            <TextField
+                                                                required
+                                                                id="txtApellidos"
+                                                                label="Apellidos"
+                                                                name="apellido"
+                                                                value={dataInitialState.apellido}
+                                                                error={validation.apellido.hasError}
+                                                                helperText={validation.apellido.msn}
+                                                                fullWidth
+                                                                onChange={onInputChange}
+                                                                size="small"
+                                                            />
+                                                        </Grid>
+                                                    </>
+                                            }
 
-                                            <Grid item xs={3.5} >
-                                                <TextField
-                                                    required
-                                                    id="txtnombres"
-                                                    label="Nombres"
-                                                    name="nombre"
-                                                    value={dataInitialState.nombre}
-                                                    fullWidth
-                                                    error={validation.nombre.hasError}
-                                                    helperText={validation.nombre.msn}
-                                                    onChange={onInputChange}
-                                                    size="small"
-                                                />
-                                            </Grid>
-                                            <Grid item xs={3.5} >
-                                                <TextField
-                                                    required
-                                                    id="txtApellidos"
-                                                    label="Apellidos"
-                                                    name="apellido"
-                                                    value={dataInitialState.apellido}
-                                                    error={validation.apellido.hasError}
-                                                    helperText={validation.apellido.msn}
-                                                    fullWidth
-                                                    onChange={onInputChange}
-                                                    size="small"
-                                                />
-                                            </Grid>
                                             <Grid item xs={3.5} >
                                                 <TextField
                                                     required
@@ -185,7 +204,14 @@ export const InformacionGeneralPage = () => {
                                                 />
                                             </Grid>
                                             <Grid item xs={7} >
-                                                <FormControlLabel sx={{ fontSize: '12px !important', ml: 1 }} control={<Switch defaultChecked size="small" />} label="Se encuentra certificado en normas ISO" />
+                                                <FormControlLabel sx={{ fontSize: '12px !important', ml: 1 }}
+                                                    checked={dataInitialState.certificadoISO}
+                                                    onClick={() => {
+                                                        event?.preventDefault();
+                                                        handleChecked( dataInitialState.certificadoISO)
+                                                    }}
+                                                    control={<Switch size="small" />}
+                                                    label="Se encuentra certificado en normas ISO" />
                                             </Grid>
                                             <Grid item xs={10.5}>
                                                 <Divider orientation="horizontal" />
