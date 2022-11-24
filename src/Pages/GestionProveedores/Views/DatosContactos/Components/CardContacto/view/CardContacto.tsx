@@ -21,7 +21,7 @@ type typeAction = {
 
 export const CardContacto = (info: props) => {
 
-const {anchorEl,contacto,handleClose,open,clickAction} = useCardContacto(info);
+const {anchorEl,contacto,handleClose,open,clickAction,handleClick} = useCardContacto(info);
 
 
     return (

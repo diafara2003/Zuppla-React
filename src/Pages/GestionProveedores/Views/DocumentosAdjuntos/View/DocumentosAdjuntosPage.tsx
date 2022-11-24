@@ -1,5 +1,5 @@
 
-import { Box, Typography, Tabs, Tab, Container, Grid, Card, CardHeader, CardContent } from '@mui/material';
+import { Box, Tabs, Tab, Container, Grid, Card, CardHeader, CardContent, Button } from '@mui/material';
 import React from 'react'
 import { HeaderComponent } from '../../../../../SharedComponents/Header'
 import { SelectorConstructora } from '../../../Components/SelectConstructora/View/SelectorConstructora';
@@ -7,6 +7,8 @@ import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/S
 import { SinInformacion } from '../../../Components/ImgComponents/View/SinInformacion';
 import { useDocumentosAdjuntos } from '../hook/useDocumentosAdjuntos';
 import { UploadDocument } from '../../../../../SharedComponents/Documento';
+import HistoryIcon from '@mui/icons-material/History';
+import { DocHistorial } from '../Components/DocHistororial/view/DocHistorial';
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -59,18 +61,28 @@ export const DocumentosAdjuntosPage = () => {
       <Box sx={{ width: '100%' }}>
 
         <Box pt={1}>
-          <Tabs value={value} onChange={handleChange}
-            aria-label="basic tabs example"
-           
-            sx={{ borderBottom: 1, borderColor: 'divider' }}
-            >
-            {options.map((opcion, index) => {
-              return (<Tab key={`tab-key-${opcion.nombre}`} label={opcion.nombre} {...a11yProps(index)} />)
-            })}
-          </Tabs>
+          <Grid container>
+            <Grid item xl={11} lg={10} >
+              <Tabs value={value} onChange={handleChange}
+                aria-label="basic tabs example"
+
+                sx={{ borderBottom: 1, borderColor: 'divider' }}
+              >
+                {options.map((opcion, index) => {
+                  return (<Tab key={`tab-key-${opcion.nombre}`} label={opcion.nombre} {...a11yProps(index)} />)
+                })}
+              </Tabs>
+            </Grid>
+            <Grid item xl={1} lg={2}>
+              <Box display={"flex"} justifyContent={"end"} pt={"10px"} pr={5}>
+                <Button variant="text"> <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+              </Box>
+            </Grid>
+
+          </Grid>
         </Box>
         <TabPanel value={value} index={0}>
-          <Box m={1} mt={1}  sx={{ justifyContent:'center', display:'flex'}}className='JKDoc'>
+          <Box m={1} mt={1} sx={{ justifyContent: 'center', display: 'flex' }} className='JKDoc'>
             {
               isLoading ?
                 <SkeletonDinamic NoColumnas={2} NoFilas={1} Tipo={'card'} />
@@ -114,7 +126,7 @@ export const DocumentosAdjuntosPage = () => {
                     <SinInformacion />
                   </Box>
                   :
-                  <Container sx={{backgroundColor: 'white' }} maxWidth="lg">
+                  <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
                     {dataAdjPorConst?.map((DocAdjunto) => {
                       return (
                         <Card elevation={3} sx={{ mt: 2 }}>
@@ -147,6 +159,14 @@ export const DocumentosAdjuntosPage = () => {
             }
           </Box>
         </TabPanel>
+
+
+        <Grid container  spacing={2} >
+          <Grid item xs={12}>
+          <DocHistorial></DocHistorial>
+          </Grid>
+          
+        </Grid>
       </Box>
     </>
   )

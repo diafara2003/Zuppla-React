@@ -5,15 +5,11 @@ import React, { useState } from "react";
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 import HistoryIcon from '@mui/icons-material/History';
 import { useDatosNotificaciones } from "../hook/useDatosNotificaciones";
-import { TableNotificacionProv } from "../Components";
+import { TableNotificacionProv ,DialogDelete,NewNotificacionUser,TableNotificacionLici} from "../Components";
 import { SinInformacion } from "../../../Components/ImgComponents/View/SinInformacion";
 import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
-import { DialogDelete } from "../Components/DialogDelete";
-import { NewNotificacionUser } from "../Components/NewNotificacionUser";
 import { TipoNotificacion } from "../Model/TipoNotificacion";
-import { TableNotificacionLici } from '../Components/TableNotificacionLici';
-import { HistorialComponent } from "../../../../../SharedComponents/Historial/View/HistorialComponent";
-import { TiposAuditoria } from "../../../../../SharedComponents/Historial/Model/Historial-Model";
+import { TiposAuditoria,HistorialComponent } from "../../../../../SharedComponents/Historial/";
 
 
 interface TabPanelProps {
