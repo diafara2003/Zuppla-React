@@ -16,13 +16,14 @@ import { CardEliminacion } from '../Components/CardEliminacion';
 import { SkeletonDinamic } from '../../Skeleton/view/SkeletonDynamic';
 type props = {
   onClose: (estado: boolean) => void,
-  _tipoAuditoria: TiposAuditoria
+  _tipoAuditoria: TiposAuditoria,
+  idDocumento? :number
 }
-export const HistorialComponent = ({ onClose, _tipoAuditoria }: props) => {
+export const HistorialComponent = ({ onClose, _tipoAuditoria, idDocumento }: props) => {
   let _isNew = true;
   let _isDelete = false;
 
-  const { stateAuditoria, setStateTipo, isLoading } = UseHistorial(_tipoAuditoria, _isDelete, _isNew)
+  const { stateAuditoria, setStateTipo, isLoading } = UseHistorial(_tipoAuditoria,idDocumento ?? -1, _isDelete, _isNew)
   const [valueTab, setValueTab] = useState(0);
 
   const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {

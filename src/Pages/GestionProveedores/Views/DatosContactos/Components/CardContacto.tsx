@@ -4,6 +4,7 @@ import { TerDatosContactoDTO } from '../Model/DatosContactoDTO'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { EditOutlined, MailOutline, LockOutlined, DeleteOutline } from '@mui/icons-material';
 import { ActionContacto } from '../Model/DatosContacto-Model';
+import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 type props = {
     contacto: TerDatosContactoDTO,
     // valorDelete: (valorId: number) => void,
@@ -75,6 +76,12 @@ export const CardContacto = ({ contacto, onChangeAction }: props) => {
                                         <DeleteOutline color="error" />
                                     </ListItemIcon>
                                     <Typography color="error">Eliminar contacto</Typography>
+                                </MenuItem>
+                                <MenuItem onClick={() => clickAction(ActionContacto.Historial, contacto)}>
+                                    <ListItemIcon>
+                                        <RestoreOutlinedIcon color="primary" />
+                                    </ListItemIcon>
+                                    <Typography color="primary">Historial</Typography>
                                 </MenuItem>
                             </Menu></>
                     }

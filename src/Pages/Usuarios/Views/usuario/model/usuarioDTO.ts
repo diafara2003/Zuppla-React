@@ -42,7 +42,8 @@ export enum ActionUser {
     EstadoTrue = "Estado en true",
     EstadoFalse = "Estado en false",
     New = "New user",
-    Default = "F"
+    Default = "F",
+    Historial = "H"
 }
 
 export interface UsuarioIdDTO {

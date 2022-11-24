@@ -16,7 +16,7 @@ export type validacionFormulario = {
 }
 
 export const INITIAL_STATE_CONTACTO :TerDatosContactoDTO = { 
-    id: 0,
+    id: -1,
     terceroId: 0,
     tipoContactoId: 0,
     nombre: "",
@@ -45,5 +45,6 @@ export enum ActionContacto {
     Delete = "D",
     Edit = "E",
     New = "New contact",
-    Default = "F"
+    Default = "F",
+    Historial = "H"
 }

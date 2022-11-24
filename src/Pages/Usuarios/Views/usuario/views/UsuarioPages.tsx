@@ -9,9 +9,9 @@ export const UsuarioPages = () => {
   
     return (
         <>
-            <HeaderComponent title={"Usuarios"} />
+           
             <UserProvider>
-                <Box sx={{ m: '1px', background: 'white', height: 'calc(100vh - 150px)' }}>
+                <Box m={1} sx={{background: 'white', height: 'calc(100vh - 150px)' }}>
                     <UserLayout />
                 </Box>
             </UserProvider>

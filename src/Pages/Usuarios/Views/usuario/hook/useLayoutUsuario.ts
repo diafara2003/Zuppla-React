@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { APiMethod, useFetch } from "../../../../../Provider";
 import { UsuariosDTO } from "../model/usuarioDTO";
 import { UserContext } from "../store/StoreUsuario";
@@ -7,6 +7,7 @@ export const useLayoutUsuario = () => {
 
     const { hasError, data, isLoading, doFetch, setState } = useFetch<UsuariosDTO[] | null>();
     const { dispatch, state } = useContext(UserContext);
+    const [dataClon, setDataClon] = useState<UsuariosDTO[] | null>()
 
     useEffect(() => {
         doFetch({
