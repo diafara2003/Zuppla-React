@@ -1,6 +1,6 @@
 import { Box, Button, Divider, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, Stack, TextField } from '@mui/material';
 import { HeaderComponent } from '../../../../../SharedComponents/Header';
-import { useInfBancaria } from '../hook/useInfBancatia';
+import { useInfBancaria } from '../hook/useInfBancaria';
 import { SkeletonDinamic } from '../../../../../SharedComponents/Skeleton/view/SkeletonDynamic';
 import HistoryIcon from '@mui/icons-material/History';
 import { Autocompleteasync } from '../../../../../SharedComponents/Autocomplete/view/Autocompleteasync';
@@ -89,6 +89,7 @@ export const InfBancariaPage = () => {
                                                         value={state.numero}
                                                         fullWidth
                                                         required
+                                                        type={"number"}
                                                         name="numero"
                                                         error={validation.numero.hasError}
                                                         helperText={validation.numero.msn}

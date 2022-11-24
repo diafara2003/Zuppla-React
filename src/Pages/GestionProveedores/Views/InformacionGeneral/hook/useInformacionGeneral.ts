@@ -108,6 +108,7 @@ export const useInformacionGeneral = () => {
             _validation.name = "correo";
             return _validation;
         }
+        
         if (data.correo == null || data.correo == "") {
             _validation.isvalid = false;
             _validation.property = { hasError: true, msn: "El correo es obligatorio" };
