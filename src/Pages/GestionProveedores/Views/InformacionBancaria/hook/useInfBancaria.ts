@@ -171,15 +171,15 @@ export const useInfBancaria = () => {
 
         if (data.correoPagos == null || data.correoPagos == "") {
             _validation.isvalid = false;
-            _validation.property = { hasError: true, msn: "El correo de notificación de pagos es obligatorio" };
-            _validation.name = "correoPagos";
+            _validation.property = { hasError: true, msn: "El correo es obligatorio" };
+            _validation.name = "correoPago";
             return _validation;
         }
 
         if (!_validationForms.EmailIsValid(data.correoPagos)) {
             _validation.isvalid = false;
             _validation.property = { hasError: true, msn: "El correo ingresado no es valido" };
-            _validation.name = "correoPagos";
+            _validation.name = "correoPago";
             return _validation;
         }
 

@@ -12,11 +12,11 @@ export const rutas: NavigationModel[] = [
 
         Icono: () => < PersonOutline />
     },
-    {
-        path: "/usuarios/perfil",
-        texto: "Admin. de perfiles",
-        Icono: () => <AppRegistrationIcon />
-    },
+    // {
+    //     path: "/usuarios/perfil",
+    //     texto: "Admin. de perfiles",
+    //     Icono: () => <AppRegistrationIcon />
+    // },
 ]
 
 

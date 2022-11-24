@@ -3,7 +3,7 @@ import { HeaderComponent } from "../../../../../SharedComponents/Header";
 import { Add } from "@mui/icons-material";
 import HistoryIcon from '@mui/icons-material/History';
 import { ControllerDatosContactos } from "../hook/useDatosContactos";
-import { CardContacto } from "../Components/CardContacto";
+import { CardContacto } from "../Components/CardContacto/view/CardContacto";
 import { FrmDatoContacto, typeModal } from "../Components/FrmDatoContacto";
 import { SinInformacion } from "../../../Components/ImgComponents/View/SinInformacion";
 

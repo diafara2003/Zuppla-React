@@ -23,7 +23,10 @@ export const InfSISO = () => {
                     <FormControlLabel
                         sx={styles.formControlLabel}
                         componentsProps={{ typography: { variant: 'body1' } }}
-                        onClick={() => handleChecked("programaSaludOcupacional", state.programaSaludOcupacional)}
+                        onClick={() => {
+                            event?.preventDefault();
+                            handleChecked("programaSaludOcupacional", state.programaSaludOcupacional)
+                        }}
                         control={<Checkbox
                             size="small"
                             tabIndex={-1}
@@ -32,7 +35,10 @@ export const InfSISO = () => {
                         />} label={<Typography variant='body1'>Cuenta con programa de salud ocupacional actualizado</Typography>} />
                     <FormControlLabel
                         sx={styles.formControlLabel}
-                        onClick={() => handleChecked("programaFactoresRiesgo", state.programaFactoresRiesgo)}
+                        onClick={() => {
+                            event?.preventDefault();
+                            handleChecked("programaFactoresRiesgo", state.programaFactoresRiesgo)
+                        }}
                         control={<Checkbox
                             size="small"
                             tabIndex={-1}
@@ -41,7 +47,10 @@ export const InfSISO = () => {
                         />} label="Cuenta con programa de factores de riesgos actualizado enfocado a los procesos que desarrolla en obra" />
                     <FormControlLabel
                         sx={styles.formControlLabel}
-                        onClick={() => handleChecked("tieneComiteSO", state.tieneComiteSO)}
+                        onClick={() => {
+                            event?.preventDefault();
+                            handleChecked("tieneComiteSO", state.tieneComiteSO)
+                        }}
                         control={<Checkbox
                             size="small"
                             tabIndex={-1}
@@ -51,7 +60,10 @@ export const InfSISO = () => {
                         label="Tiene conformado comité paritario de S.O ó vigía S.O" />
                     <FormControlLabel
                         sx={styles.formControlLabel}
-                        onClick={() => handleChecked("programaSeguridadEhigiene", state.programaSeguridadEhigiene)}
+                        onClick={() => {
+                            event?.preventDefault();
+                            handleChecked("programaSeguridadEhigiene", state.programaSeguridadEhigiene)
+                        }}
                         control={<Checkbox
                             tabIndex={-1}
                             checked={state.programaSeguridadEhigiene}
@@ -62,7 +74,10 @@ export const InfSISO = () => {
                     <FormControlLabel
                         sx={styles.formControlLabel}
                         componentsProps={{ typography: { variant: 'body1' } }}
-                        onClick={() => handleChecked("programaAmbiental", state.programaAmbiental)}
+                        onClick={() => {
+                            event?.preventDefault();
+                            handleChecked("programaAmbiental", state.programaAmbiental)
+                        }}
                         control={<Checkbox
                             tabIndex={-1}
                             checked={state.programaAmbiental}

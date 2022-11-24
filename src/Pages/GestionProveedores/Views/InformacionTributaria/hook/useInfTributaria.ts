@@ -28,7 +28,7 @@ export const useInfTributaria = () => {
         }
         const data = await requestAPI<ResponseDTO>(request);
 
-        if (data != null) setState({ ...info, id: data.codigo });
+        if (data != null) setState({ ...state, id: data.codigo, [name]: !value  });
 
     }
 

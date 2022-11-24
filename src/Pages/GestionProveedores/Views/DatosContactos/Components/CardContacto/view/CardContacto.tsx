@@ -1,6 +1,6 @@
-import { Grid, Card, CardHeader, IconButton, CardContent, Box, Typography, Divider, CardActions, ListItemIcon, Menu, MenuItem } from '@mui/material'
-import React, { useState } from 'react'
-import { TerDatosContactoDTO } from '../Model/DatosContactoDTO'
+import { Grid, Card, CardHeader, IconButton, CardContent,  Typography, Divider,  ListItemIcon, Menu, MenuItem } from '@mui/material'
+
+import { TerDatosContactoDTO } from '../../../Model/DatosContactoDTO'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { EditOutlined, MailOutline, LockOutlined, DeleteOutline } from '@mui/icons-material';
 import { ActionContacto } from '../Model/DatosContacto-Model';
@@ -19,25 +19,10 @@ type typeAction = {
 }
 
 
-export const CardContacto = ({ contacto, onChangeAction }: props) => {
+export const CardContacto = (info: props) => {
 
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
+const {anchorEl,contacto,handleClose,open,clickAction} = useCardContacto(info);
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const clickAction = (actionSelect: ActionContacto, contactoSelect: TerDatosContactoDTO) => {
-        debugger
-        onChangeAction({
-            action: actionSelect,
-            contacto: contactoSelect
-        });
-    };
 
     return (
         <Grid item xs={4}>
