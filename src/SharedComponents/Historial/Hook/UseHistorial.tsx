@@ -9,7 +9,7 @@ export const UseHistorial = (TipoAuditoria: TiposAuditoria,idDocumento:number, _
     const [stateAuditoria, setStateAuditoria] = useState<AuditoriaGeneralDTO[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    let _IdDoc =  idDocumento == -1 ? storeUsuario.user.idEmpresa:idDocumento;
+    let _IdDoc =  idDocumento == -1 ? storeUsuario.user.idEmpresa : idDocumento;
 
     const ConsultarHistorial = async () => {        
         setIsLoading(true)

@@ -21,7 +21,7 @@ export const UserLayout = () => {
   const { state } = useLayoutUsuario();
   const typing = useRef<TextFieldProps>(null);
 
-  const { isLoading, dataUserSelect, openD, tipoModal, filter, openHistorial, MostrarHistorial,
+  const { isLoading, dataUserSelect, openD, tipoModal, filter, openHistorial,
     actionUser, newUser, setOpen, handleClickDialogOpenAdd, handleChangeBuscar, OcultarHistorial } = useUsuario();
 
 

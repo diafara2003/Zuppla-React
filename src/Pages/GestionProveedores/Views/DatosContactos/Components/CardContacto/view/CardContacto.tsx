@@ -3,8 +3,10 @@ import { Grid, Card, CardHeader, IconButton, CardContent,  Typography, Divider, 
 import { TerDatosContactoDTO } from '../../../Model/DatosContactoDTO'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { EditOutlined, MailOutline, LockOutlined, DeleteOutline } from '@mui/icons-material';
-import { ActionContacto } from '../Model/DatosContacto-Model';
+
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
+import { useCardContacto } from '../hook/useCardContacto';
+import { ActionContacto } from '../../../Model/DatosContacto-Model';
 type props = {
     contacto: TerDatosContactoDTO,
     // valorDelete: (valorId: number) => void,

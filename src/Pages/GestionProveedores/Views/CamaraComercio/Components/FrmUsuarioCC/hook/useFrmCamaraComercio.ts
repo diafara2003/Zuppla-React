@@ -1,7 +1,8 @@
 import { SelectChangeEvent } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Validationforms } from "../../../../../../../Helper/ValidationForms";
 import { APiMethod, requestAPI, RequestModel } from "../../../../../../../Provider";
+import { AlertContext } from "../../../../../../Menu/context/AlertContext";
 import { validacionFormularioDTO } from "../../../../InformacionGeneral/Model";
 import { INITIAL_VALITACION__CAMARA_COMERCIO_FORM, INITIAL_INFORMACION_CAMARA_COMERCIO, TerCamaraComercioDTO, ValidacionformularioCamaraComercioDTO } from "../../../Model/CamaraComercio";
 
@@ -20,7 +21,7 @@ export const useFrmCamaraComercio = ({ handleSave }: props) => {
     const [dataInitialState, setDataInitialState] = useState<TerCamaraComercioDTO>(INITIAL_INFORMACION_CAMARA_COMERCIO);
     const [isSaving, setIsSaving] = useState(false);
     const [isOpen, setIsOpen] = useState(true);
-
+    const { showAlert, stateAlert } = useContext(AlertContext);
     const handleChange = (event: SelectChangeEvent) => {
 
         setDataInitialState({
@@ -59,6 +60,7 @@ export const useFrmCamaraComercio = ({ handleSave }: props) => {
                 setIsOpen(false);
                 setDataInitialState(info!);
                 handleSave(info);
+                showAlert("Contacto creado exitosamente", "Camara y comercio", "success")
             }
 
             setIsSaving(false);
