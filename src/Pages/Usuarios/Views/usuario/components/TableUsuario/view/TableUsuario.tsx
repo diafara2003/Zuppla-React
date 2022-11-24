@@ -1,7 +1,9 @@
 import { DeleteOutline, EditOutlined, LockOutlined, MailOutline, MoreVert } from '@mui/icons-material';
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton, Switch, Menu, MenuItem, ListItemIcon, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { ActionUser, UsuariosDTO } from '../../../model/usuarioDTO';
 import { useTableUsuario } from '../hook/useTableUsuario';
+import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 type typeAction = {
     action: ActionUser;
     userData: UsuariosDTO;
@@ -10,14 +12,24 @@ type typeAction = {
 
 
 type props = {
-    //datatable: UsuariosDTO[]
+    filter: string,
     onClick: (data: typeAction) => void
 }
 
-export const TableUsuario = ({ onClick }: props) => {
+export const TableUsuario = ({ onClick, filter }: props) => {
 
 
     const { anchorEl, clickAction, clickEstado, handleClick, handleClose, open, state, label } = useTableUsuario({ onClick });
+    const [data, setData] = useState(state);
+
+    useEffect(() => {        
+         const value = filter.toLowerCase();
+         if (value == "") setData(state);
+         else setData(state.filter(c =>
+             c.nombre.toLowerCase().includes(value)
+         ))
+
+    }, [filter,data]);
 
     return (
 
@@ -79,9 +91,7 @@ export const TableUsuario = ({ onClick }: props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {state
-                        //.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((row, index) => {
+                    {data.map((row, index) => {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={`tr${row.id}`}>
                                     <TableCell key={`tdNom${row.id}`}>
@@ -145,6 +155,12 @@ export const TableUsuario = ({ onClick }: props) => {
                                                     <LockOutlined color="primary" />
                                                 </ListItemIcon>
                                                 <Typography>Cambiar contrasena</Typography>
+                                            </MenuItem>
+                                            <MenuItem onClick={() => clickAction(ActionUser.Historial)}>
+                                                <ListItemIcon >
+                                                    <RestoreOutlinedIcon color="primary" />
+                                                </ListItemIcon>
+                                                <Typography>Historial</Typography>
                                             </MenuItem>
                                         </Menu>
                                     </TableCell>

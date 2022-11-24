@@ -2,9 +2,11 @@ import { Grid, Card, CardHeader, IconButton, CardContent,  Typography, Divider, 
 
 import { TerDatosContactoDTO } from '../../../Model/DatosContactoDTO'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { EditOutlined,  DeleteOutline } from '@mui/icons-material';
-import { ActionContacto } from '../../../Model/DatosContacto-Model';
+import { EditOutlined, MailOutline, LockOutlined, DeleteOutline } from '@mui/icons-material';
+
+import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import { useCardContacto } from '../hook/useCardContacto';
+import { ActionContacto } from '../../../Model/DatosContacto-Model';
 type props = {
     contacto: TerDatosContactoDTO,
     // valorDelete: (valorId: number) => void,
@@ -61,6 +63,12 @@ const {anchorEl,contacto,handleClose,open,clickAction,handleClick} = useCardCont
                                         <DeleteOutline color="error" />
                                     </ListItemIcon>
                                     <Typography color="error">Eliminar contacto</Typography>
+                                </MenuItem>
+                                <MenuItem onClick={() => clickAction(ActionContacto.Historial, contacto)}>
+                                    <ListItemIcon>
+                                        <RestoreOutlinedIcon color="primary" />
+                                    </ListItemIcon>
+                                    <Typography color="primary">Historial</Typography>
                                 </MenuItem>
                             </Menu></>
                     }

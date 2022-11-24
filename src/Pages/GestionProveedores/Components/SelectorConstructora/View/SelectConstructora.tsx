@@ -6,7 +6,7 @@ import { SkeletonDinamic } from '../../../../../SharedComponents/Skeleton/view/S
 import { ConstructoraNovDTO } from '../Model/Constructora-Model';
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import NotificationsOffOutlinedIcon from '@mui/icons-material/NotificationsOffOutlined';
-import { display } from '@mui/system';
+
 
 type props = {
     onClick: (data: ConstructoraNovDTO) => void
@@ -14,16 +14,16 @@ type props = {
 
 export const SelectConstructora = ({ onClick }: props) => {
 
-    const [selectedIndex, setSelectedIndex] = useState(0);
-    const { dataConst, isLoading, stateSelectConst, setStateSelectConst } = useSelectConstuctora();
+    const [selectedIndex, setSelectedIndex] = useState<number>();
+    const { dataConst,dataConstCopy, isLoading, stateSelectConst, setStateSelectConst, handleOnChangeFilter } = useSelectConstuctora();
 
     const handleListItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
         index: number,
     ) => {
         setSelectedIndex(index);
-        setStateSelectConst(dataConst[index])
-        onClick(dataConst[index])
+        setStateSelectConst(dataConstCopy[index])
+        onClick(dataConstCopy[index])
     };
 
     return (
@@ -54,8 +54,9 @@ export const SelectConstructora = ({ onClick }: props) => {
                             id="filled-basic"
                             label="Filtrar constructora"
                             variant="outlined"
-                            size='small'
+                            size='small'                            
                             fullWidth
+                            onChange={handleOnChangeFilter}
                             InputProps={{
                                 endAdornment: <InputAdornment position="end"><SearchOutlinedIcon /></InputAdornment>,
                             }}
@@ -64,9 +65,9 @@ export const SelectConstructora = ({ onClick }: props) => {
                         <Divider />
                         <List component="nav" aria-label="main mailbox folders">
                             {
-                                dataConst.length != 0
+                                dataConstCopy.length != 0
                                     ?
-                                    dataConst.map(({ contNotificaciones, nombreConst, constructoraId }, index) => {
+                                    dataConstCopy.map(({ contNotificaciones, nombreConst, constructoraId }, index) => {
                                         return (
                                             <ListItemButton
                                                 key={`constructiraid${constructoraId}`}

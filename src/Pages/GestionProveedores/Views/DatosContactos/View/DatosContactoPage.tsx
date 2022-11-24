@@ -25,17 +25,13 @@ export const DatosContactos = () => {
         { nombre: 'Asesor comercial', id: 5 },
         { nombre: 'Responsable de cartera', id: 6 }
     ];
-    const { dataContactos, isLoading, value, openDelete, valueContacto,
-        handleChange, handleCloseDelete, handleDeleteContacto, dataContactoSelect, actionCardContacto, setNewDatosContactos } = ControllerDatosContactos();
+    const { dataContactos, isLoading, value, openDelete, valueContacto, openHistorial,dataContactoHistorial,OcultarHistorial, MostrarHistorial ,
+        handleChange, handleCloseDelete, handleDeleteContacto, dataContactoSelect, actionCardContacto } = ControllerDatosContactos();
 
     const [open, setOpen] = useState(false);
     const [stateTipoModal, setStateTipoModal] = useState(typeModal.add)
 
-    //Historial
-    const [openHistorial, setOpenHistorial] = useState(false);
-    const MostrarHistorial = () => {
-        setOpenHistorial(true);
-    }
+    
 
     return (
         <>
@@ -91,9 +87,11 @@ export const DatosContactos = () => {
                                                                     if (valor.action == ActionContacto.Delete)
                                                                         actionCardContacto(valor.action);
                                                                     if (valor.action == ActionContacto.Edit) {
-                                                                        setStateTipoModal(typeModal.edit);
-                                                                        console.log(dataContactoSelect.current)
+                                                                        setStateTipoModal(typeModal.edit);                                                                       
                                                                         setOpen(true);
+                                                                    }
+                                                                    if (valor.action == ActionContacto.Historial) {                                                                                                                                             
+                                                                        actionCardContacto(valor.action)
                                                                     }
 
                                                                 }}
@@ -112,9 +110,10 @@ export const DatosContactos = () => {
                     <HistorialComponent
                         _tipoAuditoria={Object.values(TiposAuditoria)[valueContacto]}
                         onClose={(estado) => {
-                            setOpenHistorial(estado);
+                            debugger
+                            OcultarHistorial();
                         }}
-
+                        idDocumento = {dataContactoHistorial?.id}
                     />
             }
 

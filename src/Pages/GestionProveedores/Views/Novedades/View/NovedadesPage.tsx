@@ -6,6 +6,7 @@ import React from 'react';
 import { useState } from 'react';
 import { TransitionProps } from 'react-transition-group/Transition';
 import { HeaderComponent } from '../../../../../SharedComponents/Header'
+import { SkeletonDinamic } from '../../../../../SharedComponents/Skeleton/view/SkeletonDynamic';
 import { SinInformacion } from '../../../Components/ImgComponents/View/SinInformacion';
 import { SelectConstructora } from '../../../Components/SelectorConstructora/View/SelectConstructora';
 import { CardNovedades } from '../Components/CardNovedades/View/CardNovedades';
@@ -22,7 +23,7 @@ const Transition = React.forwardRef(function Transition(
 
 
 export const NovedadesPage = () => {
-  const { dataNovedades, consultarNovedades, handleClose, openDialog, openModal, setIdOpen, setDataNovedades, handleChange, valueTab } = useNovedades();
+  const { isLoading, dataNovedades, consultarNovedades, handleClose, openDialog, openModal, setIdOpen, setDataNovedades, handleChange, valueTab } = useNovedades();
 
 
   return (
@@ -48,43 +49,48 @@ export const NovedadesPage = () => {
             <Tab label="Resueltas" key={"tabResueltas"} />
           </Tabs>
 
-          {dataNovedades.length != 0
-            ? (
-
-              <Box mt={2} style={{ overflow: 'auto', maxHeight: 'calc(100vh - 16rem)' }}>
-                <Stack m={2} spacing={2}>
-                  {dataNovedades.map((_novedad, index) => {
-                    if (_novedad.ischecked == undefined) _novedad.ischecked = false;
-                    return (
-
-                      < CardNovedades
-                        key={`cardNovidad${_novedad.numero}`}
-                        novedad={_novedad}
-                        numNovedad={(index + 1)
-                        }
-
-                        clickFinaliza={(_number) => {
-                          setDataNovedades(dataNovedades.map(c => {
-
-                            if (c.numero == _number) c.ischecked = true;
-
-                            return c
-                          }));
-                          setIdOpen(_number);
-                          openModal();
-                        }} />
-
-                    )
-                  })
-                  }
-                </Stack>
+          {
+            isLoading ?
+              <Box m={3}>
+                <SkeletonDinamic NoColumnas={1} NoFilas={4} Tipo={'formulario'} />
               </Box>
+              :
+              dataNovedades.length != 0
+                ? (
+                  <Box mt={2} style={{ overflow: 'auto', maxHeight: 'calc(100vh - 16rem)' }}>
+                    <Stack m={2} spacing={2}>
+                      {dataNovedades.map((_novedad, index) => {
+                        if (_novedad.ischecked == undefined) _novedad.ischecked = false;
+                        return (
 
-            )
-            :
-            <Box mt={2} justifyContent={'center'} display={'flex'}>
-              <SinInformacion />
-            </Box>
+                          < CardNovedades
+                            key={`cardNovidad${_novedad.numero}`}
+                            novedad={_novedad}
+                            numNovedad={(index + 1)
+                            }
+
+                            clickFinaliza={(_number) => {
+                              setDataNovedades(dataNovedades.map(c => {
+
+                                if (c.numero == _number) c.ischecked = true;
+
+                                return c
+                              }));
+                              setIdOpen(_number);
+                              openModal();
+                            }} />
+
+                        )
+                      })
+                      }
+                    </Stack>
+                  </Box>
+
+                )
+                :
+                <Box mt={2} justifyContent={'center'} display={'flex'}>
+                  <SinInformacion />
+                </Box>
           }
         </Grid>
       </Grid>
@@ -93,7 +99,10 @@ export const NovedadesPage = () => {
         open={openDialog}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        onClose={(event, reason) => {
+          if (reason !== 'backdropClick' && reason !== 'escapeKeyDown')
+            handleClose
+        }}
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle fontWeight={600} color={'inherit'}>{"Notificar a la constructora"}</DialogTitle>

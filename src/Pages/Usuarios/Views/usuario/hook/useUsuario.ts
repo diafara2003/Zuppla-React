@@ -9,9 +9,21 @@ import { ActionUser, CambiarEstadoUsuarioDTO, UsuarioIdDTO, UsuariosDTO } from "
 import { UserContext } from "../store/StoreUsuario";
 
 export const useUsuario = () => {
+    //Historial
+    const [openHistorial, setOpenHistorial] = useState(false);
+    const MostrarHistorial = () => {
+        setOpenHistorial(true);
+    }
+    const OcultarHistorial = () => {
+        setOpenHistorial(false);
+    }
 
     const { showAlert } = useContext(AlertContext);
-
+    const [filter, setfilter] = useState("")
+    const handleChangeBuscar = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        setfilter(value)
+    }
     const { data, isLoading, setState } = useFetch<UsuariosDTO[] | null>();
     const [openDelete, setOpenDelete] = useState(false);
 
@@ -55,7 +67,9 @@ export const useUsuario = () => {
             case ActionUser.Pass:
                 resetPassword();
                 break;
-            case ActionUser.New:
+            case ActionUser.Historial:
+                debugger
+                MostrarHistorial()
             default:
                 break;
         }
@@ -120,8 +134,8 @@ export const useUsuario = () => {
     }
 
     return {
-        isLoading, data, openDelete, dataUserSelect, openD, tipoModal,
-        handleCloseDelete, newUser, actionUser, handleClickDialogOpenAdd, handleClickDialogOpenEdit, setOpen
+        isLoading, data, openDelete, dataUserSelect, openD, tipoModal, filter,openHistorial, handleChangeBuscar,
+        handleCloseDelete, newUser, actionUser, handleClickDialogOpenAdd, handleClickDialogOpenEdit, setOpen,MostrarHistorial,OcultarHistorial
     }
 
 }

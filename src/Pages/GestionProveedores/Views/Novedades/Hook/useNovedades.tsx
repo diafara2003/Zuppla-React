@@ -10,6 +10,7 @@ export const useNovedades = () => {
     const [valueTab, setValue] = useState(0);
     const [idOpen, setIdOpen] = useState(0);
     const [dataRequest, setDataRequest] = useState<NovedadDTO[]>([]);
+    const [isLoading, setIsLoading] = useState(false)
 
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -17,6 +18,7 @@ export const useNovedades = () => {
     };
 
     const consultarNovedades = async (_constructora: ConstructoraNovDTO) => {
+        setIsLoading(true)
         const request: RequestModel = {
             metodo: `Novedad/constructora?constructora=${_constructora.constructoraId}`,
             type: APiMethod.GET
@@ -28,7 +30,7 @@ export const useNovedades = () => {
             setDataRequest(response!);
             setDataNovedades(response!.filter(c => c.isActiva == Boolean(valueTab-1)));
         }
-
+        setIsLoading(false)
     }
 
     const cambiarEstado = async () => {
@@ -84,5 +86,5 @@ export const useNovedades = () => {
 
 
 
-    return { consultarNovedades, dataNovedades, handleClose, openDialog, openModal, setIdOpen, setDataNovedades, handleChange, valueTab }
+    return { isLoading,consultarNovedades, dataNovedades, handleClose, openDialog, openModal, setIdOpen, setDataNovedades, handleChange, valueTab }
 }

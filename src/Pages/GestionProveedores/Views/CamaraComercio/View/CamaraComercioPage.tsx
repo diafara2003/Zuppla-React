@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Skeleton, Typography } from "@mui/material"
+import { Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Grid, InputAdornment, Skeleton, TextField, Typography } from "@mui/material"
 import { HeaderComponent } from "../../../../../SharedComponents/Header";
 import { Add } from "@mui/icons-material";
 import HistoryIcon from '@mui/icons-material/History';
@@ -10,9 +10,12 @@ import { useState } from "react";
 import { HistorialComponent } from "../../../../../SharedComponents/Historial/View/HistorialComponent";
 import { TiposAuditoria } from "../../../../../SharedComponents/Historial/Model/Historial-Model";
 import { SinInformacion } from "../../../Components/ImgComponents/View/SinInformacion";
+import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/SkeletonDynamic";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 export const CamaraComercioPage = () => {
 
-    const { dataCamara, isLoading, openDelete, handleCloseDelete, handleDeleteCamara, setDataIdDelete, setOpenDelete, openNew, setOpenNew, newUser } = useCamaraComercio();
+    const {dataCamaraCopy, isLoading, openDelete, handleCloseDelete, handleDeleteCamara, setDataIdDelete,
+        setOpenDelete, openNew, setOpenNew, newUser, handleOnChangeFilter } = useCamaraComercio();
     //Muestra el historial
     const [openHistorial, setOpenHistorial] = useState(false);
 
@@ -27,21 +30,40 @@ export const CamaraComercioPage = () => {
                 !openHistorial
                     ?
                     <Box sx={{ width: '100%' }}>
-                        <Box display={"flex"} justifyContent={"end"} pt={1} pr={2}>
-                            <Button onClick={() => setOpenNew(() => true)} sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar usuario</Button>
-                            <Button variant="text" onClick={MostrarHistorial}> <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                        <Box display={"flex"} justifyContent={"end"} pt={3} pr={2}>
+                            <Box >
+                                <TextField sx={{ marginBottom: '1rem' }}
+                                    id="filled-basic"
+                                    label="Filtrar contacto"
+                                    variant="outlined"
+                                    size='small'
+                                    onChange={handleOnChangeFilter}
+                                    InputProps={{
+                                        endAdornment: <InputAdornment position="end"><SearchOutlinedIcon /></InputAdornment>,
+                                    }}
+                                />
+                            </Box>
+                            <Box    >
+                                <Button onClick={() => setOpenNew(() => true)} sx={{ ml: "20px" }} variant="text" > <Add sx={{ mr: "8px" }} />Agregar usuario</Button>
+                            </Box>
+
+                            <Box >
+                                <Button variant="text" onClick={MostrarHistorial}> <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
+                            </Box>
+
                         </Box>
                         <Box m={"30px"} mt={"25px"}>
                             {isLoading ?
-                                <><Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} />
-                                    <Skeleton animation='wave' height={"40px"} /> <Skeleton animation='wave' height={"40px"} /><Skeleton animation='wave' height={"40px"} /></>
+                                <>
+                                    <SkeletonDinamic NoColumnas={1} NoFilas={6} Tipo={"table"} />
+                                </>
                                 :
-                                dataCamara.length == 0
+                                dataCamaraCopy.length == 0
                                     ? <Box justifyContent={'center'} display={'flex'}>
                                         <SinInformacion />
                                     </Box>
                                     : <TableCamaraComercio
-                                        datatable={dataCamara!}
+                                        datatable={dataCamaraCopy!}
                                         onDelete={(valor) => {
                                             setDataIdDelete(valor)
                                             setOpenDelete(true)

@@ -14,13 +14,25 @@ export const ControllerDatosContactos = () => {
   const [openDelete, setOpenDelete] = React.useState(false);
   const { showAlert, stateAlert } = useContext(AlertContext);
   const [dataContactos, setDataState] = useState<TerDatosContactoDTO[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  // const [dataDeleteId, setDataDeleteId] = useState<number>(-1);
+  const [isLoading, setIsLoading] = useState(true);  
 
   const dataContactoSelect = useRef<TerDatosContactoDTO>()
   const [newDatosContacto, setNewDatosContactos] = useState<TerDatosContactoDTO>()
   const [dataEditContacto, setDataEditContact] = useState<TerDatosContactoDTO>()
 
+  //Historial
+  const [dataContactoHistorial, setDataContactoHistorial] = useState<TerDatosContactoDTO>()
+  const [openHistorial, setOpenHistorial] = useState(false);
+  const MostrarHistorial = () => {
+    setOpenHistorial(true);
+  }
+  const OcultarHistorial = () => {
+    setOpenHistorial(false);
+    debugger
+    setDataContactoHistorial(INITIAL_STATE_CONTACTO)
+    dataContactoSelect.current = undefined;
+  }  
+  //historial
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -52,6 +64,10 @@ export const ControllerDatosContactos = () => {
         break;
       case ActionContacto.Edit:
         handleAddEditContact(contacto!, ActionContacto.Edit);
+        break;
+      case ActionContacto.Historial:
+        setDataContactoHistorial(dataContactoSelect.current)
+        MostrarHistorial();
         break;
 
       default:
@@ -129,8 +145,8 @@ export const ControllerDatosContactos = () => {
   }, [value])
 
   return {
-    dataContactos, isLoading, value, openDelete, dataEditContacto, valueContacto, stateAlert,
-    handleChange, handleCloseDelete, handleDeleteContacto, dataContactoSelect, actionCardContacto, setNewDatosContactos
+    dataContactos, isLoading, value, openDelete,dataContactoHistorial, dataEditContacto, valueContacto, stateAlert, openHistorial, OcultarHistorial,
+    handleChange, handleCloseDelete, handleDeleteContacto, dataContactoSelect, actionCardContacto, setNewDatosContactos, MostrarHistorial
 
   }
 }
