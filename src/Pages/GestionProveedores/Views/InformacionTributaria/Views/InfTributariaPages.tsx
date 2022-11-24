@@ -8,12 +8,12 @@ export const InfTributariaPages = () => {
 
   const styles = {
     formControlLabel: {
-      height: 30,
-      "&:hover": {
-        background: "#e9eff4"
-      }
+        height: 30,
+        "&:hover": {
+            background: "#e9eff4"
+        }
     }
-  };
+};
 
   return (
     <Grid container>
@@ -25,9 +25,13 @@ export const InfTributariaPages = () => {
 
         <FormGroup>
           <FormControlLabel
+            key={"txt_responsableIVA"}
             sx={styles.formControlLabel}
             componentsProps={{ typography: { variant: 'body1' } }}
-            onClick={() => handleChecked("responsableIVA", state.responsableIVA)}
+            onClick={() => {
+              event?.preventDefault();
+              handleChecked("responsableIVA", state.responsableIVA)
+            }}
             control={<Checkbox
               tabIndex={-1}
               checked={state.responsableIVA}
@@ -37,9 +41,13 @@ export const InfTributariaPages = () => {
 
 
           <FormControlLabel
+            key={"txt_autorretenedor"}
             sx={styles.formControlLabel}
             componentsProps={{ typography: { variant: 'body1' } }}
-            onClick={() => handleChecked("autorretenedor", state.autorretenedor)}
+            onClick={() => {
+              event?.preventDefault();
+              handleChecked("autorretenedor", state.autorretenedor)
+            }}
             control={<Checkbox
               tabIndex={-1}
               checked={state.autorretenedor}
@@ -49,9 +57,15 @@ export const InfTributariaPages = () => {
 
 
           <FormControlLabel
+            key={"txt_declarante"}
             sx={styles.formControlLabel}
             componentsProps={{ typography: { variant: 'body1' } }}
-            onClick={() => handleChecked("declarante", state.declarante)}
+            onClick={() => {
+
+              event?.preventDefault();
+              handleChecked("declarante", state.declarante)
+            }
+            }
             control={<Checkbox
               tabIndex={-1}
               checked={state.declarante}
@@ -60,9 +74,13 @@ export const InfTributariaPages = () => {
             label={<Typography variant='body1'>¿Es declarente?</Typography>} />
 
           <FormControlLabel
+            key={"txt_granContribuyente"}
             sx={styles.formControlLabel}
             componentsProps={{ typography: { variant: 'body1' } }}
-            onClick={() => handleChecked("granContribuyente", state.granContribuyente)}
+            onClick={() => {
+              event?.preventDefault();
+              handleChecked("granContribuyente", state.granContribuyente)
+            }}
             control={<Checkbox
               tabIndex={-1}
               checked={state.granContribuyente}
@@ -71,13 +89,18 @@ export const InfTributariaPages = () => {
             label={<Typography variant='body1'>¿Es gran contribuyente?</Typography>} />
 
           <FormControlLabel
+            key={"txt_autoRetenedorICA"}
             sx={styles.formControlLabel}
             componentsProps={{ typography: { variant: 'body1' } }}
-            onClick={() => handleChecked("autoRetenedorICA", state.autoRetenedorICA)}
+            onClick={() => {
+              event?.preventDefault();
+              handleChecked("autoRetenedorICA", state.autoRetenedorICA)
+
+            }}
             control={<Checkbox
               tabIndex={-1}
               checked={state.autoRetenedorICA}
-              disableRipple
+
             />}
             label={<Typography variant='body1'>¿Es auto retenedor ICA?</Typography>} />
 

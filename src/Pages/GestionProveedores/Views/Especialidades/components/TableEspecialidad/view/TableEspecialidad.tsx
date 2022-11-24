@@ -19,7 +19,7 @@ export const TableEspecialidad = ({ filter }: props) => {
 
 
     return (
-        <TableContainer sx={{ maxHeight: 440 }}>
+        <TableContainer sx={{ maxHeight: 'calc(100vh - 220px)' }}>
 
             <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
