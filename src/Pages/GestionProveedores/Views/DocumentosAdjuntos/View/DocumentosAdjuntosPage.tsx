@@ -61,7 +61,7 @@ export const DocumentosAdjuntosPage = () => {
   }
   return (
     <>
-      <HeaderComponent title={"Documentos adjuntos"} />
+     <HeaderComponent title={`${openHistorial ? 'Historial' : ''} Documentos adjuntos`} />
       {
         !openHistorial ?
           <Box sx={{ width: '100%' }}>

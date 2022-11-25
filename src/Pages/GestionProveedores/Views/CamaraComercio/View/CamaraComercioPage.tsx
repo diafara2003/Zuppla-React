@@ -14,7 +14,7 @@ import { SkeletonDinamic } from "../../../../../SharedComponents/Skeleton/view/S
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 export const CamaraComercioPage = () => {
 
-    const {dataCamaraCopy, isLoading, openDelete, handleCloseDelete, handleDeleteCamara, setDataIdDelete,
+    const { dataCamaraCopy, isLoading, openDelete, handleCloseDelete, handleDeleteCamara, setDataIdDelete,
         setOpenDelete, openNew, setOpenNew, newUser, handleOnChangeFilter } = useCamaraComercio();
     //Muestra el historial
     const [openHistorial, setOpenHistorial] = useState(false);
@@ -81,7 +81,13 @@ export const CamaraComercioPage = () => {
             }
 
 
-            {openNew ? <FrmUsuarioCC handleSave={newUser} /> : null}
+            {openNew ?
+                <FrmUsuarioCC
+                    handleSave={newUser}
+                    onClose={(estado)=>{
+                        setOpenNew(estado);
+                    }}
+                /> : null}
 
             {/* Dialog de eliminacion */}
             <Dialog
