@@ -3,58 +3,39 @@ import React, { useState } from 'react'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { UseHistorial } from '../Hook/UseHistorial';
 import { AuditoriaGeneralDTO, TiposAuditoria } from '../Model/Historial-Model';
-import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
-import RedoOutlinedIcon from '@mui/icons-material/RedoOutlined';
-import UndoOutlinedIcon from '@mui/icons-material/UndoOutlined';
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import CircleIcon from '@mui/icons-material/Circle';
 import { Stack } from '@mui/system';
 import { CardModificacion } from '../Components/CardModificacion';
 import { SinInformacion } from '../../../Pages/GestionProveedores/Components/ImgComponents/View/SinInformacion';
 import { CardInsercion } from '../Components/CardInsercion';
 import { CardEliminacion } from '../Components/CardEliminacion';
 import { SkeletonDinamic } from '../../Skeleton/view/SkeletonDynamic';
+
+
 type props = {
   onClose: (estado: boolean) => void,
   _tipoAuditoria: TiposAuditoria,
   idDocumento? :number
 }
-export const HistorialComponent = ({ onClose, _tipoAuditoria, idDocumento }: props) => {
-  let _isNew = true;
-  let _isDelete = false;
 
-  const { stateAuditoria, setStateTipo, isLoading } = UseHistorial(_tipoAuditoria,idDocumento ?? -1, _isDelete, _isNew)
-  const [valueTab, setValueTab] = useState(0);
 
-  const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
-    //TAB INSERCION
-    if (newValue == 0) {
-      setStateTipo({ isDelete: false, isNew: true })
-    }
-    //TAB MODIFICACION
-    if (newValue == 1) {
-      setStateTipo({ isDelete: false, isNew: false })
-    }
-    //TAB ELIMINACION
-    if (newValue == 2) {
-      setStateTipo({ isDelete: true, isNew: false })
-    }
-    setValueTab(newValue);
-  };
+export const HistorialComponent = (info: props) => {
+  
+
+  const { stateAuditoria, setStateTipo, isLoading,valueTab,handleChangeTab } = UseHistorial(info)
 
   const cerrarHistorial = () => {
-    onClose(false);
+    info.onClose(false);
   }
-  const renderSwitch = (_auditoria: AuditoriaGeneralDTO) => {
+  const renderSwitch = (_auditoria: AuditoriaGeneralDTO,i:number) => {
     switch (valueTab) {
       case 0:
-        return <CardInsercion auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />
+        return <CardInsercion key={`card-auditoria-i-${i}`} auditoria={_auditoria} _tipoAuditoria={info._tipoAuditoria} />
         break;
       case 1:
-        return <CardModificacion auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />
+        return <CardModificacion key={`card-auditoria-u-${i}`} auditoria={_auditoria} _tipoAuditoria={info._tipoAuditoria} />
         break;
       case 2:
-        return <CardEliminacion auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />
+        return <CardEliminacion key={`card-auditoria-d-${i}`} auditoria={_auditoria} _tipoAuditoria={info._tipoAuditoria} />
         break;
 
       default:
@@ -90,8 +71,8 @@ export const HistorialComponent = ({ onClose, _tipoAuditoria, idDocumento }: pro
               :
               stateAuditoria.length != 0
                 ?
-                stateAuditoria.map((_audit) => {
-                  return (<> {renderSwitch(_audit)}</>)
+                stateAuditoria.map((_audit,i) => {
+                  return (<Box key={`div-auditoria-${i}`}> {renderSwitch(_audit,i)}</Box>)
                 })
                 :
                 <Box mt={2} justifyContent={'center'} display={'flex'}>
