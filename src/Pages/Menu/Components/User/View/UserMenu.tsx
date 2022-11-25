@@ -1,4 +1,4 @@
-import { Avatar, Box, Menu, MenuItem, Divider, ListItemIcon, Typography, IconButton } from '@mui/material';
+import { Avatar, Box, Menu, MenuItem, Divider, ListItemIcon, Typography, Badge, styled, BadgeProps, IconButton } from '@mui/material';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { useState } from 'react';
 import { Logout, ExpandMore } from '@mui/icons-material';
@@ -6,9 +6,22 @@ import { Logout, ExpandMore } from '@mui/icons-material';
 import { useMenuUser } from '../hook/useMenuUser';
 
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
+import { useMenuNotificacion } from '../hook/useMenuNotificacion';
+
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+    "& .MuiBadge-badge": {
+        right: 30,
+        top: 1,
+        color: 'white',
+        padding: "0 4px",
+    }
+}));
 
 export const UserMenu = () => {
     const { user, signOut, stringAvatar, changePassword } = useMenuUser();
+    const { countNotificacion } = useMenuNotificacion();
+
+
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -20,24 +33,23 @@ export const UserMenu = () => {
         setAnchorEl(null);
     };
 
-
-
     return (
         <Box display={'flex'} alignItems={"center"} >
-            <NotificationsActiveIcon sx={{ marginRight: '10px' }} color="inherit" />
+            <IconButton color='inherit'>
+                <StyledBadge badgeContent={3} color="warning">
+                    <NotificationsActiveIcon />
+                </StyledBadge>
+            </IconButton>
+
             <IconButton
                 onClick={handleClick}
-                size="small"
-                sx={{ ml: 2 }}
-                aria-controls={open ? 'account-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
+                size="small"                
             >
-                 <Avatar onClick={handleClick} id="basic-button"  {...stringAvatar()} />
+                <Avatar id="basic-button"  {...stringAvatar()} />
             </IconButton>
             {/* <Avatar onClick={handleClick} id="basic-button"  {...stringAvatar()} />
             <ExpandMore color="inherit" /> */}
-
+            
             <Box>
                 <Menu
                     anchorEl={anchorEl}

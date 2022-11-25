@@ -1,9 +1,8 @@
 
 
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, Slide, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,  Grid, Slide, Tab, Tabs, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
-import { useState } from 'react';
 import { TransitionProps } from 'react-transition-group/Transition';
 import { HeaderComponent } from '../../../../../SharedComponents/Header'
 import { SkeletonDinamic } from '../../../../../SharedComponents/Skeleton/view/SkeletonDynamic';
