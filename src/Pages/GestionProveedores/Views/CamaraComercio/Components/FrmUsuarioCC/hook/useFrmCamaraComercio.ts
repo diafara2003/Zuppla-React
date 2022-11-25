@@ -12,10 +12,11 @@ type inputFormulario = {
 
 
 type props = {
-    handleSave: (data: TerCamaraComercioDTO) => void
+    handleSave: (data: TerCamaraComercioDTO) => void,
+    onClose: (estado: boolean) => void
 }
 
-export const useFrmCamaraComercio = ({ handleSave }: props) => {
+export const useFrmCamaraComercio = ({ handleSave,onClose }: props) => {
 
     const [validation, setValidation] = useState<ValidacionformularioCamaraComercioDTO>(INITIAL_VALITACION__CAMARA_COMERCIO_FORM);
     const [dataInitialState, setDataInitialState] = useState<TerCamaraComercioDTO>(INITIAL_INFORMACION_CAMARA_COMERCIO);
@@ -61,6 +62,7 @@ export const useFrmCamaraComercio = ({ handleSave }: props) => {
                 setDataInitialState(info!);
                 handleSave(info);
                 showAlert("Contacto creado exitosamente", "Camara y comercio", "success")
+                onClose(false)
             }
 
             setIsSaving(false);
@@ -69,6 +71,7 @@ export const useFrmCamaraComercio = ({ handleSave }: props) => {
         else {
             setValidation({ ...validation, [validacionCampos.name]: validacionCampos.property })
         }
+        
     }
 
     const validaCamposInfGeneral = (): validacionFormularioDTO => {

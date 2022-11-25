@@ -19,9 +19,9 @@ type props = {
 
 
 export const HistorialComponent = (info: props) => {
-  
+  const {_tipoAuditoria} = info
 
-  const { stateAuditoria, setStateTipo, isLoading,valueTab,handleChangeTab } = UseHistorial(info)
+  const { stateAuditoria, isLoading,valueTab,handleChangeTab } = UseHistorial({...info,idDocumento : info.idDocumento ?? -1})
 
   const cerrarHistorial = () => {
     info.onClose(false);
@@ -29,15 +29,11 @@ export const HistorialComponent = (info: props) => {
   const renderSwitch = (_auditoria: AuditoriaGeneralDTO,i:number) => {
     switch (valueTab) {
       case 0:
-        return <CardInsercion key={`card-auditoria-i-${i}`} auditoria={_auditoria} _tipoAuditoria={info._tipoAuditoria} />
-        break;
+        return <CardInsercion key={`card-auditoria-i-${i}`} auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />        
       case 1:
-        return <CardModificacion key={`card-auditoria-u-${i}`} auditoria={_auditoria} _tipoAuditoria={info._tipoAuditoria} />
-        break;
+        return <CardModificacion key={`card-auditoria-u-${i}`} auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />        
       case 2:
-        return <CardEliminacion key={`card-auditoria-d-${i}`} auditoria={_auditoria} _tipoAuditoria={info._tipoAuditoria} />
-        break;
-
+        return <CardEliminacion key={`card-auditoria-d-${i}`} auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />      
       default:
         break;
     }

@@ -1,21 +1,30 @@
 import { Grid, InputLabel, MenuItem, Select, TextField, FormControl, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { useFrmCamaraComercio } from '../hook/useFrmCamaraComercio';
 import { TerCamaraComercioDTO } from '../../../Model/CamaraComercio';
-
+import { LoadingButton } from '@mui/lab';
+import SaveIcon from '@mui/icons-material/Save';
 
 type props = {
-    handleSave: (data: TerCamaraComercioDTO) => void
+    handleSave: (data: TerCamaraComercioDTO) => void,
+    onClose: (estado: boolean) => void
 }
 
 export const FrmUsuarioCC = (data: props) => {
 
     const { validation, dataInitialState, onInputChange, handleChange, isOpen, setIsOpen, handleGuardar } = useFrmCamaraComercio(data);
+    const cerrarDialog = () => {
+        setIsOpen(false)
+        data.onClose(false)
+    }
     return (
         <>
 
             <Dialog
                 open={isOpen}
-                onClose={() => setIsOpen(!isOpen)}
+                onClose={(event, reason) => {
+                    if (reason !== 'backdropClick' && reason !== 'escapeKeyDown')
+                        cerrarDialog()
+                }}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
                 maxWidth={"md"}
@@ -33,7 +42,7 @@ export const FrmUsuarioCC = (data: props) => {
                         p={1}>
 
                         <Grid item xs={6}>
-                        <FormControl fullWidth size="small">
+                            <FormControl fullWidth size="small">
                                 <InputLabel id="demo-select-small">Tipo documento</InputLabel>
                                 <Select
                                     size="small"
@@ -93,10 +102,15 @@ export const FrmUsuarioCC = (data: props) => {
                     </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <Button variant="outlined" onClick={() => setIsOpen(false)} >Cancelar</Button>
-                    <Button variant="contained" color="primary" onClick={handleGuardar} autoFocus >
+                    <Button variant="outlined" onClick={cerrarDialog} >Cancelar</Button>
+                    <LoadingButton
+                        endIcon={<SaveIcon />}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleGuardar}
+                    >
                         Guardar
-                    </Button>
+                    </LoadingButton>
                 </DialogActions>
             </Dialog>
 
