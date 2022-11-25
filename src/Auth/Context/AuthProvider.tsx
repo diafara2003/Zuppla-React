@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: Props) => {
     }
 
     useEffect(() => {
-debugger;
+
         if (storeUsuario.token != "" && storeUsuario.token != null)
             getNotificacion();
     }, [storeUsuario])

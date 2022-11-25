@@ -1,5 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Skeleton, Tab, Tabs, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import { Box, Button,  Grid, Tab, Tabs} from '@mui/material'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { UseHistorial } from '../Hook/UseHistorial';
 import { AuditoriaGeneralDTO, TiposAuditoria } from '../Model/Historial-Model';
