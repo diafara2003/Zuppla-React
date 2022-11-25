@@ -1,6 +1,5 @@
 import { KeyboardBackspaceOutlined, Add } from '@mui/icons-material'
 import { Box, Button, TextField, InputAdornment, TextFieldProps, Grid } from '@mui/material'
-import { NuevaEspecialidad } from '../components/NuevaEspecialidad'
 import { TableEspecialidad } from '../components/TableEspecialidad'
 import { useEspecilidadContainer } from '../hook/useEspecilidadContainer'
 import SearchIcon from '@mui/icons-material/Search';
@@ -9,6 +8,7 @@ import { useRef, useState } from 'react'
 import { HistorialComponent } from '../../../../../SharedComponents/Historial/View/HistorialComponent'
 import { TiposAuditoria } from '../../../../../SharedComponents/Historial/Model/Historial-Model'
 import { SinInformacion } from '../../../Components/ImgComponents/View/SinInformacion'
+import { NuevaEspecialidad } from '../Components/NuevaEspecialidad';
 
 export const EspecilidadContainer = () => {
     const typing = useRef<TextFieldProps>(null);

@@ -1,4 +1,4 @@
-import { Avatar, Box, Menu, MenuItem, Divider, ListItemIcon, Typography } from '@mui/material';
+import { Avatar, Box, Menu, MenuItem, Divider, ListItemIcon, Typography, IconButton } from '@mui/material';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { useState } from 'react';
 import { Logout, ExpandMore } from '@mui/icons-material';
@@ -25,9 +25,18 @@ export const UserMenu = () => {
     return (
         <Box display={'flex'} alignItems={"center"} >
             <NotificationsActiveIcon sx={{ marginRight: '10px' }} color="inherit" />
-
-            <Avatar onClick={handleClick} id="basic-button"  {...stringAvatar()} />
-            <ExpandMore color="inherit" />
+            <IconButton
+                onClick={handleClick}
+                size="small"
+                sx={{ ml: 2 }}
+                aria-controls={open ? 'account-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+            >
+                 <Avatar onClick={handleClick} id="basic-button"  {...stringAvatar()} />
+            </IconButton>
+            {/* <Avatar onClick={handleClick} id="basic-button"  {...stringAvatar()} />
+            <ExpandMore color="inherit" /> */}
 
             <Box>
                 <Menu
