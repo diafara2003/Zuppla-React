@@ -30,42 +30,26 @@ export const UserMenu = () => {
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         if (event == undefined) return;
-        setAnchorEl((event as React.MouseEvent<HTMLElement>).currentTarget);
+        setAnchorEl((event as React.MouseEvent<HTMLElement>).currentTarget);        
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
 
-    //Menu notificaciones
-    const [anchorElNov, setAnchorElNov] = useState<null | HTMLElement>(null);
-    const openNov = Boolean(anchorElNov);
-
-    const handleClickNov = (event: React.MouseEvent<HTMLElement>) => {
-        debugger
-        if (event == undefined) return;        
-        setAnchorElNov((event as React.MouseEvent<HTMLElement>).currentTarget);
-    };
- 
     return (
         <Box display={'flex'} alignItems={"center"} >
-            <IconButton color='inherit'
-                onClick={handleClickNov}>
-                <StyledBadge badgeContent={total} color="warning">
-                    <NotificationsActiveIcon />
-                </StyledBadge>
-            </IconButton>
-
+            <MenuNovedad />
             <IconButton
                 onClick={handleClick}
                 size="small"
             >
                 <Avatar id="basic-button"  {...stringAvatar()} />
-            </IconButton> 
+            </IconButton>
             <Box>
                 <Menu
                     anchorEl={anchorEl}
                     id="account-menu"
-                    open={open}
+                    open={Boolean(anchorEl)}
                     onClose={handleClose}
                     onClick={handleClose}
                     PaperProps={{
@@ -116,8 +100,8 @@ export const UserMenu = () => {
                     </MenuItem>
                     <Divider />
                     <MenuItem onClick={() => {
-                        setAnchorEl(null);
                         changePassword();
+                        setAnchorEl(null);
                     }}>
                         <ListItemIcon>
                             <VpnKeyOutlinedIcon fontSize="small" />
@@ -135,13 +119,6 @@ export const UserMenu = () => {
                     </MenuItem>
                 </Menu>
             </Box>
-            <Box>
-                <MenuNovedad
-                    openMenu={anchorElNov}
-                />
-            </Box>
-
-
         </Box >
     )
 }

@@ -81,6 +81,7 @@ export default function RoutesGestionProveedores() {
             <Route path="/DocumentosAdjuntos" element={<DocumentosAdjuntosPage />} />
             <Route path="/CamaraComercio" element={<CamaraComercioPage />} />
             <Route path="/Novedades" element={<NovedadesPage />} />
+            <Route path="/Novedades/:id" element={<NovedadesPage />} />
             <Route path="/Especialidades" element={<EspecialidadesPage />} />
 
             <Route path="/*" element={<Navigate to="/gestionproveedor/InfGeneral" />}></Route>

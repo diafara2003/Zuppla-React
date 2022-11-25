@@ -2,12 +2,21 @@ import { Menu, Box, Tabs, Tab, MenuItem, ListItemIcon, IconButton, Badge, Typogr
 import React, { useState } from 'react'
 import { useMenuNotificacion } from '../../User/hook/useMenuNotificacion';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import { useNavigate } from 'react-router-dom';
 
 type props = {      
-    openMenu : HTMLElement|null
+    openMenu? : HTMLElement|null
   }
 
 export const MenuNovedad = ({openMenu}:props) => {
+    const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+        "& .MuiBadge-badge": {
+            right: 30,
+            top: 1,
+            color: 'white',
+            padding: "0 4px",
+        }
+    }));
     const StyledBadgeTab = styled(Badge)<BadgeProps>(({ theme }) => ({
         "& .MuiBadge-badge": {
             right: 0,
@@ -16,12 +25,11 @@ export const MenuNovedad = ({openMenu}:props) => {
             padding: "",
         }
     }));
-
+   
     const { total, totalProveedores, totalLicitaciones, notificacionesLicitacion, notificacionesProveedor } = useMenuNotificacion();
-debugger
     //Menu notificaciones
-    const [anchorElNov, setAnchorElNov] = useState<null | HTMLElement>(openMenu);
-    let openNov = Boolean(openMenu);
+    const [anchorElNov, setAnchorElNov] = useState<null | HTMLElement>(null);
+    
     
     const handleClickNov = (event: React.MouseEvent<HTMLElement>) => {
         if (event == undefined) return;
@@ -34,12 +42,19 @@ debugger
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
-    
+    const navigate = useNavigate();
     return (
+        <>
+         <IconButton color='inherit'
+                onClick={handleClickNov}>
+                <StyledBadge badgeContent={total} color="warning">
+                    <NotificationsActiveIcon />
+                </StyledBadge>
+            </IconButton>
         <Menu
             anchorEl={anchorElNov}
             id="account-menu"
-            open={openNov}
+            open={ Boolean(anchorElNov)}          
             onClose={handleCloseNov}
             PaperProps={{
                 elevation: 0,
@@ -86,9 +101,13 @@ debugger
                     <Box sx={{ maxHeight: '500px', overflow: 'auto' }}>
                         {notificacionesProveedor.length > 0
                             ?
-                            notificacionesProveedor.map(({ contNotificaciones, nombreConst }) => {
+                            notificacionesProveedor.map(({ contNotificaciones, nombreConst,constructoraId }) => {
                                 return (
-                                    <MenuItem>
+                                    <MenuItem onClick={()=>{  
+                                        handleCloseNov();                                     
+                                        navigate(`/gestionproveedor/Novedades/${constructoraId}`, {replace:true});
+                                       
+                                    }}>
                                         <ListItemIcon>
                                             <IconButton color='inherit'
                                                 onClick={handleClickNov}>
@@ -131,5 +150,6 @@ debugger
                     </Box>
             }
         </Menu>
+        </>
     )
 }
