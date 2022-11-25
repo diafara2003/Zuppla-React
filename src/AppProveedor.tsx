@@ -3,8 +3,7 @@ import { AppRouter } from './router/AppRouter'
 import { AuthProvider } from './Auth';
 import { BrowserRouter } from 'react-router-dom';
 import { Suspense } from 'react';
-import { Backdrop, CircularProgress } from '@mui/material';
-import { AlertPortal } from './SharedComponents/Alert';
+import { Backdrop } from '@mui/material';
 
 export const AppProveedor = () => {
     return (

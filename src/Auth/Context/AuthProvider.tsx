@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }: Props) => {
         datos.total = response!.length;
 
 
-        setNotificacion(datos);
+        setNotificacion(()=>datos);
     }
 
     const eliminarNovedad = (consstructora: number, tipo: tipoNovedad) => {
