@@ -21,7 +21,7 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 
 export const UserMenu = () => {
     const { user, signOut, stringAvatar, changePassword } = useMenuUser();
-    const { countNotificacion } = useMenuNotificacion();
+    const { total } = useMenuNotificacion();
 
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -40,7 +40,7 @@ export const UserMenu = () => {
     return (
         <Box display={'flex'} alignItems={"center"} >
             <IconButton sx={{ marginRight: '10px' }} color='inherit'>
-                <StyledBadge badgeContent={countNotificacion} color="warning">
+                <StyledBadge badgeContent={total} color="warning">
                     <NotificationsActiveIcon   />
                 </StyledBadge>
             </IconButton>

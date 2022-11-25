@@ -6,4 +6,18 @@ export interface NotificacionDTO {
     tipo: tipoNovedad;
 }
 
-export type tipoNovedad =  "Proveddores" | "Licitaciones" ;
+export interface NotificacionTotalDTO {
+
+    total: number;
+    notificacionesProveedor:NotificacionDTO[];
+    notificacionesLicitacion:NotificacionDTO[];
+
+}
+
+export const INITIAL_STATE_NOTIFICACION: NotificacionTotalDTO = {
+    notificacionesLicitacion: [],
+    notificacionesProveedor: [],
+    total: 0
+}
+
+export type tipoNovedad = "Proveedor" | "Licitacion";
