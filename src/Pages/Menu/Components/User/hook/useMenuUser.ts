@@ -23,7 +23,11 @@ export const useMenuUser = () => {
 
         setUser(user);
 
+
+
     }, []);
+
+    
 
     const stringAvatar = () => {
 

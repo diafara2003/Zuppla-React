@@ -1,7 +1,8 @@
 
 
-import { useReducer } from 'react'
-import { AuthContextProps, INITIAL_STATE, UserSessionModel } from '../model/AuthModel'
+import { useReducer, useState } from 'react'
+import { requestAPI, APiMethod } from '../../Provider'
+import { AuthContextProps, INITIAL_STATE, UserSessionModel, NotificacionDTO, tipoNovedad } from '../model'
 import { AuthContext } from './AuthContext'
 import { authReducer } from './AuthReducer'
 
@@ -14,10 +15,12 @@ interface Props {
 export const AuthProvider = ({ children }: Props) => {
 
     const [storeUsuario, dispatch] = useReducer(authReducer, INITIAL_STATE);
+    const [notificacion, setNotificacion] = useState<NotificacionDTO[]>([]);
 
     const addSession = (data: AuthContextProps) => {
 
         dispatch({ type: 'addSession', payload: data });
+        getNotificacion();
     }
 
 
@@ -32,9 +35,31 @@ export const AuthProvider = ({ children }: Props) => {
     }
 
 
+
+    const getNotificacion = async () => {
+debugger;
+        const data = await requestAPI<NotificacionDTO[]>({
+            metodo: `Novedad/ConsultarNovedad`,
+            type: APiMethod.GET,
+        });
+
+
+        if (data != null) setNotificacion(data!);
+
+
+    }
+
+    const eliminarNovedad = (consstructora: number, tipo: tipoNovedad) => {
+
+
+    }
+
+
     return (
         <AuthContext.Provider value={{
             storeUsuario,
+            notificacion,
+            eliminarNovedad,
             // Methods
             addSession,
             removeSession,

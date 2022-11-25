@@ -1,4 +1,4 @@
-import { Avatar, Box, Menu, MenuItem, Divider, ListItemIcon, Typography } from '@mui/material';
+import { Avatar, Box, Menu, MenuItem, Divider, ListItemIcon, Typography, Badge, styled, BadgeProps, IconButton } from '@mui/material';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { useState } from 'react';
 import { Logout, ExpandMore } from '@mui/icons-material';
@@ -6,9 +6,24 @@ import { Logout, ExpandMore } from '@mui/icons-material';
 import { useMenuUser } from '../hook/useMenuUser';
 
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
+import { useMenuNotificacion } from '../hook/useMenuNotificacion';
+
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+
+    "& .MuiBadge-badge": {
+        right: 30,
+        top: 1,
+        color: 'white',
+        padding: "0 4px",
+    }
+
+}));
 
 export const UserMenu = () => {
     const { user, signOut, stringAvatar, changePassword } = useMenuUser();
+    const { countNotificacion } = useMenuNotificacion();
+
+
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -24,7 +39,11 @@ export const UserMenu = () => {
 
     return (
         <Box display={'flex'} alignItems={"center"} >
-            <NotificationsActiveIcon sx={{ marginRight: '10px' }} color="inherit" />
+            <IconButton sx={{ marginRight: '10px' }} color='inherit'>
+                <StyledBadge badgeContent={countNotificacion} color="warning">
+                    <NotificationsActiveIcon   />
+                </StyledBadge>
+            </IconButton>
 
             <Avatar onClick={handleClick} id="basic-button"  {...stringAvatar()} />
             <ExpandMore color="inherit" />
