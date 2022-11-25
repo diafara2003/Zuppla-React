@@ -7,9 +7,9 @@ import './styles/scroll.css'
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ThemeProvider theme={theme}>
       <AppProveedor />
     </ThemeProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 )

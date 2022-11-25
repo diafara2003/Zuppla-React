@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }: Props) => {
         datos.totalProveedores = cantTotalNotifiProve;
         datos.totalLicitaciones = cantTotalNotifiLici;
 
-        setNotificacion(datos);
+        setNotificacion(()=>datos);
     }
 
     const eliminarNovedad = (consstructora: number, tipo: tipoNovedad) => {
