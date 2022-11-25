@@ -1,4 +1,4 @@
-import { Avatar, Box, Menu, MenuItem, Divider, ListItemIcon, Typography, Badge, styled, BadgeProps, IconButton } from '@mui/material';
+import { Avatar, Box, Menu, MenuItem, Divider, ListItemIcon, Typography, Badge, styled, BadgeProps, IconButton, Tabs, Tab } from '@mui/material';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { useState } from 'react';
 import { Logout, ExpandMore } from '@mui/icons-material';
@@ -7,6 +7,8 @@ import { useMenuUser } from '../hook/useMenuUser';
 
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 import { useMenuNotificacion } from '../hook/useMenuNotificacion';
+import { SinInformacion } from '../../../../GestionProveedores/Components/ImgComponents/View/SinInformacion';
+import { MenuNovedad } from '../../NovedadMenu/View/MenuNovedad';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     "& .MuiBadge-badge": {
@@ -17,9 +19,10 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     }
 }));
 
+
 export const UserMenu = () => {
     const { user, signOut, stringAvatar, changePassword } = useMenuUser();
-    const { countNotificacion } = useMenuNotificacion();
+    const { total, totalProveedores, totalLicitaciones, notificacionesLicitacion, notificacionesProveedor } = useMenuNotificacion();
 
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -33,23 +36,31 @@ export const UserMenu = () => {
         setAnchorEl(null);
     };
 
+    //Menu notificaciones
+    const [anchorElNov, setAnchorElNov] = useState<null | HTMLElement>(null);
+    const openNov = Boolean(anchorElNov);
+
+    const handleClickNov = (event: React.MouseEvent<HTMLElement>) => {
+        debugger
+        if (event == undefined) return;        
+        setAnchorElNov((event as React.MouseEvent<HTMLElement>).currentTarget);
+    };
+ 
     return (
         <Box display={'flex'} alignItems={"center"} >
-            <IconButton color='inherit'>
-                <StyledBadge badgeContent={3} color="warning">
+            <IconButton color='inherit'
+                onClick={handleClickNov}>
+                <StyledBadge badgeContent={total} color="warning">
                     <NotificationsActiveIcon />
                 </StyledBadge>
             </IconButton>
 
             <IconButton
                 onClick={handleClick}
-                size="small"                
+                size="small"
             >
                 <Avatar id="basic-button"  {...stringAvatar()} />
-            </IconButton>
-            {/* <Avatar onClick={handleClick} id="basic-button"  {...stringAvatar()} />
-            <ExpandMore color="inherit" /> */}
-            
+            </IconButton> 
             <Box>
                 <Menu
                     anchorEl={anchorEl}
@@ -103,10 +114,7 @@ export const UserMenu = () => {
                         </Box>
 
                     </MenuItem>
-
-
                     <Divider />
-
                     <MenuItem onClick={() => {
                         setAnchorEl(null);
                         changePassword();
@@ -116,9 +124,7 @@ export const UserMenu = () => {
                         </ListItemIcon>
                         <Typography >  Cambiar contraseña</Typography>
                     </MenuItem>
-
                     <Divider />
-
                     <MenuItem
                         onClick={signOut}
                     >
@@ -129,6 +135,12 @@ export const UserMenu = () => {
                     </MenuItem>
                 </Menu>
             </Box>
+            <Box>
+                <MenuNovedad
+                    openMenu={anchorElNov}
+                />
+            </Box>
+
 
         </Box >
     )

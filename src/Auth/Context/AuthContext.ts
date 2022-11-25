@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { NotificacionDTO, tipoNovedad } from '../model';
+import { INITIAL_STATE_NOTIFICACION, NotificacionTotalDTO, tipoNovedad } from '../model';
 import { AuthContextProps, INITIAL_STATE, UserSessionModel } from '../model/AuthModel';
 
 export interface IAuthContext {
@@ -8,7 +8,7 @@ export interface IAuthContext {
     eliminarNovedad: (consstructora: number, tipo: tipoNovedad) => void,
     removeSession: () => void,
     storeUsuario: AuthContextProps,
-    notificacion: NotificacionDTO[]
+    notificacion: NotificacionTotalDTO
 
 
 }
@@ -21,7 +21,7 @@ const INITIAL_CONTEXT: IAuthContext = {
     eliminarNovedad: (consstructora: number, tipo: tipoNovedad) => { },
     storeUsuario: INITIAL_STATE,
     removeSession: () => { },
-    notificacion: []
+    notificacion: INITIAL_STATE_NOTIFICACION
 }
 
 

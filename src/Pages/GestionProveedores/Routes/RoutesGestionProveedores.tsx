@@ -51,7 +51,7 @@ export const rutas: NavigationModel[] = [
     {
         path: "/gestionproveedor/Novedades",
         texto: "Novedades",
-        Icono: () => <Badge color="primary" badgeContent={2}>
+        Icono: () => <Badge color="warning" badgeContent={2}>
             < NotificationsNoneOutlinedIcon />
         </Badge>
     }

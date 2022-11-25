@@ -75,7 +75,7 @@ export const SelectConstructora = ({ onClick }: props) => {
                                                 onClick={(event) => handleListItemClick(event, index)}
                                             >
                                                 <ListItemIcon sx={{ ml: 2 }} key={`Const_${constructoraId}`}>
-                                                    <Badge badgeContent={Number(contNotificaciones)} color="info" >
+                                                    <Badge badgeContent={Number(contNotificaciones)} color="warning" >
                                                         {
                                                             Number(contNotificaciones) > 0
                                                                 ?
