@@ -40,7 +40,7 @@ export const UseHistorial = ({_tipoAuditoria,idDocumento}:props) => {
 
 
     useEffect(() => {
-        setDocumento(idDocumento);
+        setDocumento(idDocumento == -1 ? storeUsuario.user.idEmpresa : idDocumento);
         setStateTipo({ isDelete: false, isNew: true })
     }, [idDocumento])
 
