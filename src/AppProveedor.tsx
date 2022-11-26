@@ -1,7 +1,7 @@
 
 import { AppRouter } from './router/AppRouter'
 import { AuthProvider } from './Auth';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Backdrop } from '@mui/material';
 
@@ -17,9 +17,9 @@ export const AppProveedor = () => {
                     {/* <CircularProgress color="inherit" /> */}
                 </Backdrop>
             }>
-                <BrowserRouter>
+                <HashRouter>
                     <AppRouter />
-                </BrowserRouter>
+                </HashRouter>
             </Suspense>
         </AuthProvider>
     )
