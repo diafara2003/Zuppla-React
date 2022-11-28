@@ -102,7 +102,7 @@ export default function LoginPages() {
 
                     <Grid container >
                         <Grid item xs justifyContent={"end"} display={"flex"}>
-                            <Link href="recuperarclave" variant="body2">
+                            <Link href="#/recuperarclave" variant="body2">
                                 ¿Recordar contraseña?
                             </Link>
                         </Grid>
