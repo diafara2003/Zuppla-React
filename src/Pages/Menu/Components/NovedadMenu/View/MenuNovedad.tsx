@@ -54,7 +54,7 @@ export const MenuNovedad = ({openMenu}:props) => {
         <Menu
             anchorEl={anchorElNov}
             id="account-menu"
-            open={ Boolean(anchorElNov)}          
+            open={Boolean(anchorElNov)}          
             onClose={handleCloseNov}
             PaperProps={{
                 elevation: 0,

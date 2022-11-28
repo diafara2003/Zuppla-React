@@ -45,7 +45,6 @@ export const DocumentosAdjuntosPage = () => {
   const options = [
     { nombre: 'Documentos generales', id: 1 },
     { nombre: 'Documentos por empresa', id: 2 },
-
   ];
   const [value, setValue] = React.useState(0);
 

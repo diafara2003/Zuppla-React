@@ -12,6 +12,9 @@ import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import { FolderOutlined } from '@mui/icons-material';
+import { useMenuNotificacion } from '../../Menu/Components/User/hook/useMenuNotificacion';
+
+
 export const rutas: NavigationModel[] = [
     {
         path: "/gestionproveedor/InfGeneral",
@@ -51,12 +54,11 @@ export const rutas: NavigationModel[] = [
     {
         path: "/gestionproveedor/Novedades",
         texto: "Novedades",
-        Icono: () => <Badge color="warning" badgeContent={2}>
+        Icono: () => <Badge color="warning" badgeContent={0}>
             < NotificationsNoneOutlinedIcon />
         </Badge>
     }
 ]
-
 
 
 const InformacionGeneralPage = lazy(() => import('../../GestionProveedores/Views/InformacionGeneral/View/InformacionGeneralPage'));
