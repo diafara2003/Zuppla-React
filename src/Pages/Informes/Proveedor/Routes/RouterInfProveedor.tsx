@@ -24,15 +24,12 @@ const InfFacturas = lazy(() => import('../Components/Facturas/view/InfFacturas')
 export default function RouterInfProveedor() {
     return (
         <Routes>
-            <Route path="/" element={<InfCompras />} />
-            <Route path="/proveedor" element={<InfFacturas />} />
-
-
+          
             <Route path="/proveedor/compra" element={<InfCompras />} />
             <Route path="/proveedor/facturas" element={<InfFacturas />} />
 
 
-            {/* <Route path="/*" element={<Navigate to="informes/proveedor/compra" />}></Route> */}
+            <Route path="/*" element={<Navigate to="/informes/proveedor/compra" />}></Route>
         </Routes>
     )
 }
