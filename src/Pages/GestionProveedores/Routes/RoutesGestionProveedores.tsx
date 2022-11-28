@@ -6,7 +6,6 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { Badge } from '@mui/material';
 import BusinessOutlinedIcon from '@mui/icons-material/BusinessOutlined';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
-import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
