@@ -22,14 +22,6 @@ export const TableUsuario = ({ onClick, filter }: props) => {
     const { anchorEl, clickAction, clickEstado, handleClick, handleClose, open, state, label } = useTableUsuario({ onClick });
     const [data, setData] = useState(state);
 
-    useEffect(() => {        
-         const value = filter.toLowerCase();
-         if (value == "") setData(state);
-         else setData(state.filter(c =>
-             c.nombre.toLowerCase().includes(value)
-         ))
-
-    }, [filter,data]);
 
     return (
 
@@ -91,7 +83,9 @@ export const TableUsuario = ({ onClick, filter }: props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.map((row, index) => {
+                    {state
+                        .filter(c => c.nombre.toLowerCase().includes(filter.toLowerCase()))
+                        .map((row, index) => {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={`tr${row.id}`}>
                                     <TableCell key={`tdNom${row.id}`}>
