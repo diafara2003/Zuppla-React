@@ -1,6 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import { HeaderComponent } from "../../../../../../SharedComponents/Header"
 import { InfSincoApi } from "../../../../../../SharedComponents/InfApiSinco";
+import { TipoInformeApiSincoDTO } from "../../../../../../SharedComponents/InfApiSinco/model/modelInfAPiSinco";
 
 export const InfCompras = () => {
     return (
@@ -16,7 +17,7 @@ export const InfCompras = () => {
                     p={1}
                     >
                     <Grid item xs={12}>
-                        <InfSincoApi />
+                        <InfSincoApi tipo={TipoInformeApiSincoDTO.OrdenCompra} />
                     </Grid>
 
                 </Grid>

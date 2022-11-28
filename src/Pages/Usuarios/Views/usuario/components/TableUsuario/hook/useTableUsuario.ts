@@ -36,7 +36,7 @@ export const useTableUsuario = ({ onClick }: props) => {
         setAnchorEl(null);
     };
     const clickAction = (action: ActionUser) => {
-        debugger
+        
         onClick({ action: action, userData: userDataSelect! });
     }
     const clickEstado = (event: React.ChangeEvent<HTMLInputElement>, _user: UsuariosDTO, _index: number) => {

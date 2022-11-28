@@ -1,17 +1,22 @@
 import { TableCell, TableHead, TableRow } from '@mui/material'
-import React from 'react'
+import { columnas } from '../../model/modelInfAPiSinco';
 
-export const ApiSincoHeader = () => {
+type props = {
+
+    columnas: columnas[];
+}
+
+export const ApiSincoHeader = ({ columnas }: props) => {
     return (
         <TableHead>
             <TableRow>
-                <TableCell>Orden de compra</TableCell>
-                <TableCell align="right">Fecha generación</TableCell>
-                <TableCell align="right">Fecha máxima de entrega</TableCell>
-                <TableCell align="right">Valor</TableCell>
-                <TableCell align="right">% de entrega</TableCell>
-                <TableCell align="right">Estado</TableCell>
-                <TableCell align="right">Detalle</TableCell>
+
+                {columnas.map(c =>
+                    <TableCell
+                        align={c.align}
+                        key={`thead-informe-${c.key}`}
+                    >{c.nombre}
+                    </TableCell>)}
             </TableRow>
         </TableHead>
     )
