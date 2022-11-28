@@ -15,6 +15,7 @@ export const useUsuario = () => {
         setOpenHistorial(true);
     }
     const OcultarHistorial = () => {
+        dataUserSelect.current = undefined;
         setOpenHistorial(false);
     }
 
@@ -68,7 +69,7 @@ export const useUsuario = () => {
                 resetPassword();
                 break;
             case ActionUser.Historial:
-                debugger
+                
                 MostrarHistorial()
             default:
                 break;

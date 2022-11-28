@@ -10,16 +10,13 @@ type props = {
   }
 
 
-export const UseHistorial = ({_tipoAuditoria,idDocumento}:props) => {
+export const UseHistorial = ({_tipoAuditoria,idDocumento,}:props) => {
     const { storeUsuario } = useContext(AuthContext);
     const [stateTipo, setStateTipo] = useState<TiposHistorial>({ isDelete: false, isNew: true })
     const [stateAuditoria, setStateAuditoria] = useState<AuditoriaGeneralDTO[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const [valueTab, setValueTab] = useState(0);
-
-  
-
+    const [valueTab, setValueTab] = useState(-1);
     const [documento, setDocumento] = useState( idDocumento == -1 ? storeUsuario.user.idEmpresa : idDocumento);
 
     const ConsultarHistorial = async () => {        

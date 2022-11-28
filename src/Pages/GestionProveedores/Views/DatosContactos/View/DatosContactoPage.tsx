@@ -25,13 +25,13 @@ export const DatosContactos = () => {
         { nombre: 'Asesor comercial', id: 5 },
         { nombre: 'Responsable de cartera', id: 6 }
     ];
-    const { dataContactos, isLoading, value, openDelete, valueContacto, openHistorial,dataContactoHistorial,OcultarHistorial, MostrarHistorial ,
+    const { dataContactos, isLoading, value, openDelete, valueContacto, openHistorial, dataContactoHistorial, OcultarHistorial, MostrarHistorial,
         handleChange, handleCloseDelete, handleDeleteContacto, dataContactoSelect, actionCardContacto } = ControllerDatosContactos();
 
     const [open, setOpen] = useState(false);
     const [stateTipoModal, setStateTipoModal] = useState(typeModal.add)
 
-    
+
 
     return (
         <>
@@ -47,8 +47,8 @@ export const DatosContactos = () => {
                                     setStateTipoModal(typeModal.add);
                                 }}
                                 startIcon={<Add color="primary" />}
-                                >
-                               Agregar nuevo contacto</Button>
+                            >
+                                Agregar nuevo contacto</Button>
                             <Button variant="text" onClick={MostrarHistorial} > <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
                         </Box>
                         <Box>
@@ -87,10 +87,10 @@ export const DatosContactos = () => {
                                                                     if (valor.action == ActionContacto.Delete)
                                                                         actionCardContacto(valor.action);
                                                                     if (valor.action == ActionContacto.Edit) {
-                                                                        setStateTipoModal(typeModal.edit);                                                                       
+                                                                        setStateTipoModal(typeModal.edit);
                                                                         setOpen(true);
                                                                     }
-                                                                    if (valor.action == ActionContacto.Historial) {                                                                                                                                             
+                                                                    if (valor.action == ActionContacto.Historial) {
                                                                         actionCardContacto(valor.action)
                                                                     }
 
@@ -109,15 +109,15 @@ export const DatosContactos = () => {
                     :
                     <HistorialComponent
                         _tipoAuditoria={Object.values(TiposAuditoria)[valueContacto]}
+                        idDocumento={dataContactoHistorial.id}
+                        mostrarInsercion={dataContactoHistorial.id != -1 ? true : false}
+                        mostrarModificacion={dataContactoHistorial.id != -1 ? true : false}
                         onClose={(estado) => {
                             debugger
                             OcultarHistorial();
                         }}
-                        idDocumento = {dataContactoHistorial?.id}
                     />
             }
-
-
 
             {/* Dialog EDIT - NEW */}
             {open ?

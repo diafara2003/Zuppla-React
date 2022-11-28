@@ -22,7 +22,7 @@ export const UserLayout = () => {
   const typing = useRef<TextFieldProps>(null);
 
   const { isLoading, dataUserSelect, openD, tipoModal, filter, openHistorial,
-    actionUser, newUser, setOpen, handleClickDialogOpenAdd, handleChangeBuscar, OcultarHistorial } = useUsuario();
+    actionUser, newUser, setOpen, handleClickDialogOpenAdd, handleChangeBuscar, OcultarHistorial,MostrarHistorial } = useUsuario();
 
 
 
@@ -60,6 +60,7 @@ export const UserLayout = () => {
                   }}
                   label="Buscar..." variant="outlined" />
                 <Button sx={{ ml: "20px" }} variant="text" onClick={handleClickDialogOpenAdd} > <Add sx={{ mr: "8px" }} />Agregar usuario</Button>
+                <Button variant="text" onClick={MostrarHistorial}> <HistoryIcon sx={{ mr: "8px" }} />Historial</Button>
               </Box>
               {
                 state?.length != 0 ?

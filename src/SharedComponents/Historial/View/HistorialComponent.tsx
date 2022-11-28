@@ -1,4 +1,4 @@
-import { Box, Button,  Grid, Tab, Tabs} from '@mui/material'
+import { Box, Button, Grid, Tab, Tabs } from '@mui/material'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { UseHistorial } from '../Hook/UseHistorial';
 import { AuditoriaGeneralDTO, TiposAuditoria } from '../Model/Historial-Model';
@@ -13,26 +13,29 @@ import { SkeletonDinamic } from '../../Skeleton/view/SkeletonDynamic';
 type props = {
   onClose: (estado: boolean) => void,
   _tipoAuditoria: TiposAuditoria,
-  idDocumento? :number
+  idDocumento?: number,
+  mostrarInsercion?: boolean,
+  mostrarModificacion?: boolean,
+  mostrarEliminacion?: boolean,
 }
 
 
 export const HistorialComponent = (info: props) => {
-  const {_tipoAuditoria} = info
-
-  const { stateAuditoria, isLoading,valueTab,handleChangeTab } = UseHistorial({...info,idDocumento : info.idDocumento ?? -1})
+  const { _tipoAuditoria } = info
+  const { mostrarInsercion, mostrarEliminacion, mostrarModificacion } = info
+  const { stateAuditoria, isLoading, valueTab, handleChangeTab } = UseHistorial({ ...info, idDocumento: info.idDocumento ?? -1 })
 
   const cerrarHistorial = () => {
     info.onClose(false);
   }
-  const renderSwitch = (_auditoria: AuditoriaGeneralDTO,i:number) => {
+  const renderSwitch = (_auditoria: AuditoriaGeneralDTO, i: number) => {
     switch (valueTab) {
       case 0:
-        return <CardInsercion key={`card-auditoria-i-${i}`} auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />        
+        return <CardInsercion key={`card-auditoria-i-${i}`} auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />
       case 1:
-        return <CardModificacion key={`card-auditoria-u-${i}`} auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />        
+        return <CardModificacion key={`card-auditoria-u-${i}`} auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />
       case 2:
-        return <CardEliminacion key={`card-auditoria-d-${i}`} auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />      
+        return <CardEliminacion key={`card-auditoria-d-${i}`} auditoria={_auditoria} _tipoAuditoria={_tipoAuditoria} />
       default:
         break;
     }
@@ -46,9 +49,9 @@ export const HistorialComponent = (info: props) => {
             onChange={handleChangeTab}
             sx={{ borderBottom: 1, borderColor: 'divider' }}
             aria-label="">
-            <Tab label="Agregado" key={"tabAgregado"} />
-            <Tab label="Modificado" key={"tabModificado"} />
-            <Tab label="Eliminado" key={"tabEliminado"} />
+            <Tab disabled={mostrarInsercion != undefined ? !mostrarInsercion : false} label="Agregado" key={"tabAgregado"} />
+            <Tab disabled={mostrarModificacion != undefined ? !mostrarModificacion : false} label="Modificado" key={"tabModificado"} />
+            <Tab disabled={mostrarEliminacion != undefined ? !mostrarEliminacion : false} label="Eliminado" key={"tabEliminado"} />
           </Tabs>
         </Grid>
         <Grid item xl={2} lg={2} >
@@ -58,22 +61,29 @@ export const HistorialComponent = (info: props) => {
         </Grid>
       </Grid>
       <Box mt={2} ml={25} mr={25} sx={{ overflow: 'auto', maxHeight: 'calc(100vh - 15rem)' }}>
+        {
+
+        }
         <Stack m={2} spacing={2}>
           {
-            isLoading
-              ?
-              <SkeletonDinamic NoColumnas={1} NoFilas={3} Tipo={'table'} />
+            valueTab == -1 ?
+              <Box mt={2} justifyContent={'center'} display={'flex'}>
+                <SinInformacion />
+              </Box>
               :
-              stateAuditoria.length != 0
+              isLoading
                 ?
-                stateAuditoria.map((_audit,i) => {
-                  return (<Box key={`div-auditoria-${i}`}> {renderSwitch(_audit,i)}</Box>)
-                })
+                <SkeletonDinamic NoColumnas={1} NoFilas={3} Tipo={'table'} />
                 :
-                <Box mt={2} justifyContent={'center'} display={'flex'}>
-                  <SinInformacion />
-                </Box>
-
+                stateAuditoria.length != 0
+                  ?
+                  stateAuditoria.map((_audit, i) => {
+                    return (<Box key={`div-auditoria-${i}`}> {renderSwitch(_audit, i)}</Box>)
+                  })
+                  :
+                  <Box mt={2} justifyContent={'center'} display={'flex'}>
+                    <SinInformacion />
+                  </Box>
           }
         </Stack>
       </Box>

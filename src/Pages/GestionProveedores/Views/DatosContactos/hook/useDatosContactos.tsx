@@ -21,7 +21,7 @@ export const ControllerDatosContactos = () => {
   const [dataEditContacto, setDataEditContact] = useState<TerDatosContactoDTO>()
 
   //Historial
-  const [dataContactoHistorial, setDataContactoHistorial] = useState<TerDatosContactoDTO>()
+  const [dataContactoHistorial, setDataContactoHistorial] = useState<TerDatosContactoDTO>(INITIAL_STATE_CONTACTO)
   const [openHistorial, setOpenHistorial] = useState(false);
   const MostrarHistorial = () => {
     setOpenHistorial(true);
@@ -66,7 +66,7 @@ export const ControllerDatosContactos = () => {
         handleAddEditContact(contacto!, ActionContacto.Edit);
         break;
       case ActionContacto.Historial:
-        setDataContactoHistorial(dataContactoSelect.current)
+        setDataContactoHistorial(dataContactoSelect.current!)
         MostrarHistorial();
         break;
 
@@ -96,8 +96,9 @@ export const ControllerDatosContactos = () => {
 
 
   const handleAddEditContact = async (_contacto: TerDatosContactoDTO, tipoAction: ActionContacto) => {
-    debugger
+  
     setIsLoading(true)
+    tipoAction == ActionContacto.New ? _contacto.isNew =true :  _contacto.isNew =false
     const request: RequestModel = {
       metodo: `TercerosGI/GuardaDatosContacto`,
       type: APiMethod.POST,
