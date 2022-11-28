@@ -6,12 +6,12 @@ import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutl
 
 export const rutas: NavigationModel[] = [
     {
-        path: "proveedor/compra",
+        path: "/informes/proveedor/compra",
         texto: "Ordenes compra",
         Icono: () => <InsertDriveFileOutlinedIcon />
     },
     {
-        path: "proveedor/facturas",
+        path: "/informes/proveedor/facturas",
         texto: "Facturas",
         Icono: () => <InsertDriveFileOutlinedIcon />
     },
@@ -24,11 +24,15 @@ const InfFacturas = lazy(() => import('../Components/Facturas/view/InfFacturas')
 export default function RouterInfProveedor() {
     return (
         <Routes>
-            <Route path="proveedor/compra" element={<InfCompras />} />
-            <Route path="proveedor/facturas" element={<InfFacturas />} />
+            <Route path="/" element={<InfCompras />} />
+            <Route path="/proveedor" element={<InfFacturas />} />
 
 
-            <Route path="/*" element={<Navigate to="proveedor/compra" />}></Route>
+            <Route path="/proveedor/compra" element={<InfCompras />} />
+            <Route path="/proveedor/facturas" element={<InfFacturas />} />
+
+
+            {/* <Route path="/*" element={<Navigate to="informes/proveedor/compra" />}></Route> */}
         </Routes>
     )
 }
