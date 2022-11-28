@@ -45,9 +45,11 @@ export const routes: Route[] = [
     },
 
     {
-        path: "/seguridad/*",
-        Component: lazy(() => import(/* webpackChunkName: "seguridad" */"../Pages/SeguridadYPrivacidad/view/SeguridadPrivacidadPages"))
+        path: "/informes/*",
+        Component: lazy(() => import(/* webpackChunkName: "informes" */"../Pages/Informes/Proveedor/view/InfProveedorPages"))
     }
+
+
 
 
 ]
