@@ -1,5 +1,5 @@
 import { TableCell, TableHead, TableRow } from '@mui/material'
-import { columnas } from '../../model/modelInfAPiSinco';
+import { columnas } from '../../../model/modelInfAPiSinco';
 
 type props = {
 

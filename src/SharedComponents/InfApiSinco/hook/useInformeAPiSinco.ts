@@ -6,6 +6,7 @@ import { APiMethod, requestAPI } from "../../../Provider";
 export const useInformeAPiSinco = (tipo: TipoInformeApiSincoDTO) => {
 
     const [state, setState] = useState<InformeAPiSIncoDTOResponse>(INITIAL_InformeAPiSIncoDTOResponse);
+    const [loading, setLoading] = useState(true);
 
     const consultarInfo = async () => {
 
@@ -19,9 +20,7 @@ export const useInformeAPiSinco = (tipo: TipoInformeApiSincoDTO) => {
                 fechai: '',
                 no: '',
                 solicitud: 0,
-
             },
-
         };
 
         const response = await requestAPI<InformeAPiSIncoDTOResponse>({
@@ -32,13 +31,16 @@ export const useInformeAPiSinco = (tipo: TipoInformeApiSincoDTO) => {
 
         if (response != null)
             setState(response);
+
+            setLoading(false);
     }
 
 
     useEffect(() => { consultarInfo(); }, []);
 
     return {
-        state
+        state,
+        loading
     }
 
 }
