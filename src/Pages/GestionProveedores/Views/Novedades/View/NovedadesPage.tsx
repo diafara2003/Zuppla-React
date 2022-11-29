@@ -29,7 +29,7 @@ export const NovedadesPage = () => {
     <>
       <HeaderComponent title={"Novedades"} />
       <Grid container spacing={4} p={2} pr={2}>
-        <Grid mt={2} item xs={2} md={3} sx={{ borderRight: "1px solid #e9e9e9",overflow: 'auto', maxHeight: 'calc(100vh - 160px)' }}>
+        <Grid mt={2} item xs={2} md={3} sx={{ borderRight: "1px solid #e9e9e9",overflow: 'auto', height: 'calc(100vh - 160px)' }}>
           <SelectConstructora
             onClick={(dataConst) => {
               consultarNovedades(dataConst);

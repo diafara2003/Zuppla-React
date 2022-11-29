@@ -116,7 +116,7 @@ export const DocumentosAdjuntosPage = () => {
             </TabPanel>
             <TabPanel value={value} index={1}>
               <Grid container spacing={1} >
-                <Grid mt={2} item xs={2} md={3} sx={{ borderRight: "1px solid #e9e9e9", overflow: 'auto', maxHeight: 'calc(100vh - 257px)' }}>
+                <Grid mt={2} item xs={2} md={3} sx={{ borderRight: "1px solid #e9e9e9", overflow: 'auto', height: 'calc(100vh - 257px)' }}>
                   <SelectConstructora
                     onClick={(dataConst) => {
                       setDataConst(dataConst)
