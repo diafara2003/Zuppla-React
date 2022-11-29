@@ -64,7 +64,7 @@ export const UserLayout = () => {
               </Box>
               {
                 state?.length != 0 ?
-                  <Box m={"10px"} mt={"25px"} sx={{ overflow: 'auto', maxHeight: 'calc(100vh - 17rem)' }}>
+                  <Box m={"10px"} mt={"25px"} sx={{ overflow: 'auto', maxHeight: 'calc(100vh - 16rem)' }}>
                     {state == null
                       ?
                       <CircularProgress color="inherit" />

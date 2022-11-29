@@ -25,7 +25,7 @@ export const TableUsuario = ({ onClick, filter }: props) => {
 
     return (
 
-        <TableContainer sx={{ maxHeight: 440 }}>
+        <TableContainer>
             <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                     <TableRow>
