@@ -116,7 +116,7 @@ export const DocumentosAdjuntosPage = () => {
             </TabPanel>
             <TabPanel value={value} index={1}>
               <Grid container spacing={1} >
-                <Grid mt={2} item xs={2} md={3} sx={{ borderRight: "1px solid #e9e9e9" }}>
+                <Grid mt={2} item xs={2} md={3} sx={{ borderRight: "1px solid #e9e9e9", overflow: 'auto', maxHeight: 'calc(100vh - 257px)' }}>
                   <SelectConstructora
                     onClick={(dataConst) => {
                       setDataConst(dataConst)
@@ -139,9 +139,9 @@ export const DocumentosAdjuntosPage = () => {
                             {dataAdjPorConst?.map((DocAdjunto) => {
                               return (
                                 <Card variant='outlined'>
-                                  <CardHeader                                  
-                                    title={ <Typography fontWeight={600} variant={'subtitle1'}>{DocAdjunto.nombreEspecialidad}</Typography>}                                    
-                                   
+                                  <CardHeader
+                                    title={<Typography fontWeight={600} variant={'subtitle1'}>{DocAdjunto.nombreEspecialidad}</Typography>}
+
                                   />
                                   <CardContent sx={{ mb: 3 }}>
                                     <Grid container spacing={3}>
