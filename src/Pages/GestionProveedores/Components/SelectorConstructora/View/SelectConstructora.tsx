@@ -15,7 +15,7 @@ type props = {
 export const SelectConstructora = ({ onClick }: props) => {
 
     const [selectedIndex, setSelectedIndex] = useState<number>();
-    const { dataConst,dataConstCopy, isLoading, stateSelectConst, setStateSelectConst, handleOnChangeFilter } = useSelectConstuctora();
+    const { dataConst, dataConstCopy, isLoading, stateSelectConst, setStateSelectConst, handleOnChangeFilter } = useSelectConstuctora();
 
     const handleListItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -25,6 +25,10 @@ export const SelectConstructora = ({ onClick }: props) => {
         setStateSelectConst(dataConstCopy[index])
         onClick(dataConstCopy[index])
     };
+
+    const isEmpty = (str: string) => {
+        return (!str || str.length === 0);
+    }
 
     return (
 
@@ -45,7 +49,7 @@ export const SelectConstructora = ({ onClick }: props) => {
                                     <Typography> {stateSelectConst.nombreConst}</Typography>
                                 </Box>
                                 <Box m={2} justifyContent={"center"} display={"flex"}>
-                                    <img src={stateSelectConst.logoConst}></img>
+                                    <img src={isEmpty(stateSelectConst.logoConst ?? '') ? `${import.meta.env.VITE_BACKEND_URL}/api/values/sinlogo` : `${import.meta.env.VITE_BACKEND_URL}/documentos/constructora/logo?constructora=${stateSelectConst.constructoraId}`}></img>
                                 </Box>
                             </>
                         }
@@ -54,7 +58,7 @@ export const SelectConstructora = ({ onClick }: props) => {
                             id="filled-basic"
                             label="Filtrar constructora"
                             variant="outlined"
-                            size='small'                            
+                            size='small'
                             fullWidth
                             onChange={handleOnChangeFilter}
                             InputProps={{

@@ -13,7 +13,7 @@ export const useSelectConstuctora = () => {
   const [filter, setFilter] = useState<string>("")
 
   const cargaConstructoras = async () => {
-  debugger
+  
     const request: RequestModel = {
       AllowAnonymous: false,
       metodo: `Novedad/ConstructoraNovedad`,
@@ -35,7 +35,7 @@ export const useSelectConstuctora = () => {
   }, []);
 
   useEffect(() => {
-    debugger
+    
     setIsLoading(true)
     const value = filter!.toLowerCase();
     if (value == "") setDataConstCopy(dataConst!);
