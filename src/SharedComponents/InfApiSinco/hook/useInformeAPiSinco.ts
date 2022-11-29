@@ -1,4 +1,4 @@
-import { InformeAPiSIncoDTOResponse, INITIAL_InformeAPiSIncoDTOResponse, RequestAPiSincoDTO, TipoInformeApiSincoDTO } from "../model/modelInfAPiSinco"
+import { columnas, InformeAPiSIncoDTOResponse, INITIAL_InformeAPiSIncoDTOResponse, RequestAPiSincoDTO, TipoInformeApiSincoDTO } from "../model/modelInfAPiSinco"
 import { useEffect, useState } from 'react';
 import { APiMethod, requestAPI } from "../../../Provider";
 
@@ -23,14 +23,17 @@ export const useInformeAPiSinco = (tipo: TipoInformeApiSincoDTO) => {
             },
         };
 
-        const response = await requestAPI<InformeAPiSIncoDTOResponse>({
+        const response = await requestAPI<{detalles:string, encabezado:columnas[]}>({
             metodo: 'Informes',
             type: APiMethod.POST,
             data: request
         })!;
 
-        if (response != null)
-            setState(response);
+        if (response != null){
+            debugger
+            setState({...response, detalles:JSON.parse(response.detalles )});
+        }
+            
 
             setLoading(false);
     }

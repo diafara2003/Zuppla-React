@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../../../Auth';
 import { APiMethod, requestAPI, RequestModel } from '../../../../../Provider';
 import { ConstructoraDTO } from '../../../Components/SelectConstructora/Model/ModelConstructoras';
+import { ConstructoraNovDTO } from '../../../Components/SelectorConstructora/Model/Constructora-Model';
 import { adjuntoCompleteERP, AdjuntosDTO, AdjuntoTerceroDTO, DocumentosRequeridosERPDTO } from '../Model/AdjuntosDTO';
 
 export const useDocumentosAdjuntos = () => {
     const { storeUsuario } = useContext(AuthContext);
     const [dataDoc, setDocAdjuntos] = useState<AdjuntoTerceroDTO[]>();    
     const [isLoading, setIsLoading] = useState(true);
-    const [dataConst, setDataConst] = useState<ConstructoraDTO>();
+    const [dataConst, setDataConst] = useState<ConstructoraNovDTO>();
     const [dataAdjPorConst, setDataAdjPorConst] = useState<adjuntoCompleteERP[]>([]);
     // { id: 1, baseURL: '', nit: '', nombre: '', urlLogo: '' }
     
@@ -27,9 +28,10 @@ export const useDocumentosAdjuntos = () => {
     const cargaDocumentosPorConst = async () => {        
         
         if(dataConst!= undefined){
+            debugger
             const request: RequestModel = {
                 AllowAnonymous: false,
-                metodo: `DocumentosERP/requeridos?constructora=${dataConst?.id}`,
+                metodo: `DocumentosERP/requeridos?constructora=${dataConst?.constructoraId}`,
                 type: APiMethod.GET
             }
             const response = await requestAPI<DocumentosRequeridosERPDTO[]>(request)!;            

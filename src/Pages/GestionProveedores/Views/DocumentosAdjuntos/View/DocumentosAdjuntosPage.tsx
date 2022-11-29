@@ -1,5 +1,5 @@
 
-import { Box, Tabs, Tab, Container, Grid, Card, CardHeader, CardContent, Button } from '@mui/material';
+import { Box, Tabs, Tab, Container, Grid, Card, CardHeader, CardContent, Button, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import { HeaderComponent } from '../../../../../SharedComponents/Header'
 import { SelectorConstructora } from '../../../Components/SelectConstructora/View/SelectorConstructora';
@@ -9,6 +9,7 @@ import { useDocumentosAdjuntos } from '../hook/useDocumentosAdjuntos';
 import { UploadDocument } from '../../../../../SharedComponents/Documento';
 import HistoryIcon from '@mui/icons-material/History';
 import { DocHistorial } from '../Components/DocHistororial/view/DocHistorial';
+import { SelectConstructora } from '../../../Components/SelectorConstructora/View/SelectConstructora';
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -60,7 +61,7 @@ export const DocumentosAdjuntosPage = () => {
   }
   return (
     <>
-     <HeaderComponent title={`${openHistorial ? 'Historial' : ''} Documentos adjuntos`} />
+      <HeaderComponent title={`${openHistorial ? 'Historial' : ''} Documentos adjuntos`} />
       {
         !openHistorial ?
           <Box sx={{ width: '100%' }}>
@@ -89,8 +90,8 @@ export const DocumentosAdjuntosPage = () => {
             <TabPanel value={value} index={0}>
               <Box m={1} mt={1} sx={{ justifyContent: 'center', display: 'flex' }} className='JKDoc'>
                 {
-                  isLoading ?                 
-                    <SkeletonDinamic NoColumnas={2} NoFilas={6} Tipo={'formulario'} />                   
+                  isLoading ?
+                    <SkeletonDinamic NoColumnas={2} NoFilas={6} Tipo={'formulario'} />
                     :
                     <Box sx={{ backgroundColor: 'white' }} maxWidth="lg">
                       <Grid container spacing={2} >
@@ -114,55 +115,60 @@ export const DocumentosAdjuntosPage = () => {
               </Box>
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <Box display={'flex'} justifyContent={'end'} m={1} mt={1}>
-                <SelectorConstructora selected={(value) => {
-                  setDataConst(value)
-                }} />
-              </Box>
-              <Box m={1} mt={1}>
-                {
-                  isLoading ?
-                    <SkeletonDinamic NoColumnas={1} NoFilas={1} Tipo={'card'} />
-                    :
+              <Grid container spacing={1} >
+                <Grid mt={2} item xs={2} md={3} sx={{ borderRight: "1px solid #e9e9e9" }}>
+                  <SelectConstructora
+                    onClick={(dataConst) => {
+                      setDataConst(dataConst)
+                    }} />
+                </Grid>
+                <Grid item xs={8} md={9} >
+                  <Box>
+                    {
+                      isLoading ?
+                        <SkeletonDinamic NoColumnas={1} NoFilas={1} Tipo={'card'} />
+                        :
 
-                    dataAdjPorConst.length == 0
-                      ?
-                      <Box justifyContent={'center'} display={'flex'}>
-                        <SinInformacion />
-                      </Box>
-                      :
-                      <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
-                        {dataAdjPorConst?.map((DocAdjunto) => {
-                          return (
-                            <Card elevation={3} sx={{ mt: 2 }}>
-                              <CardHeader
-                                title={DocAdjunto.nombreEspecialidad}
-                                titleTypographyProps={{ fontWeight: '600' }}
-                              />
-                              <CardContent sx={{ mb: 3 }}>
-                                <Grid container spacing={3} className={'JK'}>
-                                  {DocAdjunto.tiposAdjuntos.map((adjDoc) => {
-                                    return (
-                                      <Grid item xs={6}>
-                                        <UploadDocument
-                                          idOrigen={storeUsuario.user.id.toString()}
-                                          idOrigen2={adjDoc.tipoAdjunto.id.toString()}
-                                          tipo='tercero'
-                                          key={`upload-tab1-id${adjDoc.tipoAdjunto.id}`}
-                                          file={adjDoc}
-                                          uploadedCompleted={(value) => { }}
-                                        />
-                                      </Grid>
-                                    )
-                                  })}
-                                </Grid>
-                              </CardContent>
-                            </Card>
-                          )
-                        })}
-                      </Container>
-                }
-              </Box>
+                        dataAdjPorConst.length == 0
+                          ?
+                          <Box justifyContent={'center'} display={'flex'}>
+                            <SinInformacion />
+                          </Box>
+                          :
+                          <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
+                            {dataAdjPorConst?.map((DocAdjunto) => {
+                              return (
+                                <Card variant='outlined'>
+                                  <CardHeader                                  
+                                    title={ <Typography fontWeight={600} variant={'subtitle1'}>{DocAdjunto.nombreEspecialidad}</Typography>}                                    
+                                   
+                                  />
+                                  <CardContent sx={{ mb: 3 }}>
+                                    <Grid container spacing={3}>
+                                      {DocAdjunto.tiposAdjuntos.map((adjDoc) => {
+                                        return (
+                                          <Grid item xs={6}>
+                                            <UploadDocument
+                                              idOrigen={storeUsuario.user.id.toString()}
+                                              idOrigen2={adjDoc.tipoAdjunto.id.toString()}
+                                              tipo='tercero'
+                                              key={`upload-tab1-id${adjDoc.tipoAdjunto.id}`}
+                                              file={adjDoc}
+                                              uploadedCompleted={(value) => { }}
+                                            />
+                                          </Grid>
+                                        )
+                                      })}
+                                    </Grid>
+                                  </CardContent>
+                                </Card>
+                              )
+                            })}
+                          </Container>
+                    }
+                  </Box>
+                </Grid>
+              </Grid>
             </TabPanel>
           </Box>
           :
