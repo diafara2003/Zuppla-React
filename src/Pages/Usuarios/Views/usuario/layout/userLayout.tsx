@@ -29,7 +29,7 @@ export const UserLayout = () => {
 
 
   return (
-    <Box m={1} sx={{background: 'white', height: 'calc(100vh - 150px)' }}>
+    <Box m={1} sx={{background: 'white', height: 'calc(100vh - 97px)' }}>
        <HeaderComponent title={`${openHistorial ? 'Historial' : ''} Administración de usuarios`} />
       {
         
