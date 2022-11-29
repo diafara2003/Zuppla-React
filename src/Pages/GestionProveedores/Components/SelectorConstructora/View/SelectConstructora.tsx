@@ -1,4 +1,4 @@
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, TextField, InputAdornment, Typography, Paper } from '@mui/material'
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Badge, TextField, InputAdornment, Typography, Paper, ListItem, Tooltip } from '@mui/material'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import React, { useState } from 'react'
 import { useSelectConstuctora } from '../Hook/useSelectConstuctora';
@@ -15,15 +15,15 @@ type props = {
 export const SelectConstructora = ({ onClick }: props) => {
 
     const [selectedIndex, setSelectedIndex] = useState<number>();
-    const { dataConst, dataConstCopy, isLoading, stateSelectConst, setStateSelectConst, handleOnChangeFilter } = useSelectConstuctora();
+    const { dataConst, isLoading, stateSelectConst,filter, setStateSelectConst, handleOnChangeFilter } = useSelectConstuctora();
 
     const handleListItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
         index: number,
     ) => {
         setSelectedIndex(index);
-        setStateSelectConst(dataConstCopy[index])
-        onClick(dataConstCopy[index])
+        setStateSelectConst(dataConst[index])
+        onClick(dataConst[index])
     };
 
     const isEmpty = (str: string) => {
@@ -44,13 +44,16 @@ export const SelectConstructora = ({ onClick }: props) => {
                             ? null
                             :
                             <>
-                                <Box justifyContent="space-between" display="flex" mb={1}>
-                                    <Typography variant='subtitle2' fontWeight={600} color={"primary"} >Constructora: </Typography>
-                                    <Typography> {stateSelectConst.nombreConst}</Typography>
-                                </Box>
                                 <Box m={2} justifyContent={"center"} display={"flex"}>
-                                    <img src={isEmpty(stateSelectConst.logoConst ?? '') ? `${import.meta.env.VITE_BACKEND_URL}/api/values/sinlogo` : `${import.meta.env.VITE_BACKEND_URL}/documentos/constructora/logo?constructora=${stateSelectConst.constructoraId}`}></img>
+                                    <Box display={'flex'} justifyContent={'center'}>
+                                        <img style={{ width: '70%' }} src={`${import.meta.env.VITE_BACKEND_URL}/documentos/constructora/logo?constructora=${stateSelectConst.constructoraId}`}></img>
+                                    </Box>
                                 </Box>
+                                {/* <Box justifyContent="space-between" display="flex" mb={1}>
+                                    <Typography variant='subtitle2' fontWeight={600} color={"primary"} >Constructora: </Typography>
+                                    <Typography pl={1} noWrap> {stateSelectConst.nombreConst}</Typography>
+                                </Box> */}
+
                             </>
                         }
 
@@ -69,31 +72,38 @@ export const SelectConstructora = ({ onClick }: props) => {
                         <Divider />
                         <List component="nav" aria-label="main mailbox folders">
                             {
-                                dataConstCopy.length != 0
+                                dataConst.length != 0
                                     ?
-                                    dataConstCopy.map(({ contNotificaciones, nombreConst, constructoraId }, index) => {
+                                    dataConst.filter(c => c.nombreConst.toLowerCase().includes(filter!.toLowerCase())).map(({ contNotificaciones, nombreConst, constructoraId }, index) => {
                                         return (
-                                            <ListItemButton
-                                                key={`constructiraid${constructoraId}`}
-                                                selected={selectedIndex === index}
-                                                onClick={(event) => handleListItemClick(event, index)}
-                                            >
-                                                <ListItemIcon sx={{ ml: 2 }} key={`Const_${constructoraId}`}>
-                                                    <Badge badgeContent={Number(contNotificaciones)} color="warning" >
-                                                        {
-                                                            Number(contNotificaciones) > 0
-                                                                ?
-                                                                <NotificationsActiveOutlinedIcon />
-                                                                :
-                                                                <NotificationsOffOutlinedIcon />
-                                                        }
+                                            <ListItem disablePadding>
+                                                <ListItemButton
+                                                    key={`constructiraid${constructoraId}`}
+                                                    selected={selectedIndex === index}
+                                                    onClick={(event) => handleListItemClick(event, index)}
+                                                >
+                                                    <ListItemIcon sx={{ m: 1, minWidth: '2rem' }} key={`Const_${constructoraId}`}>
+                                                        <Badge badgeContent={Number(contNotificaciones)} color="warning" >
+                                                            {
+                                                                Number(contNotificaciones) > 0
+                                                                    ?
+                                                                    <NotificationsActiveOutlinedIcon />
+                                                                    :
+                                                                    <NotificationsOffOutlinedIcon />
+                                                            }
+                                                        </Badge>
+                                                    </ListItemIcon>
 
-                                                    </Badge>
-                                                </ListItemIcon>
-                                                <ListItemText primary={nombreConst} >
-                                                    {/* <Typography variant='body2'> {nombreConst} </Typography> */}
-                                                </ListItemText>
-                                            </ListItemButton>)
+                                                    <ListItemText>
+                                                        <Tooltip
+                                                            enterDelay={500}
+                                                            children={<Typography variant='body2' noWrap> {nombreConst} </Typography>} title={nombreConst}
+                                                        />
+
+                                                    </ListItemText>
+                                                </ListItemButton>
+                                            </ListItem>
+                                        )
                                     })
                                     :
                                     null

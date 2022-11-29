@@ -1,4 +1,3 @@
-import { TroubleshootRounded } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react'
 import { RequestModel, APiMethod, requestAPI } from '../../../../../Provider';
 import { ConstructoraNovDTO } from '../Model/Constructora-Model';
@@ -34,17 +33,5 @@ export const useSelectConstuctora = () => {
     Promise.all([cargaConstructoras()]);    
   }, []);
 
-  useEffect(() => {
-    
-    setIsLoading(true)
-    const value = filter!.toLowerCase();
-    if (value == "") setDataConstCopy(dataConst!);
-    else setDataConstCopy(dataConst!.filter(c =>
-      c.nombreConst.toLowerCase().includes(value)
-    ))
-    setIsLoading(false)
-  }, [filter]);
-
-
-  return { dataConst: dataConst ?? [], dataConstCopy :dataConstCopy ??[],  isLoading, stateSelectConst,handleOnChangeFilter, setStateSelectConst }
+  return { dataConst: dataConst ?? [], dataConstCopy,filter,  isLoading, stateSelectConst,handleOnChangeFilter, setStateSelectConst }
 }

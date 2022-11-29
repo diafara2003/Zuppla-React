@@ -53,7 +53,7 @@ export const DocumentosAdjuntosPage = () => {
     setValue(newValue);
   };
 
-  const { dataDoc, dataAdjPorConst, isLoading, setDataConst, storeUsuario } = useDocumentosAdjuntos();
+  const { dataDoc, dataConst, dataAdjPorConst, isLoading, setDataConst, storeUsuario } = useDocumentosAdjuntos();
   //Historial
   const [openHistorial, setOpenHistorial] = useState(false);
   const MostrarHistorial = () => {
@@ -116,7 +116,7 @@ export const DocumentosAdjuntosPage = () => {
             </TabPanel>
             <TabPanel value={value} index={1}>
               <Grid container spacing={1} >
-                <Grid mt={2} item xs={2} md={3} sx={{ borderRight: "1px solid #e9e9e9" }}>
+                <Grid item xs={2} md={3} sx={{ borderRight: "1px solid #e9e9e9" }}>
                   <SelectConstructora
                     onClick={(dataConst) => {
                       setDataConst(dataConst)
@@ -128,7 +128,6 @@ export const DocumentosAdjuntosPage = () => {
                       isLoading ?
                         <SkeletonDinamic NoColumnas={1} NoFilas={1} Tipo={'card'} />
                         :
-
                         dataAdjPorConst.length == 0
                           ?
                           <Box justifyContent={'center'} display={'flex'}>
@@ -136,12 +135,19 @@ export const DocumentosAdjuntosPage = () => {
                           </Box>
                           :
                           <Container sx={{ backgroundColor: 'white' }} maxWidth="lg">
+                            {dataConst != undefined ?
+                              <Box m={2} justifyContent="flex-start" display="flex" mb={1}>
+                                <Typography variant='subtitle2' fontWeight={600} color={"primary"} >Constructora: </Typography>
+                                <Typography pl={0.5} noWrap> {dataConst?.nombreConst}</Typography>
+                              </Box>
+                              : null
+                            }
+
                             {dataAdjPorConst?.map((DocAdjunto) => {
                               return (
                                 <Card variant='outlined'>
-                                  <CardHeader                                  
-                                    title={ <Typography fontWeight={600} variant={'subtitle1'}>{DocAdjunto.nombreEspecialidad}</Typography>}                                    
-                                   
+                                  <CardHeader
+                                    title={<Typography fontWeight={600} variant={'subtitle1'}>{DocAdjunto.nombreEspecialidad}</Typography>}
                                   />
                                   <CardContent sx={{ mb: 3 }}>
                                     <Grid container spacing={3}>

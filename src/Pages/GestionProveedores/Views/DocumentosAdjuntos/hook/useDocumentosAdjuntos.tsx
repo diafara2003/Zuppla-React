@@ -80,7 +80,7 @@ export const useDocumentosAdjuntos = () => {
     }, [dataConst])
 
 
-    return { dataDoc, dataAdjPorConst, isLoading, setDataConst,storeUsuario }
+    return { dataDoc,dataConst, dataAdjPorConst, isLoading, setDataConst,storeUsuario }
 }
 
 
