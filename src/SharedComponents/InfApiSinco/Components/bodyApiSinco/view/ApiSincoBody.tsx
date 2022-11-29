@@ -35,9 +35,9 @@ type props1 = {
 }
 
 const renderizarTd = ({ columnas, dato }: props1) => {
-    
+
     const getValueObject = (element: any, key: string, formatNumeric:boolean): string => {    
-        return (formatNumeric ? element[key].toLocaleString("en-EU"):element[key]);
+        return (formatNumeric ? element[key].toLocaleString("en-EU") : element[key]);
     }   
 
     return (
