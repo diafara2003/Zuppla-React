@@ -14,11 +14,11 @@ export const rutas: NavigationModel[] = [
         texto: "Contratos",
         Icono: () => <DescriptionOutlinedIcon />
     },
-    {
-        path: "/informes/proveedor/facturas",
-        texto: "Información de facturas",
-        Icono: () => <DescriptionOutlinedIcon />
-    },
+    // {
+    //     path: "/informes/proveedor/facturas",
+    //     texto: "Información de facturas",
+    //     Icono: () => <DescriptionOutlinedIcon />
+    // },
 ];
 
 
