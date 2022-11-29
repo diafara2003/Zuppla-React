@@ -28,7 +28,7 @@ export const useDocumentosAdjuntos = () => {
     const cargaDocumentosPorConst = async () => {        
         
         if(dataConst!= undefined){
-            debugger
+            
             const request: RequestModel = {
                 AllowAnonymous: false,
                 metodo: `DocumentosERP/requeridos?constructora=${dataConst?.constructoraId}`,
