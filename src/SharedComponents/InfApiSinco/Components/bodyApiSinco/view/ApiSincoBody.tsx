@@ -5,9 +5,12 @@ type props = {
 
     columnas: columnas[];
     datos: Object[]
+    page: number,
+    rowPerPage:number
+
 }
 
-export const ApiSincoBody = ({ columnas, datos }: props) => {
+export const ApiSincoBody = ({ columnas, datos,page,rowPerPage }: props) => {
     return (
         <TableBody>
             {datos.length == 0 ?
@@ -19,7 +22,7 @@ export const ApiSincoBody = ({ columnas, datos }: props) => {
                     </TableCell>
                 </TableRow>
                 :
-                datos.map(c => (
+                datos.slice(page * rowPerPage, page * rowPerPage + rowPerPage).map(c => (
                     <TableRow>
                         {renderizarTd({ columnas: columnas, dato: c })}
                     </TableRow>

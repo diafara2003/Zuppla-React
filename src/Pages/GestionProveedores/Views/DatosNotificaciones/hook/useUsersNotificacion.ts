@@ -18,8 +18,7 @@ export const useUsersNotificacion = (tipoNotificacion: TipoNotificacion) => {
     const [tipo, setTipo] = useState(tipoNotificacion);
     const { showAlert, stateAlert } = useContext(AlertContext);
 
-    const handleAgregarNotificacion = async (info: NotificacionDTO) => {
-        debugger
+    const handleAgregarNotificacion = async (info: NotificacionDTO) => {        
         const request: RequestModel = {
             metodo: armarURL(),
             type: APiMethod.POST,

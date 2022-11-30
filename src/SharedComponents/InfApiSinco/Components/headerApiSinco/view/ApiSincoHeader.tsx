@@ -1,4 +1,4 @@
-import { TableCell, TableHead, TableRow } from '@mui/material'
+import { TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import { columnas } from '../../../model/modelInfAPiSinco';
 
 type props = {
@@ -8,14 +8,15 @@ type props = {
 
 export const ApiSincoHeader = ({ columnas }: props) => {
     return (
-        <TableHead>
-            <TableRow>
-
+        <TableHead >
+            <TableRow >
                 {columnas.map(c =>
                     <TableCell
                         align={c.align}
-                        key={`thead-informe-${c.key}`}
-                    >{c.nombre}
+                        key={`thead-informe-${c.key}`}                        
+                        style={{backgroundColor:'#e8e8e9'}}
+                    >
+                        <Typography fontWeight={600} variant='subtitle2'>{c.nombre}</Typography>
                     </TableCell>)}
             </TableRow>
         </TableHead>

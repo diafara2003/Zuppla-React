@@ -32,8 +32,7 @@ export const useDatosUsuario = () => {
 
     const validaciones = (): validacionFormulario => {
         let validaFRM: validacionFormulario = INITIAL_VALIDATION_USUARIO;
-        if (!new Validationforms().EmailIsValid(user.correo)) {
-            debugger
+        if (!new Validationforms().EmailIsValid(user.correo)) {           
             return { ...validaFRM, email: { hasError: true, msn: 'Correo invalido' } }
         }
         if (user.correo == '') {

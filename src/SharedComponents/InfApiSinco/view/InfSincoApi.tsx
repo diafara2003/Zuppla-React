@@ -39,7 +39,7 @@ export const InfSincoApi = ({ tipo }: props) => {
                     <TableContainer sx={{ maxHeight: 'calc(100vh - 14rem)' }}>
                         <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <ApiSincoHeader columnas={state.encabezado} />
-                            {state.detalles.length == 0 ? null : <ApiSincoBody columnas={state.encabezado} datos={state.detalles} />}
+                            {state.detalles.length == 0 ? null : <ApiSincoBody page={page} rowPerPage={rowsPerPage} columnas={state.encabezado} datos={state.detalles} />}
                         </Table>
                     </TableContainer>
                     <TablePagination
