@@ -6,14 +6,14 @@ import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import ManageAccountsTwoToneIcon from '@mui/icons-material/ManageAccountsTwoTone';
 export const rutas: NavigationModel[] = [
     {
-        path: "/configuracion/menu",
-        texto: "Administracion de menus",
-        Icono: () => <AccountTreeTwoToneIcon />
-    },
-    {
         path: "/configuracion/perfil",
         texto: "Administracion de perfiles",
         Icono: () => <ManageAccountsTwoToneIcon />
+    },
+    {
+        path: "/configuracion/menu",
+        texto: "Administracion de menus",
+        Icono: () => <AccountTreeTwoToneIcon />
     }
 
 ];
@@ -25,11 +25,12 @@ export const RouterConfiguracion = () => {
     return (
         <Routes>
 
-            <Route path="/menu" element={<AdmMenus />} />
-            <Route path="/perfil" element={<AdmPerfiles />} />      
+          
+            <Route path="/perfil" element={<AdmPerfiles />} />     
+            <Route path="/menu" element={<AdmMenus />} /> 
 
             {/* Default */}
-            <Route path="/*" element={<Navigate to="/configuracion/menu" />}></Route>
+            <Route path="/*" element={<Navigate to="/configuracion/perfil" />}></Route>
         </Routes>
         )
 }

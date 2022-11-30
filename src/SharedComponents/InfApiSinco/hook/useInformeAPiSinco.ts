@@ -8,7 +8,7 @@ export const useInformeAPiSinco = (tipo: TipoInformeApiSincoDTO) => {
     const [state, setState] = useState<InformeAPiSIncoDTOResponse>(INITIAL_InformeAPiSIncoDTOResponse);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [rowsPerPage, setRowsPerPage] = useState(100);
   
 
     const handleChangePage = (event: unknown, newPage: number) => {

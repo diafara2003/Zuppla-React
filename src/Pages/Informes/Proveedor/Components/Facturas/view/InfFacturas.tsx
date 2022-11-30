@@ -16,7 +16,7 @@ export const InfFacturas = () => {
                     p={1}
                     >
                     <Grid item xs={12}>
-                        <InfSincoApi />
+                       
                     </Grid>
 
                 </Grid>
