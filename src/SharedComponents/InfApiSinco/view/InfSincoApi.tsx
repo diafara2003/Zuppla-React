@@ -18,7 +18,7 @@ export const InfSincoApi = ({ tipo }: props) => {
 
 
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [rowsPerPage, setRowsPerPage] = useState(100);
   
     const handleChangePage = (event: unknown, newPage: number) => {
       setPage(newPage);
@@ -43,7 +43,7 @@ export const InfSincoApi = ({ tipo }: props) => {
                         </Table>
                     </TableContainer>
                     <TablePagination
-                        rowsPerPageOptions={[10, 25, 100]}
+                        rowsPerPageOptions={[100, 200, 500]}
                         component="div"
                         count={state.detalles.length}
                         rowsPerPage={rowsPerPage}
