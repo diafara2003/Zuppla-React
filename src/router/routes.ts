@@ -47,6 +47,10 @@ export const routes: Route[] = [
     {
         path: "/informes/*",
         Component: lazy(() => import(/* webpackChunkName: "informes" */"../Pages/Informes/Proveedor/view/InfProveedorPages"))
+    },
+    {
+        path: "/configuracion/*",
+        Component: lazy(() => import(/* webpackChunkName: "configuracion" */"../Pages/Configuracion/Layout/ConfiguracionPage"))
     }
 
 

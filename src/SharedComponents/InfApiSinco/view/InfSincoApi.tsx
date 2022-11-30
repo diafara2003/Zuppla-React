@@ -14,21 +14,7 @@ type props = {
 
 export const InfSincoApi = ({ tipo }: props) => {
 
-    const { state, loading } = useInformeAPiSinco(tipo);
-
-
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
-  
-    const handleChangePage = (event: unknown, newPage: number) => {
-      setPage(newPage);
-    };
-  
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setRowsPerPage(+event.target.value);
-      setPage(0);
-    };
-
+    const { state, loading, handleChangePage,handleChangeRowsPerPage,page,rowsPerPage } = useInformeAPiSinco(tipo);
 
     return (
         <Paper elevation={2} sx={{ width: '100%', overflow: 'hidden' }}>

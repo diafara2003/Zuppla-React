@@ -7,7 +7,19 @@ export const useInformeAPiSinco = (tipo: TipoInformeApiSincoDTO) => {
 
     const [state, setState] = useState<InformeAPiSIncoDTOResponse>(INITIAL_InformeAPiSIncoDTOResponse);
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+  
 
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+      };
+    
+      const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+      };
+  
     const consultarInfo = async () => {
 
         const request: RequestAPiSincoDTO = {
@@ -23,19 +35,16 @@ export const useInformeAPiSinco = (tipo: TipoInformeApiSincoDTO) => {
             },
         };
 
-        const response = await requestAPI<{detalles:string, encabezado:columnas[]}>({
+        const response = await requestAPI<{ detalles: string, encabezado: columnas[] }>({
             metodo: 'Informes',
             type: APiMethod.POST,
             data: request
         })!;
 
-        if (response != null){
-            debugger
-            setState({...response, detalles:JSON.parse(response.detalles )});
+        if (response != null) {
+            setState({ ...response, detalles: JSON.parse(response.detalles) });
         }
-            
-
-            setLoading(false);
+        setLoading(false);
     }
 
 
@@ -43,7 +52,7 @@ export const useInformeAPiSinco = (tipo: TipoInformeApiSincoDTO) => {
 
     return {
         state,
-        loading
+        loading, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage
     }
 
 }
