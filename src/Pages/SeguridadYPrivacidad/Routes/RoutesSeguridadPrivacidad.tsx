@@ -5,11 +5,6 @@ import { PasswordOutlined, PersonOutline } from '@mui/icons-material';
 
 
 
-
-const DatosUsuarioPage = lazy(() => import('../Components/DatosUsuario/view/DatosUsuarioPage'));
-const CambiarClavePage = lazy(() => import('../Components/CambiarClave/view/CambiarClavePage'));
-
-
 export const rutas: NavigationModel[] = [
     {
         path: "/seguridad/misdatos",
@@ -23,13 +18,16 @@ export const rutas: NavigationModel[] = [
     }
 ]
 
+const MisDatos = lazy(() => import('../Components/DatosUsuario/view/DatosUsuarioPage'));
+const CambiarClave = lazy(() => import('../Components/CambiarClave/view/CambiarClavePage'));
+
 
 
 export default function RoutesSeguridadPrivacidad() {
     return (
         <Routes>
-            <Route path="/misdatos" element={<DatosUsuarioPage />} />
-            <Route path="/cambiarclave" element={<CambiarClavePage />} />
+            <Route path="/misdatos" element={<MisDatos />} />
+            <Route path="/cambiarclave" element={<CambiarClave />} />
             
             <Route path="/*" element={<Navigate to="/seguridad/misdatos" />}></Route>
         </Routes>

@@ -13,6 +13,11 @@ interface Route {
 export const routes: Route[] = [
 
     {
+        path: "/",
+        Component: lazy(() => import(/* webpackChunkName: "HomePages" */"../Pages/Home/views/HomePages"))
+    },
+
+    {
         path: "/menuv1",
         Component: lazy(() => import(/* webpackChunkName: "opcionesv1" */"../Pages/Menu/views/MenuOldPages"))
     },
@@ -22,13 +27,10 @@ export const routes: Route[] = [
         Component: lazy(() => import(/* webpackChunkName: "opcionesv1" */"../Pages/Menu/views/MenuOldPages"))
     },
 
+  
     {
-        path: "/",
-        Component: lazy(() => import(/* webpackChunkName: "HomePages" */"../Pages/Home/views/HomePages"))
-    },
-    {
-        path: "/cambiarClave",
-        Component: lazy(() => import(/* webpackChunkName: "cambiarClave" */"../Pages/SeguridadYPrivacidad/Components/CambiarClave/view/CambiarClavePage"))
+        path: "/seguridad/*",
+        Component: lazy(() => import(/* webpackChunkName: "seguridad" */"../Pages/SeguridadYPrivacidad/view/SeguridadPrivacidadPages"))
     },
     {
         path: "/home",

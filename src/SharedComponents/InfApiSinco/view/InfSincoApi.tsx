@@ -29,7 +29,7 @@ export const InfSincoApi = ({ tipo }: props) => {
                         </Table>
                     </TableContainer>
                     <TablePagination
-                        rowsPerPageOptions={[10, 25, 100]}
+                        rowsPerPageOptions={[100, 200, 500]}
                         component="div"
                         count={state.detalles.length}
                         rowsPerPage={rowsPerPage}
