@@ -27,8 +27,7 @@ export const ControllerDatosContactos = () => {
     setOpenHistorial(true);
   }
   const OcultarHistorial = () => {
-    setOpenHistorial(false);
-    debugger
+    setOpenHistorial(false);    
     setDataContactoHistorial(INITIAL_STATE_CONTACTO)
     dataContactoSelect.current = undefined;
   }  
@@ -104,11 +103,10 @@ export const ControllerDatosContactos = () => {
       type: APiMethod.POST,
       data: _contacto
     };
-    const response = await requestAPI<ResponseDTO>(request)!;
-    debugger
-    if (response?.success) {
+    const response = await requestAPI<{ item1: ResponseDTO, item2: TerDatosContactoDTO }>(request)!;   
+    if (response?.item1?.success) {
       if (tipoAction == ActionContacto.New) {
-        setDataState([...dataContactos, _contacto!]);
+        setDataState([...dataContactos, response.item2!]);
         showAlert('Se ha agregado el nuevo contacto exitosamente', "Datos de contacto", 'success');
       }
       else {

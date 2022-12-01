@@ -1,10 +1,10 @@
 import { MoreVert, EditOutlined, MailOutline, LockOutlined } from '@mui/icons-material';
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Switch, IconButton, Menu, MenuItem, ListItemIcon, Typography } from '@mui/material';
 import React, { useState } from 'react'
-import { PerfilConsultaDTO } from '../Model/AdmPerfil-Model';
+import { ActionPerfil, PerfilConsultaDTO } from '../Model/AdmPerfil-Model';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 type typeAction = {
-    action: string;
+    action: ActionPerfil,
     perfilData: PerfilConsultaDTO;
 }
 
@@ -17,12 +17,12 @@ export const TablePerfiles = ({ dataTable, onClick }: props) => {
 
     const clickEstado = (event: React.ChangeEvent<HTMLInputElement>, perfil: PerfilConsultaDTO, _index: number) => {
         event.target.checked == true ?
-            onClick({ action: '', perfilData: perfil! })
+            onClick({ action: ActionPerfil.EstadoTrue, perfilData: perfil! })
             :
-            onClick({ action: '', perfilData: perfil! });
+            onClick({ action: ActionPerfil.EstadoFalse, perfilData: perfil! });
     }
-    const [userPerfilSelect, seuserPerfilSelect] = useState<PerfilConsultaDTO>()
-    const clickAction = (_action: string) => {
+    const [userPerfilSelect, setUserPerfilSelect] = useState<PerfilConsultaDTO>()
+    const clickAction = (_action: ActionPerfil) => {
         onClick({ action: _action, perfilData: userPerfilSelect! });
     }
 
@@ -35,8 +35,8 @@ export const TablePerfiles = ({ dataTable, onClick }: props) => {
 
     const handleClick = (event: React.MouseEvent<HTMLElement>, _Pefil: PerfilConsultaDTO) => {
         setAnchorEl(event.currentTarget);
-        seuserPerfilSelect(_Pefil);
-        onClick({ action: "", perfilData: _Pefil })
+        setUserPerfilSelect(_Pefil);
+        onClick({ action: ActionPerfil.Default, perfilData: _Pefil })
     };
     return (
         <TableContainer>
@@ -112,13 +112,13 @@ export const TablePerfiles = ({ dataTable, onClick }: props) => {
                                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                         >
-                                            <MenuItem onClick={() => clickAction("")}>
+                                            <MenuItem onClick={() => clickAction(ActionPerfil.Edit)}>
                                                 <ListItemIcon >
                                                     <EditOutlined color="primary" />
                                                 </ListItemIcon>
                                                 <Typography>Editar perfil</Typography>
                                             </MenuItem>
-                                            <MenuItem onClick={() => clickAction("")}>
+                                            <MenuItem onClick={() => clickAction(ActionPerfil.Historial)}>
                                                 <ListItemIcon >
                                                     <RestoreOutlinedIcon color="primary" />
                                                 </ListItemIcon>

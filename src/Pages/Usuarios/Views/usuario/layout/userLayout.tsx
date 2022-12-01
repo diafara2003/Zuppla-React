@@ -22,17 +22,17 @@ export const UserLayout = () => {
   const typing = useRef<TextFieldProps>(null);
 
   const { isLoading, dataUserSelect, openD, tipoModal, filter, openHistorial,
-    actionUser, newUser, setOpen, handleClickDialogOpenAdd, handleChangeBuscar, OcultarHistorial,MostrarHistorial } = useUsuario();
+    actionUser, newUser, setOpen, handleClickDialogOpenAdd, handleChangeBuscar, OcultarHistorial, MostrarHistorial } = useUsuario();
 
 
 
 
 
   return (
-    <Box m={1} sx={{background: 'white', height: 'calc(100vh - 97px)' }}>
-       <HeaderComponent title={`${openHistorial ? 'Historial' : ''} Administración de usuarios`} />
+    <Box m={1} sx={{ background: 'white', height: 'calc(100vh - 150px)' }}>
+      <HeaderComponent title={`${openHistorial ? 'Historial' : ''} Administración de usuarios`} />
       {
-        
+
         !openHistorial
           ?
           isLoading ?
@@ -64,7 +64,7 @@ export const UserLayout = () => {
               </Box>
               {
                 state?.length != 0 ?
-                  <Box m={"10px"} mt={"25px"} sx={{ overflow: 'auto', maxHeight: 'calc(100vh - 16rem)' }}>
+                  <Box m={"10px"} mt={"25px"} sx={{ overflow: 'auto', maxHeight: 'calc(100vh - 17rem)' }}>
                     {state == null
                       ?
                       <CircularProgress color="inherit" />
@@ -77,7 +77,6 @@ export const UserLayout = () => {
                           }
                         }}
                         filter={filter as string}
-
                       />
                     }
                   </Box>
@@ -96,7 +95,6 @@ export const UserLayout = () => {
             idDocumento={dataUserSelect.current?.id}
           />
       }
-
 
       {/* Dialog insercion - edicion */}
       {openD

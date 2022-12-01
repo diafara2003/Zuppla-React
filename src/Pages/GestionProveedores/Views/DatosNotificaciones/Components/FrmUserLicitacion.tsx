@@ -14,7 +14,7 @@ export const FrmUserLicitacion = ({ saveUser }: props) => {
   const [newData, setNewData] = useState<NotificacionDTO>(INITIAL_NOTIFICACION);
 
   const selectedData = (value: DTOKeyValue, name: string) => {
-
+    
     if (value.id != undefined) {
 
       setNewData({ ...newData, [name]: value.id });
@@ -26,10 +26,12 @@ export const FrmUserLicitacion = ({ saveUser }: props) => {
 
   const onInputChange = (e: React.SyntheticEvent) => {
     const { name, value } = (e.target as HTMLInputElement);
+    
     setNewData({
       ...newData,
       [name]: value
     });
+    saveUser({ ...newData, [name]: value });
     console.log({ ...newData, [name]: value });
   }
 

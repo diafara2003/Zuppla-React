@@ -32,7 +32,7 @@ export const NewNotificacionUser = ({ tipoNotificacion, title, handleOk, handleC
     };
 
     const saveUser = (data: NotificacionDTO) => {
-       
+       debugger
         if (data.usuario > 0)
             setNewData(data);
 
@@ -71,6 +71,7 @@ export const NewNotificacionUser = ({ tipoNotificacion, title, handleOk, handleC
                     variant="contained"
                     color="primary"
                     onClick={() => {
+                        debugger
                         handleOk(newData);
                        
                     }}
