@@ -37,6 +37,7 @@ export const INITIAL_USUARIO_DTO: UsuariosDTO = {
     }
 
 export enum ActionUser {
+    close = "-1",
     Delete = "D",
     Edit = "E",
     Send = "S",

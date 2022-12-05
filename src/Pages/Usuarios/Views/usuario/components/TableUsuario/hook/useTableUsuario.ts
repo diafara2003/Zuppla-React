@@ -3,6 +3,7 @@ import { Action } from '@remix-run/router';
 import React, { useContext, useState } from 'react'
 
 import { ActionUser, UsuariosDTO } from '../../../model/usuarioDTO';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 type typeAction = {
     action: ActionUser;
@@ -17,27 +18,22 @@ type props = {
 
 export const useTableUsuario = ({ onClick }: props) => {
 
-
+    const [selectedId, setId] = useState(-1);
+    const [eventClick, seteventClick] = useState<HTMLElement | null>(null);
     const { state } = useContext(UserContext);
-
     const label = { inputProps: { 'aria-label': 'Switch demo' } };
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [userDataSelect, setUser] = useState<UsuariosDTO>()
-    const [userDataEntrante, setDataEntrante] = useState<UsuariosDTO[]>([...state])
-    const open = Boolean(anchorEl);
-
-
     const handleClick = (event: React.MouseEvent<HTMLElement>, user: UsuariosDTO) => {
-        setAnchorEl(event.currentTarget);
-        setUser(user);
-        onClick({ action: ActionUser.Default, userData: user })
+
+        seteventClick(event.currentTarget);
+        setId(user.id);
     };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+
     const clickAction = (action: ActionUser) => {
-        
-        onClick({ action: action, userData: userDataSelect! });
+
+        seteventClick(null);
+        if (action != ActionUser.close)
+            onClick({ action: action, userData: state.find(c => c.id == selectedId)! });
+
     }
     const clickEstado = (event: React.ChangeEvent<HTMLInputElement>, _user: UsuariosDTO, _index: number) => {
         event.target.checked == true ?
@@ -47,7 +43,7 @@ export const useTableUsuario = ({ onClick }: props) => {
     }
 
     return {
-        state, clickEstado, handleClick, anchorEl, handleClose, open, clickAction,label
+        state, clickEstado, handleClick, clickAction, label, selectedId, eventClick
 
     }
 }
