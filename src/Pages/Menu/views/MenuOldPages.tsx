@@ -10,7 +10,7 @@ export const MenuOldPages = () => {
     console.log("option v1" + localStorage.getItem('APP_PROVEEDOR_MENU_V01')!)
     return (
         <iframe
-            id='frmOpOld'
+            id='frmOpcion'
             style={{
                 width: '100%',
                 padding: 0,
