@@ -15,13 +15,18 @@ type props = {
 
 export const TablePerfiles = ({ dataTable, onClick }: props) => {
 
+    
+    const [userPerfilSelect, setUserPerfilSelect] = useState<PerfilConsultaDTO>()
+
     const clickEstado = (event: React.ChangeEvent<HTMLInputElement>, perfil: PerfilConsultaDTO, _index: number) => {
+        perfil.estado = event.target.checked;
+        debugger
         event.target.checked == true ?
             onClick({ action: ActionPerfil.EstadoTrue, perfilData: perfil! })
             :
             onClick({ action: ActionPerfil.EstadoFalse, perfilData: perfil! });
     }
-    const [userPerfilSelect, setUserPerfilSelect] = useState<PerfilConsultaDTO>()
+
     const clickAction = (_action: ActionPerfil) => {
         onClick({ action: _action, perfilData: userPerfilSelect! });
     }
@@ -81,7 +86,7 @@ export const TablePerfiles = ({ dataTable, onClick }: props) => {
                                 <TableRow hover role="checkbox" tabIndex={-1} key={`tr${row.id}`}>
                                     <TableCell key={`tdNom${row.id}`}>
                                         {row.nombre}
-                                    </TableCell>                                 
+                                    </TableCell>
                                     <TableCell align='center' key={`tdCant${row.id}`}>
                                         {row.countUsuarios}
                                     </TableCell>

@@ -10,6 +10,7 @@ export interface UsuariosDTO {
     documento: string;
     cargo: string;
     celular: string;
+    perfil:string
 
 }
 
@@ -23,7 +24,8 @@ export const INITIAL_USUARIO_DTO: UsuariosDTO = {
     id: 0,
     isPrincipal: false,
     nombre: "",
-    tipo: ""
+    tipo: "",
+    perfil:""
 }
 
  export const INITIAL_VALIDATION_USUARIO = {

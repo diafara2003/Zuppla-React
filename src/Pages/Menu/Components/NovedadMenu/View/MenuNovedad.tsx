@@ -1,4 +1,4 @@
-import { Menu, Box, Tabs, Tab, MenuItem, ListItemIcon, IconButton, Badge, Typography, BadgeProps, styled } from '@mui/material'
+import { Menu, Box, Tabs, Tab, MenuItem, ListItemIcon, IconButton, Badge, Typography, BadgeProps, styled, Tooltip } from '@mui/material'
 import React, { useState } from 'react'
 import { useMenuNotificacion } from '../../User/hook/useMenuNotificacion';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
@@ -118,7 +118,9 @@ export const MenuNovedad = ({ openMenu }: props) => {
                                                     </Badge>
                                                 </IconButton>
                                             </ListItemIcon>
-                                            <Typography pl={2} > {nombreConst}</Typography>
+                                            <Tooltip title={nombreConst} enterDelay={500}>
+                                                <Typography noWrap pl={2} > {nombreConst}</Typography>
+                                            </Tooltip>
                                         </MenuItem>)
                                 })
                                 :
@@ -141,7 +143,9 @@ export const MenuNovedad = ({ openMenu }: props) => {
                                                     </Badge>
                                                 </IconButton>
                                             </ListItemIcon>
-                                            <Typography pl={2} > {nombreConst}</Typography>
+                                            <Tooltip title={nombreConst} enterDelay={500}>
+                                                <Typography noWrap pl={2} > {nombreConst}</Typography>
+                                            </Tooltip>
                                         </MenuItem>)
                                 })
                                 :
