@@ -54,7 +54,6 @@ const renderizarTd = ({ columnas, dato }: props1) => {
                         component="button"
                         variant="body2"
                         onClick={() => {
-                         
                             const url = 'desarrollo.sincoerp.com/SincoOk/V3';
                             const filter = `NumOC=${(dato as any).NumOc}&Sucursal=-1&Page=OC`;
                             const encryptedURL = AES.encrypt(url, myPassword);
