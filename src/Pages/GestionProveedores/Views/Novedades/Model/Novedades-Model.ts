@@ -22,3 +22,4 @@ export interface NovedadesDetDTO {
 export interface CheckedNovedad {
     ischecked?: boolean;
 }
+

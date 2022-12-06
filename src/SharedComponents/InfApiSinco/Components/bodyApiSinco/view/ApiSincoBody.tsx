@@ -1,4 +1,4 @@
-import { TableBody, TableRow, TableCell, Typography, Box } from "@mui/material";
+import { TableBody, TableRow, TableCell, Typography, Box, Link } from "@mui/material";
 import { columnas } from '../../../model/modelInfAPiSinco';
 
 type props = {
@@ -6,11 +6,11 @@ type props = {
     columnas: columnas[];
     datos: Object[]
     page: number,
-    rowPerPage:number
+    rowPerPage: number
 
 }
 
-export const ApiSincoBody = ({ columnas, datos,page,rowPerPage }: props) => {
+export const ApiSincoBody = ({ columnas, datos, page, rowPerPage }: props) => {
     return (
         <TableBody>
             {datos.length == 0 ?
@@ -39,16 +39,27 @@ type props1 = {
 
 const renderizarTd = ({ columnas, dato }: props1) => {
 
-    const getValueObject = (element: any, key: string, formatNumeric:boolean): string => {    
+    const getValueObject = (element: any, key: string, formatNumeric: boolean): string => {
         return (formatNumeric ? element[key].toLocaleString("en-EU") : element[key]);
-    }   
+    }
 
     return (
         columnas.map(c => {
             return <TableCell
                 align={c.align}
                 key={`tbody-td-informe-${c.key}`}>
-                {getValueObject(dato, c.key, c.formatoNumerico)}
+                {c.openLink
+                    ? <Link
+                        component="button"
+                        variant="body2"
+                        onClick={() => {
+                           window.open(`https://desarrollo.sincoerp.com/SincoOk/V3/ADPRO/portal/Views/VisorERP/Visor.html?q=`)
+                        }}
+                    >
+                        {getValueObject(dato, c.key, c.formatoNumerico)}
+                    </Link>
+                    : getValueObject(dato, c.key, c.formatoNumerico)}
+
             </TableCell>
         })
     );

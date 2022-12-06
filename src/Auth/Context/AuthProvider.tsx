@@ -1,7 +1,6 @@
 
 
 import { useReducer, useState, useEffect } from 'react'
-import { TipoNotificacion } from '../../Pages/GestionProveedores/Views/DatosNotificaciones/Model/TipoNotificacion'
 import { requestAPI, APiMethod } from '../../Provider'
 import { AuthContextProps, INITIAL_STATE, UserSessionModel, NotificacionDTO, tipoNovedad, NotificacionTotalDTO, INITIAL_STATE_NOTIFICACION } from '../model'
 import { AuthContext } from './AuthContext'

@@ -14,7 +14,7 @@ type props = {
 
 export const InfSincoApi = ({ tipo }: props) => {
 
-    const { state, loading, handleChangePage,handleChangeRowsPerPage,page,rowsPerPage } = useInformeAPiSinco(tipo);
+    const { state, loading, handleChangePage, handleChangeRowsPerPage, page, rowsPerPage } = useInformeAPiSinco(tipo);
 
     return (
         <Paper elevation={2} sx={{ width: '100%', overflow: 'hidden' }}>
@@ -29,6 +29,7 @@ export const InfSincoApi = ({ tipo }: props) => {
                         </Table>
                     </TableContainer>
                     <TablePagination
+                        labelRowsPerPage={"Registros por pagina"}
                         rowsPerPageOptions={[100, 200, 500]}
                         component="div"
                         count={state.detalles.length}
