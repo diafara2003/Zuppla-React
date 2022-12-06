@@ -59,7 +59,7 @@ const renderizarTd = ({ columnas, dato }: props1) => {
                             const filter = `NumOC=${(dato as any).NumOc}&Sucursal=-1&Page=OC`;
                             const encryptedURL = AES.encrypt(url, myPassword);
                             const encryptedFilter = AES.encrypt(filter, myPassword);
-                            window.open(`https://desarrollo.sincoerp.com/SincoOk/V3/ADPRO/portal/Views/VisorERP/Visor.html?q=${encryptedURL}&f=${encryptedFilter}`)
+                            window.open(`https://desarrollo.sincoerp.com/SincoOk/V3/ADPRO/portal/Views/VisorERP/Visor.html?q=${encryptedURL}&f=${encryptedFilter}`,'', 'toolbar=no, top=30, left=100, resizable=no, width=980px, height=780px')
                         }}
                     >
                         {getValueObject(dato, c.key, c.formatoNumerico)}
