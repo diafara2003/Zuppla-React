@@ -6,8 +6,6 @@ import { NavigationComponent } from '../../SharedComponents/Navigation';
 import { useState } from 'react';
 
 
-const drawerWidth = 280;
-
 export const GestionProveedoresPage = () => {
     const [sizeLayout, setSizeLayout] = useState({ sm: 12, lg: 9.9, md: 9.9, xs: 12 })
     return (

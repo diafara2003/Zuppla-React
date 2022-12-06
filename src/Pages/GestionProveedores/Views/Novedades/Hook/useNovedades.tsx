@@ -5,6 +5,9 @@ import { useMenuNotificacion } from '../../../../Menu/Components/User/hook/useMe
 import { ConstructoraNovDTO } from '../../../Components/SelectorConstructora/Model/Constructora-Model';
 import { NovedadDTO } from '../Model/Novedades-Model';
 
+
+
+
 export const useNovedades = () => {
     const [dataNovedades, setDataNovedades] = useState<NovedadDTO[]>([]);
     const [openDialog, setOpenDialog] = useState(false);
@@ -23,7 +26,7 @@ export const useNovedades = () => {
         setIsLoading(true)
         setConstructoraSelected(_constructora!);
         const request: RequestModel = {
-            metodo: `Novedad/constructora?constructora=${_constructora.constructoraId}`,
+            metodo: `Novedad/constructora/tipo?constructora=${_constructora.constructoraId}&tipoNovedad=${1}`,
             type: APiMethod.GET
         }
         const response = await requestAPI<NovedadDTO[]>(request)!;
