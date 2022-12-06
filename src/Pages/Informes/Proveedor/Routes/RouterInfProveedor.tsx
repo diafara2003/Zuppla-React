@@ -17,7 +17,7 @@ export const rutas: NavigationModel[] = [
     // {
     //     path: "/informes/proveedor/facturas",
     //     texto: "Información de facturas",
-    //     Icono: () => <DescriptionOutlinedIcon />
+    //     Icono: () => <DescriptionOutlinedIcon /> 
     // },
 ];
 

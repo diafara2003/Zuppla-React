@@ -30,7 +30,6 @@ export const useMenuUser = () => {
     
 
     const stringAvatar = () => {
-debugger;
         if (user.nombreUsuario == "") return {}
         let split = user.nombreUsuario.split(' ');
 

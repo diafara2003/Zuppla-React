@@ -70,9 +70,7 @@ export const NovedadesPage = () => {
 
                             clickFinaliza={(_number) => {
                               setDataNovedades(dataNovedades.map(c => {
-
                                 if (c.numero == _number) c.ischecked = true;
-
                                 return c
                               }));
                               setIdOpen(_number);

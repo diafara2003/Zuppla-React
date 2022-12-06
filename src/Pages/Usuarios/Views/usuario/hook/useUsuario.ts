@@ -56,7 +56,6 @@ export const useUsuario = () => {
                 handleClickDialogOpenEdit();
                 break;
             case ActionUser.Send:
-
                 sendMail()
                 break;
             case ActionUser.EstadoTrue:
@@ -69,7 +68,6 @@ export const useUsuario = () => {
                 resetPassword();
                 break;
             case ActionUser.Historial:
-                
                 MostrarHistorial()
             default:
                 break;
@@ -135,8 +133,8 @@ export const useUsuario = () => {
     }
 
     return {
-        isLoading, data, openDelete, dataUserSelect, openD, tipoModal, filter,openHistorial, handleChangeBuscar,
-        handleCloseDelete, newUser, actionUser, handleClickDialogOpenAdd, handleClickDialogOpenEdit, setOpen,MostrarHistorial,OcultarHistorial
+        isLoading, data, openDelete, dataUserSelect, openD, tipoModal, filter, openHistorial, handleChangeBuscar,
+        handleCloseDelete, newUser, actionUser, handleClickDialogOpenAdd, handleClickDialogOpenEdit, setOpen, MostrarHistorial, OcultarHistorial
     }
 
 }

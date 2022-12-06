@@ -44,7 +44,8 @@ export const NavigationComponent = ({ options, sizeLayout, showcolapse }: props)
                         </Tooltip>
 
                     </Box>
-                    : null}
+                    : null
+                    }
 
                 <List component="nav" aria-label="main mailbox folders">
                     {

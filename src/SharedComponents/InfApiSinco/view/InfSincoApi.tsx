@@ -22,7 +22,7 @@ export const InfSincoApi = ({ tipo }: props) => {
                 ? <SkeletonDinamic Tipo='table' NoColumnas={6} NoFilas={5} />
                 :
                 <>
-                    <TableContainer sx={{ maxHeight: 'calc(100vh - 14rem)' }}>
+                    <TableContainer sx={{ maxHeight: 'calc(100vh - 17rem)' }}>
                         <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                             <ApiSincoHeader columnas={state.encabezado} />
                             {state.detalles.length == 0 ? null : <ApiSincoBody page={page} rowPerPage={rowsPerPage} columnas={state.encabezado} datos={state.detalles} />}

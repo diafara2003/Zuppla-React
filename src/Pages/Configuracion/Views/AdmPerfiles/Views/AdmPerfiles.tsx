@@ -49,8 +49,7 @@ export const AdmPerfiles = () => {
                                     <TablePerfiles
                                         dataTable={statePerfil}
                                         onClick={(dataAction) => {
-                                            if (dataAction.action != ActionPerfil.Default) {
-                                                debugger
+                                            if (dataAction.action != ActionPerfil.Default) {                                                
                                                 setStatePerfilSelected(dataAction.perfilData);
                                                 actionPerfiles(dataAction.action)
                                             }

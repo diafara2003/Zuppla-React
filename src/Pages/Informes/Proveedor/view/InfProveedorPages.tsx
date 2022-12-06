@@ -13,7 +13,7 @@ export const InfProveedorPages = () => {
                 sizeLayout={(size) => {
                     setSizeLayout(size)
                 }} />
-
+            
             <Grid item {...sizeLayout} sx={{ backgroundColor: 'white' }}   >
                 <RouterInfProveedor />
             </Grid>

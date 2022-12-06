@@ -62,8 +62,7 @@ export const useCamaraComercio = () => {
     cargaCamaraComercio();
   }, []);
 
-  useEffect(() => { 
-    debugger   
+  useEffect(() => {     
     setIsLoading(true)
     const value = filter!.toLowerCase();
     if (value == "") setDataCamaraCopy(dataCamara!);

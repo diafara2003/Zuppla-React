@@ -113,7 +113,6 @@ export const DatosContactos = () => {
                         mostrarInsercion={dataContactoHistorial.id != -1 ? true : false}
                         mostrarModificacion={dataContactoHistorial.id != -1 ? true : false}
                         onClose={(estado) => {
-                            debugger
                             OcultarHistorial();
                         }}
                     />

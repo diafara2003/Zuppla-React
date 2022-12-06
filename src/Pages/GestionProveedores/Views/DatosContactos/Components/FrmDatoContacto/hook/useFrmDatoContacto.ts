@@ -42,8 +42,7 @@ export const useFrmDatoContacto = ({ close, newDatosContacto, editDatosContacto,
         });
     }
 
-    const submit = () => {
-        debugger
+    const submit = () => {        
         const _datosValidados = validaciones();
         setDataValidate(_datosValidados);
         if (_datosValidados.cargo.hasError || _datosValidados.celular.hasError || _datosValidados.documento.hasError

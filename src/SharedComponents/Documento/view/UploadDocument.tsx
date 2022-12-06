@@ -41,7 +41,7 @@ export const UploadDocument = (info: props) => {
                 <Tooltip title={_title} arrow>
                     <Typography noWrap variant='subtitle1' fontWeight={600} fontSize={14}> {_title}</Typography>
                 </Tooltip>
-                
+
                 {
                     _info != undefined ? <Tooltip children={<InfoIcon sx={{ ml: 1 }} color='primary' />} title={_info}></Tooltip> : ''
                 }
@@ -76,8 +76,6 @@ export const UploadDocument = (info: props) => {
                     </Grid>
                     : null
                 }
-
-
             </Grid>
         </Box>
     )

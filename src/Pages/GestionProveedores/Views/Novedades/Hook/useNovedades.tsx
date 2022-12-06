@@ -67,6 +67,7 @@ export const useNovedades = () => {
     const handleClose = (isOk: boolean) => {  
         if (isOk) {
             cambiarEstado();
+            
         } else {
             setDataNovedades(() => dataNovedades.map(c => {
                 if (c.numero == idOpen) c.ischecked = false;

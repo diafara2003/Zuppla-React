@@ -3,7 +3,7 @@
 import { useReducer, useState, useEffect } from 'react'
 import { TipoNotificacion } from '../../Pages/GestionProveedores/Views/DatosNotificaciones/Model/TipoNotificacion'
 import { requestAPI, APiMethod } from '../../Provider'
-import { AuthContextProps, INITIAL_STATE, UserSessionModel, NotificacionDTO, tipoNovedad, NotificacionTotalDTO, INITIAL_STATE_NOTIFICACION } from '../model'
+import { AuthContextProps, INITIAL_STATE, UserSessionModel, NotificacionDTO, tipoNovedad, NotificacionTotalDTO, INITIAL_STATE_NOTIFICACION, ConstructoraDTO, INITIAL_STATE_CONSTRUCTORA } from '../model'
 import { AuthContext } from './AuthContext'
 import { authReducer } from './AuthReducer'
 
@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }: Props) => {
 
     const [storeUsuario, dispatch] = useReducer(authReducer, INITIAL_STATE);
     const [notificacion, setNotificacion] = useState<NotificacionTotalDTO>(INITIAL_STATE_NOTIFICACION);
+    const [constructoraFilter, setConstructoraFilter] = useState<ConstructoraDTO>(INITIAL_STATE_CONSTRUCTORA);
 
     const addSession = (data: AuthContextProps) => {
 
@@ -81,19 +82,23 @@ export const AuthProvider = ({ children }: Props) => {
 
     const eliminarNovedad = (consstructora: number, tipo: tipoNovedad) => {
 
-
     }
 
+    const addConstructoraFilter = (_cont:ConstructoraDTO) =>{
+        setConstructoraFilter(_cont);
+    }
 
     return (
         <AuthContext.Provider value={{
             storeUsuario,
             notificacion,
+            constructoraFilter,
             eliminarNovedad,
             // Methods
             addSession,
             removeSession,
-            updateUser
+            updateUser,
+            addConstructoraFilter
         }}>
             {children}
         </AuthContext.Provider>
