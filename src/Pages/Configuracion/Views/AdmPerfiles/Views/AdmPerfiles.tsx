@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography } from '@mui/material'
+import { Button, Grid, Paper, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import { Fondo } from '../../../../../SharedComponents/Fondo'
@@ -8,27 +8,12 @@ import { DialogPerfiles } from '../Components/DialogPerfiles'
 import { TablePerfiles } from '../Components/TablePerfiles'
 import { UseAdmPerfiles } from '../Hook/UseAdmPerfiles'
 import { ActionPerfil, INITIAL_PERFIL, PerfilConsultaDTO, typeModal } from '../Model/AdmPerfil-Model'
+import { Add } from "@mui/icons-material";
 
 export const AdmPerfiles = () => {
-    const { statePerfil, isLoading } = UseAdmPerfiles();
-    const [statePerfilSelected, setStatePerfilSelected] = useState<PerfilConsultaDTO>(INITIAL_PERFIL)
-    const [stateTipoModal, setStateTipoModal] = useState<typeModal>(typeModal.add)
-    const [StateOpenDialog, setStateOpenDialog] = useState(false)
-    const actionPerfiles = (action: ActionPerfil) => {
-        switch (action) {
-            case ActionPerfil.New:
-                setStateOpenDialog(true)
-                break;
-            case ActionPerfil.Edit:
-                setStateOpenDialog(true)
-                break;
-            case ActionPerfil.Historial:
+    const { statePerfil, isLoading, StateOpenDialog, stateTipoModal,
+        setStatePerfilSelected, setStateOpenDialog, setStateTipoModal, actionPerfiles, statePerfilSelected } = UseAdmPerfiles();
 
-                break;
-            default:
-                break;
-        }
-    }
 
     return (
         <>
@@ -38,8 +23,22 @@ export const AdmPerfiles = () => {
                 <Grid item lg={12} xl={12} m={1} position="absolute">
                     <Fondo />
                 </Grid>
+                <Box pt={2} pr={2} display={'flex'} justifyContent={'flex-end'}>
+                    <Button variant="outlined"
+                        startIcon={<Add color="primary" />}
+                        sx={{ backgroundColor: 'white !important' }}
+                        onClick={() => {
+                            setStateOpenDialog(true);
+                            setStateTipoModal(typeModal.add);
+                        }}
+                    >
+                        Agregar nuevo perfil
+                    </Button>
 
-                <Grid container justifyContent={"center"} position={"relative"} top={79}>
+                </Box>
+
+
+                <Grid container justifyContent={"center"} position={"relative"} top={50}>
                     {
                         isLoading
                             ?
@@ -51,6 +50,7 @@ export const AdmPerfiles = () => {
                                         dataTable={statePerfil}
                                         onClick={(dataAction) => {
                                             if (dataAction.action != ActionPerfil.Default) {
+                                                debugger
                                                 setStatePerfilSelected(dataAction.perfilData);
                                                 actionPerfiles(dataAction.action)
                                             }

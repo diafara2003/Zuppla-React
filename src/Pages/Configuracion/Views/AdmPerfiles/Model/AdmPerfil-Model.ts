@@ -12,10 +12,16 @@ export enum typeModal {
     edit = 'edit'
 }
 
+export interface AgregarPerfilDTO {
+
+    perfil: PerfilDTO;
+    usuarios: number[];
+}
+
 export const INITIAL_PERFIL: PerfilConsultaDTO = {
     countUsuarios: 0,
     estado: false,
-    id: -1,
+    id: 0,
     nombre: ''
 }
 export interface PerfilDTO {
@@ -43,6 +49,7 @@ export interface UsuariosSinPerfilDTO extends UsuariosDTO {
     sinPerfil:boolean;
     id:number;
     correo:string;
+    perfil:string
 }
 
 export interface UsuariosDTO {
@@ -56,5 +63,6 @@ export interface UsuariosDTO {
     documento: string;
     cargo: string;
     celular:string;
+    perfil:string;
 
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { requestAPI } from '../../../../../Provider';
 import { APiMethod, RequestModel } from '../../../../../Provider/model/FetchModel';
+import { useMenuNotificacion } from '../../../../Menu/Components/User/hook/useMenuNotificacion';
 import { ConstructoraNovDTO } from '../../../Components/SelectorConstructora/Model/Constructora-Model';
 import { NovedadDTO } from '../Model/Novedades-Model';
 
@@ -14,14 +15,16 @@ export const useNovedades = () => {
     const [idOpen, setIdOpen] = useState(0);
     const [dataRequest, setDataRequest] = useState<NovedadDTO[]>([]);
     const [isLoading, setIsLoading] = useState(false)
+    const [constructoraSelected , setConstructoraSelected] = useState<ConstructoraNovDTO>()
 
-
+    const { total, totalProveedores, totalLicitaciones, notificacionesLicitacion, notificacionesProveedor } = useMenuNotificacion();
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
     const consultarNovedades = async (_constructora: ConstructoraNovDTO) => {
         setIsLoading(true)
+        setConstructoraSelected(_constructora!);
         const request: RequestModel = {
             metodo: `Novedad/constructora/tipo?constructora=${_constructora.constructoraId}&tipoNovedad=${1}`,
             type: APiMethod.GET
@@ -64,23 +67,16 @@ export const useNovedades = () => {
 
 
 
-    const handleClose = (isOk: boolean) => {
-        setOpenDialog(false);
-
+    const handleClose = (isOk: boolean) => {  
         if (isOk) {
-
             cambiarEstado();
         } else {
             setDataNovedades(() => dataNovedades.map(c => {
-
                 if (c.numero == idOpen) c.ischecked = false;
-
-
                 return c
             }));
         }
-
-
+        setOpenDialog(false);
     };
 
     const openModal = () => {

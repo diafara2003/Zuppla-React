@@ -35,7 +35,7 @@ export const useInformacionGeneral = () => {
     }
 
     const guardarInfo = async () => {
-
+        debugger
         const validacionCampos = validaCamposInfGeneral();
 
         if (validacionCampos.isvalid) {
@@ -88,13 +88,15 @@ export const useInformacionGeneral = () => {
             _validation.name = "nombre";
             return _validation;
         }
-
-        if (data.apellido == null || data.apellido == "") {
-            _validation.isvalid = false;
-            _validation.property = { hasError: true, msn: "El apellido es obligatorio" };
-            _validation.name = "apellido";
-            return _validation;
+        if(!dataInitialState.tipoPersona.toLowerCase().startsWith('j')){
+            if (data.apellido == null || data.apellido == "") {
+                _validation.isvalid = false;
+                _validation.property = { hasError: true, msn: "El apellido es obligatorio" };
+                _validation.name = "apellido";
+                return _validation;
+            }
         }
+        
         if (data.numeroIdentificacion == null || data.numeroIdentificacion == "") {
             _validation.isvalid = false;
             _validation.property = { hasError: true, msn: "El documento es obligatorio" };

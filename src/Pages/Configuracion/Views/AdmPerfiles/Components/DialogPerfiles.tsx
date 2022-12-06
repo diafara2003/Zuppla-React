@@ -1,7 +1,9 @@
-import { Avatar, Box, Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItem, ListItemAvatar, ListItemButton, ListItemText, TextField, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import { APiMethod, requestAPI, RequestModel } from '../../../../../Provider'
-import { PerfilConsultaDTO, typeModal, UsuariosSinPerfilDTO } from '../Model/AdmPerfil-Model'
+import { Avatar, Box, Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItem, ListItemAvatar, ListItemButton, ListItemText, Skeleton, TextField, Typography } from '@mui/material'
+import React, { useContext, useEffect, useState } from 'react'
+import { APiMethod, requestAPI, RequestModel, ResponseDTO } from '../../../../../Provider'
+import { SkeletonDinamic } from '../../../../../SharedComponents/Skeleton/view/SkeletonDynamic'
+import { AlertContext } from '../../../../Menu/context/AlertContext'
+import { AgregarPerfilDTO, INITIAL_PERFIL, PerfilConsultaDTO, PerfilDTO, typeModal, UsuariosDTO, UsuariosSinPerfilDTO } from '../Model/AdmPerfil-Model'
 
 type props = {
     OpenDialog: boolean,
@@ -13,56 +15,108 @@ type props = {
 
 export const DialogPerfiles = ({ OpenDialog, statePerfil, TipoModal, handleCloseDialog }: props) => {
     const [open, setOpen] = React.useState(OpenDialog);
-    const [state, setState] = useState(statePerfil)
-    const [stateUserPerfil, setStateUserPerfil] = useState<UsuariosSinPerfilDTO[]>([])
+    const { showAlert, stateAlert } = useContext(AlertContext);
+    const [state, setState] = useState(TipoModal == typeModal.edit ? statePerfil : INITIAL_PERFIL)
+    const [stateUserPerfil, setStateUserPerfil] = useState<UsuariosDTO[]>([])
+    const [filterUser, setfilterUser] = useState("")
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState({ nombre: { hasError: false, msn: '' } })
+
+    //Lista usuarios
+    const [checked, setChecked] = React.useState<number[]>([]);
+
+    const handleToggle = (value: number) => () => {
+        const currentIndex = checked.indexOf(value);
+        const newChecked = [...checked];
+
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+        setChecked(newChecked);        
+    };
+    //Handles
+    const onChangeFrm = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setState(prevState => {
+            return { ...prevState, [name]: value }
+        });
+        console.log(state)
+    }
     const handleClose = () => {
         setOpen(false);
         handleCloseDialog(false);
     };
 
+    const handleChangeBuscar = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        setfilterUser(value)
+    }
+
+    const handleAgregarPerfil = () => {
+        if (state.nombre == '') {
+            setError({nombre:{ hasError: true, msn: 'El nombre del perfil es obligatorio' }})
+        }
+        else{
+            setError({nombre:{ hasError: false, msn: '' }})
+            agregarPerfil();
+        }
+    }
+    //API
     const consulta = async () => {
         const request: RequestModel = {
             metodo: `Perfil/administracion/consulta?perfil=${state.id}`,
             type: APiMethod.GET
         }
-        const response = await requestAPI<PerfilConsultaDTO[]>(request)!;
-        console.log(response);
+        const response = await requestAPI<{ item1: PerfilDTO, item2: number[] }>(request)!;
+        console.log(response!.item2)
+        setChecked(response!.item2)
     }
 
-    const consultaPerfil = async () => {
+    const consultaUsers = async () => {
         const request: RequestModel = {
-            metodo: 'Usuario/sinperfil',
-            type: APiMethod.GET
+            metodo: "Usuario?tipo=p",
+            type: APiMethod.GET,
         }
-        const response = await requestAPI<UsuariosSinPerfilDTO[]>(request);
+        const response = await requestAPI<UsuariosDTO[]>(request);
         setStateUserPerfil(response!);
-        console.log(response);
+        setIsLoading(false)
+    }
+
+    const agregarPerfil = async () => {
+        setIsLoading(true)
+        let _dataRequest: AgregarPerfilDTO = {
+            perfil: state,
+            usuarios: checked
+        };
+
+        const request: RequestModel = {
+            metodo: "Perfil",
+            type: APiMethod.POST,
+            data: _dataRequest
+        }
+        const response = await requestAPI<{ item1: ResponseDTO; item2: PerfilDTO;}>(request);
+        handleClose()
+        if(response?.item1.success){
+            showAlert('Perfil creado exitosamente','Administración de perfiles' , 'success');
+        }
+        else{
+            showAlert('No se pudo crear el perfil','Administración de perfiles' , 'warning');
+        }
+        setIsLoading(false)
     }
 
     useEffect(() => {
-        consulta();
-        consultaPerfil()
-    }, [state])
+        if (TipoModal == typeModal.edit)
+            consulta();
+        consultaUsers();
+    }, [])
 
 
 
 
 
-    //Lista usuarios
-    const [checked, setChecked] = React.useState([1]);
-
-    const handleToggle = (value: number) => () => {
-      const currentIndex = checked.indexOf(value);
-      const newChecked = [...checked];
-  
-      if (currentIndex === -1) {
-        newChecked.push(value);
-      } else {
-        newChecked.splice(currentIndex, 1);
-      }
-  
-      setChecked(newChecked);
-    };
     return (
         <Dialog
             open={open}
@@ -72,65 +126,87 @@ export const DialogPerfiles = ({ OpenDialog, statePerfil, TipoModal, handleClose
             fullWidth
             maxWidth={'md'}
         >
-             <DialogTitle id="alert-dialog-title">
-                {TipoModal == typeModal.edit? "Edicar perfil ":"Agregar perfil " }
-            </DialogTitle> 
+            <DialogTitle id="alert-dialog-title">
+                {TipoModal == typeModal.edit ? "Editar perfil " : "Agregar perfil "}
+            </DialogTitle>
             <DialogContent>
-                <Grid container spacing={2}>
-                    <Grid item lg={3}>
-                        {/* <Typography>Nombre del perfil</Typography> */}
-                        <Box pt={1}>
-                            <TextField
-                                id="fieldTextNombre"
-                                label="Nombre del perfil"
-                                variant="outlined"
-                                size='small'
-                                value={state.nombre}
-                                fullWidth
-                            />
-                        </Box>
+                {
+                    isLoading ?
+                        <SkeletonDinamic NoColumnas={1} NoFilas={4} Tipo={'formulario'} />
+                        :
+                        <Grid container spacing={2}>
+                            <Grid item lg={3} justifyContent={'center'} display={'flex'} alignItems={'center'} sx={{ borderRight: '1px solid lightgray' }}>
+                                {/* <Typography>Nombre del perfil</Typography> */}
+                                <Box pr={1}>
+                                    <TextField
+                                        name="nombre"
+                                        id="fieldTextNombre"
+                                        label="Nombre del perfil"
+                                        variant="outlined"
+                                        size='small'
+                                        value={state.nombre}
+                                        onChange={onChangeFrm}
+                                        error={error.nombre.hasError}
+                                        helperText={error.nombre.msn}
+                                        fullWidth
+                                    />
+                                </Box>
 
-                    </Grid>
-                    <Grid item lg={9}>
-                        <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                            {stateUserPerfil.map((value) => {
-                                const labelId = `checkbox-list-secondary-label-${value.id}`;
-                                return (
-                                    <ListItem
-                                        key={value.id}
-                                        secondaryAction={
-                                            <Checkbox
-                                                edge="end"
-                                                onChange={handleToggle(value.id)}
-                                                checked={checked.indexOf(value.id) !== -1}
-                                                inputProps={{ 'aria-labelledby': labelId }}
-                                            />
-                                        }
-                                        disablePadding
-                                    >
-                                        <ListItemButton>
-                                            <ListItemAvatar>
-                                                <Avatar
-                                                    alt={`Avatar n°${value.id + 1}`}
-                                                    src={`/static/images/avatar/${value.id + 1}.jpg`}
-                                                />
-                                            </ListItemAvatar>
-                                            <ListItemText id={labelId} primary={`${value.nombre}`} />
-                                        </ListItemButton>
-                                    </ListItem>
-                                );
-                            })}
-                        </List>
-                    </Grid>
-                </Grid>
+                            </Grid>
+                            <Grid item lg={9}>
+                                <Box pt={1}>
+                                    <TextField
+                                        id="fieldTextNombre"
+                                        label="Filtrar usuario"
+                                        variant="outlined"
+                                        size='small'
+                                        onChange={handleChangeBuscar}
+                                        fullWidth
+
+                                    />
+                                </Box>
+                                <List dense sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                                    {stateUserPerfil
+                                        .filter(c => c.nombre.toLowerCase().includes(filterUser.toLowerCase()))
+                                        .map((value) => {
+                                            const labelId = `checkbox-list-secondary-label-${value.id}`;
+                                            return (
+                                                <ListItem
+                                                    key={value.id}
+                                                    secondaryAction={
+                                                        <Checkbox
+                                                            edge="end"
+                                                            onChange={handleToggle(value.id)}
+                                                            checked={checked.indexOf(value.id) !== -1}
+                                                            inputProps={{ 'aria-labelledby': labelId }}
+                                                        />
+                                                    }
+                                                    disablePadding
+                                                >
+                                                    <ListItemButton>
+                                                        <ListItemAvatar>
+                                                            <Avatar
+                                                                alt={`${value.nombre}`}
+                                                                src="/"
+                                                            />
+                                                        </ListItemAvatar>
+                                                        <ListItemText id={labelId} primary={`${value.nombre}`} />
+                                                    </ListItemButton>
+                                                </ListItem>
+                                            );
+                                        })}
+                                </List>
+                            </Grid>
+                        </Grid>
+                }
+
                 <DialogContentText id="alert-dialog-description">
-
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
                 <Button variant='text' color='error' onClick={handleClose}>Cancelar</Button>
-                <Button variant='outlined' onClick={handleClose} autoFocus>
-                    Aceptar
+                <Button variant='outlined' onClick={handleAgregarPerfil} autoFocus>
+                    Aceptar {checked}
                 </Button>
             </DialogActions>
         </Dialog>

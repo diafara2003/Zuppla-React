@@ -1,16 +1,12 @@
-import { DeleteOutline, EditOutlined, LockOutlined, MailOutline, MoreVert } from '@mui/icons-material';
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton, Switch, Menu, MenuItem, ListItemIcon, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { MoreVert } from '@mui/icons-material';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton, Switch } from '@mui/material';
 import { ActionUser, UsuariosDTO } from '../../../model/usuarioDTO';
 import { useTableUsuario } from '../hook/useTableUsuario';
-import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import { MenuOption } from '../../MenuUserOption';
 type typeAction = {
     action: ActionUser;
     userData: UsuariosDTO;
 }
-
-
 
 type props = {
     filter: string,
@@ -19,9 +15,7 @@ type props = {
 
 export const TableUsuario = ({ onClick, filter }: props) => {
 
-
     const { clickAction, clickEstado, handleClick, selectedId, state, label, eventClick } = useTableUsuario({ onClick });
-
 
     return (
         <>
