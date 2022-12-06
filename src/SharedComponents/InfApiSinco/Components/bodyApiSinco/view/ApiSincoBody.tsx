@@ -1,5 +1,6 @@
 import { TableBody, TableRow, TableCell, Typography, Box, Link } from "@mui/material";
 import { columnas } from '../../../model/modelInfAPiSinco';
+import { AES } from 'crypto-js';
 
 type props = {
 
@@ -23,7 +24,7 @@ export const ApiSincoBody = ({ columnas, datos, page, rowPerPage }: props) => {
                 </TableRow>
                 :
                 datos.slice(page * rowPerPage, page * rowPerPage + rowPerPage).map(c => (
-                    <TableRow>
+                    <TableRow hover>
                         {renderizarTd({ columnas: columnas, dato: c })}
                     </TableRow>
                 ))
@@ -38,22 +39,27 @@ type props1 = {
 }
 
 const renderizarTd = ({ columnas, dato }: props1) => {
-
+    const myPassword = "IntegracionSincoERPADproveedor";
     const getValueObject = (element: any, key: string, formatNumeric: boolean): string => {
         return (formatNumeric ? element[key].toLocaleString("en-EU") : element[key]);
     }
 
     return (
-        columnas.map(c => {
+        columnas.map((c, i) => {
             return <TableCell
                 align={c.align}
-                key={`tbody-td-informe-${c.key}`}>
+                key={`tbody-td-informe-${c.key}-${i}`}>
                 {c.openLink
                     ? <Link
                         component="button"
                         variant="body2"
                         onClick={() => {
-                           window.open(`https://desarrollo.sincoerp.com/SincoOk/V3/ADPRO/portal/Views/VisorERP/Visor.html?q=`)
+                         
+                            const url = 'desarrollo.sincoerp.com/SincoOk/V3';
+                            const filter = `NumOC=${(dato as any).NumOc}&Sucursal=-1&Page=OC`;
+                            const encryptedURL = AES.encrypt(url, myPassword);
+                            const encryptedFilter = AES.encrypt(filter, myPassword);
+                            window.open(`https://desarrollo.sincoerp.com/SincoOk/V3/ADPRO/portal/Views/VisorERP/Visor.html?q=${encryptedURL}&f=${encryptedFilter}`)
                         }}
                     >
                         {getValueObject(dato, c.key, c.formatoNumerico)}
