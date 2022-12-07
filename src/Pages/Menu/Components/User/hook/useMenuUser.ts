@@ -32,7 +32,7 @@ export const useMenuUser = () => {
     const stringAvatar = () => {
         debugger
         if (user.nombreUsuario == "") return {}
-        let split = user.nombreUsuario.split(' ');
+        let split = user.nombreUsuario.trimStart().trimEnd().split(' ');
 
         if (split.length == 1)
             split.push(' ');
