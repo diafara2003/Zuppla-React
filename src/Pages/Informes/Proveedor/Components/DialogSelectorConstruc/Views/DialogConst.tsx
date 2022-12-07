@@ -40,11 +40,11 @@ export const DialogConst = ({ openD, hanleClickAc }: props) => {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
-            <DialogTitle id="alert-dialog-title" display={'flex'} justifyContent={'center'}>
+            <DialogTitle  id="alert-dialog-title" display={'flex'} justifyContent={'center'}>
                 {"Seleccione una constructora"}
             </DialogTitle>
             <DialogContent>
-                <DialogContentText id="alert-dialog-description">
+                <DialogContentText mt={1} id="alert-dialog-description">
                     <SelectConstructora onClick={(dataConst) => {
                         setDataConst(dataConst)
                     }} />

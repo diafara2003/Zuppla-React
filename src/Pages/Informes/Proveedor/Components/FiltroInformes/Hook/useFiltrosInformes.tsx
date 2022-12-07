@@ -12,7 +12,7 @@ export const useFiltrosInformes = ( handleFilter :(data:RequestAPiSincoDTO) => v
     const [fechaFinal, setfechaFinal] = useState<string | null>(moment().format("DD/MM/YYYY"));
     const [estado, setEstado] = useState(-1);
     const [noDocumento, setDocumento] = useState('');
-    const [openConstructora, setOpenConstructora] = useState(false)
+    const [openConstructora, setOpenConstructora] = useState(true)
     const { showAlert, stateAlert } = useContext(AlertContext);
     const { constructoraFilter } = useContext(AuthContext);
     const [showInforme, setShowInforme] = useState(false)    

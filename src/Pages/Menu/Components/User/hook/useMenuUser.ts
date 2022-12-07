@@ -30,12 +30,12 @@ export const useMenuUser = () => {
     
 
     const stringAvatar = () => {
+        debugger
         if (user.nombreUsuario == "") return {}
         let split = user.nombreUsuario.split(' ');
 
         if (split.length == 1)
             split.push(' ');
-
 
         return {
             sx: { color: '#FBFBFB', background: '#003972' },
