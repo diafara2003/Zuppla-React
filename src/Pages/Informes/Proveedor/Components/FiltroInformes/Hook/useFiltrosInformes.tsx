@@ -11,10 +11,10 @@ export const useFiltrosInformes = ( handleFilter :(data:RequestAPiSincoDTO) => v
     const [fechaInicial, setFechaInicial] = useState<string | null>(moment().subtract(4, 'months').format("DD/MM/YYYY"));
     const [fechaFinal, setfechaFinal] = useState<string | null>(moment().format("DD/MM/YYYY"));
     const [estado, setEstado] = useState(-1);
-    const [noDocumento, setDocumento] = useState('');
-    const [openConstructora, setOpenConstructora] = useState(true)
+    const [noDocumento, setDocumento] = useState('');   
     const { showAlert, stateAlert } = useContext(AlertContext);
     const { constructoraFilter } = useContext(AuthContext);
+    const [openConstructora, setOpenConstructora] = useState(constructoraFilter.id != 0? false: true)
     const [showInforme, setShowInforme] = useState(false)    
     const handleChange = (event: SelectChangeEvent) => {
         const { value } = (event.target as HTMLInputElement);
