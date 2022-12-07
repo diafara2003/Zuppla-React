@@ -8,11 +8,15 @@ export const InfProveedorPages = () => {
     return (
 
         <Grid container>
+            
             <NavigationComponent
                 options={rutas}
+                showConstructora={true}
                 sizeLayout={(size) => {
                     setSizeLayout(size)
-                }} />
+                }} 
+                
+                />
             
             <Grid item {...sizeLayout} sx={{ backgroundColor: 'white' }}   >
                 <RouterInfProveedor />
