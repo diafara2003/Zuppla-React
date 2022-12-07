@@ -6,17 +6,18 @@ import { SelectConstructora } from '../../../../../GestionProveedores/Components
 import CloseIcon from '@mui/icons-material/Close';
 type props = {
     openD: boolean
+    hanleClickAc: (openDialog: boolean) => void
 }
-export const DialogConst = ({ openD }: props) => {
+export const DialogConst = ({ openD, hanleClickAc }: props) => {
     const { addConstructoraFilter } = useContext(AuthContext);
     const [open, setOpen] = useState(openD);
     const [openAlert, setOpenAlert] = useState(false);
     const [dataConst, setDataConst] = useState<ConstructoraNovDTO>();
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+
+
     const handleClose = () => {
         setOpen(false);
+        hanleClickAc(false);
     };
 
     const handleClick = () => {
@@ -29,6 +30,7 @@ export const DialogConst = ({ openD }: props) => {
                 nombre: dataConst!.nombreConst, urlLogo: dataConst!.logoConst
             };
             addConstructoraFilter(_Const);
+            hanleClickAc(false);
         }
     }
     return (

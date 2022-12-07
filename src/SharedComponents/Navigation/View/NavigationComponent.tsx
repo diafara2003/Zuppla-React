@@ -4,6 +4,8 @@ import { NavigationModel } from '../model/modelNavigation';
 import { theme } from '../../../theme/theme';
 import { MenuOpen } from '@mui/icons-material';
 import { tamLay, useNavigationComponent } from '../hook/useNavigationComponent';
+import { useContext } from 'react';
+import { AuthContext } from '../../../Auth';
 // import { NavigationModel } from '../model/modelNAvigation';
 
 
@@ -11,16 +13,19 @@ type props = {
 
     options: NavigationModel[],
     sizeLayout: (sizeL: tamLay) => void,
-    showcolapse?: boolean
+    showcolapse?: boolean,
+    showConstructora?: boolean
 
 }
 
 
-export const NavigationComponent = ({ options, sizeLayout, showcolapse }: props) => {
+export const NavigationComponent = ({ options, sizeLayout, showcolapse, showConstructora }: props) => {
 
 
     if (showcolapse == undefined) showcolapse = true;
-    const { hanbleClickMenu, handleListItemClick,stateTooltip, displayMenu, displayText, sizeGrid, containerRef, selectedIndex } = useNavigationComponent(sizeLayout, options);
+    if (showConstructora == undefined) showConstructora = false
+    const { hanbleClickMenu, handleListItemClick, stateTooltip, displayMenu, displayText, sizeGrid, containerRef, selectedIndex } = useNavigationComponent(sizeLayout, options);
+    const { constructoraFilter } = useContext(AuthContext);
 
     return (
         <Grid container item spacing={0} {...sizeGrid} >
@@ -45,7 +50,16 @@ export const NavigationComponent = ({ options, sizeLayout, showcolapse }: props)
 
                     </Box>
                     : null
-                    }
+                }
+                {
+                    showConstructora && constructoraFilter.id != 0 ?
+                        <Box m={2} justifyContent={"center"} display={"flex"}>
+                            <Box display={'flex'} justifyContent={'center'}>
+                                <img style={{ width: '70%' }} src={`${import.meta.env.VITE_BACKEND_URL}/documentos/constructora/logo?constructora=${constructoraFilter.id}`}></img>
+                            </Box>
+                        </Box>
+                        : null
+                }
 
                 <List component="nav" aria-label="main mailbox folders">
                     {
