@@ -124,9 +124,9 @@ export const MenuNovedad = ({ openMenu }: props) => {
                                         </MenuItem>)
                                 })
                                 :
-                                <Box display={'flex'} justifyContent={'center'}>
-                                    <Typography> Sin novedaes pendientes</Typography>
-                                </Box>
+                                <Box p={2} display={'flex'} justifyContent={'center'}>
+                                <Typography variant='body2' color={"#9c9a9a"}> Sin novedades pendientes</Typography>
+                            </Box>
                             }
                         </Box>
                         : <Box>
