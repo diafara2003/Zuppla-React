@@ -14,7 +14,7 @@ export const ControllerDatosContactos = () => {
   const [openDelete, setOpenDelete] = React.useState(false);
   const { showAlert, stateAlert } = useContext(AlertContext);
   const [dataContactos, setDataState] = useState<TerDatosContactoDTO[]>([]);
-  const [isLoading, setIsLoading] = useState(true);  
+  const [isLoading, setIsLoading] = useState(true);
 
   const dataContactoSelect = useRef<TerDatosContactoDTO>()
   const [newDatosContacto, setNewDatosContactos] = useState<TerDatosContactoDTO>()
@@ -27,10 +27,10 @@ export const ControllerDatosContactos = () => {
     setOpenHistorial(true);
   }
   const OcultarHistorial = () => {
-    setOpenHistorial(false);    
+    setOpenHistorial(false);
     setDataContactoHistorial(INITIAL_STATE_CONTACTO)
     dataContactoSelect.current = undefined;
-  }  
+  }
   //historial
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -95,15 +95,15 @@ export const ControllerDatosContactos = () => {
 
 
   const handleAddEditContact = async (_contacto: TerDatosContactoDTO, tipoAction: ActionContacto) => {
-  
+
     setIsLoading(true)
-    tipoAction == ActionContacto.New ? _contacto.isNew =true :  _contacto.isNew =false
+    tipoAction == ActionContacto.New ? _contacto.isNew = true : _contacto.isNew = false
     const request: RequestModel = {
       metodo: `TercerosGI/GuardaDatosContacto`,
       type: APiMethod.POST,
       data: _contacto
     };
-    const response = await requestAPI<{ item1: ResponseDTO, item2: TerDatosContactoDTO }>(request)!;   
+    const response = await requestAPI<{ item1: ResponseDTO, item2: TerDatosContactoDTO }>(request)!;
     if (response?.item1?.success) {
       if (tipoAction == ActionContacto.New) {
         setDataState([...dataContactos, response.item2!]);
@@ -144,7 +144,7 @@ export const ControllerDatosContactos = () => {
   }, [value])
 
   return {
-    dataContactos, isLoading, value, openDelete,dataContactoHistorial, dataEditContacto, valueContacto, stateAlert, openHistorial, OcultarHistorial,
+    dataContactos, isLoading, value, openDelete, dataContactoHistorial, dataEditContacto, valueContacto, stateAlert, openHistorial, OcultarHistorial,
     handleChange, handleCloseDelete, handleDeleteContacto, dataContactoSelect, actionCardContacto, setNewDatosContactos, MostrarHistorial
 
   }

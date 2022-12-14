@@ -12,7 +12,7 @@ export const useAlertPortal = () => {
     useEffect(() => {
          const inter = setInterval(function () {
             setLinealBar((currentNumber) => currentNumber + 1)
-        }, 90);
+        }, 45);
         setTimeout(() => {
             hideAlert();
             clearInterval(inter);

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { APiMethod, requestAPI, RequestModel, ResponseDTO } from '../../../../../Provider';
 import { AlertContext } from '../../../../Menu/context/AlertContext';
-import { ActionPerfil, INITIAL_PERFIL, PerfilConsultaDTO, typeModal } from '../Model/AdmPerfil-Model';
+import { ActionPerfil, INITIAL_PERFIL, PerfilConsultaDTO, PerfilDTO, typeModal } from '../Model/AdmPerfil-Model';
 
 export const UseAdmPerfiles = () => {
 
@@ -12,7 +12,9 @@ export const UseAdmPerfiles = () => {
 
     const [stateTipoModal, setStateTipoModal] = useState<typeModal>(typeModal.add)
     const [StateOpenDialog, setStateOpenDialog] = useState(false)
-    const actionPerfiles = (action: ActionPerfil) => {
+
+
+    const actionPerfiles = (action: ActionPerfil, _dataPerfil?: PerfilConsultaDTO) => {
         switch (action) {
             case ActionPerfil.New:
                 setStateTipoModal(typeModal.add)
@@ -23,10 +25,10 @@ export const UseAdmPerfiles = () => {
                 setStateOpenDialog(true)
                 break;
             case ActionPerfil.EstadoFalse:
-                cambiarEstado(false)
+                cambiarEstado(false, _dataPerfil!)
                 break;
             case ActionPerfil.EstadoTrue:
-                cambiarEstado(true)
+                cambiarEstado(true, _dataPerfil!)
                 break;
             default:
                 break;
@@ -42,40 +44,61 @@ export const UseAdmPerfiles = () => {
         setIsLoading(false)
     }
 
-    const cambiarEstado = async (_estado: boolean) => {
+    const cambiarEstado = async (_estado: boolean, _dataPerfil: PerfilConsultaDTO) => {
         setIsLoading(true)
-        debugger
         // setStatePerfilSelected(prevState => {
         //     return { ...prevState, estado: _estado }
-        // });
+        // });       
         const request: RequestModel = {
             metodo: "Perfil/cambiarEstado",
             type: APiMethod.POST,
-            data: statePerfilSelected
+            data: _dataPerfil
         }
         const response = await requestAPI<ResponseDTO>(request);
-        debugger
-        if (response?.success) {            
-            setStatePerfil([...statePerfil.map(p=>{
+        if (response?.success) {
+            setStatePerfil([...statePerfil.map(p => {
                 const _perfil = p
-                if (_perfil.id == statePerfilSelected.id )
-                     _perfil.estado = _estado     
+                if (_perfil.id == statePerfilSelected.id)
+                    _perfil.estado = _estado
                 return _perfil
             })])
-            
-            showAlert('Estado actualizado', 'Administración de perfiles', 'success');
-
+            showAlert(response.mensaje=="" ? "Se actulizo el estado correctamente":response.mensaje, 'Administración de perfiles', 'success');
         }
-        else {
-            showAlert('No se pudo actualizar el estado', 'Administración de perfiles', 'warning');
+        else {            
+            showAlert(response!.mensaje=="" ? "Se actulizo el estado correctamente":response!.mensaje, 'Administración de perfiles', 'warning');
         }
         setIsLoading(false)
+    }
+
+    const actualizaStatePerfil = (_dataNew:PerfilDTO) => {
+        let obj: PerfilConsultaDTO ={
+            countUsuarios:0,
+            estado:_dataNew.estado,
+            id:_dataNew.id,
+            nombre:_dataNew.nombre
+        }
+        if (stateTipoModal == typeModal.edit){
+            setStatePerfil([...statePerfil.map(per => {
+                let _per = per;
+                if (_per.id == _dataNew.id) {
+                    _per = obj
+                }
+                return _per
+              })]);
+        }
+        else{
+            setStatePerfil([...statePerfil, obj])
+        }
     }
     useEffect(() => {
         consultar_perfiles();
     }, [])
 
     return (
-        { statePerfil, isLoading, statePerfilSelected, stateTipoModal, StateOpenDialog, actionPerfiles, setStateTipoModal, setStateOpenDialog, setStatePerfilSelected }
+        {
+            statePerfil, isLoading, statePerfilSelected, stateTipoModal, StateOpenDialog,
+            actionPerfiles, setStateTipoModal, setStateOpenDialog, setStatePerfilSelected, setStatePerfil,
+            actualizaStatePerfil
+        }
     )
 }

@@ -1,5 +1,6 @@
 import { ResponseDTO } from "../../../../../Provider";
 export enum ActionPerfil {
+    close = "-1",
     Edit = "E",
     New = "N",
     Historial = "H",

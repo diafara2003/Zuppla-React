@@ -4,22 +4,22 @@ import React, { useState } from 'react'
 import { Fondo } from '../../../../../SharedComponents/Fondo'
 import { HeaderComponent } from '../../../../../SharedComponents/Header'
 import { SkeletonDinamic } from '../../../../../SharedComponents/Skeleton/view/SkeletonDynamic'
-import { DialogPerfiles } from '../Components/DialogPerfiles'
-import { TablePerfiles } from '../Components/TablePerfiles'
+import { DialogPerfiles } from '../Components/DialogPerfiles/Views/DialogPerfiles'
+import { TablePerfiles } from '../Components/TablePerfiles/Views/TablePerfiles'
 import { UseAdmPerfiles } from '../Hook/UseAdmPerfiles'
 import { ActionPerfil, INITIAL_PERFIL, PerfilConsultaDTO, typeModal } from '../Model/AdmPerfil-Model'
 import { Add } from "@mui/icons-material";
 
 export const AdmPerfiles = () => {
     const { statePerfil, isLoading, StateOpenDialog, stateTipoModal,
-        setStatePerfilSelected, setStateOpenDialog, setStateTipoModal, actionPerfiles, statePerfilSelected } = UseAdmPerfiles();
+        setStatePerfilSelected, setStateOpenDialog, setStateTipoModal, actionPerfiles,
+         statePerfilSelected, actualizaStatePerfil } = UseAdmPerfiles();
 
 
     return (
         <>
             <HeaderComponent title={`Administración de perfiles`} />
             <Box>
-
                 <Grid item lg={12} xl={12} m={1} position="absolute">
                     <Fondo />
                 </Grid>
@@ -34,7 +34,6 @@ export const AdmPerfiles = () => {
                     >
                         Agregar nuevo perfil
                     </Button>
-
                 </Box>
 
 
@@ -49,9 +48,9 @@ export const AdmPerfiles = () => {
                                     <TablePerfiles
                                         dataTable={statePerfil}
                                         onClick={(dataAction) => {
-                                            if (dataAction.action != ActionPerfil.Default) {                                                
+                                            if (dataAction.action != ActionPerfil.Default) {
                                                 setStatePerfilSelected(dataAction.perfilData);
-                                                actionPerfiles(dataAction.action)
+                                                actionPerfiles(dataAction.action, dataAction.perfilData)
                                             }
                                         }} />
                                 </Paper>
@@ -67,6 +66,9 @@ export const AdmPerfiles = () => {
                         statePerfil={statePerfilSelected}
                         handleCloseDialog={(close) => {
                             setStateOpenDialog(close);
+                        }}
+                        handleSubmit={(dataNew)=>{
+                            actualizaStatePerfil(dataNew)                          
                         }}
                     />
                     : null

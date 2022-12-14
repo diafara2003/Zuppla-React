@@ -73,7 +73,6 @@ export const TableUsuario = ({ onClick, filter }: props) => {
                             >
                                 {"Acciones"}
                             </TableCell>
-
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -114,7 +113,6 @@ export const TableUsuario = ({ onClick, filter }: props) => {
                             })}
                     </TableBody>
                 </Table>
-
             </TableContainer>
             {eventClick == null ? null : <MenuOption event={eventClick} opSelected={clickAction} />}
         </>
