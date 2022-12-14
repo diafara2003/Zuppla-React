@@ -21,7 +21,7 @@ export const useInformeAPiSinco = (filtros: RequestAPiSincoDTO) => {
     };
 
     const consultarInfo = async () => {
-        debugger;
+        
         setLoading(true) 
         const response = await requestAPI<{ detalles: string, encabezado: columnas[] }>({
             metodo: 'Informes',
