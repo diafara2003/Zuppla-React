@@ -21,7 +21,7 @@ export const InfContratos = () => {
       />
       {
         showInforme ?
-          <Box sx={{ background: 'white', height: 'calc(100vh - 150px)' }}>
+          <Box sx={{ background: 'white', height: 'calc(100vh - 196px)' }}>
             <Grid container width={'100%'}
               display={"flex"}
               alignItems={"center"}
