@@ -20,7 +20,7 @@ export const TablePerfiles = ({ dataTable, onClick }: props) => {
 
     const clickEstado = (event: React.ChangeEvent<HTMLInputElement>, perfil: PerfilConsultaDTO, _index: number) => {
         perfil.estado = event.target.checked;
-        debugger
+        
         event.target.checked == true ?
             onClick({ action: ActionPerfil.EstadoTrue, perfilData: perfil! })
             :

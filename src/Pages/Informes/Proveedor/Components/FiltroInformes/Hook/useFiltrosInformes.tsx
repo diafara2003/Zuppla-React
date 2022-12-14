@@ -8,8 +8,8 @@ import { APISincoDTO, RequestAPiSincoDTO, TipoInformeApiSincoDTO } from '../../.
 import { AlertContext } from '../../../../../Menu/context/AlertContext';
 
 export const useFiltrosInformes = ( handleFilter :(data:RequestAPiSincoDTO) => void) => {    
-    const [fechaInicial, setFechaInicial] = useState<string | null>(moment().subtract(4, 'months').format("DD/MM/YYYY"));
-    const [fechaFinal, setfechaFinal] = useState<string | null>(moment().format("DD/MM/YYYY"));
+    const [fechaInicial, setFechaInicial] = useState<string | null>(moment().subtract(4, 'months').format("MM/DD/YYYY"));
+    const [fechaFinal, setfechaFinal] = useState<string | null>(moment().format("MM/DD/YYYY"));
     const [estado, setEstado] = useState(-1);
     const [noDocumento, setDocumento] = useState('');   
     const { showAlert, stateAlert } = useContext(AlertContext);
@@ -32,7 +32,7 @@ export const useFiltrosInformes = ( handleFilter :(data:RequestAPiSincoDTO) => v
         else {
             let obj: APISincoDTO = { estado: estado, fechaf: fechaFinal!, fechai: fechaInicial!, no: noDocumento, solicitud: 0 }           
             setShowInforme(true)
-            debugger
+            
             handleFilter({ parametro: obj, constructora: constructoraFilter.id, informe: TipoInformeApiSincoDTO.OrdenCompra});
         }
     }

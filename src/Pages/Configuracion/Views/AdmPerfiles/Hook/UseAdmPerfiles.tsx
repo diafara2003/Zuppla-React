@@ -44,7 +44,7 @@ export const UseAdmPerfiles = () => {
 
     const cambiarEstado = async (_estado: boolean) => {
         setIsLoading(true)
-        debugger
+        
         // setStatePerfilSelected(prevState => {
         //     return { ...prevState, estado: _estado }
         // });
@@ -54,7 +54,7 @@ export const UseAdmPerfiles = () => {
             data: statePerfilSelected
         }
         const response = await requestAPI<ResponseDTO>(request);
-        debugger
+        
         if (response?.success) {            
             setStatePerfil([...statePerfil.map(p=>{
                 const _perfil = p
