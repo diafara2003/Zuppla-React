@@ -35,7 +35,7 @@ export const useInformacionGeneral = () => {
     }
 
     const guardarInfo = async () => {
-        debugger
+        
         const validacionCampos = validaCamposInfGeneral();
 
         if (validacionCampos.isvalid) {

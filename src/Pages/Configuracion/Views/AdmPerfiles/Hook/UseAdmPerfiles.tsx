@@ -46,6 +46,7 @@ export const UseAdmPerfiles = () => {
 
     const cambiarEstado = async (_estado: boolean, _dataPerfil: PerfilConsultaDTO) => {
         setIsLoading(true)
+        
         // setStatePerfilSelected(prevState => {
         //     return { ...prevState, estado: _estado }
         // });       
@@ -55,8 +56,9 @@ export const UseAdmPerfiles = () => {
             data: _dataPerfil
         }
         const response = await requestAPI<ResponseDTO>(request);
-        if (response?.success) {
-            setStatePerfil([...statePerfil.map(p => {
+        
+        if (response?.success) {            
+            setStatePerfil([...statePerfil.map(p=>{
                 const _perfil = p
                 if (_perfil.id == statePerfilSelected.id)
                     _perfil.estado = _estado

@@ -9,14 +9,14 @@ import { FiltroInf } from "../../FiltroInformes/Views/FiltroInf";
 export const InfCompras = () => {
 
     const [showInforme, setShowInforme] = useState(false)
-    const [filtros, setFiltros] = useState<RequestAPiSincoDTO>()
+    const [filtros, setFiltros] = useState<RequestAPiSincoDTO>({ informe: 1, constructora: 0, parametro: { estado: -1, fechaf: '-1', fechai: '-1', no: '-1', solicitud: 0 } })
 
     return (
         <>
             <HeaderComponent title={`Informe de ordenes de compra`} />
             <FiltroInf
                 handleFilter={(dataFilter) => {
-                    debugger
+
                     setFiltros(dataFilter)
                     setShowInforme(true)
                 }}
@@ -35,7 +35,8 @@ export const InfCompras = () => {
                         >
                             <Grid item xs={12}>
                                 <InfSincoApi
-                                    filtros={filtros!}
+                                    informe={1}
+                                    filtros={filtros}
                                 />
                             </Grid>
 

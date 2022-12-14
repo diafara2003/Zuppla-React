@@ -1,4 +1,4 @@
-import { columnas, InformeAPiSIncoDTOResponse, INITIAL_InformeAPiSIncoDTOResponse, RequestAPiSincoDTO, TipoInformeApiSincoDTO } from "../model/modelInfAPiSinco"
+import { columnas, InformeAPiSIncoDTOResponse, INITIAL_InformeAPiSIncoDTOResponse, RequestAPiSincoDTO } from "../model/modelInfAPiSinco"
 import { useEffect, useState } from 'react';
 import { APiMethod, requestAPI } from "../../../Provider";
 
@@ -21,6 +21,7 @@ export const useInformeAPiSinco = (filtros: RequestAPiSincoDTO) => {
     };
 
     const consultarInfo = async () => {
+        
         setLoading(true) 
         const response = await requestAPI<{ detalles: string, encabezado: columnas[] }>({
             metodo: 'Informes',
@@ -35,7 +36,7 @@ export const useInformeAPiSinco = (filtros: RequestAPiSincoDTO) => {
     }
 
 
-    useEffect(() => { consultarInfo(); }, [filtros]);
+    useEffect(() => { consultarInfo(); }, []);
 
     return {
         state,

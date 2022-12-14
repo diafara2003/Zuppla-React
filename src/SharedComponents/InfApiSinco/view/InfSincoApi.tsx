@@ -1,7 +1,7 @@
 
 import { Box, Paper, Table, TableContainer, TablePagination } from '@mui/material'
 import { ApiSincoHeader } from '../Components/headerApiSinco/view/ApiSincoHeader'
-import { RequestAPiSincoDTO, TipoInformeApiSincoDTO } from '../model/modelInfAPiSinco';
+import { RequestAPiSincoDTO } from '../model/modelInfAPiSinco';
 import { useInformeAPiSinco } from '../hook/useInformeAPiSinco';
 import { ApiSincoBody } from '../Components/bodyApiSinco/view/ApiSincoBody';
 import { SkeletonDinamic } from '../../Skeleton/view/SkeletonDynamic';
@@ -10,11 +10,12 @@ import { useState } from 'react';
 
 type props = {
     filtros: RequestAPiSincoDTO
+    informe:number
 }
 
-export const InfSincoApi = ({ filtros }: props) => {
+export const InfSincoApi = ({ filtros,informe }: props) => {
 
-    const { state, loading, handleChangePage, handleChangeRowsPerPage, page, rowsPerPage } = useInformeAPiSinco(filtros);
+    const { state, loading, handleChangePage, handleChangeRowsPerPage, page, rowsPerPage } = useInformeAPiSinco({...filtros,informe:informe});
 
     return (
         <Paper elevation={2} sx={{ width: '100%', overflow: 'hidden' }}>
