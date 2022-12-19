@@ -29,12 +29,7 @@ export const useMenuUser = () => {
 
     
 
-<<<<<<< HEAD
     const stringAvatar = () => {        
-=======
-    const stringAvatar = () => {
-        
->>>>>>> ee4095ba124d2ffcb2a6b363beeb17d64e1ab694
         if (user.nombreUsuario == "") return {}
         let split = user.nombreUsuario.trimStart().trimEnd().split(' ');
 
