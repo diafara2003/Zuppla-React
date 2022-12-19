@@ -22,7 +22,7 @@ export const useMenuUser = () => {
         const { user } = storeUsuario;
 
         setUser(user);
-
+        
 
 
     }, []);
