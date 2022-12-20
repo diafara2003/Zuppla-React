@@ -11,7 +11,7 @@ export const MenuPages = () => {
   const navigate = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="sticky" color='primary' sx={{ mt: 0, color: 'white' }}>
+      <AppBar position="sticky" color="primary" sx={{ mt: 0, color: 'white' }}>
         <Toolbar>
           {/* <img src={logo} alt="Sammy Image" width={50} height={50} /> */}
           <ElectricBolt color="inherit"

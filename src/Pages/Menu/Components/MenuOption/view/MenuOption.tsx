@@ -43,9 +43,11 @@ export const MenuOption = () => {
             }}
             sx={{ color: menuActived == mencodigo ? '#9ACAF5' : 'white' }}
           >
+            
             <Typography
               // fontSize="0.75rem"
-              variant="body1" noWrap={true}>{descripcion}</Typography>
+              variant="body1" sx={{fontSize:13}} noWrap={true}>{descripcion}</Typography>
+              <ExpandMore />
             {/* <Link to={ubicacion}>{descripcion}</Link> */}
           </Button>
           {tieneHijos == 0 ? null :
