@@ -112,7 +112,7 @@ export const SubMenu = ({ drawerWidth = 240 }) => {
                                     <ListItemIcon>
                                         <DescriptionIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="Camara de comercio" />
+                                    <ListItemText primary="Cámara de comercio" />
                                 </ListItemButton>
                             </ListItem>
                         </NavLink>

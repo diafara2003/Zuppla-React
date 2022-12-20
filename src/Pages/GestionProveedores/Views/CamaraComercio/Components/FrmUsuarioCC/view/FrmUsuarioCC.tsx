@@ -67,7 +67,7 @@ export const FrmUsuarioCC = (data: props) => {
                                 error={validation.documento.hasError}
                                 helperText={validation.documento.msn}
                                 value={dataInitialState.documento}
-                                label="Numero de documento"
+                                label="Número de documento"
                                 fullWidth
                                 size="small"
                             />

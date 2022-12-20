@@ -19,7 +19,7 @@ export const DocHistorial = ({ onClose }: props) => {
                 <Grid container spacing={3} pl={1} >
                     <Grid item xl={3} lg={3}  >
                         <Button variant="text" onClick={cerrarHistorial}> <ExitToAppIcon sx={{ mr: "8px" }} />Volver</Button>
-                        <List sx={{}}>
+                        <List sx={{borderRight:'1px solid #ededed'}}>
                             {
                                 state.map(c => {
                                     let _title = c.nombre.split('(')[0]

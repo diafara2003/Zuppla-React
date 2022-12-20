@@ -61,7 +61,7 @@ export const FrmNewUser = ({ newUser, open, close, tipo, editUser }: props) => {
                                 <TextField
                                     required
                                     name='documento'
-                                    label="Numero de documento"
+                                    label="Número de documento"
                                     fullWidth
                                     size="small"
                                     onChange={onChangeFrm}

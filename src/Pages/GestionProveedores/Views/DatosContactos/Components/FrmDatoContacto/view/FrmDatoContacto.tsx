@@ -58,7 +58,7 @@ export const FrmDatoContacto = (info: props) => {
                                 <TextField
                                     required
                                     id=""
-                                    label="Numero de documento"
+                                    label="Número de documento"
                                     name="numeroDocumento"
                                     fullWidth
                                     size="small"
@@ -119,7 +119,7 @@ export const FrmDatoContacto = (info: props) => {
                                 <TextField
                                     required
                                     id=""
-                                    label="Direccion"
+                                    label="Dirección"
                                     name="direccion"
                                     fullWidth
                                     size="small"

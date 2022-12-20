@@ -31,7 +31,7 @@ export const useUsersNotificacion = (tipoNotificacion: TipoNotificacion) => {
             showAlert(response?.item1?.mensaje ?? "", "Datos notificaciones", 'warning')
         } else {
             setNotificacion([...lstNotificacion, response!.item2]);
-            showAlert('Se creo el contacto exitosamente', "Datos notificaciones", 'success')
+            showAlert('Se creó el contacto exitosamente', "Datos notificaciones", 'success')
         }
 
     }

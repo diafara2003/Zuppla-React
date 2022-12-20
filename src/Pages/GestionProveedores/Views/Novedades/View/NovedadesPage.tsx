@@ -105,7 +105,7 @@ export const NovedadesPage = () => {
         <DialogTitle fontWeight={600} color={'inherit'}>{"Notificar a la constructora"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            <Typography fontWeight={600}>¿Esta seguro que desa cerrar la novedad?</Typography>
+            <Typography fontWeight={600}>¿Está seguro que desa cerrar la novedad?</Typography>
             <Typography mt={1} >Al cerrarla se le notificará a la constructora para continuar con la validación</Typography>
           </DialogContentText>
         </DialogContent>

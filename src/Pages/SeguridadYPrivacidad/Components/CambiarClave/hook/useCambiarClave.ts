@@ -85,7 +85,7 @@ export const useCambiarClave = () => {
             return objMensaje;
         }
         if (formState.PassNew.replace(/ /g, "").match(/\d/) == null || formState.PassNewR.replace(/ /g, "").match(/\d/) == null) {
-            objMensaje.mensaje = 'La contraseña debe incluir un numero'
+            objMensaje.mensaje = 'La contraseña debe incluir un número'
             objMensaje.permite = false
             return objMensaje;
         }

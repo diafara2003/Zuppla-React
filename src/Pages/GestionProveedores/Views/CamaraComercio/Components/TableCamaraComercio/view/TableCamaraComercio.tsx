@@ -28,7 +28,7 @@ export const TableCamaraComercio = ({ datatable, onDelete }: props) => {
                                 align={"left"}
                                 style={{ fontWeight: 'bold' }}
                             >
-                                {"Numero documento"}
+                                {"Número documento"}
                             </TableCell>
                             <TableCell
                                 key={"thNombre"}

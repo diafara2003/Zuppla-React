@@ -22,7 +22,7 @@ export const CardContentModificacion = ({ _detalleAuditoria }: props) => {
             <Grid item xs={2.9} display={'flex'} alignItems={'center'}>
                 <CalendarMonthOutlinedIcon color='disabled' />
                 <Box ml={1} display={'flex'} alignItems={''} flexDirection={'column'} justifyContent={''} >
-                    <Typography variant='subtitle2'>Fecha modificacion </Typography>
+                    <Typography variant='subtitle2'>Fecha modificación </Typography>
                     <Typography variant='body1'> {_detalleAuditoria.fecha + ' ' + _detalleAuditoria.hora}</Typography>
                 </Box>
             </Grid>

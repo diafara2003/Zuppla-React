@@ -127,7 +127,10 @@ export const useUsuario = () => {
             data: usuario
         };
         const response = await requestAPI<ResponseDTO>(request)!;
-        console.log(response)
+        if(response?.success)
+            showAlert("Constraseña reseteada exitosamente", "Usuario", "success")
+        else
+            showAlert("No se pudo resetear la contraseña", "Usuario", "warning")
 
         setState({ isLoading: false, hasError: '' })
     }

@@ -77,7 +77,7 @@ export const RecuperarClavepages = () => {
                     open={true}
                     autoHideDuration={4000}
                     onClose={() => { stateAlert(false) }}
-                    message="Se envio un correo con las instrucciones para recordar la contraseña"
+                    message="Se envió un correo con las instrucciones para recordar la contraseña"
                     key={"bottom" + "right"}
                 /> : null
             }

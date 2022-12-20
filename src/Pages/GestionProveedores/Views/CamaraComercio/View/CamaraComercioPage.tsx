@@ -25,7 +25,7 @@ export const CamaraComercioPage = () => {
 
     return (
         <>
-            <HeaderComponent title={`${openHistorial ? 'Historial ' : ''} Camara y comercio`} />
+            <HeaderComponent title={`${openHistorial ? 'Historial ' : ''} Cámara y comercio`} />
             {
                 !openHistorial
                     ?
@@ -98,13 +98,13 @@ export const CamaraComercioPage = () => {
                 maxWidth={"md"}
             >
                 <DialogTitle id="alert-dialog-title" justifyContent={'center'} display={"flex"}>
-                    <Typography>  Eliminar camara y comercio </Typography>
+                    <Typography>  Eliminar cámara y comercio </Typography>
                 </DialogTitle>
                 <DialogContent>
                     <Box justifyContent={'center'} display={"flex"}>
                         <Eliminar />
                     </Box>
-                    <Typography>¿Esta seguro que desea eliminar este contacto?</Typography>
+                    <Typography>¿Está seguro que desea eliminar este contacto?</Typography>
 
                 </DialogContent>
                 <DialogActions>
